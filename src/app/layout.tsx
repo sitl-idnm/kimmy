@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ReactNode } from 'react'
 import { Footer } from '@modules/footer'
 import { Header } from '@modules/header'
@@ -7,29 +8,45 @@ import '@styles/global.scss'
 import localFont from 'next/font/local'
 import { Provider } from '@service/provider'
 
-const font = localFont({
+const inter = localFont({
   src: [
     {
-      path: './fonts/neuemachina-light.woff2',
-      weight: '500',
-      style: 'normal'
-    },
-    {
-      path: './fonts/neuemachina-regular.woff2',
+      path: './fonts/InterTight-Regular.woff2',
       weight: '400',
       style: 'normal'
     },
     {
-      path: './fonts/neuemachina-medium.woff2',
+      path: './fonts/InterTight-Medium.woff2',
       weight: '500',
       style: 'normal'
     },
     {
-      path: './fonts/neuemachina-ultrabold.woff2',
-      weight: '800',
+      path: './fonts/InterTight-SemiBold.woff2',
+      weight: '600',
       style: 'normal'
     }
-  ]
+  ],
+  variable: '--font-inter'
+})
+const manrope = localFont({
+  src: [
+    {
+      path: './fonts/Manrope-Regular.woff2',
+      weight: '400',
+      style: 'normal'
+    },
+    {
+      path: './fonts/Manrope-Medium.woff2',
+      weight: '500',
+      style: 'normal'
+    },
+    {
+      path: './fonts/Manrope-SemiBold.woff2',
+      weight: '600',
+      style: 'normal'
+    }
+  ],
+  variable: '--font-manrope'
 })
 
 export default function RootLayout({
@@ -39,7 +56,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body className={font.className}>
+      <body className={`${inter.variable} ${manrope.variable}`}>
         <Provider>
           <div id="root">
             <Header />
