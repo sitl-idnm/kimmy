@@ -1,6 +1,7 @@
 @import 'mixins';
 
 :root {
+  /* stylelint-disable */
   // colors
   --color-white-default: #fff;
   --color-black-default: #000;
@@ -9,6 +10,14 @@
   // project colors
   --color-blue: #2c39f2;
   --color-blue-border: #dadcfa;
+  --color-red-gradient-start: #CB172C;
+  --color-red-gradient-end: #E52D43;
+  --color-black: #16181B;
+  --color-grey: #E7E8EC;
+  --color-grey-light: #F7F7F7;
+  --color-grey-text-card: #F5F5F5;
+
+  /* stylelint-enable */
 }
 
 * {
