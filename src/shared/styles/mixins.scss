@@ -50,6 +50,7 @@
 }
 
 @mixin h1 {
+  font-family: var(--font-inter);
   font-weight: 500;
   font-size: rem(96);
   line-height: 120%;
@@ -60,6 +61,7 @@
 }
 
 @mixin h2 {
+  font-family: var(--font-inter);
   font-weight: 500;
   font-size: rem(80);
   line-height: 120%;
@@ -70,6 +72,7 @@
 }
 
 @mixin h3 {
+  font-family: var(--font-inter);
   font-weight: 500;
   font-size: rem(30);
   line-height: 1.33;
@@ -80,6 +83,7 @@
 }
 
 @mixin h4 {
+  font-family: var(--font-inter);
   font-weight: 400;
   font-size: rem(20);
   line-height: 1.2;
@@ -90,6 +94,7 @@
 }
 
 @mixin text {
+  font-family: var(--font-manrope);
   font-weight: 400;
   font-size: rem(16);
   line-height: 150%;
