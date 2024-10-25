@@ -5,6 +5,7 @@ import classNames from 'classnames'
 
 import styles from './home.module.scss'
 import { HomeProps } from './home.types'
+import { FormFirst } from '@/modules/formFirst'
 
 const Home: FC<HomeProps> = ({ className }) => {
   const rootClassName = classNames(styles.root, className)
@@ -23,6 +24,7 @@ const Home: FC<HomeProps> = ({ className }) => {
           alt="Ligazavr"
           className={styles.image}
         />
+        <FormFirst />
       </Wrapper>
     </main>
   )
