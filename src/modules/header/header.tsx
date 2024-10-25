@@ -14,7 +14,9 @@ const Header: FC<HeaderProps> = ({ className }) => {
       <Wrapper className={styles.wrapper}>
         <Logo />
         <Logo />
-        <Button>Обсудить проект</Button>
+        <Button
+        value={'Обсудить проект'}
+        />
       </Wrapper>
     </header>
   )
