@@ -14,6 +14,7 @@ export default function Button<E extends ElementType = typeof defaultElement>({
   children,
   as,
   className,
+  value,
   ...props
 }: ButtonProps<E>) {
   const elClassName = classNames(
@@ -29,10 +30,12 @@ export default function Button<E extends ElementType = typeof defaultElement>({
   return isLink ? (
     <Link {...props} href={props.href} className={elClassName}>
       {children}
+      {value}
     </Link>
   ) : (
     <TagName {...props} className={elClassName}>
       {children}
+      {value}
     </TagName>
   )
 }

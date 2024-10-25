@@ -1,0 +1,36 @@
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables";
+
+.root {
+	display: flex;
+}
+
+.text {
+	display: flex;
+	flex-direction: column;
+
+	color: var(--color-white-default);
+
+	&__title {
+		@include h2;
+
+		@include tablet-small {
+			font-size: 38px;
+		}
+
+		@include mobile-large {
+			font-size: 28px;
+		}
+	}
+
+	&__paragraph {
+		@include text;
+
+		@include tablet-small {
+			&__paragraph {
+				font-size: 14px;
+			}
+		}
+	}
+}
