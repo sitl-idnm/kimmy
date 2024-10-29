@@ -1,0 +1,179 @@
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables";
+
+.root {
+	display: flex;
+}
+
+.form {
+	display: flex;
+	gap: 100px;
+	align-items: center;
+
+	max-width: 1440px;
+	width: 100%;
+
+	margin: 0 auto;
+	padding: 80px 105px 108px;
+
+	border-radius: 100px 100px 0 0;
+
+	background-color: var(--color-grey);
+
+	&__circle {
+		position: relative;
+		align-self: flex-start;
+
+		max-width: 600px;
+
+		.form__second {
+			color: black;
+
+			@include desktop-small {
+				h2 {
+					font-size: 47px;
+				}
+			}
+
+			@include tablet {
+				p {
+					text-align: center;
+				}
+			}
+
+			@include tablet-small {
+				h2 {
+					font-size: 32px;
+				}
+
+				p {
+					font-size: 14px;
+					text-align: left;
+				}
+			}
+		}
+
+		.image {
+			position: absolute;
+			top: 90px;
+			right: 0;
+		}
+	}
+
+
+	@include desktop-small {
+		& {
+			padding: 50px 52px 90px;
+			gap: 42px;
+			justify-content: space-around;
+		}
+
+		&__circle {
+			max-width: 565px;
+		}
+
+		.image {
+			width: 565px;
+			height: 565px;
+		}
+	}
+
+	@include tablet {
+		& {
+			flex-direction: column;
+			gap: 28px;
+			align-items: center;
+
+			min-width: 745px;
+			width: 100%;
+			padding: 50px 0 373px;
+		}
+
+		&__circle {
+			align-self: center;
+			position: relative;
+		}
+
+		.image {
+			width: 500px;
+			height: 500px;
+			top: 700px;
+			right: auto;
+			z-index: 10;
+		}
+	}
+
+	@include tablet-small {
+
+
+		border-radius: 20px 20px 0 0;
+
+		.image {
+			width: 312px;
+			height: 312px;
+
+			top: 750px;
+		}
+
+		& {
+			flex-direction: column;
+			gap: 28px;
+			align-items: center;
+
+			padding: 28px 12px 361px;
+			min-width: 336px;
+			width: 100%;
+			margin: 80px 12px 0;
+		}
+
+		&__circle {
+			align-self: center;
+			right: auto;
+		}
+
+		&__circle,
+		&__text {
+			max-width: 312px;
+		}
+	}
+
+	&__text {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+
+		max-width: 525px;
+		width: 100%;
+
+		@include tablet-small {
+			max-width: 312px;
+			width: 100%;
+		}
+
+		.input {
+			@include desktop-small {
+				& {
+					max-width: 485px;
+					width: 100%;
+
+					form {
+						max-width: 485px;
+						width: 100%;
+					}
+				}
+			}
+
+			form {
+				div:nth-child(5),
+				div:nth-child(6) {
+					label {
+						color: black;
+						font-size: 12px;
+					}
+				}
+			}
+		}
+	}
+
+}
