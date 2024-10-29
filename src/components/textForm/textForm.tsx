@@ -5,10 +5,11 @@ import styles from './textForm.module.scss'
 import { TextFormProps } from './textForm.types'
 
 const TextForm: FC<TextFormProps> = ({
+  className,
   title,
   paragraph
 }) => {
-  const rootClassName = classNames(styles.root, styles.text)
+  const rootClassName = classNames(styles.root, styles.text, className)
 
   return (
     <div className={rootClassName}>
