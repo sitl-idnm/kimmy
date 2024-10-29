@@ -1,0 +1,81 @@
+@use "@styles/func";
+@use "@styles/mixins";
+@use "@styles/variables";
+
+.root {
+	display: flex;
+}
+
+.treaty {
+	height: 500px;
+	width: 100%;
+	max-width: 1410px;
+	margin: 0 auto;
+	position: relative;
+	overflow: hidden;
+
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+
+	margin-top: 50px;
+	border-radius: 22px;
+
+	background-color: var(--color-black);
+
+	&__info {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	&__title {
+		font-size: 48px;
+		line-height: 120%;
+		color: var(--color-white-default)
+	}
+
+	&__cards {
+		height: 100%;
+		display: flex;
+		gap: 26px;
+		z-index: 1;
+	}
+
+	&__card {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+
+		background-color: var(--color-white-default);
+		height: 70%;
+		padding: 20px 30px;
+		width: 256px;
+		max-width: 256px;
+
+		&__top {
+			border-radius: 0 0 20px 20px;
+			justify-content: flex-end;
+		}
+
+		&__bottom {
+			border-radius: 20px 20px 0 0;
+			align-self: flex-end;
+		}
+
+		&__title {
+			font-size: 32px;
+			line-height: 120%;
+			font-weight: 600;
+			color: var(--color-red-gradient-start);
+		}
+
+		&__subtitle {
+			font-size: 14px;
+			line-height: 120%;
+			color: #161616;
+			align-self: flex-end;
+			text-align: right;
+		}
+	}
+}
