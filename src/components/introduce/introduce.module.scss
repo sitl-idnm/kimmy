@@ -1,0 +1,29 @@
+@use "@styles/func";
+@use "@styles/mixins";
+@use "@styles/variables";
+
+.root {
+	display: flex;
+}
+
+.introduce {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	max-width: 1050px;
+	margin: 0 auto;
+	gap: 28px;
+
+	&__title {
+		text-align: center;
+
+		font-size:74px;
+		line-height: 120%;
+
+		&__awesome {
+			color: var(--color-red-gradient-start);
+		}
+	}
+}

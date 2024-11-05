@@ -16,8 +16,7 @@
   color: var(--color-white-default);
   background: linear-gradient(256.01deg, var(--color-red-gradient-start) -7.55%, var(--color-red-gradient-end) 74.55%);
   cursor: pointer;
-  transition: variables.$transition;
-  transition-property: color, background-color;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
   outline: none;
   user-select: none;
 
@@ -39,7 +38,7 @@
   &:hover {
     color: var(--color-red-gradient-start);
     background: var(--color-white-hover);
-    border: 1px solid var(--color-red-gradient-start)
+    border-color: var(--color-red-gradient-start);
   }
 
   &:active {
