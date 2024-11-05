@@ -1,0 +1,25 @@
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables";
+
+.root {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 30px;
+	max-width: 750px;
+	margin: 0 auto;
+
+	h2 {
+		font-family: var(--font-inter);
+		font-weight: 500;
+		font-size: 48px;
+		line-height: 120%;
+
+		text-align: center;
+
+		@include tablet {
+			font-size: 38px;
+		}
+	}
+}

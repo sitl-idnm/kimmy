@@ -1,4 +1,6 @@
 export { Dialog } from './dialog'
 export { Form } from './form'
 export { Navigation } from './navigation'
+export { TenetAbout } from './tenetAbout'
+export { TenetTitle } from './tenetTitle'
 export { TextForm } from './textForm'
