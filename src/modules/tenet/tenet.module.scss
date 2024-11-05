@@ -1,0 +1,20 @@
+@use "@styles/func";
+@use "@styles/mixins";
+@use "@styles/variables";
+
+.root {
+	padding-top: 230px;
+	padding-bottom: 144px;
+	position: relative;
+
+	.cont__title {
+		position: absolute;
+		left: 50%;
+		transform: translate(-50%, -50%);
+
+		.span {
+			color: var(--color-red-accent);
+		}
+	}
+
+}
