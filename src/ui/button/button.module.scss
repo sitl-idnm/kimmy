@@ -11,8 +11,8 @@
   border: 1px solid transparent;
   border-radius: 10px;
   font-weight: 500;
-  font-size: func.rem(16);
-  line-height: func.rem(20);
+  font-size: 16px;
+  line-height: 150%;
   color: var(--color-white-default);
   background: linear-gradient(256.01deg, var(--color-red-gradient-start) -7.55%, var(--color-red-gradient-end) 74.55%);
   cursor: pointer;
@@ -28,11 +28,6 @@
   &_md {
     height: func.rem(56);
     padding: func.rem(15) func.rem(32);
-
-    @include mixins.tablet {
-      height: func.rem(50);
-      padding: func.rem(14) func.rem(49);
-    }
   }
 
   &_white {

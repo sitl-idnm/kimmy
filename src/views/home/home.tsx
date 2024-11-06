@@ -7,6 +7,7 @@ import { HomeProps } from './home.types'
 import { FormFirst } from '@/modules/formFirst'
 import { Favour, Introduce, Peoples, Treaty } from '@/components'
 import { FormSecond } from '@/modules/formSecond'
+import { Tenet } from '@/modules/tenet'
 
 const Home: FC<HomeProps> = ({ className }) => {
   const rootClassName = classNames(styles.root, className)
@@ -17,6 +18,7 @@ const Home: FC<HomeProps> = ({ className }) => {
         <Introduce />
         <Favour />
         <FormFirst />
+        <Tenet />
         <Treaty />
         <Peoples />
         <FormSecond />
