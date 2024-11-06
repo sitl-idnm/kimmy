@@ -5,7 +5,7 @@ import classNames from 'classnames'
 import styles from './home.module.scss'
 import { HomeProps } from './home.types'
 import { FormFirst } from '@/modules/formFirst'
-import { Favour, Introduce, Treaty } from '@/components'
+import { Favour, Introduce, Peoples, Treaty } from '@/components'
 import { FormSecond } from '@/modules/formSecond'
 import { Tenet } from '@/modules/tenet'
 
@@ -20,6 +20,7 @@ const Home: FC<HomeProps> = ({ className }) => {
         <FormFirst />
         <Tenet />
         <Treaty />
+        <Peoples />
         <FormSecond />
       </Wrapper>
     </main>
