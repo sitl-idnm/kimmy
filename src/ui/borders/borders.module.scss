@@ -4,7 +4,8 @@
 @use "@styles/mixins";
 @use "@styles/variables";
 
-.wrapper {
+.wrapper,
+.root {
   position: absolute;
   width: 100%;
   height: 100%;
