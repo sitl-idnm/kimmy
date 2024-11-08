@@ -1,3 +1,5 @@
+export { ConversionTitle } from './conversionTitle'
+export { ConversionType } from './conversionType'
 export { Dialog } from './dialog'
 export { Favour } from './favour'
 export { FavourItem } from './favourItem'

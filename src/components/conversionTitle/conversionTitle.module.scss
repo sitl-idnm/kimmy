@@ -1,0 +1,40 @@
+@use "@styles/func";
+@use "@styles/mixins";
+@use "@styles/variables";
+
+.root {
+	display: flex;
+	position: relative;
+	margin-bottom: 115px;
+
+	&__img {
+		position: absolute;
+		left: -30px;
+		top: 40px;
+
+		svg {
+			width: 170px;
+			height: 170px;
+		}
+	}
+
+	&__title {
+		font-family: var(--font-inter);
+		font-size: 52px;
+		font-weight: 500;
+		line-height: 120%;
+
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+	}
+}
+
+.center {
+	margin-left: 78px;
+}
+
+.bottom {
+	margin-left: 165px;
+	color: #CB172C;
+}

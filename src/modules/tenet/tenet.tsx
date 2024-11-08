@@ -38,10 +38,6 @@ const Tenet: FC<TenetProps> = ({
       scrollTrigger: {
         trigger: title,
         start: 'top 30%',
-        markers: {
-          startColor: 'blue',
-          endColor: 'pink'
-        },
         pin: true,
         scrub: 2,
         endTrigger: container,
