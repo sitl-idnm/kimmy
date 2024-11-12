@@ -13,11 +13,13 @@ const Header: FC<HeaderProps> = ({ className }) => {
   return (
     <header className={headerClassName}>
       <Wrapper className={styles.wrapper}>
-        <Navigation />
-        <Logo />
-        <Button
-        value={'Обсудить проект'}
-        />
+        <div className={styles.wrapper__container}>
+          <Navigation />
+          <Logo />
+          <Button
+          value={'Обсудить проект'}
+          />
+        </div>
       </Wrapper>
     </header>
   )

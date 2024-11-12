@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, useRef, useEffect } from 'react';
+import { FC, useRef } from 'react';
 import classNames from 'classnames';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -8,17 +8,18 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import styles from './treaty.module.scss';
 import { TreatyProps } from './treaty.types';
 import { Borders, Button } from '@/ui';
+import { useGSAP } from '@gsap/react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Treaty: FC<TreatyProps> = ({ className, cornersWithCrosses = [] }) => {
+const Treaty: FC<TreatyProps> = ({ className = [] }) => {
   const rootClassName = classNames(styles.root, className);
 
   const topCardRef = useRef<HTMLDivElement>(null);
   const bottomCardRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current, // Устанавливаем триггер на контейнер

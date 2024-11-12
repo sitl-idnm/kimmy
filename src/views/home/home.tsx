@@ -18,8 +18,8 @@ const Home: FC<HomeProps> = ({ className }) => {
         <Introduce />
         <Favour />
         <FormFirst />
-        <Tenet />
         <Treaty />
+        <Tenet />
         <Peoples />
         <FormSecond />
       </Wrapper>
