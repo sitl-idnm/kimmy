@@ -16,226 +16,225 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 const ConversionType: FC<ConversionTypeProps> = ({
-  className,
-  title,
-  name1,
-  name2,
-  name3,
-  name4,
-  boxTitle,
-  boxTextFirst,
-  boxTextSecond,
-  backgroundBox,
-  colorText,
-  bool,
-  new1
+  className
 }) => {
   const rootClassName = classNames(styles.root, className)
 
   const section = useRef(null)
   const time = useRef(null)
+  const extraL = useRef(null)
+  const mainContainer = useRef(null)
 
   useGSAP(() => {
+
+    const extraLong = extraL.current
+    const mainCont = mainContainer.current
     const sect = section.current
     const timeline = time.current
+    const boxes = gsap.utils.toArray(`.${styles.box}`) as HTMLElement[];
 
-    const tl = gsap.timeline({
+    const scrollTween = gsap.to(extraLong, {
+      xPercent: -100,
+      x: () => window.innerWidth,
+      ease: "none",
       scrollTrigger: {
-        trigger: sect,
-        start: 'top top',
+        pin: mainCont,
+        trigger: mainCont,
+        start: 'top 5%',
+        end: () => `+=${extraLong.offsetWidth} bottom`,
         scrub: 1,
-        markers: true,
-        end: () => `+=${ sect.offsetWidth} right`,
+        invalidateOnRefresh: true,
       }
     })
 
-    tl.fromTo(timeline, {
-      width: '0%'
-    }, {
-      width: '100%'
+    gsap.utils.toArray('.conversionType_timeline__de68M').forEach((line) => {
+      const tl1 = gsap.timeline({
+        scrollTrigger: {
+          trigger: line,
+          start: 'left 30%',
+          end: 'left 20%',
+          scrub: 2,
+          containerAnimation: scrollTween,
+          invalidateOnRefresh: true,
+        }
+      })
+
+      tl1.fromTo(line,
+          {
+            width: '0%'
+          },
+          {
+            width: '50%',
+          }
+      )
     })
+
+    boxes.forEach((box) => {
+      const tl2 = gsap.timeline({
+        scrollTrigger: {
+          trigger: box,
+          start: 'left 50%',
+          scrub: 1,
+          containerAnimation: scrollTween,
+          invalidateOnRefresh: true,
+        }
+      })
+
+      tl2.fromTo(box,
+          {
+            height: '5%'
+          },
+          {
+            height: '100%',
+          }
+      )
+    })
+
+    const handleResize = () => {
+      ScrollTrigger.refresh();
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
 
   })
 
-  if (new1 === undefined) {
-    if (bool == true) {
-      if (name4 === undefined) {
-        return (
-          <div className={rootClassName}>
-            <div className={styles.section} ref={section}>
-              <div className={styles.container__title}>
-                <div className={styles.snowflacke}>
-                  <Icon />
-                </div>
-                <h4 className={styles.title}>{title}</h4>
-                <div className={styles.timeline} ref={time}>
-                  <Timeline />
-                </div>
+  return (
+    <div ref={mainContainer}>
+      <div className={styles.conversion} ref={extraL}>
+        <div className={rootClassName}>
+          <div className={styles.section} ref={section}>
+            <div className={styles.container__title}>
+              <div className={styles.snowflacke}>
+                <Icon />
               </div>
-              <div className={`${styles.first__fact} ${styles.fact}`}>{name1}</div>
-              <div className={`${styles.second__fact} ${styles.fact}`}>{name2}</div>
-              <div className={`${styles.third__fact} ${styles.fact}`}>{name3}</div>
-              <div className={styles.box} style={{background: backgroundBox, color: colorText}}>
-                <h4 className={styles.box__title}>
-                  {boxTitle}
-                </h4>
-                <div className={styles.box__content}>
-                  <p className={styles.text}>
-                    { boxTextFirst }
-                  </p>
-                  <p className={styles.text}>
-                    { boxTextSecond }
-                  </p>
-                </div>
+              <h4 className={styles.title}>исследования</h4>
+              <div className={styles.timeline}>
+                <Timeline />
               </div>
-              <div className={styles.conv}>
-                <div className={styles.conv__svg}>
-                  <Accept />
-                </div>
-                <div className={styles.conv__title}>
-                  <h2>Конверсионный сайт с сильными&nbsp;офферами,<br/>
-                  <span className={styles.grey}>основанными на смыслах</span></h2>
-                </div>
+            </div>
+            <div className={`${styles.first__fact} ${styles.fact}`}>Погружаемся в проект</div>
+            <div className={`${styles.second__fact} ${styles.fact}`}>Изучаем нишу</div>
+            <div className={`${styles.third__fact} ${styles.fact}`}>Анализируем конкурентов</div>
+            <div className={`${styles.fourth__fact} ${styles.fact}`}>Исследуем потребности аудитории</div>
+            <div className={styles.box} style={{background: 'var(--color-grey)', color: 'black'}}>
+              <h4 className={styles.box__title}>
+              Формируем смыслы
+              </h4>
+              <div className={styles.box__content}>
+                <p className={styles.text}>
+                  Показываем аудитории выгоды продукта, отстраиваемся от конкурентов и берем на вооружение удачные практики из ниши.
+                </p>
+                <p className={styles.text}>
+                  Получаем смысловой фундамент, который позволит посетителю с 3 секунд на сайте понять «Это то, что мне нужно» и продолжить изучение.
+                </p>
               </div>
             </div>
           </div>
-        )
-      } else {
-        return (
-          <div className={rootClassName}>
-            <div className={styles.section} ref={section}>
-              <div className={styles.container__title}>
-                <div className={styles.snowflacke}>
-                  <Icon />
-                </div>
-                <h4 className={styles.title}>{title}</h4>
-                <div className={styles.timeline}>
-                  <Timeline />
-                </div>
+        </div>
+        <div className={rootClassName}>
+          <div className={styles.section} ref={section}>
+            <div className={styles.container__title}>
+              <div className={styles.snowflacke}>
+                <Icon />
               </div>
-              <div className={`${styles.first__fact} ${styles.fact}`}>{name1}</div>
-              <div className={`${styles.second__fact} ${styles.fact}`}>{name2}</div>
-              <div className={`${styles.third__fact} ${styles.fact}`}>{name3}</div>
-              <div className={`${styles.fourth__fact} ${styles.fact}`}>{name4}</div>
-              <div className={styles.box} style={{background: backgroundBox, color: colorText}}>
-                <h4 className={styles.box__title}>
-                  {boxTitle}
-                </h4>
-                <div className={styles.box__content}>
-                  <p className={styles.text}>
-                    { boxTextFirst }
-                  </p>
-                  <p className={styles.text}>
-                    { boxTextSecond }
-                  </p>
-                </div>
+              <h4 className={styles.title}>дизайн</h4>
+              <div className={styles.timeline}>
+                <Timeline />
+              </div>
+            </div>
+            <div className={`${styles.first__fact} ${styles.fact}`}>Формируем логическую структуру сайта и страниц</div>
+            <div className={`${styles.second__fact} ${styles.fact}`}>Пишем тексты</div>
+            <div className={`${styles.third__fact} ${styles.fact}`}>Создаем дизайн</div>
+            <div className={styles.box} style={{background: 'var(--color-black)', color: 'white'}}>
+              <h4 className={styles.box__title}>
+                Оформляем и транслируем смыслы
+              </h4>
+              <div className={styles.box__content}>
+                <p className={styles.text}>
+                  Через тексты и дизайн демонстрируем посетителю, что с помощью продукта он решит свои задачи и приблизится к жизни мечты, актуализируем потребности, усиливаем желание.
+                </p>
+                <p className={styles.text}>
+                  Получаем оформленные смыслы, которые побуждают оставить заявку.
+                </p>
               </div>
             </div>
           </div>
-        )
-      }
-    } else {
-      if (name4 === undefined) {
-        return (
-          <div className={rootClassName}>
-            <div className={styles.section} ref={section}>
-              <div className={styles.container__title}>
-                <div className={styles.snowflacke}>
-                  <Icon />
-                </div>
-                <h4 className={styles.title}>{title}</h4>
-                <div className={styles.timeline}>
-                  <Timeline />
-                </div>
+        </div>
+        <div className={rootClassName}>
+          <div className={styles.section} ref={section}>
+            <div className={styles.container__title}>
+              <div className={styles.snowflacke}>
+                <Icon />
               </div>
-              <div className={`${styles.first__fact} ${styles.fact}`}>{name1}</div>
-              <div className={`${styles.second__fact} ${styles.fact}`}>{name2}</div>
-              <div className={`${styles.third__fact} ${styles.fact}`}>{name3}</div>
-              <div className={styles.box} style={{background: backgroundBox, color: colorText}}>
-                <h4 className={styles.box__title}>
-                  {boxTitle}
-                </h4>
-                <div className={styles.box__content}>
-                  <p className={styles.text}>
-                    { boxTextFirst }
-                  </p>
-                  <p className={styles.text}>
-                    { boxTextSecond }
-                  </p>
-                </div>
+              <h4 className={styles.title}>разработка</h4>
+              <div className={styles.timeline}>
+                <Timeline />
               </div>
             </div>
-          </div>
-        )
-      } else {
-        return (
-          <div className={rootClassName}>
-            <div className={styles.section} ref={section}>
-              <div className={styles.container__title}>
-                <div className={styles.snowflacke}>
-                  <Icon />
-                </div>
-                <h4 className={styles.title}>{title}</h4>
-                <div className={styles.timeline}>
-                  <Timeline />
-                </div>
+            <div className={`${styles.first__fact} ${styles.fact}`}>Верстаем</div>
+            <div className={`${styles.second__fact} ${styles.fact}`}>Интегрируем CRM, оплату, аналитику</div>
+            <div className={`${styles.third__fact} ${styles.fact}`}>Тестируем и запускаем</div>
+            <div className={styles.box} style={{background: 'var(--color-red-accent)', color: 'white'}}>
+              <h4 className={styles.box__title}>
+                Превращаем дизайн в рабочий инструмент
+              </h4>
+              <div className={styles.box__content}>
+                <p className={styles.text}>
+                  Преобразуем макеты в функциональный и адаптивный сайт. Каждый элемент дизайна точно воспроизводится на разных устройствах и экранах, чтобы пользовательский опыт оставался комфортным и интуитивно понятным.
+                </p>
+                <p className={styles.text}>
+                  Получаем готовый к работе сайт, который не только красиво выглядит, но и эффективно функционирует.
+                </p>
               </div>
-              <div className={`${styles.first__fact} ${styles.fact}`}>{name1}</div>
-              <div className={`${styles.second__fact} ${styles.fact}`}>{name2}</div>
-              <div className={`${styles.third__fact} ${styles.fact}`}>{name3}</div>
-              <div className={`${styles.fourth__fact} ${styles.fact}`}>{name4}</div>
-              <div className={styles.box} style={{background: backgroundBox, color: colorText}}>
-                <h4 className={styles.box__title}>
-                  {boxTitle}
-                </h4>
-                <div className={styles.box__content}>
-                  <p className={styles.text}>
-                    { boxTextFirst }
-                  </p>
-                  <p className={styles.text}>
-                    { boxTextSecond }
-                  </p>
-                </div>
+            </div>
+            <div className={styles.conv}>
+              <div className={styles.conv__svg}>
+                <Accept />
+              </div>
+              <div className={styles.conv__title}>
+                <h2>Конверсионный сайт с сильными&nbsp;офферами,<br/>
+                <span className={styles.grey}>основанными на смыслах</span></h2>
               </div>
             </div>
           </div>
-        )
-      }
-    }
-  } else {
-    return (
-      <div className={rootClassName}>
-        <div className={styles.section} ref={section}>
-          <div className={styles.container__title}>
-            <div className={styles.snowflacke}>
-              <Icon />
+        </div>
+        <div className={rootClassName}>
+          <div className={styles.section} ref={section}>
+            <div className={styles.container__title}>
+              <div className={styles.snowflacke}>
+                <Icon />
+              </div>
+              <h4 className={styles.title}>поддержка</h4>
+              <div className={styles.timeline}>
+                <Timeline />
+              </div>
             </div>
-            <h4 className={styles.title}>{title}</h4>
-            <div className={styles.timeline}>
-              <Timeline />
+            <div className={`${styles.first__fact} ${styles.fact}`}>Учим работе с сайтом</div>
+            <div className={`${styles.second__fact} ${styles.fact}`}>Анализируем эффективность и внедряем улучшения</div>
+            <div className={`${styles.third__fact} ${styles.fact}`}>Поддерживаем работу и актуальность сайта</div>
+            <div className={`${styles.fourth__fact} ${styles.fact}`}>Запускаем трафик: контекст, таргет, SEO</div>
+            <div className={styles.new__container}>
+              <p className={styles.container__content}>
+                Мы не оставляем вас один на один с новым сайтом после запуска, а помогаем анализировать результаты и совершенствовать его.
+              </p>
             </div>
-          </div>
-          <div className={`${styles.first__fact} ${styles.fact}`}>{name1}</div>
-          <div className={`${styles.second__fact} ${styles.fact}`}>{name2}</div>
-          <div className={`${styles.third__fact} ${styles.fact}`}>{name3}</div>
-          <div className={`${styles.fourth__fact} ${styles.fact}`}>{name4}</div>
-          <div className={styles.new__container}>
-            <p className={styles.container__content}>
-              { new1 }
-            </p>
-          </div>
-          <div className={styles.conv1}>
-            <div className={styles.conv1__title}>
-              <h2><span className={styles.grey}>Актуальный сайт</span><br/>на протяжении всего времени использования</h2>
-            </div>
-            <div>
-              <Button value={'Заказать сайт'} />
+            <div className={styles.conv1}>
+              <div className={styles.conv1__title}>
+                <h2><span className={styles.grey}>Актуальный сайт</span><br/>на протяжении всего времени использования</h2>
+              </div>
+              <div>
+                <Button value={'Заказать сайт'} />
+              </div>
             </div>
           </div>
         </div>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 export default ConversionType

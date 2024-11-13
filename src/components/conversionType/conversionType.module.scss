@@ -1,11 +1,22 @@
 /* stylelint-disable selector-class-pattern */
 @use "@styles/func";
-@use "@styles/mixins";
+@use "@styles/mixins" as *;
 @use "@styles/variables";
 
 .root {
-	display: flex;
 	gap: 30px;
+}
+
+.conversion {
+	display: flex;
+	width: 470%;
+	height: 80vh;
+
+	background: top left url('../../../public/images/background__lines__scroll.png');
+
+	@include tablet {
+		width: 650%;
+	}
 }
 
 .section {
@@ -13,7 +24,13 @@
 	flex-direction: column;
 	gap: 20px;
 	width: 80vw;
+	height: 80vh;
 	position: relative;
+
+	@include tablet {
+		gap: 8px;
+		width: 130vw;
+	}
 
 	.container__title {
 		display: flex;
@@ -81,6 +98,7 @@
 	display: flex;
 	flex-direction: column;
 	gap: 13px;
+	overflow-y: hidden;
 
 	position: relative;
 	left: 40%;
@@ -94,11 +112,20 @@
 
 	padding: 36px 24px;
 
+	@include tablet {
+		max-height: 300px;
+		padding: 28px 18px;
+	}
+
 	&__title {
 		font-size: 23px;
 		font-family: var(--font-inter);
 		font-weight: 500;
 		line-height: 150%;
+
+		@include tablet {
+			font-size: 18px;
+		}
 	}
 
 	&__content {
@@ -134,15 +161,30 @@
 
 	position: absolute;
 	top: 50%;
-	right: -220px;
+	right: -255px;
 	transform: translate(-50%, -50%);
+
+	@include tablet {
+		max-height: 600px;
+		max-width: 400px;
+		padding: 0 24px;
+
+		gap: 15px;
+		right: -150px;
+	}
 
 	&__svg {
 		/* stylelint-disable-next-line no-descending-specificity */
 		svg {
 			width: 40px;
 			height: 40px;
+
+			@include tablet {
+				width: 30px;
+				height: 30px;
+			}
 		}
+
 	}
 
 	&__title {
@@ -153,6 +195,10 @@
 			font-family: var(--font-inter);
 			font-weight: 500;
 			line-height: 120%;
+
+			@include tablet {
+				font-size: 24px;
+			}
 
 			.grey {
 				color: #FFFFFF40;
@@ -199,6 +245,15 @@
 	right: -300px;
 	transform: translate(-50%, -50%);
 
+	@include tablet {
+		max-height: 600px;
+		max-width: 400px;
+		padding: 25px;
+
+		gap: 15px;
+		right: -150px;
+	}
+
 	&__title {
 		text-align: left;
 
@@ -207,6 +262,10 @@
 			font-family: var(--font-inter);
 			font-weight: 500;
 			line-height: 120%;
+
+			@include tablet {
+				font-size: 36px;
+			}
 
 			.grey {
 				color: #FFFFFF40;

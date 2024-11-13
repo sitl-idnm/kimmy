@@ -17,8 +17,8 @@ const Home: FC<HomeProps> = ({ className }) => {
     <main className={rootClassName}>
       <Wrapper>
         {/* <Introduce />
-        <Favour />
-        <FormFirst /> */}
+        <Favour />*/}
+        {/* <FormFirst /> */}
         <Conversion />
         <Tenet />
         {/* <Treaty /> */}
