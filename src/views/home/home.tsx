@@ -15,12 +15,12 @@ const Home: FC<HomeProps> = ({ className }) => {
   return (
     <main className={rootClassName}>
       <Wrapper>
-        <Introduce />
+        {/* <Introduce />
         <Favour />
-        <FormFirst />
+        <FormFirst /> */}
         <Tenet />
-        <Treaty />
-        <FormSecond />
+        {/* <Treaty />
+        <FormSecond /> */}
       </Wrapper>
     </main>
   )
