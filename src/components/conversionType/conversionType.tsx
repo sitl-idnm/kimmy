@@ -21,7 +21,6 @@ const ConversionType: FC<ConversionTypeProps> = ({
   const rootClassName = classNames(styles.root, className)
 
   const section = useRef(null)
-  const time = useRef(null)
   const extraL = useRef(null)
   const mainContainer = useRef(null)
 
@@ -29,8 +28,6 @@ const ConversionType: FC<ConversionTypeProps> = ({
 
     const extraLong = extraL.current
     const mainCont = mainContainer.current
-    const sect = section.current
-    const timeline = time.current
     const boxes = gsap.utils.toArray(`.${styles.box}`) as HTMLElement[];
 
     const scrollTween = gsap.to(extraLong, {
@@ -116,22 +113,28 @@ const ConversionType: FC<ConversionTypeProps> = ({
                 <Timeline />
               </div>
             </div>
-            <div className={`${styles.first__fact} ${styles.fact}`}>Погружаемся в проект</div>
-            <div className={`${styles.second__fact} ${styles.fact}`}>Изучаем нишу</div>
-            <div className={`${styles.third__fact} ${styles.fact}`}>Анализируем конкурентов</div>
-            <div className={`${styles.fourth__fact} ${styles.fact}`}>Исследуем потребности аудитории</div>
-            <div className={styles.box} style={{background: 'var(--color-grey)', color: 'black'}}>
-              <h4 className={styles.box__title}>
-              Формируем смыслы
-              </h4>
-              <div className={styles.box__content}>
-                <p className={styles.text}>
-                  Показываем аудитории выгоды продукта, отстраиваемся от конкурентов и берем на вооружение удачные практики из ниши.
-                </p>
-                <p className={styles.text}>
-                  Получаем смысловой фундамент, который позволит посетителю с 3 секунд на сайте понять «Это то, что мне нужно» и продолжить изучение.
-                </p>
+            <div className={styles.section__container}>
+              <div className={styles.content}>
+                <div className={`${styles.first__fact} ${styles.fact}`}>Погружаемся в проект</div>
+                <div className={`${styles.second__fact} ${styles.fact}`}>Изучаем нишу</div>
               </div>
+              <div className={styles.content}>
+                <div className={`${styles.third__fact} ${styles.fact}`}>Анализируем конкурентов</div>
+                <div className={`${styles.fourth__fact} ${styles.fact}`}>Исследуем потребности аудитории</div>
+              </div>
+              <div className={styles.box} style={{background: 'var(--color-grey)', color: 'black'}}>
+                <h4 className={styles.box__title}>
+                Формируем смыслы
+                </h4>
+                <div className={styles.box__content}>
+                  <p className={styles.text}>
+                    Показываем аудитории выгоды продукта, отстраиваемся от конкурентов и берем на вооружение удачные практики из ниши.
+                  </p>
+                  <p className={styles.text}>
+                    Получаем смысловой фундамент, который позволит посетителю с 3 секунд на сайте понять «Это то, что мне нужно» и продолжить изучение.
+                  </p>
+                </div>
+            </div>
             </div>
           </div>
         </div>
@@ -146,20 +149,26 @@ const ConversionType: FC<ConversionTypeProps> = ({
                 <Timeline />
               </div>
             </div>
-            <div className={`${styles.first__fact} ${styles.fact}`}>Формируем логическую структуру сайта и страниц</div>
-            <div className={`${styles.second__fact} ${styles.fact}`}>Пишем тексты</div>
-            <div className={`${styles.third__fact} ${styles.fact}`}>Создаем дизайн</div>
-            <div className={styles.box} style={{background: 'var(--color-black)', color: 'white'}}>
-              <h4 className={styles.box__title}>
-                Оформляем и транслируем смыслы
-              </h4>
-              <div className={styles.box__content}>
-                <p className={styles.text}>
-                  Через тексты и дизайн демонстрируем посетителю, что с помощью продукта он решит свои задачи и приблизится к жизни мечты, актуализируем потребности, усиливаем желание.
-                </p>
-                <p className={styles.text}>
-                  Получаем оформленные смыслы, которые побуждают оставить заявку.
-                </p>
+            <div className={styles.section__container}>
+              <div className={styles.content}>
+                <div className={`${styles.first__fact} ${styles.fact}`}>Формируем логическую структуру сайта и страниц</div>
+                <div className={`${styles.second__fact} ${styles.fact}`}>Пишем тексты</div>
+              </div>
+              <div className={styles.content}>
+                <div className={`${styles.third__fact} ${styles.fact}`}>Создаем дизайн</div>
+              </div>
+              <div className={styles.box} style={{background: 'var(--color-black)', color: 'white'}}>
+                <h4 className={styles.box__title}>
+                  Оформляем и транслируем смыслы
+                </h4>
+                <div className={styles.box__content}>
+                  <p className={styles.text}>
+                    Через тексты и дизайн демонстрируем посетителю, что с помощью продукта он решит свои задачи и приблизится к жизни мечты, актуализируем потребности, усиливаем желание.
+                  </p>
+                  <p className={styles.text}>
+                    Получаем оформленные смыслы, которые побуждают оставить заявку.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -175,20 +184,28 @@ const ConversionType: FC<ConversionTypeProps> = ({
                 <Timeline />
               </div>
             </div>
-            <div className={`${styles.first__fact} ${styles.fact}`}>Верстаем</div>
-            <div className={`${styles.second__fact} ${styles.fact}`}>Интегрируем CRM, оплату, аналитику</div>
-            <div className={`${styles.third__fact} ${styles.fact}`}>Тестируем и запускаем</div>
-            <div className={styles.box} style={{background: 'var(--color-red-accent)', color: 'white'}}>
-              <h4 className={styles.box__title}>
-                Превращаем дизайн в рабочий инструмент
-              </h4>
-              <div className={styles.box__content}>
-                <p className={styles.text}>
-                  Преобразуем макеты в функциональный и адаптивный сайт. Каждый элемент дизайна точно воспроизводится на разных устройствах и экранах, чтобы пользовательский опыт оставался комфортным и интуитивно понятным.
-                </p>
-                <p className={styles.text}>
-                  Получаем готовый к работе сайт, который не только красиво выглядит, но и эффективно функционирует.
-                </p>
+            <div className={styles.section__container}>
+              <div className={styles.content}>
+                <div className={`${styles.first__fact} ${styles.fact}`}>Верстаем</div>
+                <div className={`${styles.second__fact} ${styles.fact}`}>Интегрируем CRM, оплату, аналитику</div>
+              </div>
+              <div className={styles.content__box}>
+                <div className={styles.content}>
+                  <div className={`${styles.third__fact} ${styles.fact}`}>Тестируем и запускаем</div>
+                </div>
+                <div className={styles.box} style={{background: 'var(--color-red-accent)', color: 'white'}}>
+                  <h4 className={styles.box__title}>
+                    Превращаем дизайн в рабочий инструмент
+                  </h4>
+                  <div className={styles.box__content}>
+                    <p className={styles.text}>
+                      Преобразуем макеты в функциональный и адаптивный сайт. Каждый элемент дизайна точно воспроизводится на разных устройствах и экранах, чтобы пользовательский опыт оставался комфортным и интуитивно понятным.
+                    </p>
+                    <p className={styles.text}>
+                      Получаем готовый к работе сайт, который не только красиво выглядит, но и эффективно функционирует.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
             <div className={styles.conv}>
@@ -213,10 +230,16 @@ const ConversionType: FC<ConversionTypeProps> = ({
                 <Timeline />
               </div>
             </div>
-            <div className={`${styles.first__fact} ${styles.fact}`}>Учим работе с сайтом</div>
-            <div className={`${styles.second__fact} ${styles.fact}`}>Анализируем эффективность и внедряем улучшения</div>
-            <div className={`${styles.third__fact} ${styles.fact}`}>Поддерживаем работу и актуальность сайта</div>
-            <div className={`${styles.fourth__fact} ${styles.fact}`}>Запускаем трафик: контекст, таргет, SEO</div>
+            <div className={styles.section__container}>
+              <div className={styles.content}>
+                <div className={`${styles.first__fact} ${styles.fact}`}>Учим работе с сайтом</div>
+                <div className={`${styles.second__fact} ${styles.fact}`}>Анализируем эффективность и внедряем улучшения</div>
+              </div>
+              <div className={styles.content}>
+                <div className={`${styles.third__fact} ${styles.fact}`}>Поддерживаем работу и актуальность сайта</div>
+                <div className={`${styles.fourth__fact} ${styles.fact}`}>Запускаем трафик: контекст, таргет, SEO</div>
+              </div>
+            </div>
             <div className={styles.new__container}>
               <p className={styles.container__content}>
                 Мы не оставляем вас один на один с новым сайтом после запуска, а помогаем анализировать результаты и совершенствовать его.
