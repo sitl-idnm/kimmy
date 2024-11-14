@@ -1,16 +1,17 @@
 @use "@styles/func";
-@use "@styles/mixins";
+@use "@styles/mixins" as *;
 @use "@styles/variables";
 
 .root {
 	display: flex;
+	justify-content: center;
 }
 
 .treaty {
 	height: 500px;
 	width: 100%;
 	max-width: 1410px;
-	margin: 0 auto;
+	margin: 0 10px;
 	position: relative;
 	overflow: hidden;
 
@@ -23,16 +24,34 @@
 
 	background-color: var(--color-black);
 
+	@include tablet {
+		flex-wrap: wrap;
+		justify-content: flex-start;
+		gap: 30px;
+	}
+
 	&__info {
 		display: flex;
 		flex-direction: column;
 		gap: 24px;
+
+		@include tablet {
+			margin: 50px 50px 0;
+		}
 	}
 
 	&__title {
 		font-size: 48px;
 		line-height: 120%;
-		color: var(--color-white-default)
+		color: var(--color-white-default);
+
+		@include tablet {
+			font-size: 38px;
+		}
+
+		@include tablet-small {
+			font-size: 28px;
+		}
 	}
 
 	&__cards {
@@ -40,6 +59,10 @@
 		display: flex;
 		gap: 26px;
 		z-index: 1;
+
+		@include tablet {
+			margin: 50px 50px 0;
+		}
 	}
 
 	&__card {
