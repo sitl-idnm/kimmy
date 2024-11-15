@@ -21,7 +21,7 @@ const ConversionType: FC<ConversionTypeProps> = ({
   const rootClassName = classNames(styles.root, className)
 
   const section = useRef(null)
-  const extraL = useRef(null)
+  const extraL = useRef<HTMLDivElement>(null)
   const mainContainer = useRef(null)
 
   useGSAP(() => {
@@ -38,7 +38,7 @@ const ConversionType: FC<ConversionTypeProps> = ({
         pin: mainCont,
         trigger: mainCont,
         start: 'top 5%',
-        end: () => `+=${extraLong.offsetWidth} bottom`,
+        end: () => `+=${extraLong!.offsetWidth} bottom`,
         scrub: 1,
         invalidateOnRefresh: true,
       }
