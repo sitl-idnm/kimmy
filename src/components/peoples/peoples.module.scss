@@ -16,12 +16,17 @@
 	align-items: center;
 	text-align: center;
 
+	@include desktop {
+		max-width: 1050px;
+	}
+
 	@include tablet {
 		font-size: 42px;
 	}
 
 	@include tablet-small {
 		text-align: left;
+		padding: 0 12px;
 	}
 
 	&__title {
@@ -39,16 +44,19 @@
 	}
 
 	&__image {
-		max-width: 910px;
+		@include desktop {
+			width: 720px;
+			height: 470px;
+		}
 
 		@include tablet {
-			max-width: 541px;
-			max-height: 354px;
+			width: 540px;
+			height: 350px;
 		}
 
 		@include tablet-small {
-			max-width: 336px;
-			max-height: 229px;
+			width: 340px;
+			height: 230px;
 		}
 	}
 
@@ -58,16 +66,43 @@
 		gap: 24px;
 		position: absolute;
 
+		@include tablet {
+			gap: 16px;
+		}
+
+		@include tablet-small {
+			position: static;
+		}
+
+		button {
+			@include tablet {
+				width: 160px;
+				height: 46px;
+
+				padding: 14px 18px;
+				font-weight: 600;
+				font-size: 12px;
+			}
+		}
+
 		&__left {
 			text-align: right;
 			left: 0;
 			bottom: 90px;
+
+			@include tablet-small {
+				align-self: flex-start;
+			}
 		}
 
 		&__right {
 			text-align: left;
 			right: 0;
 			bottom: 90px;
+
+			@include tablet-small {
+				align-self: flex-end;
+			}
 		}
 
 		&__title {

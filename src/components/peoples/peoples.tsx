@@ -15,13 +15,6 @@ const Peoples: FC<PeoplesProps> = ({
     <div className={rootClassName}>
       <div className={styles.peoples}>
         <h2 className={styles.peoples__title}>Узнайте больше про наш подход у&nbsp;основателей агентства</h2>
-        <Image
-            src='/images/peoples.png'
-            width={910}
-            height={563}
-            quality={100}
-            alt='peoples'
-          className={styles.peoples__image} ></Image>
         <div className={`${styles.peoples__card} ${styles.peoples__card__left}`}>
           <div className={styles.peoples__card__info}>
           <h3 className={styles.peoples__card__title}>Павел Коржуев</h3>
@@ -34,6 +27,13 @@ const Peoples: FC<PeoplesProps> = ({
           <p className={styles.peoples__card__text}>@k.kim</p></div>
           <Button value="Написать в Telegram" />
         </div>
+        <Image
+            src='/images/peoples.png'
+            width={910}
+            height={563}
+            quality={100}
+            alt='peoples'
+          className={styles.peoples__image} ></Image>
         <AnimatedImage />
       </div>
     </div>

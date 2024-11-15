@@ -27,8 +27,10 @@ const TenetAbout: FC<TenetAboutProps> = ({
   }
 
   if (window.innerWidth < 768) {
+    const arrayPercent = ['flex-start', 'flex-end']
+
     return (
-      <div className={rootClassName} style={{height: heightContentMobile, width: widthContentMobile, background: bgColor}}>
+      <div className={rootClassName} style={{height: heightContentMobile, width: widthContentMobile, background: bgColor, alignSelf: arrayPercent[getRandomIntInclusive(0, 1)]}}>
         <h3 className={styles.title}>
           {title}
         </h3>
@@ -51,9 +53,9 @@ const TenetAbout: FC<TenetAboutProps> = ({
       </div>
     )
   } else if (window.innerWidth < 1440) {
-
+    const arrayPercent = ['10%', '30%', '40%', '50%', '60%']
     return (
-      <div className={rootClassName} style={{height: heightContentAdaptive, width: widthContentAdaptive, background: bgColor}}>
+      <div className={rootClassName} style={{height: heightContentAdaptive, width: widthContentAdaptive, background: bgColor, left: arrayPercent[getRandomIntInclusive(0, 4)]}}>
         <h3 className={styles.title}>
           {title}
         </h3>

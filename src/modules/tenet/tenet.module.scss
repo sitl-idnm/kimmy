@@ -14,7 +14,12 @@
 	@include tablet-small {
 		padding: 60px 12px;
 	}
-  
+
+	.content {
+		display: flex;
+		flex-direction: column;
+	}
+
 	/* stylelint-disable-next-line selector-class-pattern */
 	.cont__title {
 		// position: absolute;
