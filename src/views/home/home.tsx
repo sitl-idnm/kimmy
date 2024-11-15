@@ -5,10 +5,11 @@ import classNames from 'classnames'
 import styles from './home.module.scss'
 import { HomeProps } from './home.types'
 // import { FormFirst } from '@/modules/formFirst'
-// import { Favour, Introduce, Treaty } from '@/components'
+// import { Favour, Introduce, Peoples, Treaty } from '@/components'
 import { FormSecond } from '@/modules/formSecond'
+import { Peoples } from '@/components'
 // import { Tenet } from '@/modules/tenet'
-import { Conversion } from '@/modules/conversion'
+// import { Conversion } from '@/modules/conversion'
 
 const Home: FC<HomeProps> = ({ className }) => {
   const rootClassName = classNames(styles.root, className)
@@ -18,11 +19,11 @@ const Home: FC<HomeProps> = ({ className }) => {
       <Wrapper>
         {/* <Introduce />
         <Favour />
-        <FormFirst /> */}
+        <FormFirst />
         <Conversion />
-        {/* <Treaty />
+        <Treaty />
         <Tenet /> */}
-        {/* <Peoples /> */}
+        <Peoples />
         <FormSecond />
       </Wrapper>
     </main>

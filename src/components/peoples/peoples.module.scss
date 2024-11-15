@@ -1,5 +1,5 @@
 @use "@styles/func";
-@use "@styles/mixins";
+@use "@styles/mixins" as *;
 @use "@styles/variables";
 
 .root {
@@ -16,10 +16,26 @@
 	align-items: center;
 	text-align: center;
 
+	@include tablet {
+		font-size: 42px;
+	}
+
+	@include tablet-small {
+		text-align: left;
+	}
+
 	&__title {
 		font-size: 54px;
 		line-height: 120%;
 		font-weight: 500;
+
+		@include tablet {
+			font-size: 42px;
+		}
+
+		@include tablet-small {
+			font-size: 28px;
+		}
 	}
 
 	&__card {
@@ -45,6 +61,14 @@
 			line-height: 150%;
 			font-weight: 600;
 			color: black;
+
+			@include desktop {
+				font-size: 18px;
+			}
+
+			@include tablet {
+				font-size: 16px;
+			}
 		}
 
 		&__text {
@@ -53,6 +77,14 @@
 			font-weight: 500;
 			color: black;
 			opacity: 0.5;
+
+			@include desktop {
+				font-size: 16px;
+			}
+
+			@include tablet {
+				font-size: 14px;
+			}
 		}
 	}
 }
