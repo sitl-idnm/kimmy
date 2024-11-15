@@ -44,7 +44,7 @@ const ConversionType: FC<ConversionTypeProps> = ({
       }
     })
 
-    gsap.utils.toArray('.conversionType_timeline__de68M').forEach((line) => {
+    gsap.utils.toArray<HTMLElement>('.conversionType_timeline__de68M').forEach((line) => {
       const tl1 = gsap.timeline({
         scrollTrigger: {
           trigger: line,
