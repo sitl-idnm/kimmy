@@ -1,9 +1,10 @@
 @use "@styles/func";
-@use "@styles/mixins";
+@use "@styles/mixins" as *;
 @use "@styles/variables";
 
 .root {
 	display: flex;
+	margin: 0 0 101px;
 }
 
 .introduce {
@@ -21,6 +22,18 @@
 
 		font-size:74px;
 		line-height: 120%;
+
+		@include tablet {
+			font-size: 54px;
+		}
+
+		@include tablet-small {
+			font-size: 38px;
+		}
+
+		@include mobile-large {
+			font-size: 28px;
+		}
 
 		&__awesome {
 			color: var(--color-red-gradient-start);

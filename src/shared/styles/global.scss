@@ -24,6 +24,10 @@
   /* stylelint-enable */
 }
 
+
+
+::-webkit-scrollbar { display: none; }
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -35,6 +39,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizelegibility;
+  scrollbar-width: none;
 }
 
 html,
