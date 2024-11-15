@@ -1,4 +1,4 @@
-export interface DialogProps {
-  className?: string
-  onClose: () => void
-}
+// export interface DialogProps {
+//   className?: string
+//   onClose: () => void
+// }

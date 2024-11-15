@@ -1,5 +1,7 @@
 @use '@styles/func';
-@use '@styles/mixins';
+@use '@styles/mixins' as *;
+
+/* stylelint-disable */
 
 .root {
   position: relative;
@@ -11,10 +13,89 @@
   }
 }
 
+.desktop__navigation {
+  @include tablet {
+    display: none;
+  }
+}
+
 .wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding-top: func.rem(32);
   padding-bottom: func.rem(32);
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    max-width: 1312px;
+    width: 100%;
+    padding: 0 20px;
+    margin: 0 auto;
+
+    @include tablet-small {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
+  }
+}
+
+.burgerbutton {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d32f2f, #e53935); // Цвет как на скриншоте
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  @include tablet {
+    display: flex;
+  }
+}
+
+.burgericon {
+  width: 20px;
+  height: 2px;
+  background-color: white;
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    background-color: white;
+  }
+
+  &::before {
+    top: -6px;
+  }
+
+  &::after {
+    top: 6px;
+  }
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 80%;
+  max-width: 300px;
+  background-color: white;
+  box-shadow: 2px 0 5px rgb(0 0 0 / 10%);
+  z-index: 1000;
+  display: none;
+
+  @include tablet {
+    display: block;
+  }
 }
