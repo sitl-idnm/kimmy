@@ -1,4 +1,4 @@
-export { Dialog } from './dialog'
+// export { Dialog } from './dialog'
 export { Favour } from './favour'
 export { FavourItem } from './favourItem'
 export { Form } from './form'
