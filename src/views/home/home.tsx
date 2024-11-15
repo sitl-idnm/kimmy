@@ -22,7 +22,7 @@ const Home: FC<HomeProps> = ({ className }) => {
         <Conversion />
         <Treaty />
         <Tenet />
-        <Peoples />
+        {/* <Peoples /> */}
         <FormSecond />
       </Wrapper>
     </main>
