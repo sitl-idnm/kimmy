@@ -21,5 +21,10 @@
 		@include tablet {
 			font-size: 38px;
 		}
+
+		@include tablet-small {
+			font-size: 32px;
+			text-align: left;
+		}
 	}
 }

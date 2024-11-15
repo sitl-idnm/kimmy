@@ -4,17 +4,21 @@ import classNames from 'classnames'
 import styles from './tenetAbout.module.scss'
 import { TenetAboutProps } from './tenetAbout.types'
 
-const arrayPercent = ['10%', '30%', '55%', '60%', '70%']
-
 const TenetAbout: FC<TenetAboutProps> = ({
   className,
   title,
   text,
-  heightContent,
-  widthContent,
+  heightContentDesktop,
+  widthContentDesktop,
+  heightContentAdaptive,
+  widthContentAdaptive,
+  heightContentMobile,
+  widthContentMobile,
   bgColor
 }) => {
   const rootClassName = classNames(styles.root, className)
+  console.log(window.innerWidth)
+
 
   function getRandomIntInclusive(min: number, max: number) {
     min = Math.ceil(min);
@@ -22,16 +26,56 @@ const TenetAbout: FC<TenetAboutProps> = ({
     return Math.floor(Math.random() * (max - min + 1) + min); // Максимум и минимум включаются
   }
 
-  return (
-    <div className={rootClassName} style={{height: heightContent, width: widthContent, background: bgColor, left: arrayPercent[getRandomIntInclusive(0, 4)]}}>
-      <h3>
-        {title}
-      </h3>
-      <p>
-        {text}
-      </p>
-    </div>
-  )
+  if (window.innerWidth < 768) {
+    return (
+      <div className={rootClassName} style={{height: heightContentMobile, width: widthContentMobile, background: bgColor}}>
+        <h3 className={styles.title}>
+          {title}
+        </h3>
+        <p className={styles.text}>
+          {text}
+        </p>
+      </div>
+    )
+  } else if (window.innerWidth < 1200) {
+    const arrayPercent = ['10%', '20%', '45%', '50%']
+
+    return (
+      <div className={rootClassName} style={{height: heightContentMobile, width: widthContentMobile, background: bgColor, left: arrayPercent[getRandomIntInclusive(0, 3)]}}>
+        <h3 className={styles.title}>
+          {title}
+        </h3>
+        <p className={styles.text}>
+          {text}
+        </p>
+      </div>
+    )
+  } else if (window.innerWidth < 1440) {
+
+    return (
+      <div className={rootClassName} style={{height: heightContentAdaptive, width: widthContentAdaptive, background: bgColor}}>
+        <h3 className={styles.title}>
+          {title}
+        </h3>
+        <p className={styles.text}>
+          {text}
+        </p>
+      </div>
+    )
+  } else {
+    const arrayPercent = ['10%', '30%', '40%', '50%', '60%']
+
+    return (
+      <div className={rootClassName} style={{height: heightContentDesktop, width: widthContentDesktop, background: bgColor, left: arrayPercent[getRandomIntInclusive(0, 4)]}}>
+        <h3 className={styles.title}>
+          {title}
+        </h3>
+        <p className={styles.text}>
+          {text}
+        </p>
+      </div>
+    )
+  }
 }
 
 export default TenetAbout
