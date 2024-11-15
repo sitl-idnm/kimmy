@@ -1,10 +1,13 @@
 @use "@styles/func";
-@use "@styles/mixins";
+@use "@styles/mixins" as *;
 @use "@styles/variables";
 
 .root {
 	display: flex;
+	margin: 0 0 139px;
 }
+
+/* stylelint-disable */
 
 .favour {
 	width: 100%;
@@ -16,6 +19,19 @@
 		display: flex;
 		width: 100%;
 		gap: 32px;
+		justify-content: center;
+
+		@include desktop {
+			gap: 24px;
+		}
+
+		@include tablet {
+			flex-wrap: wrap;
+		}
+
+		@include mobile-large {
+			gap: 12px;
+		}
 	}
 
 	&__item {
@@ -29,6 +45,10 @@
 	&__title {
 		font-style: 1.8rem;
 		text-align: center;
+
+		@include mobile-large {
+			font-size: 24px;
+		}
 	}
 
 	&__description {

@@ -1,3 +1,4 @@
+export { AnimatedImage } from './animatedImage'
 export { Borders } from './borders'
 export { Button } from './button'
 export { Heading } from './heading'
