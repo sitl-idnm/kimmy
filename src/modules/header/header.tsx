@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, useState, useEffect, useRef } from 'react';
+import { FC, useState, useRef } from 'react';
 import { Wrapper } from '@/ui';
 import classNames from 'classnames';
 import gsap from 'gsap';
@@ -10,6 +10,7 @@ import { HeaderProps } from './header.types';
 import Logo from './logo';
 import { Button } from '@/ui/index';
 import { Navigation } from '@/components';
+import { useGSAP } from '@gsap/react';
 
 const Header: FC<HeaderProps> = ({ className }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,7 +18,7 @@ const Header: FC<HeaderProps> = ({ className }) => {
   const menuRef = useRef(null);
   const burgerButtonRef = useRef(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     if (isMenuOpen) {
       gsap.fromTo(
         menuRef.current,
@@ -32,6 +33,21 @@ const Header: FC<HeaderProps> = ({ className }) => {
         ease: 'power2.in'
       });
     }
+  }, [isMenuOpen]);
+
+  useGSAP(() => {
+    if (isMenuOpen) {
+      // Отключаем скролл
+      document.body.style.overflow = 'hidden';
+    } else {
+      // Включаем скролл
+      document.body.style.overflow = '';
+    }
+
+    // Очистка при размонтировании компонента
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [isMenuOpen]);
 
   const handleBurgerClick = () => {
@@ -56,7 +72,9 @@ const Header: FC<HeaderProps> = ({ className }) => {
           {/* Логотип и кнопка для десктопа */}
           <Logo />
 
-          <Button value={'Обсудить проект'} />
+          <div className={styles.desktop__navigation}>
+            <Button value={'Обсудить проект'} />
+          </div>
 
           {/* Бургер-кнопка для открытия/закрытия меню на мобильных устройствах */}
           <div
