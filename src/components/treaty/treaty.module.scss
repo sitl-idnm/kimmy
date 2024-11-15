@@ -45,6 +45,10 @@
 		line-height: 120%;
 		color: var(--color-white-default);
 
+		@include desktop {
+			font-size: 38px;
+		}
+
 		@include tablet {
 			font-size: 38px;
 		}
