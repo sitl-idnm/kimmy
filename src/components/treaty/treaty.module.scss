@@ -30,6 +30,10 @@
 		gap: 30px;
 	}
 
+	@include tablet-small {
+		height: 644px;
+	}
+
 	&__info {
 		display: flex;
 		flex-direction: column;
@@ -67,6 +71,11 @@
 		@include tablet {
 			margin: 50px 50px 0;
 		}
+
+		@include tablet-small {
+			flex-direction: column;
+			height: auto;
+		}
 	}
 
 	&__card {
@@ -83,11 +92,21 @@
 		&__top {
 			border-radius: 0 0 20px 20px;
 			justify-content: flex-end;
+
+			@include tablet-small {
+				border-radius: 0 20px 20px 0;
+				margin-left: -50px;
+			}
 		}
 
 		&__bottom {
 			border-radius: 20px 20px 0 0;
 			align-self: flex-end;
+
+			@include tablet-small {
+				margin-bottom: -50px;
+				padding-bottom: 200px;
+			}
 		}
 
 		&__title {

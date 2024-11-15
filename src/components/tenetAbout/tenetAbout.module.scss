@@ -26,6 +26,10 @@
 		padding-right: 10px;
 	}
 
+	@include tablet-small {
+		margin-bottom: 40px;
+	}
+
 	position: relative;
 
 	.title {
