@@ -14,7 +14,7 @@
 	align-items: center;
 	position: relative;
 
-	padding: 40px 90px;
+	padding: 40px 90px 40px 0;
 	margin: 0 auto;
 
 	border-radius: 20px;
@@ -38,10 +38,14 @@
 			gap: 0;
 			align-items: flex-start;
 
-			padding: 0 0 84px 64px;
+			padding: 0 0 84px;
 			min-width: 745px;
 			width: 100%;
 			margin: 80px 12px 0;
+		}
+
+		&__text {
+			margin-left: 64px;
 		}
 
 		&__circle {
@@ -72,6 +76,10 @@
 			min-width: 336px;
 			width: 100%;
 			margin: 80px 12px 0;
+		}
+
+		&__text {
+			margin-left: 0;
 		}
 
 		&__circle {
