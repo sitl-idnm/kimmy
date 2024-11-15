@@ -38,6 +38,20 @@
 		}
 	}
 
+	&__image {
+		max-width: 910px;
+
+		@include tablet {
+			max-width: 541px;
+			max-height: 354px;
+		}
+
+		@include tablet-small {
+			max-width: 336px;
+			max-height: 229px;
+		}
+	}
+
 	&__card {
 		display: flex;
 		flex-direction: column;
