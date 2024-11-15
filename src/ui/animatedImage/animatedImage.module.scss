@@ -1,5 +1,5 @@
 @use "@styles/func";
-@use "@styles/mixins";
+@use "@styles/mixins" as *;
 @use "@styles/variables";
 
 .root {
@@ -7,4 +7,14 @@
 	position: absolute;
 	bottom: 0;
 	z-index: -1;
+
+	@include tablet {
+		width: 600px;
+		height: 400px;
+	}
+
+	@include tablet-small {
+		width: 340px;
+		height: 340px;
+	}
 }
