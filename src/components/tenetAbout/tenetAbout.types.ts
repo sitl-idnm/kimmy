@@ -2,7 +2,11 @@ export interface TenetAboutProps {
   className?: string,
   title?: string,
   text?: string,
-  heightContent?: string,
-  widthContent?: string,
+  heightContentDesktop?: string,
+  widthContentDesktop?: string,
+  heightContentAdaptive?: string,
+  widthContentAdaptive?: string,
+  widthContentMobile?: string,
+  heightContentMobile?: string,
   bgColor?: string
 }
