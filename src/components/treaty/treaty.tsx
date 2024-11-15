@@ -31,7 +31,7 @@ const Treaty: FC<TreatyProps> = ({ className = [] }) => {
     });
 
     // Проверка ширины экрана
-const isLargeScreen = window.innerWidth > 1200;
+const isLargeScreen = window.innerWidth > 1199;
 
 // Функция для запуска анимации
 const animateCards = () => {
