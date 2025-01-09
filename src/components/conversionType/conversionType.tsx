@@ -70,7 +70,7 @@ const ConversionType: FC<ConversionTypeProps> = ({
       const tl2 = gsap.timeline({
         scrollTrigger: {
           trigger: box,
-          start: 'left 50%',
+          start: 'left 100%',
           scrub: 1,
           containerAnimation: scrollTween,
           invalidateOnRefresh: true,

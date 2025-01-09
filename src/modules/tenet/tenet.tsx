@@ -33,7 +33,7 @@ const Tenet: FC<TenetProps> = ({
   useGSAP(() => {
     const title = nameTitle.current
     const container = containerTitle.current
-    
+
     if (window.innerWidth > 768) {
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -62,7 +62,7 @@ const Tenet: FC<TenetProps> = ({
           title={'Через жесткие принципы к '}
         />
       </div>
-      <div>
+      <div className={styles.content}>
         {TenetData.map((item, index) => (
           <TenetAbout
             key={index}

@@ -5,6 +5,8 @@
 .root {
 	margin: 0 auto;
 	padding: 51px 88.5px;
+	max-width: 100vw;
+  overflow: hidden;
 
 	@include tablet-small {
 		padding: 45px 20px;
