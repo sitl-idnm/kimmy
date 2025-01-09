@@ -1,5 +1,5 @@
 'use client'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import classNames from 'classnames'
 import axios from 'axios'
 
@@ -12,6 +12,7 @@ const Form: FC<FormProps> = ({
   project
 }) => {
   const rootClassName = classNames(styles.root, className)
+  const [successMessage, setSuccessMessage] = useState<string | null>(null)
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -26,10 +27,10 @@ const Form: FC<FormProps> = ({
         chat_id: chatId,
         text: message,
       })
-      alert('Form submitted successfully!')
+      setSuccessMessage('Form submitted successfully!')
     } catch (error) {
       console.error('Error sending message to Telegram:', error)
-      alert('Failed to submit form.')
+      setSuccessMessage('Failed to submit form.')
     }
   }
 
@@ -69,6 +70,11 @@ const Form: FC<FormProps> = ({
         <div className={styles.form_wrapper}>
           <input type="submit" value={'Отправить'} />
         </div>
+        {successMessage && (
+          <div className={styles.successMessage}>
+            {successMessage}
+          </div>
+        )}
       </form>
     </div>
   )
