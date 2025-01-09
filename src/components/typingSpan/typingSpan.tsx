@@ -1,52 +1,62 @@
 "use client";
 
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect, useRef } from 'react';
 import styles from './typingSpan.module.scss';
+import gsap from 'gsap';
 
 type TypingSpanProps = {
   words: string[];
-  interval?: number; // интервал замены слова (в миллисекундах)
-  typingSpeed?: number; // скорость печати по буквам
+  interval?: number;
 };
 
 const TypingSpan: FC<TypingSpanProps> = ({
   words,
   interval = 2000,
-  typingSpeed = 100
 }) => {
-  const [displayedText, setDisplayedText] = useState<string>('');
-  const [isDeleting, setIsDeleting] = useState<boolean>(false);
   const [currentWordIndex, setCurrentWordIndex] = useState<number>(0);
+  const textRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    const word = words[currentWordIndex];
-    let timer: NodeJS.Timeout;
-
-    if (isDeleting) {
-      // Уменьшаем количество символов при удалении текста
-      timer = setTimeout(() => {
-        setDisplayedText((prev) => word.slice(0, prev.length - 1));
-        if (displayedText.length === 1) { // Изменено с 0 на 1
-          setIsDeleting(false);
-          setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
+    const animateText = () => {
+      // Анимация появления текста сверху
+      gsap.fromTo(textRef.current,
+        {
+          y: -50,
+          opacity: 0,
+          scale: 0.5,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.5,
+          scale: 1,
+          onComplete: () => {
+            // После показа текста ждем interval мс
+            setTimeout(() => {
+              // Анимация исчезновения текста вниз
+              gsap.to(textRef.current, {
+                y: 50,
+                scale: 0.5,
+                opacity: 0,
+                duration: 0.5,
+                onComplete: () => {
+                  setCurrentWordIndex((prev) => (prev + 1) % words.length);
+                }
+              });
+            }, interval);
+          }
         }
-      }, typingSpeed);
-    } else {
-      // Добавляем по одному символу при печати
-      timer = setTimeout(() => {
-        setDisplayedText((prev) => word.slice(0, prev.length + 1));
-        if (displayedText.length + 1 === word.length) { // Изменено на +1
-          setTimeout(() => setIsDeleting(true), interval);
-        }
-      }, typingSpeed);
-    }
+      );
+    };
 
-    return () => clearTimeout(timer);
-  }, [displayedText, isDeleting, words, interval, typingSpeed, currentWordIndex]);
+    animateText();
+  }, [currentWordIndex, interval, words.length]);
 
   return (
     <span className={styles.awesome}>
-      {displayedText}
+      <span ref={textRef}>
+        {words[currentWordIndex]}
+      </span>
       <span className={styles.cursor}></span>
     </span>
   );
