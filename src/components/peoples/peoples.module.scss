@@ -43,20 +43,48 @@
 		}
 	}
 
-	&__image {
+	&__image__first {
+		transform: translateX(-30%);
+		width: auto;
+
 		@include desktop {
-			width: 720px;
-			height: 470px;
+			width: auto;
+			height: 468px;
 		}
 
 		@include tablet {
-			width: 540px;
-			height: 350px;
+			width: 314px;
+			height: 354px;
 		}
 
 		@include tablet-small {
-			width: 340px;
-			height: 230px;
+			width: 200px;
+			height: 225px;
+		}
+	}
+
+
+
+	&__image__second {
+		position: absolute;
+		transform: translateX(-10%);
+		left: 50%;
+		bottom: 0;
+		width: auto;
+
+		@include desktop {
+			width: auto;
+			height: 453px;
+		}
+
+		@include tablet {
+			width: 336px;
+			height: 342px;
+		}
+
+		@include tablet-small {
+			width: 226px;
+			height: 229px;
 		}
 	}
 
