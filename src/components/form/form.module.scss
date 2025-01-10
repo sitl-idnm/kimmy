@@ -100,11 +100,18 @@
 			font-family: var(--font-inter);
 			font-weight: 500;
 			line-height: 150%;
-			border: none;
+			border: 1px solid var(--color-red-gradient-start);
+			transition: all 1.5s;
 
 			background: linear-gradient(315deg, var(--color-red-gradient-start), var(--color-red-gradient-end));
 
 			color: var(--color-white-default);
+		}
+
+		&[type='submit']:hover {
+			background: var(--color-black);
+			border: 1px solid var(--color-black-default);
+			transition: all 1.5s;
 		}
 
 		&[type="number"]::-webkit-outer-spin-button,

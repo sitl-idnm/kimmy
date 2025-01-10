@@ -54,7 +54,9 @@ const Header: FC<HeaderProps> = ({ className }) => {
           </div>
 
           {/* Логотип и кнопка для десктопа */}
-          <Logo />
+          <div className={styles.logo}>
+            <Logo />
+          </div>
 
           <Button value={'Обсудить проект'} />
 
