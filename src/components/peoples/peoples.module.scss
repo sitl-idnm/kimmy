@@ -45,18 +45,39 @@
 
 	&__image {
 		@include desktop {
-			width: 720px;
+			width: 765px;
 			height: 470px;
 		}
 
 		@include tablet {
-			width: 540px;
+			width: 560px;
 			height: 350px;
 		}
 
 		@include tablet-small {
 			width: 340px;
-			height: 230px;
+			height: 205px;
+		}
+
+		transition: opacity 0.3s ease;
+
+		&_absolute {
+			position: absolute;
+			bottom: 0px;
+			left: 50%;
+			transform: translateX(-50%);
+			opacity: 0;
+			pointer-events: none;
+		}
+	}
+
+	&:hover {
+		.peoples__image:not(.peoples__image_absolute) {
+			opacity: 0;
+		}
+
+		.peoples__image_absolute {
+			opacity: 1;
 		}
 	}
 
@@ -65,6 +86,7 @@
 		flex-direction: column;
 		gap: 24px;
 		position: absolute;
+		z-index: 10;
 
 		@include tablet {
 			gap: 16px;

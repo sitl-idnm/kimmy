@@ -14,6 +14,16 @@
   }
 }
 
+.vk, .telegram {
+  width: 39px;
+  height: 39px;
+
+  @include tablet-small {
+    width: 28px;
+    height: 29px;
+  }
+}
+
 .wrapper {
   display: flex;
   justify-content: center;

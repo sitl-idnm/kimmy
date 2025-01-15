@@ -17,23 +17,32 @@ const Peoples: FC<PeoplesProps> = ({
         <h2 className={styles.peoples__title}>Узнайте больше про наш подход у&nbsp;основателей агентства</h2>
         <div className={`${styles.peoples__card} ${styles.peoples__card__left}`}>
           <div className={styles.peoples__card__info}>
-          <h3 className={styles.peoples__card__title}>Павел Коржуев</h3>
-          <p className={styles.peoples__card__text}>@k.kim</p></div>
+            <h3 className={styles.peoples__card__title}>Павел Коржуев</h3>
+            <p className={styles.peoples__card__text}>@k.kim</p></div>
           <Button value="Написать в Telegram" />
         </div>
         <div className={`${styles.peoples__card} ${styles.peoples__card__right}`}>
           <div className={styles.peoples__card__info}>
-          <h3 className={styles.peoples__card__title}>Константин Ким</h3>
-          <p className={styles.peoples__card__text}>@k.kim</p></div>
+            <h3 className={styles.peoples__card__title}>Константин Ким</h3>
+            <p className={styles.peoples__card__text}>@k.kim</p></div>
           <Button value="Написать в Telegram" />
         </div>
         <Image
-            src='/images/peoples.png'
-            width={910}
-            height={563}
-            quality={100}
-            alt='peoples'
-          className={styles.peoples__image} ></Image>
+          src='/images/peoples.png'
+          width={910}
+          height={563}
+          quality={100}
+          alt='peoples'
+          className={styles.peoples__image}
+        />
+        <Image
+          src='/images/peoples_deanon.png'
+          width={910}
+          height={563}
+          quality={100}
+          alt='peoples deanon'
+          className={`${styles.peoples__image} ${styles.peoples__image_absolute}`}
+        />
         <AnimatedImage />
       </div>
     </div>
