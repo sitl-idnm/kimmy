@@ -24,12 +24,14 @@ const TypingSpan: FC<TypingSpanProps> = ({
           y: -50,
           opacity: 0,
           scale: 0.5,
+          rotateX: 90,
         },
         {
           y: 0,
           opacity: 1,
-          duration: 0.5,
+          duration: 1,
           scale: 1,
+          rotateX: 0,
           onComplete: () => {
             // После показа текста ждем interval мс
             setTimeout(() => {
@@ -38,6 +40,7 @@ const TypingSpan: FC<TypingSpanProps> = ({
                 y: 50,
                 scale: 0.5,
                 opacity: 0,
+                rotateX: -90,
                 duration: 0.5,
                 onComplete: () => {
                   setCurrentWordIndex((prev) => (prev + 1) % words.length);

@@ -8,13 +8,17 @@
 
 .awesome {
   color: var(--color-red-gradient-start);
-  display: inline-flex;
+  display: inline-block;
+  perspective: 1000px;
+  transform-style: preserve-3d;
 	position: relative;
 	align-items: center;
 
 	span {
 		display: inline-block;
 		white-space: nowrap;
+		width: 150px;
+		text-align: left;
 	}
 }
 
