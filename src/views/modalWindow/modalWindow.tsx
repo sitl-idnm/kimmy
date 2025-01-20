@@ -1,3 +1,4 @@
+/* eslint-disable no-empty-pattern */
 'use client'
 import { FC, useEffect } from 'react'
 
