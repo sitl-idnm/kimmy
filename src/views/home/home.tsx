@@ -11,6 +11,7 @@ import { Tenet } from '@/modules/tenet'
 import { Conversion } from '@/modules/conversion'
 import { Case } from '@/modules/case'
 import { DrawerMenu } from '@/modules/drawerMenu'
+import ModalWindow from '../modalWindow/modalWindow'
 
 const Home: FC<HomeProps> = ({ className }) => {
   const rootClassName = classNames(styles.root, className)
@@ -27,6 +28,7 @@ const Home: FC<HomeProps> = ({ className }) => {
         <Tenet />
         <Peoples />
         <FormSecond />
+        <ModalWindow />
       </Wrapper>
       <DrawerMenu />
     </main>
