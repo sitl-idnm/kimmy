@@ -56,11 +56,11 @@
 		}
 	}
 
-	&__item:hover > a {
+	&__item:hover > button {
 		opacity:0.5;
 	}
 
-	&__item:hover > a:hover {
+	&__item:hover > button:hover {
 		opacity: 1;
 	}
 
