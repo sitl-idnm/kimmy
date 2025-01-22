@@ -13,63 +13,128 @@ import { Navigation } from '@/components';
 
 const Header: FC<HeaderProps> = ({ className }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const headerClassName = classNames(styles.root, className);
-  const menuRef = useRef(null);
-  const burgerButtonRef = useRef(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const burgerButtonRef = useRef<HTMLDivElement>(null);
+  const burgerIconRef = useRef<HTMLDivElement>(null);
+  const burgerBeforeRef = useRef<HTMLDivElement>(null);
+  const burgerAfterRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 767);
+    };
+
+    // Инициализация при монтировании
+    handleResize();
+
+    // Добавляем слушатель изменения размера окна
+    window.addEventListener('resize', handleResize);
+
+    // Очистка при размонтировании
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     if (isMenuOpen) {
-      gsap.fromTo(
-        menuRef.current,
-        { x: '-100%', opacity: 0 },
-        { x: '0%', opacity: 1, duration: 0.5, ease: 'power2.out' }
-      );
+      gsap.to(menuRef.current, {
+        opacity: 1,
+        scale: 1,
+        duration: 0.3,
+        ease: 'back.out(1.7)',
+        pointerEvents: 'auto'
+      });
+
+      gsap.to(burgerBeforeRef.current, {
+        top: 0,
+        rotation: 45,
+        duration: 0.3
+      });
+
+      gsap.to(burgerAfterRef.current, {
+        top: 0,
+        rotation: -45,
+        duration: 0.3
+      });
     } else {
       gsap.to(menuRef.current, {
-        x: '-100%',
         opacity: 0,
-        duration: 0.5,
-        ease: 'power2.in'
+        scale: 0.95,
+        duration: 0.2,
+        ease: 'power2.in',
+        pointerEvents: 'none'
+      });
+
+      gsap.to(burgerBeforeRef.current, {
+        top: '-6px',
+        rotation: 0,
+        duration: 0.3
+      });
+
+      gsap.to(burgerAfterRef.current, {
+        top: '6px',
+        rotation: 0,
+        duration: 0.3
       });
     }
   }, [isMenuOpen]);
 
   const handleBurgerClick = () => {
     setIsMenuOpen(!isMenuOpen);
-    gsap.fromTo(
-      burgerButtonRef.current,
-      { rotation: 0 },
-      { rotation: 90, duration: 0.5, ease: 'power2.inOut' }
-    );
   };
+
+  // Обработчик клика вне меню
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isMenuOpen &&
+        menuRef.current &&
+        burgerButtonRef.current &&
+        !menuRef.current.contains(event.target as Node) &&
+        !burgerButtonRef.current.contains(event.target as Node)
+      ) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMenuOpen]);
 
   return (
     <header className={headerClassName}>
       <Wrapper className={styles.wrapper}>
         <div className={styles.wrapper__container}>
-
-          {/* Navigation будет видим на больших экранах */}
           <div className={styles.desktop__navigation}>
             <Navigation />
           </div>
 
-          {/* Логотип и кнопка для десктопа */}
-          <Logo />
+          <div className={styles.logo}>
+            <Logo />
+          </div>
 
-          <Button value={'Обсудить проект'} />
-
-          {/* Бургер-кнопка для открытия/закрытия меню на мобильных устройствах */}
-          <div
-            className={styles.burgerbutton}
-            onClick={handleBurgerClick}
-            ref={burgerButtonRef}
-          >
-            <div className={styles.burgericon}></div>
+          <div className={styles.buttons__wrapper}>
+            {!isMobile && <Button className={styles.button} value={'Обсудить проект'} />}
+            <div
+              className={styles.burgerbutton}
+              onClick={handleBurgerClick}
+              ref={burgerButtonRef}
+              data-open={isMenuOpen}
+            >
+              <div className={styles.burgericon} ref={burgerIconRef}>
+                <div className={styles.burgericon__before} ref={burgerBeforeRef}></div>
+                <div className={styles.burgericon__after} ref={burgerAfterRef}></div>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Мобильное меню */}
-        <div ref={menuRef} className={styles.mobilemenu} style={{ display: isMenuOpen ? 'block' : 'none' }}>
+        <div ref={menuRef} className={styles.mobilemenu}>
           <Navigation />
         </div>
       </Wrapper>
