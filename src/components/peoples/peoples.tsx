@@ -18,10 +18,10 @@ const Peoples: FC<PeoplesProps> = ({
         <div className={`${styles.peoples__card} ${styles.peoples__card__left}`}>
           <div className={styles.peoples__card__info}>
             <h3 className={styles.peoples__card__title}>Павел Коржуев</h3>
-            <p className={styles.peoples__card__text}>@k.kim</p></div>
+            <p className={styles.peoples__card__text}>@pavel_expert</p></div>
           <Button
             as="a"
-            href="https://t.me/k.kim"
+            href="https://t.me/pavel_expert"
             isRouteLink
             target="_blank"
           >
@@ -31,10 +31,10 @@ const Peoples: FC<PeoplesProps> = ({
         <div className={`${styles.peoples__card} ${styles.peoples__card__right}`}>
           <div className={styles.peoples__card__info}>
             <h3 className={styles.peoples__card__title}>Константин Ким</h3>
-            <p className={styles.peoples__card__text}>@k.kim</p></div>
+            <p className={styles.peoples__card__text}>@konstantin_v_k</p></div>
           <Button
             as="a"
-            href="https://t.me/k.kim"
+            href="https://t.me/konstantin_v_k"
             isRouteLink
             target="_blank"
           >

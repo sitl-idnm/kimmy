@@ -3,6 +3,8 @@
 import { FC, useRef } from 'react'
 import classNames from 'classnames'
 import gsap from 'gsap'
+import Image from 'next/image'
+import Arrow from '@icons/cases__arrow.svg'
 
 import styles from './case.module.scss'
 import { CaseProps } from './case.types'
@@ -10,10 +12,9 @@ import { CaseItem } from '@/components'
 import { useGSAP } from '@gsap/react'
 
 const itemsData = [
-  { title: 'Магия вкуса', text: 'Многостраничный сайт для сервиса по работе с клиентскими данными' },
-  { title: 'Магия вкуса', text: 'Многостраничный сайт для сервиса по работе с клиентскими данными' },
-  { title: 'Магия вкуса', text: 'Многостраничный сайт для сервиса по работе с клиентскими данными' },
-  { title: 'Магия вкуса', text: 'Многостраничный сайт для сервиса по работе с клиентскими данными' },
+  { title: 'Магия вкуса', text: 'Интернет-магазин для пекарни полного цикла', imageSrc: '/images/tablet__magic.png' },
+  { title: 'ClientPulse', text: 'Многостраничный сайт для сервиса по работе с клиентскими данными ', imageSrc: '/images/clientpulse.png' },
+  { title: 'BestWave', text: 'Лендинг no-code для серф-клуба в Москве', imageSrc: '/images/bestwave.png' },
 ]
 
 const Case: FC<CaseProps> = ({
@@ -48,8 +49,19 @@ const Case: FC<CaseProps> = ({
             key={index}
             title={item.title}
             text={item.text}
+            imageSrc={item.imageSrc}
           />
         ))}
+        <div className={styles.view_all}>
+          <h3 className={styles.view_all__title}>Смотреть все кейсы</h3>
+          <div className={styles.view_all__icon}>
+            <Arrow
+              width={60}
+              height={60}
+              alt="arrow"
+            />
+          </div>
+        </div>
       </div>
     </div>
   )
