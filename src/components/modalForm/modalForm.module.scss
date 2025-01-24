@@ -1,7 +1,7 @@
 /* stylelint-disable selector-class-pattern */
 /* stylelint-disable color-function-notation */
 @use "@styles/func";
-@use "@styles/mixins";
+@use "@styles/mixins" as *;
 @use "@styles/variables";
 
 .root {
@@ -15,6 +15,17 @@
 	background: var(--color-black) left bottom no-repeat url('../../../public/images/formFigure.png');
 	background-position: -20% 90%;
 
+	@include tablet-small {
+		padding: 40px 12px 333px;
+		background: var(--color-black) center bottom no-repeat url('../../../public/images/formFigure.png');
+		background-size: 510px 510px;
+		background-position: 20% 120%;
+
+		gap: 12px;
+
+		margin: -12px;
+	}
+
 	&__title {
 		color: #FFF;
 		font-family: var(--font-inter);
@@ -22,11 +33,21 @@
 		font-size: 64px;
 		line-height: 100%;
 		letter-spacing: -2%;
+
+		@include tablet-small {
+			font-size: 38px;
+		}
 	}
 
 	&__content {
 		display: flex;
 		gap: 92px;
+
+		@include tablet-small {
+			flex-direction: column;
+
+			gap: 25px;
+		}
 
 		.wrapper {
 			display: flex;
@@ -56,6 +77,11 @@
 			flex-direction: column;
 			gap: 36px;
 
+			@include tablet-small {
+				gap: 20px;
+				padding-right: 13px;
+			}
+
 			.white {
 				color: #FFFFFF90;
 
@@ -63,6 +89,10 @@
 				font-size: 20px;
 				line-height: 150%;
 				font-weight: 400;
+
+				@include tablet-small {
+					font-size: 16px;
+				}
 			}
 
 			.gray {
@@ -73,6 +103,10 @@
 				color: #FFFFFF60;
 
 				max-width: 335px;
+
+				@include tablet-small {
+					font-size: 14px;
+				}
 			}
 		}
 
@@ -81,6 +115,10 @@
 			flex-direction: column;
 			gap: 9px;
 			max-width: 531px;
+
+			@include tablet-small {
+				max-width: 312px;
+			}
 
 			.placeholder {
 				position: absolute;
@@ -160,6 +198,10 @@
 				display: flex;
 				gap: 9px;
 
+				@include tablet-small {
+					flex-direction: column;
+				}
+
 				& div {
 					position: relative;
 				}
@@ -169,12 +211,20 @@
 					min-width: 261px;
 					color: white;
 					padding-left: 20px;
+
+					@include tablet-small {
+						width: 100%;
+					}
 				}
 
 				&__number {
 					min-width: 261px;
 					color: white;
 					padding-left: 20px;
+
+					@include tablet-small {
+						width: 100%;
+					}
 				}
 			}
 
@@ -239,6 +289,10 @@
 					display: flex;
 					gap: 7px;
 
+					@include tablet-small {
+						flex-direction: column;
+					}
+
 					.input__wrapper {
 						position: relative;
 						display: flex;
@@ -278,6 +332,11 @@
 
 							border: 1px solid #2C2C2C;
 							border-radius: 10px;
+
+							@include tablet-small {
+								width: 100%;
+								justify-content: center;
+							}
 						}
 
 						.radio__num::before {
