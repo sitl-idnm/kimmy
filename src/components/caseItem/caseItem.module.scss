@@ -6,23 +6,28 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-
+	position: relative;
 	background-color: var(--color-grey);
-
 	border-radius: 32px;
-
 	padding: 40px 0 40px 36px;
-
 	min-width: 727px;
 	min-height: 474px;
 	width: 100%;
 	height: 100%;
+	transition: background-color 0.3s ease;
+
+	&:hover {
+		background-color: transparent;
+
+		.bottom__button {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
 
 	@include tablet-small {
 		justify-content: flex-end;
-
 		min-width: 0;
-
 		max-width: none;
 		min-height: 355px;
 		padding: 40px 0 40px 20px;
@@ -78,6 +83,7 @@
 
 		max-width: 256px;
 
+
 		&__title {
 			font-family: var(--font-inter);
 			font-size: 26px;
@@ -96,6 +102,21 @@
 			font-weight: 400;
 			line-height: 150%;
 			color: #37373795;
+		}
+
+		&__button {
+			position: absolute;
+			bottom: 24px;
+			right: 24px;
+			opacity: 0;
+			transform: translateY(10px);
+			transition: opacity 0.3s ease, transform 0.3s ease;
+
+			@include tablet-small {
+				bottom: 140px;
+				right: 16px;
+				opacity: 1;
+			}
 		}
 	}
 }
