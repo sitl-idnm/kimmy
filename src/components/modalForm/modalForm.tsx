@@ -1,0 +1,163 @@
+'use client'
+
+import { FC, useState } from 'react'
+import classNames from 'classnames'
+
+import styles from './modalForm.module.scss'
+import { ModalFormProps } from './modalForm.types'
+import axios from 'axios'
+
+const ModalForm: FC<ModalFormProps> = ({ className }) => {
+  const rootClassName = classNames(styles.root, className)
+  const [selectedContactMethod, setSelectedContactMethod] = useState('number')
+  const [successMessage, setSuccessMessage] = useState<string | null>(null)
+
+  const handleNumberInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value
+    event.target.value = value.replace(/\D/g, '')
+  }
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const formData = new FormData(event.currentTarget)
+    const data = Object.fromEntries(formData.entries())
+    const token = '7862004029:AAFZ807gLMhUIzqjfh4DB62muUmzWv9JfrY'
+    const chatId = '-4654232429'
+    const message = `Новая заявка:\nИмя: ${data.nameModal}\nТелефон: ${data.phoneModal}${data.mailModal ? `\nПочта: ${data.mailModal}` : ''}${data.commentModal ? `\nРасскажите про свой проект: ${data.commentModal}` : ''}\nПредпочтительный способ связи: ${selectedContactMethod}`
+
+    try {
+      await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
+        chat_id: chatId,
+        text: message,
+      })
+      setSuccessMessage('Form submitted successfully!')
+    } catch (error) {
+      console.error('Error sending message to Telegram:', error)
+      setSuccessMessage('Failed to submit form.')
+    }
+  }
+
+  return (
+    <div className={rootClassName}>
+      <h2 className={styles.root__title}>Начнем сотрудничество?</h2>
+      <div className={styles.root__content}>
+        <div className={styles.root__content__text}>
+          <p className={styles.white}>Готовы начать погружение в ваш проект!</p>
+          <p className={styles.gray}>
+            Просто оставьте контактные данные, мы свяжемся с вами, чтобы собрать
+            информацию и предложить решение.
+          </p>
+        </div>
+        <form onSubmit={handleSubmit} action="POST" className={styles.root__content__form}>
+          <div className={styles.root__content__form__first__line}>
+            <div>
+              <input
+                type="text"
+                name="nameModal"
+                placeholder="Имя"
+                className={`${styles.root__content__form__first__line__name} ${styles.input}`}
+                required
+              />
+              <label className={styles.placeholder}>Имя</label>
+            </div>
+            <div>
+              <input
+                type="text"
+                name="phoneModal"
+                placeholder="Телефон"
+                className={`${styles.root__content__form__first__line__number} ${styles.input}`}
+                required
+                onChange={handleNumberInput}
+              />
+              <label className={styles.placeholder}>Телефон</label>
+            </div>
+          </div>
+          <div className={styles.root__content__form__second__line}>
+            <div>
+              <input
+                type="mail"
+                name="mailModal"
+                placeholder="Почта"
+                required
+                className={styles.root__content__form__second__line__mail}
+              />
+              <label className={styles.placeholder}>Email</label>
+            </div>
+            <div>
+              <textarea
+                name="commentModal"
+                placeholder="Комментарий"
+                required
+              />
+              <label className={styles.placeholder}>Комментарий</label>
+            </div>
+          </div>
+          <div className={styles.root__content__form__third__line}>
+            <h3 className={styles.radio__title}>Где с вами связаться?</h3>
+            <div className={styles.radio__list}>
+              <div className={styles.input__wrapper}>
+                <input
+                  type="radio"
+                  name="contactButton"
+                  id="rad1"
+                  checked={selectedContactMethod === 'number'}
+                  value="number"
+                  onChange={() => setSelectedContactMethod('number')}
+                />
+                <label htmlFor="rad1" className={styles.radio__num}>
+                  Телефон
+                </label>
+              </div>
+              <div className={styles.input__wrapper}>
+                <input
+                  type="radio"
+                  name="contactButton"
+                  id="rad2"
+                  checked={selectedContactMethod === 'tg'}
+                  value="tg"
+                  onChange={() => setSelectedContactMethod('tg')}
+                />
+                <label htmlFor="rad2" className={styles.radio__tg}>
+                  Telegram
+                </label>
+              </div>
+              <div className={styles.input__wrapper}>
+                <input
+                  type="radio"
+                  name="contactButton"
+                  id="rad3"
+                  checked={selectedContactMethod === 'whatsapp'}
+                  value="whatsapp"
+                  onChange={() => setSelectedContactMethod('whatsapp')}
+                />
+                <label htmlFor="rad3" className={styles.radio__wa}>
+                  WhatsApp
+                </label>
+              </div>
+            </div>
+          </div>
+          <div className={styles.wrapper}>
+            <div className={styles.form_wrapper}>
+              <input type="checkbox" checked />
+              <label>
+                Согласен на обработку <a>персональных данных</a>
+              </label>
+            </div>
+            <div className={styles.form_wrapper}>
+              <input type="checkbox" checked />
+              <label>Согласен на получение email - рассылок</label>
+            </div>
+            <div className={styles.form_wrapper}>
+              <input type="submit" value={'Получить консультацию'} />
+            </div>
+            {successMessage && (
+              <div className={styles.successMessage}>{successMessage}</div>
+            )}
+          </div>
+        </form>
+      </div>
+    </div>
+  )
+}
+
+export default ModalForm
