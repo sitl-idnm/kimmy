@@ -7,8 +7,6 @@ import { FavourItem } from '../favourItem'
 import { ModalForm } from '../modalForm'
 import { useAtom } from 'jotai'
 import { openModal, openModalContent } from '@/shared/atoms/openModal'
-import firstline from '../../../public/images/first_backmodal.png';
-import secondline from '../../../public/images/second_backmodal.png';
 import Brush from '../../shared/assets/icons/brush.svg';
 
 const itemsData = [
@@ -21,7 +19,7 @@ const itemsData = [
 // eslint-disable-next-line no-empty-pattern
 const DesignModal: FC<DesignModalProps> = ({}) => {
   const [openWindow, setOpenWindow] = useAtom(openModal)
-  const [] = useAtom(openModalContent)
+  // const [] = useAtom(openModalContent)
 
   if (openWindow) {
     document.body.style.overflow = 'hidden'
@@ -48,16 +46,10 @@ const DesignModal: FC<DesignModalProps> = ({}) => {
             <p className={styles.text}>
               Разработаем фирменный стиль, дизайн сайта, электронного письма, полиграфии, оформим социальные сети.
             </p>
-            <div className={styles.lines}>
+            <div>
               <Image
-                src={firstline}
-                alt='first_backmodal'
-                className={styles.lines__first}
-              />
-              <Image
-                src={secondline}
-                alt='second_backmodal'
-                className={styles.lines__second}
+                src={''}
+                alt='ipads'
               />
             </div>
           </div>
