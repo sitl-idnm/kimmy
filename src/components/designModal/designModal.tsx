@@ -8,6 +8,7 @@ import { ModalForm } from '../modalForm'
 import { useAtom } from 'jotai'
 import { openModal } from '@/shared/atoms/openModal'
 import Brush from '../../shared/assets/icons/brush.svg';
+import ipad from '../../../public/images/design_ipad.png'
 
 const itemsData = [
   { title: 'Удерживайте внимание аудитории', backgroundColor: 'var(--color-grey)', textColor: 'var(--color-black)', imageSrc: '/images/image1.png', text: 'Эстетичный и понятный дизайн помогает выделиться в потоке информации' },
@@ -41,14 +42,16 @@ const DesignModal: FC<DesignModalProps> = ({}) => {
         <div className={styles.content}>
           <div className={styles.content__first}>
             <h2 className={styles.title}>
-               <span>Дизайн<Brush /></span>
+               Дизайн<span><Brush /></span>
             </h2>
             <p className={styles.text}>
               Разработаем фирменный стиль, дизайн сайта, электронного письма, полиграфии, оформим социальные сети.
             </p>
-            <div>
+            <div className={styles.ipad}>
               <Image
-                src={'../../../public/images/ipads.png'}
+                src={ipad}
+                width={748}
+                height={943}
                 alt='ipads'
               />
             </div>
