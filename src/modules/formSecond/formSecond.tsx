@@ -13,7 +13,7 @@ const FormSecond: FC<FormSecondProps> = ({
 
   return (
     <div className={rootClassName}>
-      <section className={styles.form}>
+      <section className={styles.form} id="form">
         <div className={styles.form__circle}>
           <TextForm
             title={'Начнем сотрудничество?'}

@@ -17,8 +17,13 @@ const TenetTitle: FC<TenetTitleProps> = ({
     <div className={rootClassName}>
       <h2>{title} {span} {end}</h2>
       <Button
-        value={'Заказать сайт'}
-      />
+        className={styles.button}
+        as="a"
+        href="#form"
+        isRouteLink
+      >
+        Заказать сайт
+      </Button>
     </div>
   )
 }
