@@ -75,6 +75,10 @@ const Borders: FC<BordersProps> = ({ className, cornersWithCrosses = [] }) => {
     };
   }, [animateBorders]);
 
+  const handleMouseMove = useCallback((e: MouseEvent) => {
+    // ... код обработчика ...
+  }, [crossRefs]);
+
   return (
     <div className={rootClassName}>
       {/* Линии по сторонам */}

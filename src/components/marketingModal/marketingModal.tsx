@@ -19,9 +19,9 @@ const itemsData = [
   { title: 'Опережайте конкурентов', backgroundColor: 'var(--color-red-accent)', textColor: 'var(--color-white-default)', imageSrc: '/images/image4.png', text: 'Предлагайте то, чего нет у других' },
 ]
 
-const MarketingModal: FC<MarketingModalProps> = ({}) => {
+const MarketingModal: FC<MarketingModalProps> = ({ }) => {
   const [openWindow, setOpenWindow] = useAtom(openModal)
-  const [openWindowContent, ] = useAtom(openModalContent)
+  const [] = useAtom(openModalContent)
 
   if (openWindow) {
     document.body.style.overflow = 'hidden'
