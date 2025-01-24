@@ -3,7 +3,6 @@
 import { FC, useRef } from 'react'
 import classNames from 'classnames'
 import gsap from 'gsap'
-import Image from 'next/image'
 import Arrow from '@icons/cases__arrow.svg'
 
 import styles from './case.module.scss'
