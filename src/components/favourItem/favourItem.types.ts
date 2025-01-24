@@ -5,4 +5,5 @@ export interface FavourItemProps {
   textColor: string
   imageSrc?: string
   linkColor: string
+  text?: string
 }
