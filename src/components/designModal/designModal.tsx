@@ -12,9 +12,9 @@ import secondline from '../../../public/images/second_backmodal.png';
 import Brush from '../../shared/assets/icons/brush.svg';
 
 const itemsData = [
-  { title: 'Получайте больше квалифицированных заявок', backgroundColor: 'var(--color-grey)', textColor: 'var(--color-black)', imageSrc: '/images/image1.png', text: 'Привлекайте клиентов, которые действительно заинтересованы в вашем продукте' },
-  { title: 'Больше продавайте', backgroundColor: 'var(--color-black)', textColor: 'var(--color-white-default)', imageSrc: '/images/image2.png', text: 'Адаптируйте предложение под реальные потребности аудитории.' },
-  { title: 'Опережайте конкурентов', backgroundColor: 'var(--color-red-accent)', textColor: 'var(--color-white-default)', imageSrc: '/images/image4.png', text: 'Предлагайте то, чего нет у других' },
+  { title: 'Удерживайте внимание аудитории', backgroundColor: 'var(--color-grey)', textColor: 'var(--color-black)', imageSrc: '/images/image1.png', text: 'Эстетичный и понятный дизайн помогает выделиться в потоке информации' },
+  { title: 'Увеличивайте конверсию', backgroundColor: 'var(--color-black)', textColor: 'var(--color-white-default)', imageSrc: '/images/image2.png', text: 'Используйте дизайн, который направляет клиентов к целевым действиям' },
+  { title: 'Ускоряйте процесс принятия решений у клиентов', backgroundColor: 'var(--color-red-accent)', textColor: 'var(--color-white-default)', imageSrc: '/images/image4.png', text: 'Дизайн, который ясно и логично показывает ценность вашего продукта, мотивирует на покупку' },
 ]
 
 
@@ -43,7 +43,7 @@ const DesignModal: FC<DesignModalProps> = ({}) => {
         <div className={styles.content}>
           <div className={styles.content__first}>
             <h2 className={styles.title}>
-               <span className={styles.title__accent}>Дизайн</span>
+               <span>Дизайн<Brush /></span>
             </h2>
             <p className={styles.text}>
               Разработаем фирменный стиль, дизайн сайта, электронного письма, полиграфии, оформим социальные сети.
@@ -81,10 +81,10 @@ const DesignModal: FC<DesignModalProps> = ({}) => {
             <h2 className={styles.result__title}>По итогам исследования вы получите:</h2>
             <div className={styles.result__points}>
               <ul className={styles.result__list}>
-                <li className={styles.list__point}>Анализ аудитории</li>
-                <li className={styles.list__point}>Анализ конкурентов</li>
-                <li className={styles.list__point}>Анализ продукта</li>
-                <li className={styles.list__point}>Выводы и рекомендации по позиционированию и продвижения</li>
+                <li className={styles.list__point}>Дизайн сайта</li>
+                <li className={styles.list__point}>Визуальную концепцию бренда</li>
+                <li className={styles.list__point}>Макеты для рассылок, соцсетей или рекламы</li>
+                <li className={styles.list__point}>Фирменный стиль</li>
               </ul>
             </div>
           </div>
