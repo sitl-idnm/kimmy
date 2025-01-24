@@ -6,7 +6,7 @@ import Image from 'next/image'
 import { FavourItem } from '../favourItem'
 import { ModalForm } from '../modalForm'
 import { useAtom } from 'jotai'
-import { openModal, openModalContent } from '@/shared/atoms/openModal'
+import { openModal } from '@/shared/atoms/openModal'
 import Brush from '../../shared/assets/icons/brush.svg';
 
 const itemsData = [
@@ -48,7 +48,7 @@ const DesignModal: FC<DesignModalProps> = ({}) => {
             </p>
             <div>
               <Image
-                src={''}
+                src={'../../../public/images/ipads.png'}
                 alt='ipads'
               />
             </div>
