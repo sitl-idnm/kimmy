@@ -64,10 +64,13 @@
 		&_absolute {
 			position: absolute;
 			bottom: 0px;
+			max-width: 65%;
+			height: auto;
 			left: 50%;
 			transform: translateX(-50%);
 			opacity: 0;
 			pointer-events: none;
+			transition: opacity 0.3s ease;
 		}
 	}
 
