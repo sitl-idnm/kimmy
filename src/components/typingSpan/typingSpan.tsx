@@ -14,39 +14,54 @@ const TypingSpan: FC<TypingSpanProps> = ({
   interval = 2000,
   typingSpeed = 100
 }) => {
-  const [displayedText, setDisplayedText] = useState<string>('');
-  const [isDeleting, setIsDeleting] = useState<boolean>(false);
   const [currentWordIndex, setCurrentWordIndex] = useState<number>(0);
+  const [letters, setLetters] = useState<{ char: string; isFlipping: boolean }[]>([]);
+  const maxLength = Math.max(...words.map(word => word.length));
 
   useEffect(() => {
-    const word = words[currentWordIndex];
-    let timer: NodeJS.Timeout;
+    const currentWord = words[currentWordIndex];
+    const nextWord = words[(currentWordIndex + 1) % words.length];
+    let timeoutId: NodeJS.Timeout;
 
-    if (isDeleting) {
-      // Уменьшаем количество символов при удалении текста
-      timer = setTimeout(() => {
-        setDisplayedText((prev) => word.slice(0, prev.length - 1));
-        if (displayedText.length === 1) { // Изменено с 0 на 1
-          setIsDeleting(false);
-          setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
-        }
-      }, typingSpeed);
-    } else {
-      // Добавляем по одному символу при печати
-      timer = setTimeout(() => {
-        setDisplayedText((prev) => word.slice(0, prev.length + 1));
-        if (displayedText.length + 1 === word.length) { // Изменено на +1
-          setTimeout(() => setIsDeleting(true), interval);
-        }
-      }, typingSpeed);
-    }
+    const updateWord = () => {
+      const newLetters = Array(maxLength).fill({ char: '', isFlipping: false }).map((_, index) => ({
+        char: currentWord[index] || ' ',
+        isFlipping: false
+      }));
+      setLetters(newLetters);
 
-    return () => clearTimeout(timer);
-  }, [displayedText, isDeleting, words, interval, typingSpeed, currentWordIndex]);
+      timeoutId = setTimeout(() => {
+        // Запускаем анимацию для каждой буквы последовательно
+        for (let i = 0; i < maxLength; i++) {
+          setTimeout(() => {
+            setLetters(prev => prev.map((letter, idx) =>
+              idx === i ? { char: nextWord[i] || ' ', isFlipping: true } : letter
+            ));
+          }, i * typingSpeed);
+        }
+
+        // После завершения анимации всех букв переходим к следующему слову
+        setTimeout(() => {
+          setCurrentWordIndex((prev) => (prev + 1) % words.length);
+        }, maxLength * typingSpeed + interval);
+      }, interval);
+    };
+
+    updateWord();
+
+    return () => clearTimeout(timeoutId);
+  }, [currentWordIndex, interval, maxLength, typingSpeed, words]);
 
   return (
     <span className={styles.awesome}>
-      {displayedText}
+      {letters.map((letter, index) => (
+        <span
+          key={index}
+          className={`${styles.letter} ${letter.isFlipping ? styles.flip : ''}`}
+        >
+          {letter.char}
+        </span>
+      ))}
       <span className={styles.cursor}></span>
     </span>
   );

@@ -7,24 +7,55 @@
 }
 
 .awesome {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
 	color: var(--color-red-gradient-start);
 }
 
+.letter {
+	display: inline-block;
+	min-width: 0.5em;
+	text-align: center;
+	transform-style: preserve-3d;
+	transition: transform 0.3s ease;
+	perspective: 1000px;
+
+	&.flip {
+		animation: flipLetter 0.6s cubic-bezier(0.14, 0, 0.16, 1);
+	}
+}
+
 .cursor {
-  display: inline-block;  /* Убедитесь, что курсор занимает место */
-  width: 4px;            /* Установите ширину курсора */
-  height: 0.8em;         /* Установите высоту курсора */
-  margin-left: 5px;
-	background-color: var(--color-red-gradient-start); /* Цвет курсора */
-  animation: blink 1s infinite; /* Добавьте анимацию мигания */
+	display: inline-block;
+	width: 2px;
+	height: 1em;
+	background-color: currentColor;
+	margin-left: 2px;
+	animation: blink 0.7s infinite;
+}
+
+@keyframes flipLetter {
+	0% {
+		transform: rotateX(0) translateY(0);
+		opacity: 1;
+	}
+	50% {
+		transform: rotateX(-90deg) translateY(-50%);
+		opacity: 0;
+	}
+	51% {
+		transform: rotateX(90deg) translateY(50%);
+		opacity: 0;
+	}
+	100% {
+		transform: rotateX(0) translateY(0);
+		opacity: 1;
+	}
 }
 
 @keyframes blink {
-  0%, 100% {
-    opacity: 1; /* Полная видимость */
-  }
-
-  50% {
-    opacity: 0; /* Полная прозрачность */
-  }
+	50% {
+		opacity: 0;
+	}
 }
