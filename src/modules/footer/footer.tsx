@@ -12,8 +12,8 @@ const Footer: FC = () => {
         <div className={styles.wrapper__container}>
           <div className={styles.information}>
             <ul className={styles.information__list}>
-              <li className={styles.information__item}><a href="" className={styles.infromation__item__link}><Vk className={styles.vk} /></a></li>
-              <li className={styles.inforamtion__item}><a href="" className={styles.infromation__item__link}><Telegram className={styles.telegram} /></a></li></ul>
+              <li className={styles.information__item}><a href="https://vk.com/kkimagency" target='_blank' className={styles.infromation__item__link}><Vk className={styles.vk} /></a></li>
+              <li className={styles.inforamtion__item}><a href="https://t.me/kimagency" target='_blank' className={styles.infromation__item__link}><Telegram className={styles.telegram} /></a></li></ul>
             <p className={styles.information__text}>Сайт агентства интернет<br></br> маркетинга K.KIM.AGENCY, Москва</p>
             <a href="" className={styles.information__policy}>Политика конфиденциальности</a>
           </div>

@@ -14,6 +14,15 @@ import WaActive from '../../shared/assets/icons/wa - active.svg'
 import TgDef from '../../shared/assets/icons/tg - default.svg'
 import TgActive from '../../shared/assets/icons/tg - active.svg'
 
+const handleNameInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const value = event.target.value;
+  event.target.value = value.replace(/\d/g, '');
+};
+
+const isValidEmail = (email: string) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
 
 const ModalForm: FC<ModalFormProps> = ({ className }) => {
   const rootClassName = classNames(styles.root, className)
@@ -25,10 +34,28 @@ const ModalForm: FC<ModalFormProps> = ({ className }) => {
     event.target.value = value.replace(/\D/g, '')
   }
 
+  const sanitizeInput = (input: string) => {
+    const sanitized = input.replace(/<[^>]*>/g, '');
+    if (sanitized !== input) {
+      throw new Error('HTML tags are not allowed');
+    }
+    return sanitized;
+  };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
     const data = Object.fromEntries(formData.entries())
+    if (!isValidEmail(data.mailModal as string)) {
+      setSuccessMessage('Failed to submit form. Invalid email address.');
+      return;
+    }
+    try {
+      data.commentModal = sanitizeInput(data.commentModal as string);
+    } catch (error) {
+      setSuccessMessage('Failed to submit form. HTML tags are not allowed.');
+      return;
+    }
     const token = '7862004029:AAFZ807gLMhUIzqjfh4DB62muUmzWv9JfrY'
     const chatId = '-4654232429'
     const message = `Новая заявка:\nИмя: ${data.nameModal}\nТелефон: ${data.phoneModal}${data.mailModal ? `\nПочта: ${data.mailModal}` : ''}${data.commentModal ? `\nРасскажите про свой проект: ${data.commentModal}` : ''}\nПредпочтительный способ связи: ${selectedContactMethod}`
@@ -65,6 +92,7 @@ const ModalForm: FC<ModalFormProps> = ({ className }) => {
                 placeholder="Имя"
                 className={`${styles.root__content__form__first__line__name} ${styles.input}`}
                 required
+                onChange={handleNameInput}
               />
               <label className={styles.placeholder}>Имя</label>
             </div>
@@ -162,7 +190,12 @@ const ModalForm: FC<ModalFormProps> = ({ className }) => {
               <input type="submit" value={'Получить консультацию'} />
             </div>
             {successMessage && (
-              <div className={styles.successMessage}>{successMessage}</div>
+              <div className={styles.successMessage}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="24" height="24" rx="12" fill="white"/>
+                <path d="M8 12L11.5 16L16 7" stroke="#CB172C" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </div>
             )}
           </div>
         </form>

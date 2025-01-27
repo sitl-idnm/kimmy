@@ -14,10 +14,43 @@ const Form: FC<FormProps> = ({
   const rootClassName = classNames(styles.root, className)
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
 
+  const handleNameInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    event.target.value = value.replace(/\d/g, '');
+  };
+
+  const handleNumberInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    event.target.value = value.replace(/\D/g, '');
+  };
+
+  const sanitizeInput = (input: string) => {
+    const sanitized = input.replace(/<[^>]*>/g, '');
+    if (sanitized !== input) {
+      throw new Error('HTML tags are not allowed');
+    }
+    return sanitized;
+  };
+
+  const isValidEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
     const data = Object.fromEntries(formData.entries())
+    if (!isValidEmail(data.mail as string)) {
+      setSuccessMessage('Failed to submit form. Invalid email address.')
+      return
+    }
+    try {
+      data.project = sanitizeInput(data.project as string)
+    } catch (error) {
+      setSuccessMessage('Failed to submit form. HTML tags are not allowed.')
+      return
+    }
     const token = '7862004029:AAFZ807gLMhUIzqjfh4DB62muUmzWv9JfrY'
     const chatId = '-4654232429'
     const message = `Новая заявка:\nИмя: ${data.name}\nТелефон: ${data.phone}${data.mail ? `\nПочта: ${data.mail}` : ''}${data.project ? `\nРасскажите про свой проект: ${data.project}` : ''}`
@@ -37,11 +70,11 @@ const Form: FC<FormProps> = ({
     <div className={rootClassName}>
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.form_wrapper}>
-          <input type="text" name="name" placeholder='Имя' required />
+          <input type="text" name="name" placeholder='Имя' required onChange={handleNameInput} />
           <label className={styles.placeholder}>Имя</label>
         </div>
         <div className={styles.form_wrapper}>
-          <input type="number" name="phone" placeholder='Телефон' required />
+          <input type="text" name="phone" placeholder='Телефон' required onChange={handleNumberInput} />
           <label className={styles.placeholder}>Телефон</label>
         </div>
         {mail !== undefined && (
