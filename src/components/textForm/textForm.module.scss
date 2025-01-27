@@ -22,6 +22,10 @@
 		@include mobile-large {
 			font-size: 28px;
 		}
+
+		@include tablet-small {
+			margin-bottom: 8px;
+		}
 	}
 
 	&__paragraph {

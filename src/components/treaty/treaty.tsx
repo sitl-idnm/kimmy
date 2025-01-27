@@ -94,15 +94,15 @@ const Treaty: FC<TreatyProps> = ({ className = [] }) => {
         <Borders cornersWithCrosses={['topRight', 'bottomLeft']} />
         <div className={styles.treaty__info}>
           <h2 className={styles.treaty__title}>
-            Сдаем сайты в срок, <br />
-            прописанный в договоре
+            Сдаем сайты в&nbsp;срок, <br />
+            прописанный в&nbsp;договоре
           </h2>
           <Button
             as="a"
             href="#form"
             isRouteLink
           >
-            Рассчитать срок и стоимость моего проекта
+            Рассчитать срок и&nbsp;стоимость моего проекта
           </Button>
         </div>
         <div className={styles.treaty__cards}>

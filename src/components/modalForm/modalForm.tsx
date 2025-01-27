@@ -149,13 +149,13 @@ const ModalForm: FC<ModalFormProps> = ({ className }) => {
           </div>
           <div className={styles.wrapper}>
             <div className={styles.form_wrapper}>
-              <input type="checkbox" checked />
+              <input type="checkbox" required />
               <label>
                 Согласен на обработку <a>персональных данных</a>
               </label>
             </div>
             <div className={styles.form_wrapper}>
-              <input type="checkbox" checked />
+              <input type="checkbox" />
               <label>Согласен на получение email - рассылок</label>
             </div>
             <div className={styles.form_wrapper}>
