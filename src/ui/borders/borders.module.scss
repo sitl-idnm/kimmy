@@ -1,7 +1,7 @@
  /* stylelint-disable */
 
 @use "@styles/func";
-@use "@styles/mixins";
+@use "@styles/mixins" as *;
 @use "@styles/variables";
 
 .wrapper,
@@ -25,6 +25,10 @@
   left: 0;
   right: 0;
   height: 1px; // Толщина линии
+
+  @include tablet-small {
+    top: 18px;
+  }
 }
 
 .borderRight {
@@ -32,6 +36,10 @@
   right: 36px;
   bottom: 0;
   width: 1px; // Толщина линии
+
+  @include tablet-small {
+    right: 18px;
+  }
 }
 
 .borderBottom {
@@ -39,6 +47,10 @@
   left: 0;
   right: 0;
   height: 1px; // Толщина линии
+
+  @include tablet-small {
+    bottom: 18px;
+  }
 }
 
 .borderLeft {
@@ -46,6 +58,10 @@
   left: 36px;
   bottom: 0;
   width: 1px; // Толщина линии
+
+  @include tablet-small {
+    left: 18px;
+  }
 }
 
 .cross {
@@ -70,20 +86,40 @@
   &TopLeft {
     top: calc(36px - var(--width-cross)/2 + 1px);
     left: calc(36px);
+
+    @include tablet-small {
+      top: calc(18px - var(--width-cross)/2 + 1px);
+      left: calc(18px);
+    }
   }
 
   &TopRight {
     top: calc(36px - var(--width-cross)/2 + 1px);
     right: calc(36px - var(--width-cross) + 1px);
+
+    @include tablet-small {
+      top: calc(18px - var(--width-cross)/2 + 1px);
+      right: calc(18px - var(--width-cross) + 1px);
+    }
   }
 
   &BottomLeft {
     bottom: calc(36px - var(--width-cross)/2);
     left: calc(36px);
+
+    @include tablet-small {
+      bottom: calc(18px - var(--width-cross)/2);
+      left: calc(18px);
+    }
   }
 
   &BottomRight {
     bottom: calc(36px - var(--width-cross)/2);
     right: calc(36px - var(--width-cross) + 1px);
+
+    @include tablet-small {
+      bottom: calc(18px - var(--width-cross)/2);
+      right: calc(18px - var(--width-cross) + 1px);
+    }
   }
 }

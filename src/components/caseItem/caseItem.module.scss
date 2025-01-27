@@ -1,3 +1,4 @@
+/* stylelint-disable selector-class-pattern */
 @use "@styles/func";
 @use "@styles/mixins" as *;
 @use "@styles/variables";
@@ -17,7 +18,7 @@
 	transition: background-color 0.3s ease;
 
 	&:hover {
-		background-color: transparent;
+		background-color: #F7F7F7;
 
 		.bottom__button {
 			opacity: 1;
