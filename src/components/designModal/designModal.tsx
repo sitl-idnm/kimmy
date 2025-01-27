@@ -11,9 +11,9 @@ import Brush from '../../shared/assets/icons/brush.svg';
 import ipad from '../../../public/images/design_ipad.png'
 
 const itemsData = [
-  { title: 'Удерживайте внимание аудитории', backgroundColor: 'var(--color-grey)', textColor: 'var(--color-black)', imageSrc: '/images/image1.png', text: 'Эстетичный и понятный дизайн помогает выделиться в потоке информации' },
+  { title: 'Удерживайте внимание аудитории', backgroundColor: 'var(--color-grey)', textColor: 'var(--color-black)', imageSrc: '/images/image1_fix.png', text: 'Эстетичный и понятный дизайн помогает выделиться в потоке информации' },
   { title: 'Увеличивайте конверсию', backgroundColor: 'var(--color-black)', textColor: 'var(--color-white-default)', imageSrc: '/images/image2.png', text: 'Используйте дизайн, который направляет клиентов к целевым действиям' },
-  { title: 'Ускоряйте процесс принятия решений у клиентов', backgroundColor: 'var(--color-red-accent)', textColor: 'var(--color-white-default)', imageSrc: '/images/image4.png', text: 'Дизайн, который ясно и логично показывает ценность вашего продукта, мотивирует на покупку' },
+  { title: 'Ускоряйте процесс принятия решений у клиентов', backgroundColor: 'var(--color-red-accent)', textColor: 'var(--color-white-default)', imageSrc: '/images/image4_fix.png', text: 'Дизайн, который ясно и логично показывает ценность вашего продукта, мотивирует на покупку' },
 ]
 
 
