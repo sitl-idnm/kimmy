@@ -9,11 +9,17 @@ import { openModal } from '@/shared/atoms/openModal'
 import Image from 'next/image'
 import { FavourItem } from '../favourItem'
 import { ModalForm } from '../modalForm'
+import ipadSweet from '../../../public/images/ipad_sweetcorp.png'
+import Code from '../../shared/assets/icons/code_embeed.svg'
+import CodeIcon from '../../shared/assets/icons/code.svg'
+import Tilda from '../../shared/assets/icons/tilda.svg'
+import Wp from '../../shared/assets/icons/wp.svg'
+import Webflow from '../../shared/assets/icons/webflow.svg'
 
 const itemsData = [
-  { title: 'Получайте больше квалифицированных заявок', backgroundColor: 'var(--color-grey)', textColor: 'var(--color-black)', imageSrc: '/images/image1_fix.png', text: 'Привлекайте клиентов, которые действительно заинтересованы в вашем продукте' },
-  { title: 'Больше продавайте', backgroundColor: 'var(--color-black)', textColor: 'var(--color-white-default)', imageSrc: '/images/image2.png', text: 'Адаптируйте предложение под реальные потребности аудитории.' },
-  { title: 'Опережайте конкурентов', backgroundColor: 'var(--color-red-accent)', textColor: 'var(--color-white-default)', imageSrc: '/images/image4_fix.png', text: 'Предлагайте то, чего нет у других' },
+  { title: 'Привлекайте клиентов из поисковых систем', backgroundColor: 'var(--color-grey)', textColor: 'var(--color-black)', imageSrc: '/images/image1_fix.png', text: 'Создадим оптимизированный сайт, который хорошо ранжируется в Google и Яндексе' },
+  { title: 'Получайте больше заявок с сайта', backgroundColor: 'var(--color-black)', textColor: 'var(--color-white-default)', imageSrc: '/images/image2.png', text: 'Логичная структура и удобный функционал помогают клиентам оставлять запросы быстрее' },
+  { title: 'Автоматизируйте рутину', backgroundColor: 'var(--color-red-accent)', textColor: 'var(--color-white-default)', imageSrc: '/images/image4_fix.png', text: 'Интеграция сайта с CRM, платёжными системами и аналитикой снижает нагрузку на вашу команду' },
 ]
 
 const DevelopModal: FC<DevelopModalProps> = ({
@@ -41,27 +47,25 @@ const DevelopModal: FC<DevelopModalProps> = ({
         <div className={styles.close} onClick={closeModal}></div>
         <div className={styles.content}>
           <div className={styles.content__first}>
-            <h2 className={styles.title}>
-              Маркетинговые <span className={styles.title__accent}>исследования
-                <span className={styles.title__icon}>
-                  {/* <Lens /> */}
-                </span>
-              </span>
-            </h2>
-            <p className={styles.text}>
-              Закажите исследование, чтобы понять рынок, конкурентов и потребности <span className={styles.text__accent}>вашей аудитории.</span>
-            </p>
+            <div className={styles.first}>
+              <h2 className={styles.title}>
+                Разработка<span><Code /></span>
+              </h2>
+              <p className={styles.text}>
+                Закажите сайт на коде или собранный в Tilda, WordPress и на других CMS
+              </p>
+              <ul className={styles.icons}>
+                <li className={styles.icon}><Webflow /></li>
+                <li className={styles.icon}><Wp /></li>
+                <li className={styles.icon}><Tilda /></li>
+                <li className={styles.icon}><CodeIcon /></li>
+              </ul>
+            </div>
             <div className={styles.lines}>
-              {/* <Image
-                src={firstline}
-                alt='first_backmodal'
-                className={styles.lines__first}
-              />
               <Image
-                src={secondline}
-                alt='second_backmodal'
-                className={styles.lines__second}
-              /> */}
+                src={ipadSweet}
+                alt='ipad'
+              />
             </div>
           </div>
           <div className={styles.content__favour}>
@@ -81,13 +85,12 @@ const DevelopModal: FC<DevelopModalProps> = ({
             </ul>
           </div>
           <div className={styles.content__result}>
-            <h2 className={styles.result__title}>По итогам исследования вы получите:</h2>
+            <h2 className={styles.result__title}>По итогам разработки вы&nbsp;получите:</h2>
             <div className={styles.result__points}>
               <ul className={styles.result__list}>
-                <li className={styles.list__point}>Анализ аудитории</li>
-                <li className={styles.list__point}>Анализ конкурентов</li>
-                <li className={styles.list__point}>Анализ продукта</li>
-                <li className={styles.list__point}>Выводы и рекомендации по позиционированию и продвижения</li>
+                <li className={styles.list__point}>Конверсионный сайт, готовый к запуску рекламы и адаптированный под все устройства</li>
+                <li className={styles.list__point}>Интеграцию с нужными вам сервисами: CRM, онлайн-оплаты, рассылки</li>
+                <li className={styles.list__point}>Базовую или расширенную SEO-оптимизацию сайта</li>
               </ul>
             </div>
           </div>
