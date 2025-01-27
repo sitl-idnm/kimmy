@@ -31,55 +31,55 @@ const Treaty: FC<TreatyProps> = ({ className = [] }) => {
     });
 
     // Проверка ширины экрана
-const isLargeScreen = window.innerWidth > 1199;
+    const isLargeScreen = window.innerWidth > 1199;
 
-// Функция для запуска анимации
-const animateCards = () => {
-  // Сбрасываем анимацию
-  tl.clear();
+    // Функция для запуска анимации
+    const animateCards = () => {
+      // Сбрасываем анимацию
+      tl.clear();
 
-  if (isLargeScreen) {
-    // Анимация для верхней карточки на большом экране (выезжает сверху)
-    tl.fromTo(
-      topCardRef.current,
-      { y: '-100%', opacity: 0 },
-      { y: '0%', opacity: 1, duration: 1, ease: 'power2.out' }
-    );
+      if (isLargeScreen) {
+        // Анимация для верхней карточки на большом экране (выезжает сверху)
+        tl.fromTo(
+          topCardRef.current,
+          { y: '-100%', opacity: 0 },
+          { y: '0%', opacity: 1, duration: 1, ease: 'power2.out' }
+        );
 
-    // Анимация для нижней карточки на большом экране (выезжает снизу)
-    tl.fromTo(
-      bottomCardRef.current,
-      { y: '100%', opacity: 0 },
-      { y: '0%', opacity: 1, duration: 1, ease: 'power2.out' },
-      '-=0.5' // Одновременное начало с задержкой
-    );
-  } else {
-    // Анимация для верхней карточки на малом экране (слева направо)
-    tl.fromTo(
-      topCardRef.current,
-      { x: '-100%', opacity: 0 },
-      { x: '0%', opacity: 1, duration: 1, ease: 'power2.out' }
-    );
+        // Анимация для нижней карточки на большом экране (выезжает снизу)
+        tl.fromTo(
+          bottomCardRef.current,
+          { y: '100%', opacity: 0 },
+          { y: '0%', opacity: 1, duration: 1, ease: 'power2.out' },
+          '-=0.5' // Одновременное начало с задержкой
+        );
+      } else {
+        // Анимация для верхней карточки на малом экране (слева направо)
+        tl.fromTo(
+          topCardRef.current,
+          { x: '-100%', opacity: 0 },
+          { x: '0%', opacity: 1, duration: 1, ease: 'power2.out' }
+        );
 
-    // Анимация для нижней карточки на малом экране (справа налево)
-    tl.fromTo(
-      bottomCardRef.current,
-      { y: '100%', opacity: 0 },
-      { y: '0%', opacity: 1, duration: 1, ease: 'power2.out' },
-      '-=0.5' // Одновременное начало с задержкой
-    );
-  }
-};
+        // Анимация для нижней карточки на малом экране (справа налево)
+        tl.fromTo(
+          bottomCardRef.current,
+          { y: '100%', opacity: 0 },
+          { y: '0%', opacity: 1, duration: 1, ease: 'power2.out' },
+          '-=0.5' // Одновременное начало с задержкой
+        );
+      }
+    };
 
-// Запускаем анимацию при загрузке
-animateCards();
-
-// Добавляем событие для пересчета анимации при изменении размера окна
-window.addEventListener('resize', () => {
-  if (window.innerWidth > 1200 !== isLargeScreen) {
+    // Запускаем анимацию при загрузке
     animateCards();
-  }
-});
+
+    // Добавляем событие для пересчета анимации при изменении размера окна
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1200 !== isLargeScreen) {
+        animateCards();
+      }
+    });
 
 
     // Очистка при размонтировании компонента
@@ -97,7 +97,13 @@ window.addEventListener('resize', () => {
             Сдаем сайты в срок, <br />
             прописанный в договоре
           </h2>
-          <Button value="Рассчитать срок и стоимость моего проекта" />
+          <Button
+            as="a"
+            href="#form"
+            isRouteLink
+          >
+            Рассчитать срок и стоимость моего проекта
+          </Button>
         </div>
         <div className={styles.treaty__cards}>
           <div

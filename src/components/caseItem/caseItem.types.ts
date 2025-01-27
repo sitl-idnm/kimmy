@@ -1,5 +1,6 @@
 export interface CaseItemProps {
   className?: string,
   title?: string,
-  text?: string
+  text?: string,
+  imageSrc: string
 }

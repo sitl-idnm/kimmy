@@ -32,6 +32,9 @@
 
 		overflow: hidden auto;
 
+		display: flex;
+		flex-direction: column;
+
 		@include tablet-small {
 			padding: 12px;
 
@@ -51,12 +54,12 @@
 		.close {
 			width: 39px;
 			height: 39px;
-			position: absolute;
-			top: 18px;
-			right: 18px;
+			position: fixed;
 			cursor: pointer;
 			background: center no-repeat url("../../shared/assets/icons/close_modal.svg");
 			z-index: 10000;
+
+			align-self: flex-end;
 
 			@include tablet-small {
 				width: 28px;
@@ -83,7 +86,7 @@
 				@include tablet-small {
 					justify-content: flex-start;
 
-					max-height: 400px;
+					max-height: 520px;
 				}
 
 				.title {
@@ -96,14 +99,20 @@
 
 					z-index: 1;
 
-					padding-left: 117px;
-					padding-top: 98px;
+					padding-right: 39px;
+					padding-top: 116px;
+
+					display: flex;
+					gap: 15px;
+					align-self: flex-end;
 
 					@include tablet-small {
 						padding-left: 0;
-						padding-top: 69px;
+						padding-top: 57px;
 
 						font-size: 38px;
+
+						align-self: flex-start;
 					}
 
 					&__accent {
@@ -163,35 +172,20 @@
 					}
 				}
 
-				.lines {
+				.ipad {
 					position: absolute;
+					top: 81px;
+					left: 130px;
 
-					&__first {
-						position: relative;
-						bottom: -200px;
-						left: 250px;
-						width: 100%;
-						height: 100%;
-						z-index: 0;
-
-						@include tablet-small {
-							top: 200px;
-							left: -50px;
-							bottom: auto;
-						}
+					@include tablet-small {
+						left: 0;
+						top: 180px;
 					}
 
-					&__second {
-						position: relative;
-						top: -150px;
-						left: 470px;
-						width: 100%;
-						height: 100%;
-						z-index: 0;
-
+					img {
 						@include tablet-small {
-							top: 80px;
-							left: 50px;
+							max-width: 336px;
+							max-height: 428px;
 						}
 					}
 				}
@@ -231,6 +225,8 @@
 
 							align-self: flex-start;
 
+							margin-bottom: 8px;
+
 							@include tablet-small {
 								font-size: 22px;
 							}
@@ -251,6 +247,10 @@
 							font-weight: 400;
 							font-size: 14px;
 							line-height: 150%;
+						}
+
+						button {
+							display: none;
 						}
 					}
 				}

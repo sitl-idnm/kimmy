@@ -119,7 +119,16 @@ const Header: FC<HeaderProps> = ({ className }) => {
           </div>
 
           <div className={styles.buttons__wrapper}>
-            {!isMobile && <Button className={styles.button} value={'Обсудить проект'} />}
+            {!isMobile && (
+              <Button
+                className={styles.button}
+                as="a"
+                href="#form"
+                isRouteLink
+              >
+                Обсудить проект
+              </Button>
+            )}
             <div
               className={styles.burgerbutton}
               onClick={handleBurgerClick}

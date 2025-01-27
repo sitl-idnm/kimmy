@@ -8,11 +8,12 @@ import { ModalForm } from '../modalForm'
 import { useAtom } from 'jotai'
 import { openModal } from '@/shared/atoms/openModal'
 import Brush from '../../shared/assets/icons/brush.svg';
+import ipad from '../../../public/images/design_ipad.png'
 
 const itemsData = [
-  { title: 'Удерживайте внимание аудитории', backgroundColor: 'var(--color-grey)', textColor: 'var(--color-black)', imageSrc: '/images/image1.png', text: 'Эстетичный и понятный дизайн помогает выделиться в потоке информации' },
+  { title: 'Удерживайте внимание аудитории', backgroundColor: 'var(--color-grey)', textColor: 'var(--color-black)', imageSrc: '/images/image1_fix.png', text: 'Эстетичный и понятный дизайн помогает выделиться в потоке информации' },
   { title: 'Увеличивайте конверсию', backgroundColor: 'var(--color-black)', textColor: 'var(--color-white-default)', imageSrc: '/images/image2.png', text: 'Используйте дизайн, который направляет клиентов к целевым действиям' },
-  { title: 'Ускоряйте процесс принятия решений у клиентов', backgroundColor: 'var(--color-red-accent)', textColor: 'var(--color-white-default)', imageSrc: '/images/image4.png', text: 'Дизайн, который ясно и логично показывает ценность вашего продукта, мотивирует на покупку' },
+  { title: 'Ускоряйте процесс принятия решений у клиентов', backgroundColor: 'var(--color-red-accent)', textColor: 'var(--color-white-default)', imageSrc: '/images/image4_fix.png', text: 'Дизайн, который ясно и логично показывает ценность вашего продукта, мотивирует на покупку' },
 ]
 
 
@@ -41,14 +42,16 @@ const DesignModal: FC<DesignModalProps> = ({}) => {
         <div className={styles.content}>
           <div className={styles.content__first}>
             <h2 className={styles.title}>
-               <span>Дизайн<Brush /></span>
+               Дизайн<span><Brush /></span>
             </h2>
             <p className={styles.text}>
               Разработаем фирменный стиль, дизайн сайта, электронного письма, полиграфии, оформим социальные сети.
             </p>
-            <div>
+            <div className={styles.ipad}>
               <Image
-                src={'../../../public/images/ipads.png'}
+                src={ipad}
+                width={748}
+                height={943}
                 alt='ipads'
               />
             </div>

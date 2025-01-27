@@ -57,12 +57,12 @@ const ConversionType: FC<ConversionTypeProps> = ({
       })
 
       tl1.fromTo(line,
-          {
-            width: '0%'
-          },
-          {
-            width: '50%',
-          }
+        {
+          width: '0%'
+        },
+        {
+          width: '50%',
+        }
       )
     })
 
@@ -78,12 +78,12 @@ const ConversionType: FC<ConversionTypeProps> = ({
       })
 
       tl2.fromTo(box,
-          {
-            height: '5%'
-          },
-          {
-            height: '100%',
-          }
+        {
+          height: '5%'
+        },
+        {
+          height: '100%',
+        }
       )
     })
 
@@ -122,9 +122,9 @@ const ConversionType: FC<ConversionTypeProps> = ({
                 <div className={`${styles.third__fact} ${styles.fact}`}>Анализируем конкурентов</div>
                 <div className={`${styles.fourth__fact} ${styles.fact}`}>Исследуем потребности аудитории</div>
               </div>
-              <div className={styles.box} style={{background: 'var(--color-grey)', color: 'black'}}>
+              <div className={styles.box} style={{ background: 'var(--color-grey)', color: 'black' }}>
                 <h4 className={styles.box__title}>
-                Формируем смыслы
+                  Формируем смыслы
                 </h4>
                 <div className={styles.box__content}>
                   <p className={styles.text}>
@@ -134,7 +134,7 @@ const ConversionType: FC<ConversionTypeProps> = ({
                     Получаем смысловой фундамент, который позволит посетителю с 3 секунд на сайте понять «Это то, что мне нужно» и продолжить изучение.
                   </p>
                 </div>
-            </div>
+              </div>
             </div>
           </div>
         </div>
@@ -157,7 +157,7 @@ const ConversionType: FC<ConversionTypeProps> = ({
               <div className={styles.content}>
                 <div className={`${styles.third__fact} ${styles.fact}`}>Создаем дизайн</div>
               </div>
-              <div className={styles.box} style={{background: 'var(--color-black)', color: 'white'}}>
+              <div className={styles.box} style={{ background: 'var(--color-black)', color: 'white' }}>
                 <h4 className={styles.box__title}>
                   Оформляем и транслируем смыслы
                 </h4>
@@ -193,7 +193,7 @@ const ConversionType: FC<ConversionTypeProps> = ({
                 <div className={styles.content}>
                   <div className={`${styles.third__fact} ${styles.fact}`}>Тестируем и запускаем</div>
                 </div>
-                <div className={styles.box} style={{background: 'var(--color-red-accent)', color: 'white'}}>
+                <div className={styles.box} style={{ background: 'var(--color-red-accent)', color: 'white' }}>
                   <h4 className={styles.box__title}>
                     Превращаем дизайн в рабочий инструмент
                   </h4>
@@ -213,8 +213,8 @@ const ConversionType: FC<ConversionTypeProps> = ({
                 <Accept />
               </div>
               <div className={styles.conv__title}>
-                <h2>Конверсионный сайт с сильными&nbsp;офферами,<br/>
-                <span className={styles.grey}>основанными на смыслах</span></h2>
+                <h2>Конверсионный сайт с сильными&nbsp;офферами,<br />
+                  <span className={styles.grey}>основанными на смыслах</span></h2>
               </div>
             </div>
           </div>
@@ -247,10 +247,16 @@ const ConversionType: FC<ConversionTypeProps> = ({
             </div>
             <div className={styles.conv1}>
               <div className={styles.conv1__title}>
-                <h2><span className={styles.grey}>Актуальный сайт</span><br/>на протяжении всего времени использования</h2>
+                <h2><span className={styles.grey}>Актуальный сайт</span><br />на протяжении всего времени использования</h2>
               </div>
               <div>
-                <Button value={'Заказать сайт'} />
+                <Button
+                  as="a"
+                  href="#form"
+                  isRouteLink
+                >
+                  Заказать сайт
+                </Button>
               </div>
             </div>
           </div>

@@ -7,6 +7,14 @@ import styles from './modalForm.module.scss'
 import { ModalFormProps } from './modalForm.types'
 import axios from 'axios'
 
+import PhoneDef from '../../shared/assets/icons/phone - default.svg'
+import PhoneActive from '../../shared/assets/icons/phone - active.svg'
+import WaDef from '../../shared/assets/icons/wa - default.svg'
+import WaActive from '../../shared/assets/icons/wa - active.svg'
+import TgDef from '../../shared/assets/icons/tg - default.svg'
+import TgActive from '../../shared/assets/icons/tg - active.svg'
+
+
 const ModalForm: FC<ModalFormProps> = ({ className }) => {
   const rootClassName = classNames(styles.root, className)
   const [selectedContactMethod, setSelectedContactMethod] = useState('number')
@@ -105,6 +113,7 @@ const ModalForm: FC<ModalFormProps> = ({ className }) => {
                   onChange={() => setSelectedContactMethod('number')}
                 />
                 <label htmlFor="rad1" className={styles.radio__num}>
+                  {selectedContactMethod === 'number' ? <PhoneActive /> : <PhoneDef />}
                   Телефон
                 </label>
               </div>
@@ -118,6 +127,7 @@ const ModalForm: FC<ModalFormProps> = ({ className }) => {
                   onChange={() => setSelectedContactMethod('tg')}
                 />
                 <label htmlFor="rad2" className={styles.radio__tg}>
+                  {selectedContactMethod === 'tg' ? <TgActive /> : <TgDef />}
                   Telegram
                 </label>
               </div>
@@ -131,6 +141,7 @@ const ModalForm: FC<ModalFormProps> = ({ className }) => {
                   onChange={() => setSelectedContactMethod('whatsapp')}
                 />
                 <label htmlFor="rad3" className={styles.radio__wa}>
+                  {selectedContactMethod === 'whatsapp' ? <WaActive /> : <WaDef />}
                   WhatsApp
                 </label>
               </div>

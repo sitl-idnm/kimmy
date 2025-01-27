@@ -16,7 +16,13 @@ const Introduce: FC<IntroduceProps> = ({
     <div className={rootClassName}>
       <div className={styles.introduce}>
         <h2 className={styles.introduce__title}>Разрабатываем сайты, которые продают <TypingSpan words={wordsArray} interval={1500} /></h2>
-        <Button value="Заказать сайт" />
+        <Button
+          as="a"
+          href="#form"
+          isRouteLink
+        >
+          Заказать сайт
+        </Button>
       </div>
     </div>
   )
