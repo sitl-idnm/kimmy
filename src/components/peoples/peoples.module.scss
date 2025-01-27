@@ -1,3 +1,4 @@
+/* stylelint-disable selector-class-pattern */
 @use "@styles/func";
 @use "@styles/mixins" as *;
 @use "@styles/variables";
@@ -79,7 +80,7 @@
 
 		&_absolute {
 			position: absolute;
-			bottom: 0px;
+			bottom: 0;
 			max-width: 92%;
 			height: auto;
 			left: 50%;
@@ -123,6 +124,7 @@
 
 			@include tablet-small {
 				align-self: flex-start;
+				text-align: left;
 			}
 		}
 

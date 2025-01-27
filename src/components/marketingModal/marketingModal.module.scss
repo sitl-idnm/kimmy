@@ -324,7 +324,10 @@
 							}
 
 							&::before {
-								content: url("../../shared/assets/icons/accept.svg");
+								content: '';
+								background-image: url("../../shared/assets/icons/accept.svg");
+								background-size: contain;
+								background-repeat: no-repeat;
 								width: 28px;
 								height: 28px;
 

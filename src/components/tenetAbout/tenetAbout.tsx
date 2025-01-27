@@ -30,7 +30,7 @@ const TenetAbout: FC<TenetAboutProps> = ({
     const arrayPercent = ['flex-start', 'flex-end']
 
     return (
-      <div className={rootClassName} style={{height: heightContentMobile, width: widthContentMobile, background: bgColor, alignSelf: arrayPercent[getRandomIntInclusive(0, 1)]}}>
+      <div className={rootClassName} style={{height: heightContentMobile, width: widthContentMobile, background: '#E7E8EC51', alignSelf: arrayPercent[getRandomIntInclusive(0, 1)]}}>
         <h3 className={styles.title}>
           {title}
         </h3>

@@ -59,7 +59,7 @@ const Tenet: FC<TenetProps> = ({
         <TenetTitle
           span={<span className={styles.span}>эффективному</span>}
           end={'взаимодействию'}
-          title={'Через жесткие принципы к '}
+          title={`Через жесткие принципы к `}
         />
       </div>
       <div className={styles.content}>

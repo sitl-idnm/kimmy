@@ -42,6 +42,21 @@
 		@include tablet {
 			margin: 50px 50px 0;
 		}
+
+		@include tablet-small {
+			margin: 45px 28px 0;
+		}
+
+		a {
+			@include tablet-small {
+				text-align: center;
+
+				height: 74px;
+				width: 283px;
+
+				padding: 16px 24px;
+			}
+		}
 	}
 
 	&__title {
