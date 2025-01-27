@@ -32,6 +32,9 @@
 
 		overflow: hidden auto;
 
+		display: flex;
+		flex-direction: column;
+
 		@include tablet-small {
 			padding: 12px;
 
@@ -51,12 +54,12 @@
 		.close {
 			width: 39px;
 			height: 39px;
-			position: absolute;
-			top: 18px;
-			right: 18px;
+			position: fixed;
 			cursor: pointer;
 			background: center no-repeat url("../../shared/assets/icons/close_modal.svg");
 			z-index: 10000;
+
+			align-self: flex-end;
 
 			@include tablet-small {
 				width: 28px;
@@ -222,6 +225,8 @@
 
 							align-self: flex-start;
 
+							margin-bottom: 8px;
+
 							@include tablet-small {
 								font-size: 22px;
 							}
@@ -242,6 +247,10 @@
 							font-weight: 400;
 							font-size: 14px;
 							line-height: 150%;
+						}
+
+						button {
+							display: none;
 						}
 					}
 				}

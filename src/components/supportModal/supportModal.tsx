@@ -1,15 +1,12 @@
-/* eslint-disable no-empty-pattern */
-'use client'
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC } from 'react'
+import classNames from 'classnames'
 
-import styles from './marketingModal.module.scss'
-import { MarketingModalProps } from './marketingModal.types'
-import Image from 'next/image'
+import styles from './supportModal.module.scss'
+import { SupportModalProps } from './supportModal.types'
 import { useAtom } from 'jotai'
 import { openModal } from '@/shared/atoms/openModal'
-import firstline from '../../../public/images/first_backmodal.png';
-import secondline from '../../../public/images/second_backmodal.png';
-import Lens from '../../shared/assets/icons/lens.svg';
+import Image from 'next/image'
 import { FavourItem } from '../favourItem'
 import { ModalForm } from '../modalForm'
 
@@ -19,7 +16,10 @@ const itemsData = [
   { title: 'Опережайте конкурентов', backgroundColor: 'var(--color-red-accent)', textColor: 'var(--color-white-default)', imageSrc: '/images/image4_fix.png', text: 'Предлагайте то, чего нет у других' },
 ]
 
-const MarketingModal: FC<MarketingModalProps> = ({ }) => {
+const SupportModal: FC<SupportModalProps> = ({
+  className
+}) => {
+  const rootClassName = classNames(styles.root, className)
   const [openWindow, setOpenWindow] = useAtom(openModal)
 
   if (openWindow) {
@@ -44,7 +44,7 @@ const MarketingModal: FC<MarketingModalProps> = ({ }) => {
             <h2 className={styles.title}>
               Маркетинговые <span className={styles.title__accent}>исследования
                 <span className={styles.title__icon}>
-                  <Lens />
+                  {/* <Lens /> */}
                 </span>
               </span>
             </h2>
@@ -52,7 +52,7 @@ const MarketingModal: FC<MarketingModalProps> = ({ }) => {
               Закажите исследование, чтобы понять рынок, конкурентов и потребности <span className={styles.text__accent}>вашей аудитории.</span>
             </p>
             <div className={styles.lines}>
-              <Image
+              {/* <Image
                 src={firstline}
                 alt='first_backmodal'
                 className={styles.lines__first}
@@ -61,7 +61,7 @@ const MarketingModal: FC<MarketingModalProps> = ({ }) => {
                 src={secondline}
                 alt='second_backmodal'
                 className={styles.lines__second}
-              />
+              /> */}
             </div>
           </div>
           <div className={styles.content__favour}>
@@ -100,4 +100,4 @@ const MarketingModal: FC<MarketingModalProps> = ({ }) => {
   )
 }
 
-export default MarketingModal
+export default SupportModal
