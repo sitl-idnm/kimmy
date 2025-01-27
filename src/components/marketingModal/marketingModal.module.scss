@@ -332,12 +332,13 @@
 								background-repeat: no-repeat;
 								width: 28px;
 								height: 28px;
-
-								display: flex;
+								flex-shrink: 0;
 
 								@include tablet-small {
 									width: 20px;
 									height: 20px;
+
+									background-image: url("../../shared/assets/icons/accept_mob.svg");
 								}
 							}
 						}
