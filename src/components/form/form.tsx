@@ -27,10 +27,9 @@ const Form: FC<FormProps> = ({
         chat_id: chatId,
         text: message,
       })
-      setSuccessMessage('Form submitted successfully!')
     } catch (error) {
-      console.error('Error sending message to Telegram:', error)
-      setSuccessMessage('Failed to submit form.')
+      console.error('Ошибка при отправке:', error)
+      setSuccessMessage('Ошибка при отправке заявки.')
     }
   }
 
@@ -72,7 +71,10 @@ const Form: FC<FormProps> = ({
         </div>
         {successMessage && (
           <div className={styles.successMessage}>
-            {successMessage}
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="24" height="24" rx="12" fill="white"/>
+            <path d="M8 12L11.5 16L16 7" stroke="#CB172C" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
           </div>
         )}
       </form>

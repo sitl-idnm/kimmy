@@ -40,6 +40,8 @@
 
 			max-width: 336px;
 			max-height: 671px;
+
+			border-radius: 20px;
 		}
 
 		/* Hide scrollbar for Chrome, Safari and Opera */
@@ -371,7 +373,10 @@
 							}
 
 							&::before {
-								content: url("../../shared/assets/icons/accept.svg");
+								content: '';
+								background-image: url("../../shared/assets/icons/accept.svg");
+								background-size: contain;
+								background-repeat: no-repeat;
 								width: 28px;
 								height: 28px;
 
@@ -383,7 +388,6 @@
 								}
 							}
 						}
-
 					}
 				}
 			}
