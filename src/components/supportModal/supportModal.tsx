@@ -9,11 +9,13 @@ import { openModal } from '@/shared/atoms/openModal'
 import Image from 'next/image'
 import { FavourItem } from '../favourItem'
 import { ModalForm } from '../modalForm'
+import iphone from '../../../public/images/ipad-iphone.png'
+import Gear from '../../shared/assets/icons/gear.svg'
 
 const itemsData = [
-  { title: 'Получайте больше квалифицированных заявок', backgroundColor: 'var(--color-grey)', textColor: 'var(--color-black)', imageSrc: '/images/image1_fix.png', text: 'Привлекайте клиентов, которые действительно заинтересованы в вашем продукте' },
-  { title: 'Больше продавайте', backgroundColor: 'var(--color-black)', textColor: 'var(--color-white-default)', imageSrc: '/images/image2.png', text: 'Адаптируйте предложение под реальные потребности аудитории.' },
-  { title: 'Опережайте конкурентов', backgroundColor: 'var(--color-red-accent)', textColor: 'var(--color-white-default)', imageSrc: '/images/image4_fix.png', text: 'Предлагайте то, чего нет у других' },
+  { title: 'Обновляйте сайт без лишних усилий', backgroundColor: 'var(--color-grey)', textColor: 'var(--color-black)', imageSrc: '/images/image1_fix.png', text: 'Мы вносим изменения за вас: от новых страниц до доработки функционала' },
+  { title: 'Улучшайте скорость и SEO-показатели сайта', backgroundColor: 'var(--color-black)', textColor: 'var(--color-white-default)', imageSrc: '/images/image2.png', text: 'Регулярная оптимизация делает сайт удобным для пользователей и видимым для поисковиков' },
+  { title: 'Снижайте количество технических ошибок', backgroundColor: 'var(--color-red-accent)', textColor: 'var(--color-white-default)', imageSrc: '/images/image4_fix.png', text: 'Постоянный контроль за сайтом предотвращает сбои и неудачные обновления' },
 ]
 
 const SupportModal: FC<SupportModalProps> = ({
@@ -42,26 +44,16 @@ const SupportModal: FC<SupportModalProps> = ({
         <div className={styles.content}>
           <div className={styles.content__first}>
             <h2 className={styles.title}>
-              Маркетинговые <span className={styles.title__accent}>исследования
-                <span className={styles.title__icon}>
-                  {/* <Lens /> */}
-                </span>
-              </span>
+              Поддержка <span className={styles.title__icon}><Gear /></span>
             </h2>
             <p className={styles.text}>
-              Закажите исследование, чтобы понять рынок, конкурентов и потребности <span className={styles.text__accent}>вашей аудитории.</span>
+            Закажите поддержку, чтобы ваш сайт всегда был в <span className={styles.text__accent}>идеальном состоянии</span>
             </p>
             <div className={styles.lines}>
-              {/* <Image
-                src={firstline}
-                alt='first_backmodal'
-                className={styles.lines__first}
-              />
               <Image
-                src={secondline}
-                alt='second_backmodal'
-                className={styles.lines__second}
-              /> */}
+                src={iphone}
+                alt='ipad-iphone'
+              />
             </div>
           </div>
           <div className={styles.content__favour}>
@@ -81,13 +73,13 @@ const SupportModal: FC<SupportModalProps> = ({
             </ul>
           </div>
           <div className={styles.content__result}>
-            <h2 className={styles.result__title}>По итогам исследования вы получите:</h2>
+            <h2 className={styles.result__title}>Поддержка сайта обеспечит вам:</h2>
             <div className={styles.result__points}>
               <ul className={styles.result__list}>
-                <li className={styles.list__point}>Анализ аудитории</li>
-                <li className={styles.list__point}>Анализ конкурентов</li>
-                <li className={styles.list__point}>Анализ продукта</li>
-                <li className={styles.list__point}>Выводы и рекомендации по позиционированию и продвижения</li>
+                <li className={styles.list__point}>Постоянный мониторинг и контроль за работой сайта</li>
+                <li className={styles.list__point}>Быстрое исправление любых ошибок и проблем</li>
+                <li className={styles.list__point}>Регулярное обновление контента и функционала</li>
+                <li className={styles.list__point}>Улучшение производительности и безопасности</li>
               </ul>
             </div>
           </div>
