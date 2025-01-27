@@ -62,7 +62,6 @@ const TypingSpan: FC<TypingSpanProps> = ({
           {letter.char}
         </span>
       ))}
-      <span className={styles.cursor}></span>
     </span>
   );
 };
