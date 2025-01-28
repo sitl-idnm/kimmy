@@ -11,6 +11,7 @@ import Accept from '@icons/accept.svg'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { Button } from '@/ui'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -249,11 +250,18 @@ const ConversionType: FC<ConversionTypeProps> = ({
                 <h2><span className={styles.grey}>Актуальный сайт</span><br />на протяжении всего времени использования</h2>
               </div>
               <div>
-                <a
+                <Button
+                  className={styles.button}
+                  as="a"
                   href="#form"
                 >
                   Заказать сайт
-                </a>
+                </Button>
+                {/* <a
+                  href="#form"
+                >
+                  Заказать сайт
+                </a> */}
               </div>
             </div>
           </div>

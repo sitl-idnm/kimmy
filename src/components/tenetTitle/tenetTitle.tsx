@@ -20,7 +20,6 @@ const TenetTitle: FC<TenetTitleProps> = ({
         className={styles.button}
         as="a"
         href="#form"
-        isRouteLink
       >
         Заказать сайт
       </Button>
