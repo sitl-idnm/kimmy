@@ -8,7 +8,6 @@ import { ConversionTypeProps } from './conversionType.types'
 import Icon from '@icons/snowflacke.svg'
 import Timeline from '@icons/timeline.svg'
 import Accept from '@icons/accept.svg'
-import { Button } from '@/ui'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -250,13 +249,11 @@ const ConversionType: FC<ConversionTypeProps> = ({
                 <h2><span className={styles.grey}>Актуальный сайт</span><br />на протяжении всего времени использования</h2>
               </div>
               <div>
-                <Button
-                  as="a"
+                <a
                   href="#form"
-                  isRouteLink
                 >
                   Заказать сайт
-                </Button>
+                </a>
               </div>
             </div>
           </div>

@@ -154,7 +154,7 @@
 				}
 
 				&:focus ~ .placeholder,
-				&:not(:focus):valid ~ .placeholder {
+				&:not(:placeholder-shown) ~ .placeholder {
 					transform: translateY(-20px);
 					font-size: 12px;
 				}
@@ -270,7 +270,7 @@
 					}
 
 					&:focus ~ .placeholder,
-					&:not(:focus):valid ~ .placeholder {
+					&:not(:placeholder-shown) ~ .placeholder {
 						transform: translateY(-20px);
 						font-size: 12px;
 					}

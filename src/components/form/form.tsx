@@ -41,14 +41,14 @@ const Form: FC<FormProps> = ({
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
     const data = Object.fromEntries(formData.entries())
-    if (!isValidEmail(data.mail as string)) {
-      setSuccessMessage('Failed to submit form. Invalid email address.')
+    if (data.mail && !isValidEmail(data.mail as string)) {
+      setSuccessMessage('Ошибка отправки заявки. Неправильный email адрес.')
       return
     }
     try {
       data.project = sanitizeInput(data.project as string)
     } catch (error) {
-      setSuccessMessage('Failed to submit form. HTML tags are not allowed.')
+      setSuccessMessage('Ошибка отправки заявки. HTML теги не разрешены.')
       return
     }
     const token = '7862004029:AAFZ807gLMhUIzqjfh4DB62muUmzWv9JfrY'
@@ -60,6 +60,7 @@ const Form: FC<FormProps> = ({
         chat_id: chatId,
         text: message,
       })
+      setSuccessMessage('Форма успешно отправлена!');
     } catch (error) {
       console.error('Ошибка при отправке:', error)
       setSuccessMessage('Ошибка при отправке заявки.')
@@ -71,21 +72,21 @@ const Form: FC<FormProps> = ({
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.form_wrapper}>
           <input type="text" name="name" placeholder='Имя' required onChange={handleNameInput} />
-          <label className={styles.placeholder}>Имя</label>
+          <label className={styles.placeholder}>Имя*</label>
         </div>
         <div className={styles.form_wrapper}>
           <input type="text" name="phone" placeholder='Телефон' required onChange={handleNumberInput} />
-          <label className={styles.placeholder}>Телефон</label>
+          <label className={styles.placeholder}>Телефон*</label>
         </div>
         {mail !== undefined && (
           <div className={styles.form_wrapper}>
-            <input type="mail" name="mail" placeholder='Почта' required />
+            <input type="mail" name="mail" placeholder='Почта' onFocus={(e) => e.target.placeholder = ''} onBlur={(e) => e.target.placeholder = 'Почта'} />
             <label className={styles.placeholder}>Почта</label>
           </div>
         )}
         {project !== undefined && (
           <div className={styles.form_wrapper}>
-            <textarea name="project" placeholder='Расскажите про свой проект' required></textarea>
+            <textarea name="project" placeholder='Расскажите про свой проект' onFocus={(e) => e.target.placeholder = ''} onBlur={(e) => e.target.placeholder = 'Расскажите про свой проект'} ></textarea>
             <label className={styles.placeholder}>Расскажите про свой проект</label>
           </div>
         )}
@@ -108,6 +109,7 @@ const Form: FC<FormProps> = ({
             <rect width="24" height="24" rx="12" fill="white"/>
             <path d="M8 12L11.5 16L16 7" stroke="#CB172C" stroke-width="1.5" stroke-linecap="round"/>
             </svg>
+            {successMessage}
           </div>
         )}
       </form>
