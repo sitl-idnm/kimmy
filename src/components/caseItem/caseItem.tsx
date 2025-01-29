@@ -10,19 +10,26 @@ const CaseItem: FC<CaseItemProps> = ({
   className,
   title,
   text,
-  imageSrc
+  imageSrc,
+  isCasePage
 }) => {
   const rootClassName = classNames(styles.root, className)
 
   return (
-    <div className={rootClassName}>
+    <div className={isCasePage ? styles.content : rootClassName}>
       <div className={styles.top}>
-        <div className={styles.top__code}><p>no&nbsp;code</p></div>
+        {
+          !isCasePage &&
+          <div className={styles.top__code}>
+            <p>no&nbsp;code</p>
+          </div>
+        }
+
         <div className={styles.image}>
           <Image
             src={imageSrc}
             alt="case"
-            width={591}
+            width={isCasePage ? 640 : 591}
             height={509}
           />
         </div>
@@ -30,9 +37,12 @@ const CaseItem: FC<CaseItemProps> = ({
       <div className={styles.bottom}>
         <h3 className={styles.bottom__title}>{title}</h3>
         <p className={styles.bottom__description}>{text}</p>
-        <Button className={styles.bottom__button}>
-          Читать кейс
-        </Button>
+        {
+          !isCasePage &&
+          <Button className={styles.bottom__button}>
+            Читать кейс
+          </Button>
+        }
       </div>
     </div>
   )
