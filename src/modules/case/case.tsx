@@ -9,6 +9,7 @@ import styles from './case.module.scss'
 import { CaseProps } from './case.types'
 import { CaseItem } from '@/components'
 import { useGSAP } from '@gsap/react'
+import Link from 'next/link'
 
 const itemsData = [
   { title: 'Магия вкуса', text: 'Интернет-магазин для пекарни полного цикла', imageSrc: '/images/tablet__magic.png' },
@@ -51,16 +52,18 @@ const Case: FC<CaseProps> = ({
             imageSrc={item.imageSrc}
           />
         ))}
-        <div className={styles.view_all}>
-          <h3 className={styles.view_all__title}>Смотреть все кейсы</h3>
-          <div className={styles.view_all__icon}>
-            <Arrow
-              width={60}
-              height={60}
-              alt="arrow"
-            />
+        <Link href='/cases'>
+          <div className={styles.view_all}>
+            <h3 className={styles.view_all__title}>Смотреть все кейсы</h3>
+            <div className={styles.view_all__icon}>
+              <Arrow
+                width={60}
+                height={60}
+                alt="arrow"
+              />
+            </div>
           </div>
-        </div>
+        </Link>
       </div>
     </div>
   )

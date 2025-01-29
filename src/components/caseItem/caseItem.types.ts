@@ -2,5 +2,6 @@ export interface CaseItemProps {
   className?: string,
   title?: string,
   text?: string,
-  imageSrc: string
+  imageSrc: string,
+  isCasePage?: boolean
 }
