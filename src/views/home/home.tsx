@@ -10,7 +10,7 @@ import { FormSecond } from '@/modules/formSecond'
 import { Tenet } from '@/modules/tenet'
 import { Conversion } from '@/modules/conversion'
 import { Case } from '@/modules/case'
-import { DrawerMenu } from '@/modules/drawerMenu'
+// import { DrawerMenu } from '@/modules/drawerMenu'
 import ModalWindow from '../modalWindow/modalWindow'
 
 const Home: FC<HomeProps> = ({ className }) => {
@@ -30,7 +30,7 @@ const Home: FC<HomeProps> = ({ className }) => {
         <FormSecond />
         <ModalWindow />
       </Wrapper>
-      <DrawerMenu />
+      {/* <DrawerMenu /> */}
     </main>
   )
 }

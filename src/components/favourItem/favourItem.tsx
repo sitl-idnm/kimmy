@@ -19,7 +19,7 @@ const FavourItem: FC<FavourItemProps> = ({ title, linkText, linkColor, backgroun
   }
 
   return (
-    <li className={styles.favour__item} style={{ backgroundColor }}>
+    <li className={styles.favour__item} style={{ backgroundColor }} onClick={handleOpenModal}>
       <div>
         <h2 className={styles.favour__title} style={{ color: textColor }}>
           {title}
@@ -35,7 +35,7 @@ const FavourItem: FC<FavourItemProps> = ({ title, linkText, linkColor, backgroun
         quality={100}
         alt={title}
         className={styles.favour__image} />}
-      <button className={styles.favour__description} style={{ color: linkColor }} onClick={handleOpenModal}>
+      <button className={styles.favour__description} style={{ color: linkColor }}>
         {linkText}
       </button>
     </li>

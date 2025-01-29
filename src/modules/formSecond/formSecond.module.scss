@@ -59,6 +59,18 @@
 			position: absolute;
 			top: 90px;
 			right: 0;
+
+			z-index: 1000;
+			transition: all 1s;
+
+			&:hover {
+				scale: 0.9;
+				transition: all 1s;
+
+				@include tablet {
+					scale: 0.9;
+				}
+			}
 		}
 	}
 

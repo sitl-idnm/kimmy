@@ -8,10 +8,10 @@ import { ConversionTypeProps } from './conversionType.types'
 import Icon from '@icons/snowflacke.svg'
 import Timeline from '@icons/timeline.svg'
 import Accept from '@icons/accept.svg'
-import { Button } from '@/ui'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { Button } from '@/ui'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -251,12 +251,17 @@ const ConversionType: FC<ConversionTypeProps> = ({
               </div>
               <div>
                 <Button
+                  className={styles.button}
                   as="a"
                   href="#form"
-                  isRouteLink
                 >
                   Заказать сайт
                 </Button>
+                {/* <a
+                  href="#form"
+                >
+                  Заказать сайт
+                </a> */}
               </div>
             </div>
           </div>
