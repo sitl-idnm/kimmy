@@ -19,7 +19,7 @@ const TenetData = [
   { title: 'Отчитываемся на каждом этапе ', text: 'от проведения исследований до запуска и поддержки сайта', heightContent: '340px', widthContent: '530px', bgColor: '#E7E8EC51', heightContentAdaptive: '230px', widthContentAdaptive: '460px', widthContentMobile: '336px', heightContentMobile: '180px' },
   { title: 'Не отвлекаем по пустякам, ', text: 'а согласовываем крупные этапы', heightContent: '340px', widthContent: '305px', bgColor: '#F7F7F751', heightContentAdaptive: '285px', widthContentAdaptive: '265px', heightContentMobile: '276px' },
   { title: 'Всегда остаемся на связи:  ', text: 'отвечаем в рабочее время в течение 15 минут', heightContent: '340px', widthContent: '305px', bgColor: '#E7E8EC51', heightContentAdaptive: '285px', widthContentAdaptive: '265px', heightContentMobile: '276px' },
-  { title: 'Помогаем в защите проекта перед ЛПР', text: '', heightContent: '340px', widthContent: '305px', bgColor: '#F7F7F751', heightContentAdaptive: '285px', widthContentAdaptive: '265px', heightContentMobile: '276px' }
+  // { title: 'Помогаем в защите проекта перед ЛПР', text: '', heightContent: '340px', widthContent: '305px', bgColor: '#F7F7F751', heightContentAdaptive: '285px', widthContentAdaptive: '265px', heightContentMobile: '276px' }
 ]
 
 const Tenet: FC<TenetProps> = ({
