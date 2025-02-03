@@ -36,6 +36,45 @@
 		}
 	}
 
+	.buttons {
+		display: flex;
+		gap: 16px;
+
+		&__filter {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			padding: 16px 20px;
+
+			font-size: 16px;
+			font-family: var(--font-inter);
+			font-weight: 500;
+			line-height: 150%;
+
+			background-color: #FEFEFE;
+
+			border: 1px solid #EEE;
+
+			border-radius: 46px;
+
+			min-width: 120px;
+
+			transition: all 1s ease;
+
+			&:active,
+			&:focus {
+				background-color: #292929;
+
+				border: 1px solid #292929;
+
+				color: var(--color-gray-border);
+
+				transition: all 1s ease;
+			}
+		}
+	}
+
 	&__cases {
 		display: flex;
 		flex-wrap: wrap;
