@@ -1,7 +1,6 @@
-// },
-//   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 'use client'
-import { FC, useEffect, useState } from 'react'
+
+import { FC, useEffect, useRef, useState } from 'react'
 import { CaseItem } from '@/components'
 import classNames from 'classnames'
 
@@ -24,8 +23,7 @@ const itemsData = [
   {
     title: 'Лендинг no-code для серф-клуба в Москве',
     text: 'Разработали одностраничный сайт на Тильде по нашему дизайн-макету',
-    imageSrc: '/images/bw_ipad.png'
-    ,
+    imageSrc: '/images/bw_ipad.png',
     keyFilter: ['all', 'nocode']
   },
   {
@@ -33,7 +31,7 @@ const itemsData = [
       'Англоязычный лендинг приложения для простой двухфакторной аутентификации на любых сервисах',
     text: 'Разработали сайт и отрисовали приложение с нуля',
     imageSrc: '/images/gloid_ipad.png',
-    keyFilter: ['all', 'Разработка сайта']
+    keyFilter: ['all', 'nocode']
   },
   {
     title:
@@ -57,6 +55,28 @@ const Cases: FC<CasesProps> = ({ className }) => {
   const rootClassName = classNames(styles.root, className)
   const [filterVar, setFilterVar] = useState<string>('all')
 
+  const buttonsRef = useRef<HTMLDivElement>(null)
+
+  let startX = 0
+  let scrollLeft = 0
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    startX = e.touches[0].clientX
+    if (buttonsRef.current) {
+      scrollLeft = buttonsRef.current.scrollLeft
+    }
+  }
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!buttonsRef.current) return
+
+    const moveX = e.touches[0].clientX
+    const diffX = startX - moveX
+
+    // Прокручиваем контейнер
+    buttonsRef.current.scrollLeft = scrollLeft + diffX
+  }
+
   const filter = (name: string): void => {
     setFilterVar(name)
   }
@@ -68,12 +88,42 @@ const Cases: FC<CasesProps> = ({ className }) => {
   return (
     <div className={rootClassName}>
       <h1 className={styles.root__title}>Кейсы</h1>
-      <div className={styles.buttons}>
-        <button className={styles.buttons__filter} onClick={() => filter('Разработка сайта')}>Разработка сайта</button>
-        <button className={styles.buttons__filter} onClick={() => filter('Контекстная реклама')}>Контекстная реклама</button>
-        <button className={styles.buttons__filter} onClick={() => filter('SEO')}>SEO</button>
-        <button className={styles.buttons__filter} onClick={() => filter('Дизайн')}>Дизайн</button>
-        <button className={styles.buttons__filter} onClick={() => filter('nocode')}>No-code разработка</button>
+      <div
+        className={styles.buttons}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        ref={buttonsRef}
+      >
+        <button
+          className={styles.buttons__filter}
+          onClick={() => filter('Разработка сайта')}
+        >
+          Разработка сайта
+        </button>
+        <button
+          className={styles.buttons__filter}
+          onClick={() => filter('Контекстная реклама')}
+        >
+          Контекстная реклама
+        </button>
+        <button
+          className={styles.buttons__filter}
+          onClick={() => filter('SEO')}
+        >
+          SEO
+        </button>
+        <button
+          className={styles.buttons__filter}
+          onClick={() => filter('Дизайн')}
+        >
+          Дизайн
+        </button>
+        <button
+          className={styles.buttons__filter}
+          onClick={() => filter('nocode')}
+        >
+          No-code разработка
+        </button>
       </div>
       <div className={styles.root__cases}>
         {itemsData.map((item, index) => {
