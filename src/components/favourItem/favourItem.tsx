@@ -10,12 +10,11 @@ import { useAtom } from 'jotai'
 
 const FavourItem: FC<FavourItemProps> = ({ title, linkText, linkColor, backgroundColor, textColor, imageSrc, text }) => {
   const [, setOpenWindow] = useAtom(openModal)
-  const [openWindowContent, setOpenWindowContent] = useAtom(openModalContent)
+  const [, setOpenWindowContent] = useAtom(openModalContent)
 
   const handleOpenModal = () => {
     setOpenWindow(true)
     setOpenWindowContent(title)
-    console.log(openWindowContent)
   }
 
   return (

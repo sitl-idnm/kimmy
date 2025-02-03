@@ -12,6 +12,8 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Button } from '@/ui'
+import { openModal, openModalContent } from '@/shared/atoms/openModal'
+import { useAtom } from 'jotai'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -23,6 +25,14 @@ const ConversionType: FC<ConversionTypeProps> = ({
   const section = useRef(null)
   const extraL = useRef<HTMLDivElement>(null)
   const mainContainer = useRef(null)
+
+  const [, setOpenWindowContent] = useAtom(openModalContent)
+  const [, setOpenWindow] = useAtom(openModal)
+
+  const openWindows = (name: string) => {
+    setOpenWindowContent(name)
+    setOpenWindow(true)
+  }
 
   useGSAP(() => {
 
@@ -253,7 +263,7 @@ const ConversionType: FC<ConversionTypeProps> = ({
                 <Button
                   className={styles.button}
                   as="a"
-                  href="#form"
+                  onClick={() => openWindows('детали')}
                 >
                   Заказать сайт
                 </Button>

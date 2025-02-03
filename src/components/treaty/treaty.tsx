@@ -9,6 +9,8 @@ import styles from './treaty.module.scss';
 import { TreatyProps } from './treaty.types';
 import { Borders, Button } from '@/ui';
 import { useGSAP } from '@gsap/react';
+import { openModal, openModalContent } from '@/shared/atoms/openModal';
+import { useAtom } from 'jotai';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,6 +20,14 @@ const Treaty: FC<TreatyProps> = ({ className = [] }) => {
   const topCardRef = useRef<HTMLDivElement>(null);
   const bottomCardRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const [, setOpenWindowContent] = useAtom(openModalContent)
+  const [, setOpenWindow] = useAtom(openModal)
+
+  const openWindows = (name: string) => {
+    setOpenWindowContent(name)
+    setOpenWindow(true)
+  }
 
   useGSAP(() => {
     const tl = gsap.timeline({
@@ -99,8 +109,7 @@ const Treaty: FC<TreatyProps> = ({ className = [] }) => {
           </h2>
           <Button
             as="a"
-            href="#form"
-            isRouteLink
+            onClick={() => openWindows('стоимость')}
           >
             Рассчитать срок и&nbsp;стоимость моего проекта
           </Button>
