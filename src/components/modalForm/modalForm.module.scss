@@ -10,8 +10,9 @@
 	flex-direction: column;
 	gap: 18px;
 	padding: 74px 20px 74px 45px;
-	margin: 0 -20px;
+	margin: -20px;
 	border-radius: 40px;
+	height: 100%;
 
 	background: var(--color-black) left bottom no-repeat url('../../../public/images/formFigure.png');
 	background-position: -20% 110%;

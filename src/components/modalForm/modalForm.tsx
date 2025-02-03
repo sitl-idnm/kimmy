@@ -24,7 +24,7 @@ const isValidEmail = (email: string) => {
 	return emailRegex.test(email);
 };
 
-const ModalForm: FC<ModalFormProps> = ({ className }) => {
+const ModalForm: FC<ModalFormProps> = ({ className, details, count }) => {
 	const rootClassName = classNames(styles.root, className)
 	const [selectedContactMethod, setSelectedContactMethod] = useState('number')
 	const [successMessage, setSuccessMessage] = useState<string | null>(null)
@@ -73,14 +73,16 @@ const ModalForm: FC<ModalFormProps> = ({ className }) => {
 	}
 
 	return (
-		<div className={rootClassName}>
-			<h2 className={styles.root__title}>Получить консультацию</h2>
+		<div className={rootClassName} style={details ? {height: '790px'} : {}}>
+			{
+				details ? <h2 className={styles.root__title}>Заказать сайт</h2>
+				: count ? <h2 className={styles.root__title}>Рассчитать срок и стоимость моего проекта</h2> : <h2 className={styles.root__title}>Получить консультацию</h2>
+			}
 			<div className={styles.root__content}>
 				<div className={styles.root__content__text}>
-					<p className={styles.white}>Готовы начать погружение в ваш проект!</p>
+					{details ? null : <p className={styles.white}>Готовы начать погружение в ваш проект!</p>}
 					<p className={styles.gray}>
-						Просто оставьте контактные данные, мы свяжемся с вами, чтобы собрать
-						информацию и предложить решение.
+						{details ? 'Заполните краткую форму, чтобы мы связались с вами и обсудили все детали.' : count ? 'Заполните краткую форму, чтобы мы связались с вами и рассчитали сроки и стоимость разработки сайта.' : 'Просто оставьте контактные данные, мы свяжемся с вами, чтобы собрать информацию и предложить решение.'}
 					</p>
 				</div>
 				<form onSubmit={handleSubmit} action="POST" className={styles.root__content__form}>
@@ -108,7 +110,7 @@ const ModalForm: FC<ModalFormProps> = ({ className }) => {
 							<label className={styles.placeholder}>Телефон*</label>
 						</div>
 					</div>
-					<div className={styles.root__content__form__second__line}>
+					{details ? null : <div className={styles.root__content__form__second__line}>
 						<div>
 							<input
 								type="mail"
@@ -129,7 +131,7 @@ const ModalForm: FC<ModalFormProps> = ({ className }) => {
 							/>
 							<label className={styles.placeholder}>Комментарий</label>
 						</div>
-					</div>
+					</div>}
 					<div className={styles.root__content__form__third__line}>
 						<h3 className={styles.radio__title}>Где с вами связаться?</h3>
 						<div className={styles.radio__list}>
@@ -189,7 +191,7 @@ const ModalForm: FC<ModalFormProps> = ({ className }) => {
 							<label>Согласен на получение email - рассылок</label>
 						</div>
 						<div className={styles.form_wrapper}>
-							<input type="submit" value={'Получить консультацию'} />
+							{details ? <input type="submit" value={'Заказать сайт'} /> : count ? <input type="submit" value={'Рассчитать '} /> : <input type="submit" value={'Получить консультацию'} />}
 						</div>
 						{successMessage && (
 							<div className={styles.successMessage}>
