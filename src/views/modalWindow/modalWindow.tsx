@@ -14,7 +14,13 @@ const ModalWindow: FC<ModalWindowProps> = ({  }) => {
   return (
     <>
       {openWindow && (
-        openWindowContent === 'исследования' ? <MarketingModal /> : openWindowContent === 'дизайн' ? <DesignModal /> : openWindowContent === 'разработка' ? <DevelopModal /> : openWindowContent === 'поддержка' ? <SupportModal /> : openWindowContent === 'детали' ? <DetailsModal /> : openWindowContent === 'стоимость' ? <CountModal /> : null
+        openWindowContent === 'исследования' ? <MarketingModal /> :
+        openWindowContent === 'дизайн' ? <DesignModal /> :
+        openWindowContent === 'разработка' ? <DevelopModal /> :
+        openWindowContent === 'поддержка' ? <SupportModal /> :
+        openWindowContent === 'детали' ? <DetailsModal /> :
+        openWindowContent === 'стоимость' ? <CountModal /> :
+        <div style={{ display: 'none' }} />
       )}
     </>
   )
