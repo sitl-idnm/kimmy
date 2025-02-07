@@ -1,16 +1,49 @@
-import { FC } from 'react'
+'use client'
+import { FC, useRef } from 'react'
 import classNames from 'classnames'
 
 import styles from './plusWork.module.scss'
 import { PlusWorkProps } from './plusWork.types'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
 
 const PlusWork: FC<PlusWorkProps> = ({ className }) => {
   const rootClassName = classNames(styles.root, className)
 
+  const secondRef = useRef<HTMLDivElement>(null)
+  const thirdRef = useRef<HTMLDivElement>(null)
+  const fourthRef = useRef<HTMLDivElement>(null)
+  const triggerRef = useRef<HTMLDivElement>(null)
+  const fiveRef = useRef<HTMLDivElement>(null)
+  const sixRef = useRef<HTMLDivElement>(null)
+
+  useGSAP(() => {
+    if (window.innerWidth > 1200) {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: triggerRef.current,
+          start: 'top 10%',
+          markers: true,
+          scrub: true,
+        }
+      })
+
+      tl.to(secondRef.current, {
+        y: 389,
+        ease: 'power1.out'
+      })
+
+      tl.to([thirdRef.current, fourthRef.current, fiveRef.current, sixRef.current], {
+        y: 389,
+        ease: 'power1.out'
+      })
+    }
+  })
+
   return (
     <div className={rootClassName}>
-      <div className={styles.firstline}>
-        <div className={styles.box}>
+      <div className={styles.firstline} ref={triggerRef}>
+        <div className={styles.box} ref={fiveRef}>
           <h3 className={styles.title}>Быстрый старт и высокая скорость роста</h3>
           <div className={styles.text}>
             <p>
@@ -19,7 +52,7 @@ const PlusWork: FC<PlusWorkProps> = ({ className }) => {
             </p>
           </div>
         </div>
-        <div className={styles.box}>
+        <div className={styles.box} ref={secondRef}>
           <h3 className={styles.title}>Свобода предлагать свои решения</h3>
           <div className={styles.text}>
             <p>
@@ -28,7 +61,7 @@ const PlusWork: FC<PlusWorkProps> = ({ className }) => {
             </p>
           </div>
         </div>
-        <div className={styles.box}>
+        <div className={styles.box} ref={sixRef}>
           <h3 className={styles.title}>Работа с сайтами с высокой конверсией</h3>
           <div className={styles.text}>
             <p>
@@ -39,7 +72,7 @@ const PlusWork: FC<PlusWorkProps> = ({ className }) => {
         </div>
       </div>
       <div className={styles.secondline}>
-      <div className={styles.box}>
+        <div className={styles.box} ref={thirdRef}>
           <h3 className={styles.title}>Комфортный онбординг</h3>
           <div className={styles.text}>
             <p>
@@ -49,6 +82,8 @@ const PlusWork: FC<PlusWorkProps> = ({ className }) => {
           </div>
         </div>
         <div className={styles.box}>
+        </div>
+        <div className={styles.box} ref={fourthRef}>
           <h3 className={styles.title}>Обучение и работа под руководством наставника</h3>
           <div className={styles.text}>
             <p>
@@ -60,6 +95,8 @@ const PlusWork: FC<PlusWorkProps> = ({ className }) => {
       </div>
       <div className={styles.thirdline}>
         <div className={styles.box}>
+        </div>
+        <div className={styles.box}>
           <h3 className={styles.title}>Дружелюбный коллектив</h3>
           <div className={styles.text}>
             <p>
@@ -67,6 +104,8 @@ const PlusWork: FC<PlusWorkProps> = ({ className }) => {
               Мы верим в силу команды — здесь всегда поддержат, подскажут и помогут. Регулярные онлайн и офлайн корпоративы дают возможность наладить отношения с коллегами и повеселиться вне работы.
             </p>
           </div>
+        </div>
+        <div className={styles.box}>
         </div>
       </div>
     </div>
