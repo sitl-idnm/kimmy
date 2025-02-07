@@ -15,7 +15,7 @@ const Navigation: FC<NavigationProps> = ({
       <nav className={styles.navigation}>
         <ul className={styles.navigation__list}>
           <li><Link href="/cases" className={styles.navigation__item}>Кейсы</Link></li>
-          <li><Link href="#" className={styles.navigation__item}>Работа у нас</Link></li>
+          <li><Link href="/work" className={styles.navigation__item}>Работа у нас</Link></li>
         </ul>
       </nav>
     </div>
