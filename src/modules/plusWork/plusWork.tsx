@@ -23,7 +23,6 @@ const PlusWork: FC<PlusWorkProps> = ({ className }) => {
         scrollTrigger: {
           trigger: triggerRef.current,
           start: 'top 10%',
-          markers: true,
           scrub: true,
         }
       })
