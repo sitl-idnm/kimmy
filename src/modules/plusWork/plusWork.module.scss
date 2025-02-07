@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 @use "@styles/func";
 @use "@styles/mixins" as *;
 @use "@styles/variables";
@@ -148,6 +149,14 @@
 				}
 			}
 		}
+
+		.box:nth-child(2) {
+			background-color: transparent;
+
+			@include tablet {
+				display: none;
+			}
+		}
 	}
 
 	.thirdline {
@@ -160,7 +169,7 @@
 
 			display: flex;
 			flex-direction: column;
-			justify-content: space-between;
+			gap: 32px;
 
 			max-width: 416px;
 
@@ -204,6 +213,14 @@
 						border-radius: 100px;
 					}
 				}
+			}
+		}
+
+		div:nth-child(odd) {
+			background-color: transparent;
+
+			@include tablet {
+				display: none;
 			}
 		}
 	}

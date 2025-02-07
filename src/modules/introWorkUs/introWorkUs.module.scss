@@ -1,5 +1,5 @@
 @use "@styles/func";
-@use "@styles/mixins";
+@use "@styles/mixins" as *;
 @use "@styles/variables";
 
 .root {
@@ -22,6 +22,50 @@
 
 		border-radius: 40px;
 
+		@include tablet-small {
+			margin: 0 8px;
+
+			gap: 8px;
+		}
+
+		.absoluteblock {
+			position: absolute;
+
+			display: flex;
+			height: 310px;
+			bottom: -170px;
+			right: 80px;
+
+			@include tablet {
+				display: none;
+			}
+
+			.text {
+				align-self: flex-end;
+				color: #16181B70;
+				font-size: 32px;
+				font-family: var(--font-inter);
+				line-height: 130%;
+				max-width: 819px;
+				text-align: center;
+			}
+
+			&__content {
+				position: relative;
+
+				img {
+					position: absolute;
+					left: -35px;
+					top: -40px;
+				}
+
+				svg {
+					height: 270px;
+					width: 200px;
+				}
+			}
+		}
+
 		&__title {
 			font-family: var(--font-inter);
 			font-weight: 500;
@@ -32,6 +76,14 @@
 			color: #FAFAFA;
 
 			padding-top: 86px;
+
+			@include tablet {
+				font-size: 60px;
+			}
+
+			@include tablet-small {
+				font-size: 28px;
+			}
 		}
 
 		&__text {
@@ -45,8 +97,29 @@
 
 			max-width: 448px;
 
+			@include tablet-small {
+				font-size: 12px;
+
+				max-width: 200px;
+			}
+
 			&__white {
 				color: #FAFAFA;
+			}
+		}
+
+		&__image {
+			position: relative;
+			z-index: 10;
+
+			@include tablet {
+				width: 800px;
+				height: 470px;
+			}
+
+			@include tablet-small {
+				width: 300px;
+				height: 150px;
 			}
 		}
 	}
@@ -64,6 +137,14 @@
 		padding-top: 223px;
 		padding-bottom: 348px;
 
+		@include tablet {
+			padding: 80px 16px 170px;
+		}
+
+		@include tablet-small {
+			padding: 40px 8px 150px;
+		}
+
 		&__title {
 			font-family: var(--font-inter);
 			font-size: 54px;
@@ -74,6 +155,12 @@
 			color: #16181B;
 
 			max-width: 956px;
+
+			@include tablet-small {
+				font-size: 20px;
+
+				max-width: 350px;
+			}
 		}
 
 		&__text {
@@ -87,12 +174,28 @@
 			max-width: 640px;
 
 			text-align: center;
+
+			@include tablet-small {
+				font-size: 12px;
+
+				max-width: 300px;
+			}
 		}
 
 		.abst {
 			position: absolute;
 			bottom: 0;
 			right: 0;
+
+			@include tablet {
+				width: 450px;
+				height: 450px;
+			}
+
+			@include tablet-small {
+				width: 200px;
+				height: 200px;
+			}
 		}
 	}
 }
