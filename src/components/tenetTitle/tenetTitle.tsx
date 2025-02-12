@@ -1,38 +1,37 @@
-import { FC } from 'react'
+import { FC, useCallback } from 'react'
 import classNames from 'classnames'
-
 import styles from './tenetTitle.module.scss'
 import { TenetTitleProps } from './tenetTitle.types'
 import { Button } from '@/ui'
-import { openModal, openModalContent } from '@/shared/atoms/openModal'
-import { useAtom } from 'jotai'
+import { useSetAtom } from 'jotai/react'
+import { openModalContent } from '@/shared/atoms/openModal'
 
 const TenetTitle: FC<TenetTitleProps> = ({
-  className,
-  title,
-  span,
-  end
+  className
 }) => {
   const rootClassName = classNames(styles.root, className)
+  const setModalContent = useSetAtom(openModalContent)
 
-  const [, setOpenWindowContent] = useAtom(openModalContent)
-  const [, setOpenWindow] = useAtom(openModal)
-
-  const openWindows = (name: string) => {
-    setOpenWindowContent(name)
-    setOpenWindow(true)
-  }
+  const openWindows = useCallback((name: string) => {
+    setModalContent(name)
+  }, [setModalContent])
 
   return (
     <div className={rootClassName}>
-      <h2>{title} {span} {end}</h2>
-      <Button
-        className={styles.button}
-        as="a"
-        onClick={() => openWindows('детали')}
-      >
-        Заказать сайт
-      </Button>
+      <div className={styles.tenet}>
+        <div className={styles.tenet__content}>
+          <h2 className={styles.tenet__title}>Принципы работы</h2>
+          <p className={styles.tenet__text}>
+            Мы не просто создаем сайты, а помогаем бизнесу расти и развиваться. Для этого мы разработали систему принципов, которые помогают нам делать это эффективно.
+          </p>
+          <Button
+            className={styles.tenet__button}
+            onClick={() => openWindows('детали')}
+          >
+            Заказать сайт
+          </Button>
+        </div>
+      </div>
     </div>
   )
 }

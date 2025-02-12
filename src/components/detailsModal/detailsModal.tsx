@@ -1,23 +1,18 @@
 /* eslint-disable no-empty-pattern */
 'use client'
 import { FC } from 'react'
-
 import styles from './detailsModal.module.scss'
 import { DetailsModalProps } from './detailsModal.types'
 import { ModalForm } from '../modalForm'
-import { useAtom } from 'jotai'
-import { openModal } from '@/shared/atoms/openModal'
+import { useSetAtom } from 'jotai/react'
+import { openModalContent } from '@/shared/atoms/openModal'
 
 const DetailsModal: FC<DetailsModalProps> = ({}) => {
-  const [openWindow, setOpenWindow] = useAtom(openModal)
+  const setModalContent = useSetAtom(openModalContent)
 
-  if (openWindow) {
-    document.body.style.overflow = 'hidden'
-  }
-
-  function closeModal() {
+  const closeModal = () => {
     document.body.style.overflow = 'visible'
-    setOpenWindow(false)
+    setModalContent('')
   }
 
   return (

@@ -1,4 +1,4 @@
 import { atom } from "jotai";
 
-export const openModal = atom(false)
-export const openModalContent = atom('')
+// Используем примитивное значение вместо объекта
+export const openModalContent = atom<string>('')

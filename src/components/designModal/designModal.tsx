@@ -5,30 +5,25 @@ import { DesignModalProps } from './designModal.types'
 import Image from 'next/image'
 import { FavourItem } from '../favourItem'
 import { ModalForm } from '../modalForm'
-import { useAtom } from 'jotai'
-import { openModal } from '@/shared/atoms/openModal'
+import { useSetAtom } from 'jotai/react'
+import { openModalContent } from '@/shared/atoms/openModal'
 import Brush from '../../shared/assets/icons/brush.svg';
 import ipad from '../../../public/images/design_ipad.png'
 
 const itemsData = [
   { title: 'Удерживайте внимание аудитории', backgroundColor: 'var(--color-grey)', textColor: 'var(--color-black)', imageSrc: '/images/image1_fix.png', text: 'Эстетичный и понятный дизайн помогает выделиться в потоке информации' },
   { title: 'Увеличивайте конверсию', backgroundColor: 'var(--color-black)', textColor: 'var(--color-white-default)', imageSrc: '/images/image2.png', text: 'Используйте дизайн, который направляет клиентов к целевым действиям' },
-  { title: 'Ускоряйте процесс принятия решений у клиентов', backgroundColor: 'var(--color-red-accent)', textColor: 'var(--color-white-default)', imageSrc: '/images/image4_fix.png', text: 'Дизайн, который ясно и логично показывает ценность вашего продукта, мотивирует на покупку' },
+  { title: 'Ускоряйте процесс принятия решений у клиентов', backgroundColor: 'var(--color-red-accent)', textColor: 'var(--color-white-default)', imageSrc: '/images/image4_fix.png', text: 'Дизайн, который ясно и логично показывает ценность вашего продукта, мотивирует на покупку' },
 ]
 
 
 // eslint-disable-next-line no-empty-pattern
 const DesignModal: FC<DesignModalProps> = ({}) => {
-  const [openWindow, setOpenWindow] = useAtom(openModal)
-  // const [] = useAtom(openModalContent)
+  const setModalContent = useSetAtom(openModalContent)
 
-  if (openWindow) {
-    document.body.style.overflow = 'hidden'
-  }
-
-  function closeModal() {
+  const closeModal = () => {
     document.body.style.overflow = 'visible'
-    setOpenWindow(false)
+    setModalContent('')
   }
 
   return (
