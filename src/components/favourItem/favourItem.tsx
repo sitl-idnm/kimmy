@@ -1,7 +1,6 @@
 'use client'
 
 import { FC } from 'react'
-import classNames from 'classnames'
 import styles from './favourItem.module.scss'
 import { FavourItemProps } from './favourItem.types'
 import Image from 'next/image'
