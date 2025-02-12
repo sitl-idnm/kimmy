@@ -1,68 +1,44 @@
 'use client'
 
-import { FC } from 'react'
-import { useAtom } from 'jotai'
+import { FC, useEffect } from 'react'
+import { useAtomValue } from 'jotai/react'
 import { openModalContent } from '@/shared/atoms/openModal'
-import NewModal from '../newModal/newModal'
-import { ModalForm } from '../modalForm'
-import styles from './newModalContainer.module.scss'
+import { MarketingModal } from '../marketingModal'
+import { DesignModal } from '../designModal'
+import { DevelopModal } from '../developModal'
+import { SupportModal } from '../supportModal'
+import { DetailsModal } from '../detailsModal'
+import { CountModal } from '../countModal'
 
 const NewModalContainer: FC = () => {
-  const [modalContent, setModalContent] = useAtom(openModalContent)
+  const modalContent = useAtomValue(openModalContent)
 
-  const handleClose = () => {
-    setModalContent('')
-  }
+  useEffect(() => {
+    if (modalContent) {
+      document.documentElement.style.overflow = 'hidden'
+      document.body.style.overflow = 'hidden'
+      document.body.style.paddingRight = '15px' // Компенсация скроллбара
+    } else {
+      document.documentElement.style.overflow = ''
+      document.body.style.overflow = ''
+      document.body.style.paddingRight = ''
+    }
+
+    return () => {
+      document.documentElement.style.overflow = ''
+      document.body.style.overflow = ''
+      document.body.style.paddingRight = ''
+    }
+  }, [modalContent])
 
   return (
     <>
-      <NewModal
-        isOpen={modalContent === 'исследования'}
-        onClose={handleClose}
-        className={styles.marketingModal}
-      >
-        <ModalForm />
-      </NewModal>
-
-      <NewModal
-        isOpen={modalContent === 'дизайн'}
-        onClose={handleClose}
-        className={styles.designModal}
-      >
-        <ModalForm />
-      </NewModal>
-
-      <NewModal
-        isOpen={modalContent === 'разработка'}
-        onClose={handleClose}
-        className={styles.developModal}
-      >
-        <ModalForm />
-      </NewModal>
-
-      <NewModal
-        isOpen={modalContent === 'поддержка'}
-        onClose={handleClose}
-        className={styles.supportModal}
-      >
-        <ModalForm />
-      </NewModal>
-
-      <NewModal
-        isOpen={modalContent === 'детали'}
-        onClose={handleClose}
-        className={styles.detailsModal}
-      >
-        <ModalForm />
-      </NewModal>
-
-      <NewModal
-        isOpen={modalContent === 'стоимость'}
-        onClose={handleClose}
-        className={styles.countModal}
-      >
-        <ModalForm />
-      </NewModal>
+      {modalContent === 'исследования' && <MarketingModal />}
+      {modalContent === 'дизайн' && <DesignModal />}
+      {modalContent === 'разработка' && <DevelopModal />}
+      {modalContent === 'поддержка' && <SupportModal />}
+      {modalContent === 'детали' && <DetailsModal />}
+      {modalContent === 'стоимость' && <CountModal />}
     </>
   )
 }

@@ -13,7 +13,6 @@ const CountModal: FC<CountModalProps> = ({
   const setModalContent = useSetAtom(openModalContent)
 
   const closeModal = () => {
-    document.body.style.overflow = 'visible'
     setModalContent('')
   }
 

@@ -11,33 +11,30 @@ import { openModalContent } from '@/shared/atoms/openModal'
 const FavourItem: FC<FavourItemProps> = ({ title, linkText, linkColor, backgroundColor, textColor, imageSrc, text }) => {
   const setModalContent = useSetAtom(openModalContent)
 
-  const handleOpenModal = () => {
-    setModalContent('детали')
+  const handleOpenModal = (name: string) => {
+    setModalContent(name)
   }
 
   return (
-    <li className={styles.item} style={{ backgroundColor: backgroundColor, color: textColor }}>
-      <div className={styles.item__content}>
-        <h3 className={styles.title}>{title}</h3>
-        <p className={styles.text}>{text}</p>
-        {linkText && (
-          <button
-            className={styles.link}
-            style={{ color: linkColor }}
-            onClick={handleOpenModal}
-          >
-            {linkText}
-          </button>
-        )}
+    <li className={styles.favour__item} style={{ backgroundColor }} onClick={() => handleOpenModal(title)}>
+      <div>
+        <h2 className={styles.favour__title} style={{ color: textColor }}>
+          {title}
+        </h2>
+        <p style={{ color: textColor }}>
+          {text}
+        </p>
       </div>
-      <div className={styles.item__image}>
-        <Image
-          src={imageSrc}
-          width={200}
-          height={200}
-          alt='image'
-        />
-      </div>
+      {imageSrc && <Image
+        src={imageSrc}
+        width={280}
+        height={280}
+        quality={100}
+        alt={title}
+        className={styles.favour__image} />}
+      <button className={styles.favour__description} style={{ color: linkColor }}>
+        {linkText}
+      </button>
     </li>
   )
 }

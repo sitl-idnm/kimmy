@@ -1,6 +1,6 @@
 /* eslint-disable no-empty-pattern */
 'use client'
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { ModalWindowProps } from './modalWindow.types'
 import { useAtomValue } from 'jotai/react'
 import { openModalContent } from '@/shared/atoms/openModal'
@@ -8,6 +8,18 @@ import { CountModal, DesignModal, DetailsModal, DevelopModal, MarketingModal, Su
 
 const ModalWindow: FC<ModalWindowProps> = ({}) => {
   const modalContent = useAtomValue(openModalContent)
+
+  useEffect(() => {
+    if (modalContent) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'visible'
+    }
+
+    return () => {
+      document.body.style.overflow = 'visible'
+    }
+  }, [modalContent])
 
   return (
     <>

@@ -22,7 +22,6 @@ const DesignModal: FC<DesignModalProps> = ({}) => {
   const setModalContent = useSetAtom(openModalContent)
 
   const closeModal = () => {
-    document.body.style.overflow = 'visible'
     setModalContent('')
   }
 
