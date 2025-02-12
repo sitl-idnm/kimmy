@@ -1,7 +1,7 @@
 /* eslint-disable no-irregular-whitespace */
 'use client'
 
-import { FC, useRef } from 'react'
+import { FC, useRef, useCallback, useLayoutEffect } from 'react'
 import classNames from 'classnames'
 import styles from './conversionType.module.scss'
 import { ConversionTypeProps } from './conversionType.types'
@@ -12,10 +12,10 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Button } from '@/ui'
-import { openModal, openModalContent } from '@/shared/atoms/openModal'
-import { useAtom } from 'jotai'
+import { openModalContent } from '@/shared/atoms/openModal'
+import { useSetAtom } from 'jotai/react'
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger, useGSAP)
 
 const ConversionType: FC<ConversionTypeProps> = ({
   className
@@ -26,88 +26,81 @@ const ConversionType: FC<ConversionTypeProps> = ({
   const extraL = useRef<HTMLDivElement>(null)
   const mainContainer = useRef(null)
 
-  const [, setOpenWindowContent] = useAtom(openModalContent)
-  const [, setOpenWindow] = useAtom(openModal)
+  const setModalContent = useSetAtom(openModalContent)
 
-  const openWindows = (name: string) => {
-    setOpenWindowContent(name)
-    setOpenWindow(true)
-  }
+  const openWindows = useCallback((name: string) => {
+    setTimeout(() => {
+      setModalContent(name)
+    }, 0)
+  }, [setModalContent])
 
-  useGSAP(() => {
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const extraLong = extraL.current
+      const mainCont = mainContainer.current
+      const boxes = gsap.utils.toArray(`.${styles.box}`) as HTMLElement[];
 
-    const extraLong = extraL.current
-    const mainCont = mainContainer.current
-    const boxes = gsap.utils.toArray(`.${styles.box}`) as HTMLElement[];
-
-    const scrollTween = gsap.to(extraLong, {
-      xPercent: -100,
-      x: () => window.innerWidth,
-      ease: "none",
-      scrollTrigger: {
-        pin: mainCont,
-        trigger: mainCont,
-        start: 'top 5%',
-        end: () => `+=${extraLong!.offsetWidth} bottom`,
-        scrub: 1,
-        invalidateOnRefresh: true,
-      }
-    })
-
-    gsap.utils.toArray<HTMLElement>('.conversionType_timeline__de68M').forEach((line) => {
-      const tl1 = gsap.timeline({
+      const scrollTween = gsap.to(extraLong, {
+        xPercent: -100,
+        x: () => window.innerWidth,
+        ease: "none",
         scrollTrigger: {
-          trigger: line,
-          start: 'left 30%',
-          end: 'left 20%',
-          scrub: 2,
-          containerAnimation: scrollTween,
-          invalidateOnRefresh: true,
-        }
-      })
-
-      tl1.fromTo(line,
-        {
-          width: '0%'
-        },
-        {
-          width: '50%',
-        }
-      )
-    })
-
-    boxes.forEach((box) => {
-      const tl2 = gsap.timeline({
-        scrollTrigger: {
-          trigger: box,
-          start: 'left 100%',
+          pin: mainCont,
+          trigger: mainCont,
+          start: 'top 5%',
+          end: () => `+=${extraLong!.offsetWidth} bottom`,
           scrub: 1,
-          containerAnimation: scrollTween,
           invalidateOnRefresh: true,
         }
       })
 
-      tl2.fromTo(box,
-        {
-          height: '5%'
-        },
-        {
-          height: '100%',
-        }
-      )
-    })
+      gsap.utils.toArray<HTMLElement>('.conversionType_timeline__de68M').forEach((line) => {
+        gsap.to(line, {
+          width: '50%',
+          scrollTrigger: {
+            trigger: line,
+            start: 'left 30%',
+            end: 'left 20%',
+            scrub: 2,
+            containerAnimation: scrollTween,
+            invalidateOnRefresh: true,
+          }
+        })
+      })
+
+      boxes.forEach((box) => {
+        gsap.fromTo(box,
+          { height: '5%' },
+          {
+            height: '100%',
+            scrollTrigger: {
+              trigger: box,
+              start: 'left 100%',
+              scrub: 1,
+              containerAnimation: scrollTween,
+              invalidateOnRefresh: true,
+            }
+          }
+        )
+      })
+
+      return () => {
+        scrollTween.kill()
+        ScrollTrigger.getAll().forEach(st => st.kill())
+      }
+    }, section)
 
     const handleResize = () => {
-      ScrollTrigger.refresh();
-    };
+      ScrollTrigger.refresh()
+    }
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize)
 
     return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-
-  })
+      window.removeEventListener('resize', handleResize)
+      ctx.revert()
+    }
+  }, [])
 
   return (
     <div ref={mainContainer}>
@@ -224,7 +217,7 @@ const ConversionType: FC<ConversionTypeProps> = ({
               </div>
               <div className={styles.conv__title}>
                 <h2>Конверсионный сайт с сильными&nbsp;офферами,<br />
-                  <span className={styles.grey}>основанными на смыслах</span></h2>
+                  <span className={styles.grey}>основанными на&nbsp;смыслах</span></h2>
               </div>
             </div>
           </div>
@@ -262,16 +255,10 @@ const ConversionType: FC<ConversionTypeProps> = ({
               <div>
                 <Button
                   className={styles.button}
-                  as="a"
                   onClick={() => openWindows('детали')}
                 >
                   Заказать сайт
                 </Button>
-                {/* <a
-                  href="#form"
-                >
-                  Заказать сайт
-                </a> */}
               </div>
             </div>
           </div>

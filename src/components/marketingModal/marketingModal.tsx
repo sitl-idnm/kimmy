@@ -5,8 +5,8 @@ import { FC } from 'react'
 import styles from './marketingModal.module.scss'
 import { MarketingModalProps } from './marketingModal.types'
 import Image from 'next/image'
-import { useAtom } from 'jotai'
-import { openModal } from '@/shared/atoms/openModal'
+import { useSetAtom } from 'jotai/react'
+import { openModalContent } from '@/shared/atoms/openModal'
 import firstline from '../../../public/images/first_backmodal.png';
 import secondline from '../../../public/images/second_backmodal.png';
 import Lens from '../../shared/assets/icons/lens.svg';
@@ -19,16 +19,11 @@ const itemsData = [
   { title: 'Опережайте конкурентов', backgroundColor: 'var(--color-red-accent)', textColor: 'var(--color-white-default)', imageSrc: '/images/image4_fix.png', text: 'Предлагайте то, чего нет у других' },
 ]
 
-const MarketingModal: FC<MarketingModalProps> = ({ }) => {
-  const [openWindow, setOpenWindow] = useAtom(openModal)
+const MarketingModal: FC<MarketingModalProps> = ({}) => {
+  const setModalContent = useSetAtom(openModalContent)
 
-  if (openWindow) {
-    document.body.style.overflow = 'hidden'
-  }
-
-  function closeModal() {
-    document.body.style.overflow = 'visible'
-    setOpenWindow(false)
+  const closeModal = () => {
+    setModalContent('')
   }
 
   return (

@@ -4,8 +4,8 @@ import classNames from 'classnames'
 
 import styles from './developModal.module.scss'
 import { DevelopModalProps } from './developModal.types'
-import { useAtom } from 'jotai'
-import { openModal } from '@/shared/atoms/openModal'
+import { useSetAtom } from 'jotai/react'
+import { openModalContent } from '@/shared/atoms/openModal'
 import Image from 'next/image'
 import { FavourItem } from '../favourItem'
 import { ModalForm } from '../modalForm'
@@ -26,15 +26,10 @@ const DevelopModal: FC<DevelopModalProps> = ({
   className
 }) => {
   const rootClassName = classNames(styles.root, className)
-  const [openWindow, setOpenWindow] = useAtom(openModal)
+  const setModalContent = useSetAtom(openModalContent)
 
-  if (openWindow) {
-    document.body.style.overflow = 'hidden'
-  }
-
-  function closeModal() {
-    document.body.style.overflow = 'visible'
-    setOpenWindow(false)
+  const closeModal = () => {
+    setModalContent('')
   }
 
   return (
