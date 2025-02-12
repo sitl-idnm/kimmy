@@ -35,8 +35,8 @@ const Borders: FC<BordersProps> = ({ className, cornersWithCrosses = [] }) => {
   const animateBorders = useCallback(() => {
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: topRef.current, // элемент, который будет активировать анимацию
-        start: 'top center', // когда верхняя часть элемента достигает центра экрана
+        trigger: topRef.current,
+        start: 'top center',
         toggleActions: 'play none none none',
       },
     });
@@ -64,7 +64,7 @@ const Borders: FC<BordersProps> = ({ className, cornersWithCrosses = [] }) => {
         );
       }
     });
-  }, [cornersWithCrosses]);
+  }, [cornersWithCrosses, crossRefs]);
 
   useEffect(() => {
     animateBorders();

@@ -1,26 +1,24 @@
 'use client'
-import { FC } from 'react'
+import { FC, useCallback } from 'react'
 import classNames from 'classnames'
 
 import styles from './introduce.module.scss'
 import { IntroduceProps } from './introduce.types'
 import { Button } from '@/ui'
 import { TypingSpan } from '../typingSpan'
-import { useAtom } from 'jotai'
-import { openModal, openModalContent } from '@/shared/atoms/openModal'
+import { useSetAtom } from 'jotai/react'
+import { openModalContent } from '@/shared/atoms/openModal'
 
 const Introduce: FC<IntroduceProps> = ({
   className
 }) => {
   const rootClassName = classNames(styles.root, className)
   const wordsArray = ['Смыслы', 'Товары', 'Идеи', 'Услуги'];
-  const [, setOpenWindowContent] = useAtom(openModalContent)
-  const [, setOpenWindow] = useAtom(openModal)
+  const setModalContent = useSetAtom(openModalContent)
 
-  const openWindows = (name: string) => {
-    setOpenWindowContent(name)
-    setOpenWindow(true)
-  }
+  const openWindows = useCallback((name: string) => {
+    setModalContent(name)
+  }, [setModalContent])
 
   return (
     <div className={rootClassName}>

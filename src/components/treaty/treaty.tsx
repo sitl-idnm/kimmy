@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, useRef } from 'react';
+import { FC, useRef, useCallback } from 'react';
 import classNames from 'classnames';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -9,8 +9,8 @@ import styles from './treaty.module.scss';
 import { TreatyProps } from './treaty.types';
 import { Borders, Button } from '@/ui';
 import { useGSAP } from '@gsap/react';
-import { openModal, openModalContent } from '@/shared/atoms/openModal';
-import { useAtom } from 'jotai';
+import { openModalContent } from '@/shared/atoms/openModal';
+import { useSetAtom } from 'jotai/react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -21,13 +21,11 @@ const Treaty: FC<TreatyProps> = ({ className = [] }) => {
   const bottomCardRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const [, setOpenWindowContent] = useAtom(openModalContent)
-  const [, setOpenWindow] = useAtom(openModal)
+  const setModalContent = useSetAtom(openModalContent);
 
-  const openWindows = (name: string) => {
-    setOpenWindowContent(name)
-    setOpenWindow(true)
-  }
+  const openWindows = useCallback((name: string) => {
+    setModalContent(name);
+  }, [setModalContent]);
 
   useGSAP(() => {
     const tl = gsap.timeline({

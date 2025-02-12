@@ -4,8 +4,8 @@ import classNames from 'classnames'
 
 import styles from './supportModal.module.scss'
 import { SupportModalProps } from './supportModal.types'
-import { useAtom } from 'jotai'
-import { openModal } from '@/shared/atoms/openModal'
+import { useSetAtom } from 'jotai/react'
+import { openModalContent } from '@/shared/atoms/openModal'
 import Image from 'next/image'
 import { FavourItem } from '../favourItem'
 import { ModalForm } from '../modalForm'
@@ -14,7 +14,7 @@ import Gear from '../../shared/assets/icons/gear.svg'
 
 const itemsData = [
   { title: 'Обновляйте сайт без лишних усилий', backgroundColor: 'var(--color-grey)', textColor: 'var(--color-black)', imageSrc: '/images/image1_fix.png', text: 'Мы вносим изменения за вас: от новых страниц до доработки функционала' },
-  { title: 'Улучшайте скорость и SEO-показатели сайта', backgroundColor: 'var(--color-black)', textColor: 'var(--color-white-default)', imageSrc: '/images/image2.png', text: 'Регулярная оптимизация делает сайт удобным для пользователей и видимым для поисковиков' },
+  { title: 'Улучшайте скорость и SEO-показатели сайта', backgroundColor: 'var(--color-black)', textColor: 'var(--color-white-default)', imageSrc: '/images/image2.png', text: 'Регулярная оптимизация делает сайт удобным для пользователей и видимым для поисковиков' },
   { title: 'Снижайте количество технических ошибок', backgroundColor: 'var(--color-red-accent)', textColor: 'var(--color-white-default)', imageSrc: '/images/image4_fix.png', text: 'Постоянный контроль за сайтом предотвращает сбои и неудачные обновления' },
 ]
 
@@ -22,15 +22,10 @@ const SupportModal: FC<SupportModalProps> = ({
   className
 }) => {
   const rootClassName = classNames(styles.root, className)
-  const [openWindow, setOpenWindow] = useAtom(openModal)
+  const setModalContent = useSetAtom(openModalContent)
 
-  if (openWindow) {
-    document.body.style.overflow = 'hidden'
-  }
-
-  function closeModal() {
-    document.body.style.overflow = 'visible'
-    setOpenWindow(false)
+  const closeModal = () => {
+    setModalContent('')
   }
 
   return (

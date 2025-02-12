@@ -9,7 +9,8 @@ import { FormProps } from './form.types'
 const Form: FC<FormProps> = ({
   className,
   mail,
-  project
+  project,
+  work
 }) => {
   const rootClassName = classNames(styles.root, className)
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
@@ -71,13 +72,28 @@ const Form: FC<FormProps> = ({
     <div className={rootClassName}>
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.form_wrapper}>
-          <input type="text" name="name" placeholder='Имя' required onChange={handleNameInput} />
+          <input type="text" name="name" placeholder='Имя' required onChange={handleNameInput} style={work ? { color: 'black', backgroundColor: '#FAFAFA' } : undefined} />
           <label className={styles.placeholder}>Имя*</label>
         </div>
         <div className={styles.form_wrapper}>
-          <input type="text" name="phone" placeholder='Телефон' required onChange={handleNumberInput} />
+          <input type="text" name="phone" placeholder='Телефон' required onChange={handleNumberInput} style={work ? { color: 'black', backgroundColor: '#FAFAFA' } : undefined} />
           <label className={styles.placeholder}>Телефон*</label>
         </div>
+        {/* Часть формы для страницы работа у нас */}
+        {work !== undefined && (
+          <div className={styles.form_wrapper}>
+            <input type="text" name="url" placeholder='Ссылка на резюме' onFocus={(e) => e.target.placeholder = ''} onBlur={(e) => e.target.placeholder = 'Ссылка на резюме'} style={work ? { color: 'black', backgroundColor: '#FAFAFA'} : undefined} />
+          <label className={styles.placeholder}>Ссылка на резюме</label>
+        </div>
+        )}
+        {work !== undefined && (
+          <div className={styles.form_wrapper}>
+            <textarea name="project" placeholder='Расскажите про свой проект' onFocus={(e) => e.target.placeholder = ''} style={work ? { color: 'black', backgroundColor: '#FAFAFA'} : undefined} onBlur={(e) => e.target.placeholder = 'Расскажите про свой проект'} ></textarea>
+            <label className={styles.placeholder}>Расскажите про свой проект</label>
+          </div>
+        )}
+
+        {/* Часть формы для второй формы на главной странице */}
         {mail !== undefined && (
           <div className={styles.form_wrapper}>
             <input type="mail" name="mail" placeholder='Почта' onFocus={(e) => e.target.placeholder = ''} onBlur={(e) => e.target.placeholder = 'Почта'} />
@@ -92,12 +108,18 @@ const Form: FC<FormProps> = ({
         )}
         <div className={styles.form_wrapper}>
           <input type="checkbox" required/>
-          <label>Согласен на обработку <a>персональных данных</a></label>
+          <label style={work ? { color: 'black' } : undefined}>Согласен на обработку <a style={work ? { color: '#CB172C'} : undefined}>персональных данных</a></label>
         </div>
         {mail !== undefined && (
           <div className={styles.form_wrapper}>
             <input type="checkbox" />
             <label>Согласен на получение email - рассылок</label>
+          </div>
+        )}
+        {work !== undefined && (
+          <div className={styles.form_wrapper}>
+            <input type="checkbox" />
+            <label style={work ? { color: 'black'} : undefined}>Согласен на получение email - рассылок</label>
           </div>
         )}
         <div className={styles.form_wrapper}>

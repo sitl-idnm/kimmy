@@ -1,0 +1,75 @@
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables";
+
+.root {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	position: relative;
+
+	max-width: 1392px;
+	height: 688px;
+
+	margin: 0 auto;
+	padding: 0 24px;
+
+	background: center no-repeat url('../../../public/images/redbox_back.png');
+	background-color: var(--color-red-accent);
+
+	border-radius: 70px;
+
+	@include tablet {
+		background-size: contain;
+
+		border-radius: 35px;
+
+		margin: 0 12px;
+
+		max-height: 500px;
+	}
+
+	@include tablet-small {
+		margin: 0 8px;
+		
+	}
+
+	.buttons {
+		display: flex;
+		gap: 20px;
+
+		@include tablet {
+			gap: 20px;
+			flex-direction: column;
+		}
+
+		button {
+			padding: 10px 23px;
+
+			border-radius: 35px;
+			border: 1px solid #FFF;
+
+			background-color: #FFF;
+
+			font-family: var(--font-inter);
+			font-weight: 500;
+			font-size: 26px;
+			line-height: 130%;
+
+			transition: all 1s ease;
+
+			@include tablet {
+				padding: 6px 13px;
+				font-size: 20px;
+			}
+
+			&:hover,
+			&:focus {
+				background-color: var(--color-red-accent);
+				color: white;
+				border: 1px solid #FFFFFF32;
+			}
+		}
+	}
+}

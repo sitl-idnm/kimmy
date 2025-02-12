@@ -1,11 +1,10 @@
-import { FC } from 'react'
+import { FC, useCallback } from 'react'
 import classNames from 'classnames'
-
 import styles from './tenetTitle.module.scss'
 import { TenetTitleProps } from './tenetTitle.types'
 import { Button } from '@/ui'
-import { openModal, openModalContent } from '@/shared/atoms/openModal'
-import { useAtom } from 'jotai'
+import { useSetAtom } from 'jotai/react'
+import { openModalContent } from '@/shared/atoms/openModal'
 
 const TenetTitle: FC<TenetTitleProps> = ({
   className,
@@ -14,14 +13,11 @@ const TenetTitle: FC<TenetTitleProps> = ({
   end
 }) => {
   const rootClassName = classNames(styles.root, className)
+  const setModalContent = useSetAtom(openModalContent)
 
-  const [, setOpenWindowContent] = useAtom(openModalContent)
-  const [, setOpenWindow] = useAtom(openModal)
-
-  const openWindows = (name: string) => {
-    setOpenWindowContent(name)
-    setOpenWindow(true)
-  }
+  const openWindows = useCallback((name: string) => {
+    setModalContent(name)
+  }, [setModalContent])
 
   return (
     <div className={rootClassName}>
