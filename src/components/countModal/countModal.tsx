@@ -5,7 +5,7 @@ import { useSetAtom } from 'jotai/react'
 import { openModalContent } from '@/shared/atoms/openModal'
 import { ModalForm } from '../modalForm'
 
-const CountModal: FC<CountModalProps> = ({}) => {
+const CountModal: FC<CountModalProps> = () => {
   const setModalContent = useSetAtom(openModalContent)
 
   const closeModal = () => {
