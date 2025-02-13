@@ -1,0 +1,55 @@
+import { FC } from 'react'
+import classNames from 'classnames'
+
+import styles from './introCase.module.scss'
+import { IntroCaseProps } from './introCase.types'
+import Image from 'next/image'
+import Link from 'next/link'
+import FigmaIcon from '@icons/figmaIcon.svg'
+import TildaIcon from '@icons/tilda.svg'
+import WebflowIcon from '@icons/webflowIconCase.svg'
+
+const IntroCase: FC<IntroCaseProps> = ({
+  className,
+  backgroundImage,
+  title,
+  text,
+  buttonLink,
+  description,
+  tilda,
+  webflow,
+}) => {
+  const rootClassName = classNames(className, styles.intro)
+
+  return (
+    <div className={rootClassName}>
+      <div className={styles.intro__content}>
+        <div className={styles.intro__content__text}>
+          <div className={styles.intro__content__text__title}>
+            <h1 className={styles.intro__content__text__title__title}>{title}</h1>
+            <p className={styles.intro__content__text__title__text}>{text}</p>
+          </div>
+          <Link href={buttonLink} className={styles.intro__content__text__link}>Посмотреть весь дизайн</Link>
+        </div>
+        <div className={styles.intro__content__description}>
+          <div className={styles.intro__content__description__icons}>
+            <FigmaIcon />
+            { tilda && <TildaIcon /> }
+            { webflow && <WebflowIcon /> }
+          </div>
+          <p className={styles.intro__content__description__text}>{description}</p>
+        </div>
+      </div>
+      <div className={styles.intro__background}>
+        <Image
+          src={backgroundImage}
+          alt='background'
+          width={870}
+          height={856}
+        />
+      </div>
+    </div>
+  )
+}
+
+export default IntroCase
