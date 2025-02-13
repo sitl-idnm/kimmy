@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, useState, useEffect, useRef } from 'react';
+import { FC, useState, useEffect, useRef, useCallback } from 'react';
 import { Wrapper } from '@/ui';
 import classNames from 'classnames';
 import gsap from 'gsap';
@@ -10,6 +10,8 @@ import { HeaderProps } from './header.types';
 import Logo from './logo';
 import { Button } from '@/ui/index';
 import { Navigation } from '@/components';
+import { openModalContent } from '@/shared/atoms/openModal';
+import { useSetAtom } from 'jotai';
 
 const Header: FC<HeaderProps> = ({ className }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,6 +22,11 @@ const Header: FC<HeaderProps> = ({ className }) => {
   const burgerIconRef = useRef<HTMLDivElement>(null);
   const burgerBeforeRef = useRef<HTMLDivElement>(null);
   const burgerAfterRef = useRef<HTMLDivElement>(null);
+  const setModalContent = useSetAtom(openModalContent)
+
+  const openWindows = useCallback((name: string) => {
+    setModalContent(name)
+  }, [setModalContent])
 
   useEffect(() => {
     const handleResize = () => {
@@ -121,8 +128,8 @@ const Header: FC<HeaderProps> = ({ className }) => {
           <div className={styles.buttons__wrapper}>
             {!isMobile && (
               <Button
-                tag='a'
-                href="#form"
+                tag='button'
+                onClick={() => openWindows('детали')}
                 maxWidth='192px'
               >
                 Обсудить проект

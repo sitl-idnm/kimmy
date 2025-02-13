@@ -13,6 +13,7 @@ export default function Button<E extends ElementType = typeof defaultElement>({
   className,
   href,
   maxWidth,
+  ...props
 }: ButtonProps<E>) {
   const elClassName = classNames(
     styles.root,
@@ -23,8 +24,21 @@ export default function Button<E extends ElementType = typeof defaultElement>({
   const isLink = !!(href && TagName === 'a')
 
   return isLink ? (
-    <Link style={{maxWidth: maxWidth}} href={href} className={elClassName} data-back={children} data-front={children}></Link>
+    <Link
+      style={{maxWidth: maxWidth}}
+      href={href}
+      className={elClassName}
+      data-back={children}
+      data-front={children}
+      {...props}
+    />
   ) : (
-    <TagName style={{maxWidth: maxWidth}} className={elClassName} data-back={children} data-front={children}></TagName>
+    <TagName
+      style={{maxWidth: maxWidth}}
+      className={elClassName}
+      data-back={children}
+      data-front={children}
+      {...props}
+    />
   )
 }
