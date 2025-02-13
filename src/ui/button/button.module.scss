@@ -2,52 +2,87 @@
 @use '@styles/variables';
 @use '@styles/mixins';
 
+$speed: 0.5s ease;
+
 .root {
   @include mixins.reset-btn;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-block;
   border: 1px solid transparent;
-  border-radius: 10px;
+
+  font-family: var(--font-inter);
   font-weight: 500;
   font-size: 16px;
   line-height: 150%;
   color: var(--color-white-default);
-  background: linear-gradient(256.01deg, var(--color-red-gradient-start) -7.55%, var(--color-red-gradient-end) 74.55%);
+
   cursor: pointer;
-  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-  outline: none;
-  user-select: none;
 
-  &_sm {
-    height: func.rem(48);
-    padding: func.rem(12) func.rem(20);
-  }
+  text-align: center;
 
-  &_md {
-    height: func.rem(56);
-    padding: func.rem(15) func.rem(32);
-  }
+  width: 100%;
 
-  &_white {
-    color: var(--color-black-default);
-    background-color: var(--color-white-default);
-  }
+  opacity: 1;
+  outline: 0;
 
   &:hover {
-    color: var(--color-red-gradient-start);
-    background: var(--color-white-hover);
-    border-color: var(--color-red-gradient-start);
+    &::after {
+      opacity: 1;
+      transform: translateY(0) rotateX(0);
+    }
+
+    &::before {
+      transform: translateY(50%) rotateX(90deg);
+    }
   }
 
-  &:active {
-    background: var(--color-grey-light);
+  &:after{
+    content: attr(data-back);
+
+    top: 0;
+    left: 0;
+
+    opacity: 0;
+
+    width: 100%;
+    height: 56px;
+
+    line-height: 150%;
+    color: var(--color-red-accent); // Цвет шрифта в конечном состоянии
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+
+    transition: $speed;
+    transform: translateY(-50%) rotateX(90deg);
+
+    background-color: var(--color-grey-light);
   }
 
-  &:disabled {
-    color: var(--color-black);
-    background-color: var(--color-grey-hover);
-    pointer-events: none;
+  &:before{
+    content: attr(data-front);
+
+    top: 0;
+    left: 0;
+
+    opacity: 1;
+
+    width: 100%;
+    height: 56px;
+
+    color: var(--color-white-default); // Цвет шрифта в начальном состоянии
+    line-height: 150%;
+
+    background: linear-gradient(256.01deg, var(--color-red-gradient-start) -7.55%, var(--color-red-gradient-end) 74.55%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    transition: $speed;
+    transform: translateY(0) rotateX(0);
   }
 }

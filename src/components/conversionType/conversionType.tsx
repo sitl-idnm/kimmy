@@ -254,7 +254,8 @@ const ConversionType: FC<ConversionTypeProps> = ({
               </div>
               <div>
                 <Button
-                  className={styles.button}
+                  tag='button'
+                  maxWidth='192px'
                   onClick={() => openWindows('детали')}
                 >
                   Заказать сайт

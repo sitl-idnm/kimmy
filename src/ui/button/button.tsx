@@ -8,34 +8,23 @@ import { ButtonProps } from './button.types'
 const defaultElement = 'button'
 
 export default function Button<E extends ElementType = typeof defaultElement>({
-  isRouteLink,
-  colorScheme = 'black',
-  size = 'md',
   children,
-  as,
+  tag,
   className,
-  value,
-  ...props
+  href,
+  maxWidth,
 }: ButtonProps<E>) {
   const elClassName = classNames(
     styles.root,
-    styles[`root_${size}`],
-    styles[`root_${colorScheme}`],
     className
   )
 
-  const TagName = as || defaultElement
-  const isLink = !!(isRouteLink && TagName === 'a')
+  const TagName = tag || defaultElement
+  const isLink = !!(href && TagName === 'a')
 
   return isLink ? (
-    <Link {...props} href={props.href} className={elClassName}>
-      {children}
-      {value}
-    </Link>
+    <Link style={{maxWidth: maxWidth}} href={href} className={elClassName} data-back={children} data-front={children}></Link>
   ) : (
-    <TagName {...props} className={elClassName}>
-      {children}
-      {value}
-    </TagName>
+    <TagName style={{maxWidth: maxWidth}} className={elClassName} data-back={children} data-front={children}></TagName>
   )
 }
