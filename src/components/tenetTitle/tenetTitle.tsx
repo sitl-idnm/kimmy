@@ -1,4 +1,5 @@
-import { FC, useCallback } from 'react'
+'use client'
+import { FC, useCallback, useEffect, useState } from 'react'
 import classNames from 'classnames'
 import styles from './tenetTitle.module.scss'
 import { TenetTitleProps } from './tenetTitle.types'
@@ -15,17 +16,30 @@ const TenetTitle: FC<TenetTitleProps> = ({
   const rootClassName = classNames(styles.root, className)
   const setModalContent = useSetAtom(openModalContent)
 
+  const [maxWidth, setMaxWidth] = useState<string | undefined>(
+    window.innerWidth > 768 ? '228px' : undefined
+  );
+
   const openWindows = useCallback((name: string) => {
     setModalContent(name)
   }, [setModalContent])
+
+  useEffect(() => {
+    const handleResize = () => {
+      setMaxWidth(window.innerWidth > 768 ? '228px' : undefined);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <div className={rootClassName}>
       <h2>{title} {span} {end}</h2>
       <Button
-        className={styles.button}
-        as="a"
+        tag="button"
         onClick={() => openWindows('детали')}
+        maxWidth={maxWidth}
       >
         Заказать сайт
       </Button>

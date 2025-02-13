@@ -121,10 +121,9 @@ const Header: FC<HeaderProps> = ({ className }) => {
           <div className={styles.buttons__wrapper}>
             {!isMobile && (
               <Button
-                className={styles.button}
-                as="a"
+                tag='a'
                 href="#form"
-                isRouteLink
+                maxWidth='192px'
               >
                 Обсудить проект
               </Button>

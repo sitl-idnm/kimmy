@@ -103,7 +103,7 @@
 			font-weight: 500;
 			line-height: 150%;
 			border: 1px solid var(--color-red-gradient-start);
-			transition: all 1.5s;
+			transition: all 0.5s ease-in;
 
 			background: linear-gradient(315deg, var(--color-red-gradient-start), var(--color-red-gradient-end));
 
@@ -113,7 +113,14 @@
 		&[type='submit']:hover {
 			background: var(--color-black);
 			border: 1px solid var(--color-black-default);
-			transition: all 1.5s;
+			/* Firefox */
+			-moz-transition: all 0.5s ease-in;
+			/* WebKit */
+			-webkit-transition: all 0.5s ease-in;
+			/* Opera */
+			-o-transition: all 0.5s ease-in;
+			/* Standard */
+			transition: all 0.5s ease-in;
 		}
 
 		&[type="number"]::-webkit-outer-spin-button,

@@ -39,7 +39,12 @@ const CaseItem: FC<CaseItemProps> = ({
         <p className={styles.bottom__description}>{text}</p>
         {
           !isCasePage &&
-          <Button className={styles.bottom__button}>
+          <Button
+            className={styles.bottom__button}
+            tag='a'
+            href='/cases'
+            maxWidth='192px'
+          >
             Читать кейс
           </Button>
         }

@@ -106,7 +106,8 @@ const Treaty: FC<TreatyProps> = ({ className = [] }) => {
             прописанный в&nbsp;договоре
           </h2>
           <Button
-            as="a"
+            tag='button'
+            maxWidth='400px'
             onClick={() => openWindows('стоимость')}
           >
             Рассчитать срок и&nbsp;стоимость моего проекта

@@ -26,7 +26,8 @@ const Introduce: FC<IntroduceProps> = ({
         <h2 className={styles.introduce__title}>Разрабатываем сайты, которые продают <TypingSpan words={wordsArray} interval={1500} /></h2>
         <Button
           onClick={() => openWindows('детали')}
-          as='a'
+          tag='button'
+          maxWidth='192px'
         >
           Заказать сайт
         </Button>
