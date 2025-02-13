@@ -18,6 +18,11 @@
 	.content {
 		display: flex;
 		flex-direction: column;
+		margin-bottom: 150px;
+
+		@include tablet-small {
+			margin-bottom: 0;
+		}
 	}
 
 	/* stylelint-disable-next-line selector-class-pattern */
