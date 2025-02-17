@@ -4,6 +4,7 @@ import classNames from 'classnames'
 import styles from './sweetCorpPage.module.scss'
 import { SweetCorpPageProps } from './sweetCorpPage.types'
 import { IntroCase } from '@/modules/introCase'
+import { ContentCase } from '@/modules/contentCase'
 
 const SweetCorpPage: FC<SweetCorpPageProps> = ({
   className
@@ -21,6 +22,7 @@ const SweetCorpPage: FC<SweetCorpPageProps> = ({
         tilda={false}
         webflow={true}
       />
+      <ContentCase />
     </main>
   )
 }
