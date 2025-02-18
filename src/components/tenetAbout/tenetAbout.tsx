@@ -14,7 +14,9 @@ const TenetAbout: FC<TenetAboutProps> = ({
   widthContentAdaptive,
   heightContentMobile,
   widthContentMobile,
-  bgColor
+  bgColor,
+  leftPercent,
+  marginTop
 }) => {
   const rootClassName = classNames(styles.root, className)
   console.log(window.innerWidth)
@@ -65,10 +67,8 @@ const TenetAbout: FC<TenetAboutProps> = ({
       </div>
     )
   } else {
-    const arrayPercent = ['10%', '30%', '40%', '50%', '60%']
-
     return (
-      <div className={rootClassName} style={{height: heightContentDesktop, width: widthContentDesktop, background: bgColor, left: arrayPercent[getRandomIntInclusive(0, 4)]}}>
+      <div className={rootClassName} style={{height: heightContentDesktop, width: widthContentDesktop, background: bgColor, left: leftPercent, marginTop: marginTop}}>
         <h3 className={styles.title}>
           {title}
         </h3>

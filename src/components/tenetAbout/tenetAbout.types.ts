@@ -8,5 +8,7 @@ export interface TenetAboutProps {
   widthContentAdaptive?: string,
   widthContentMobile?: string,
   heightContentMobile?: string,
-  bgColor?: string
+  bgColor?: string,
+  leftPercent?: string,
+  marginTop?: string
 }
