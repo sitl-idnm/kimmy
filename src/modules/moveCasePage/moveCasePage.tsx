@@ -8,7 +8,8 @@ const MoveCasePage: FC<MoveCasePageProps> = ({
   className,
   firstAnchor,
   secondAnchor,
-  thirdAnchor
+  thirdAnchor,
+  fourthAnchor
 }) => {
   const rootClassName = classNames(styles.root, className)
 
@@ -25,6 +26,11 @@ const MoveCasePage: FC<MoveCasePageProps> = ({
         <div className={styles.content__item}>
           <a href={'#third'}>{thirdAnchor}</a>
         </div>
+        { fourthAnchor && (
+          <div className={styles.content__item}>
+            <a href={'#fourth'}>{fourthAnchor}</a>
+          </div>
+        )}
       </div>
     </div>
   )

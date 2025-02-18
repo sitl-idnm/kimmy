@@ -8,6 +8,7 @@ import Image from 'next/image'
 const TextCase: FC<TextCaseProps> = ({
   className,
   title,
+  subTitle,
   text,
   image,
   id
@@ -18,6 +19,7 @@ const TextCase: FC<TextCaseProps> = ({
     <div className={rootClassName} id={id}>
       <div className={styles.text}>
         <h2>{title}</h2>
+        {subTitle && <h3>{subTitle}</h3>}
         <p>{text}</p>
       </div>
       <div>

@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import styles from './sweetCorpPage.module.scss'
 import { SweetCorpPageProps } from './sweetCorpPage.types'
 import { IntroCase } from '@/modules/introCase'
-import { ContentCase } from '@/modules/contentCase'
+import { ContentCase } from '@/modules/contentCaseSweetCorp'
 import { MoveCasePage } from '@/modules/moveCasePage'
 import { DefaultTextCase } from '@/components'
 
