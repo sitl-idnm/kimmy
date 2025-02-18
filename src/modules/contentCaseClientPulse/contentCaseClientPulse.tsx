@@ -3,7 +3,7 @@ import classNames from 'classnames'
 
 import styles from './contentCaseClientPulse.module.scss'
 import { ContentCaseClientPulseProps } from './contentCaseClientPulse.types'
-import { TextCase } from '@/components'
+import { DefaultTextCase, TextCase } from '@/components'
 
 const ContentCaseClientPulse: FC<ContentCaseClientPulseProps> = ({
   className
@@ -60,6 +60,192 @@ const ContentCaseClientPulse: FC<ContentCaseClientPulseProps> = ({
         image={'/images/cases/clientpulse/fourth.png'}
         id={''}
       />
+      <TextCase
+        title={''}
+        subTitle={''}
+        text={null}
+        image={'/images/cases/clientpulse/fifth.png'}
+        id={''}
+      />
+      <TextCase
+        title={''}
+        subTitle={''}
+        text={null}
+        image={'/images/cases/clientpulse/sixth.png'}
+        id={''}
+      />
+      <TextCase
+        title={''}
+        subTitle={''}
+        text={null}
+        image={'/images/cases/clientpulse/seventh.png'}
+        id={''}
+      />
+      <TextCase
+        title={''}
+        subTitle={''}
+        text={null}
+        image={'/images/cases/clientpulse/eighth.png'}
+        id={''}
+      />
+      <TextCase
+        title={'Страница «Гостевой Wi-Fi»'}
+        subTitle={''}
+        text={'На главный экран в заголовок вынесли название самой услуги, чтобы потенциальный покупатель понимал, что он тут может настроить гостевой Wi-Fi, а в подзаголовок добавили дополнительные выгоды и кнопку с призывом «Узнать подробнее», которая открывает pop-up с формой заявки на консультацию. Также прописали визуализацию сервиса, чтобы продемонстрировать, как он выглядит для бизнеса и клиентов.'}
+        image={'/images/cases/clientpulse/ninth.png'}
+        id={''}
+      />
+      <TextCase
+        title={''}
+        subTitle={''}
+        text={'На следующих экранах актуализировали сложности, с которыми сталкивается бизнес и предложили решение.'}
+        image={'/images/cases/clientpulse/tenth.png'}
+        id={''}
+      />
+      <TextCase
+        title={''}
+        subTitle={''}
+        text={null}
+        image={'/images/cases/clientpulse/eleventh.png'}
+        id={''}
+      />
+      <TextCase
+        title={''}
+        subTitle={''}
+        text={'Выделили блок о том, кому подойдет.'}
+        image={'/images/cases/clientpulse/twelfth.png'}
+        id={''}
+      />
+      <TextCase
+        title={''}
+        subTitle={''}
+        text={'Кратко описали процесс работы и добавили формы захвата в двух вариантах – для более самостоятельных пользователей и для тех, кто не хочет сам всё настраивать.'}
+        image={'/images/cases/clientpulse/thirteenth.png'}
+        id={''}
+      />
+      <TextCase
+        title={''}
+        subTitle={''}
+        text={'Следующим экраном разместили выгоды.'}
+        image={'/images/cases/clientpulse/fourteenth.png'}
+        id={''}
+      />
+      <TextCase
+        title={''}
+        subTitle={''}
+        text={'Подробно расписали возможности сервиса исходя из потребностей бизнеса.'}
+        image={'/images/cases/clientpulse/fifteenth.png'}
+        id={''}
+      />
+      <TextCase
+        title={''}
+        subTitle={''}
+        text={'Добавили информацию про сетевые заведения.'}
+        image={'/images/cases/clientpulse/sixteenth.png'}
+        id={''}
+      />
+      <TextCase
+        title={''}
+        subTitle={''}
+        text={'Сделали интерактивный экран со всеми возможностями сервиса.'}
+        image={'/images/cases/clientpulse/seventeenth.png'}
+        id={''}
+      />
+      <TextCase
+        title={''}
+        subTitle={''}
+        text={'Добавили форму захвата.'}
+        image={'/images/cases/clientpulse/eighteenth.png'}
+        id={''}
+      />
+      <TextCase
+        title={''}
+        subTitle={''}
+        text={'Запланировали блоки с социальными доказательствами – кейсы, клиенты, отзывы и добавили призыв к действию.'}
+        image={'/images/cases/clientpulse/nineteenth.png'}
+        id={''}
+      />
+      <TextCase
+        title={''}
+        subTitle={''}
+        text={'Расписали тарифы.'}
+        image={'/images/cases/clientpulse/twentieth.png'}
+        id={''}
+      />
+      <TextCase
+        title={''}
+        subTitle={''}
+        text={'В эту же группу блоков с ценами добавили информацию про акцию и форму захвата.'}
+        image={'/images/cases/clientpulse/twentyfirst.png'}
+        id={''}
+      />
+      <TextCase
+        title={''}
+        subTitle={''}
+        text={'Добавили блок с интеграциями.'}
+        image={'/images/cases/clientpulse/twentysecond.png'}
+        id={''}
+      />
+      <TextCase
+        title={''}
+        subTitle={''}
+        text={'Разместили форму захвата с альтернативным консультации следующим шагом – скачать презентацию.'}
+        image={'/images/cases/clientpulse/twentythird.png'}
+        id={''}
+      />
+      <DefaultTextCase
+          mainText={<><span>Страница получилась объемная, закрывающая максимум возражений и демонстрирующая все выгоды продукта с точки зрения потребности бизнеса.</span><span>Для пользователей, которые не будут листать её всю, мы поставили разные формы захвата каждые 2-3 экрана, чтобы они смогли оставить заявку в любом месте страницы. А те, кому нужно изучить больше информации перед совершением целевого действия, тоже смогли бы это сделать. </span></>}
+          subText={<><span>Для пользователей, которые не будут листать её всю, мы поставили разные формы захвата каждые 2-3 экрана, чтобы они смогли оставить заявку в любом месте страницы. А те, кому нужно изучить больше информации перед совершением целевого действия, тоже смогли бы это сделать. </span></>}
+        />
+        <TextCase
+          title={'Страница «MAC-радар»'}
+          subTitle={''}
+          text={null}
+          image={'/images/cases/clientpulse/twentyfourth.png'}
+          id={''}
+        />
+        <TextCase
+          title={''}
+          subTitle={''}
+          text={null}
+          image={'/images/cases/clientpulse/twentyfifth.png'}
+          id={''}
+        />
+        <TextCase
+          title={''}
+          subTitle={''}
+          text={null}
+          image={'/images/cases/clientpulse/twentysixth.png'}
+          id={''}
+        />
+        <TextCase
+          title={''}
+          subTitle={''}
+          text={null}
+          image={'/images/cases/clientpulse/twentyseventh.png'}
+          id={''}
+        />
+        <TextCase
+          title={''}
+          subTitle={''}
+          text={null}
+          image={'/images/cases/clientpulse/twentyeighth.png'}
+          id={''}
+        />
+        <TextCase
+          title={''}
+          subTitle={''}
+          text={null}
+          image={'/images/cases/clientpulse/twentyninth.png'}
+          id={''}
+        />
+        <TextCase
+          title={'Главная страница'}
+          subTitle={''}
+          text={'На этапе разработки главной страницы мы уже знали особенности каждого продукта и варианты их взаимосвязи между собой. Поэтому на главном экране разместили демонстрацию возможностей продукта с точки зрения нужд бизнеса и ниже – список продуктов со ссылками на соответствующие страницы.'}
+          image={'/images/cases/clientpulse/thirtieth.png'}
+          id={''}
+        />
     </div>
   )
 }
