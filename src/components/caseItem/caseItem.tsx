@@ -11,7 +11,8 @@ const CaseItem: FC<CaseItemProps> = ({
   title,
   text,
   imageSrc,
-  isCasePage
+  isCasePage,
+  link
 }) => {
   const rootClassName = classNames(styles.root, className)
 

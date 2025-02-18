@@ -1,9 +1,24 @@
-@use "@styles/func";
-@use "@styles/mixins";
+@use "@styles/func" as *;
+@use "@styles/mixins" as *;
 @use "@styles/variables";
 
 .root {
 	display: flex;
 	flex-direction: column;
 	gap: 56px;
+	max-width: 1312px;
+	width: 100%;
+	margin: 0 auto;
+	position: relative;
+
+	padding-top: 70px;
+
+	@include desktop {
+		overflow-x: hidden;
+		overflow-y: visible;
+	}
+
+	@include tablet-small {
+		gap: 32px;
+	}
 }
