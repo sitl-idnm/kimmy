@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import styles from './clientPulsePage.module.scss'
 import { ClientPulsePageProps } from './clientPulsePage.types'
 import { IntroCase } from '@/modules/introCase'
-import { DefaultTextCase, TextCase } from '@/components'
+import { CaseForm, DefaultTextCase, TextCase } from '@/components'
 import Image from 'next/image'
 import { MoveCasePage } from '@/modules/moveCasePage'
 import { ContentCaseClientPulse } from '@/modules/contentCaseClientPulse'
@@ -53,6 +53,7 @@ const ClientPulsePage: FC<ClientPulsePageProps> = ({
         fourthAnchor={'Создание сайта'}
       />
       <ContentCaseClientPulse />
+      <CaseForm image={'/images/cases/clientpulse/1.png'} />
     </main>
   )
 }
