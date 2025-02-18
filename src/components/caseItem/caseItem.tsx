@@ -16,6 +16,8 @@ const CaseItem: FC<CaseItemProps> = ({
 }) => {
   const rootClassName = classNames(styles.root, className)
 
+  {link}
+
   return (
     <div className={isCasePage ? styles.content : rootClassName}>
       <div className={styles.top}>
