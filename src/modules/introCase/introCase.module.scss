@@ -1,9 +1,9 @@
 @use "@styles/func";
-@use "@styles/mixins";
+@use "@styles/mixins" as *;
 @use "@styles/variables";
 
 .intro {
-  display: flex;
+	display: flex;
   justify-content: space-between;
 
 	position: relative;
@@ -20,6 +20,25 @@
 
 	border-radius: 60px;
 
+	@include tablet {
+		height: 996px;
+
+		gap: 5px;
+
+		justify-content: center;
+		align-items: center;
+
+		padding: 40px 0 50px;
+	}
+
+	@include tablet-small {
+		max-width: 336px;
+		padding-top: 24px;
+		align-items: flex-start;
+
+		height: max-content;
+	}
+
 	&__content {
 		display: flex;
 		flex-direction: column;
@@ -27,15 +46,85 @@
 
 		justify-content: flex-end;
 
+		@include desktop {
+			gap: 0;
+			justify-content: space-between;
+		}
+
+		@include tablet {
+		  justify-content: center;
+			align-items: center;
+
+			width: 100%;
+		}
+
+		&__background {
+			position: absolute;
+
+			width: 870px;
+			height: 856px;
+
+			right: -65px;
+			top: -70px;
+
+			@include desktop {
+				right: -100px;
+			}
+
+			@include tablet {
+				position: static;
+
+				width: 500px;
+				height: 496px;
+			}
+
+			@include tablet-small {
+				position: relative;
+
+				top: 0;
+				right: -50px;
+			}
+
+			img {
+				@include tablet {
+					width: 500px;
+					height: 496px;
+				}
+			}
+		}
+
 		&__text {
 			display: flex;
 			flex-direction: column;
 			gap: 40px;
 
+			@include tablet {
+				align-items: center;
+			}
+
+			@include tablet-small {
+				padding: 0 20px;
+			}
+
+			button {
+				@include tablet-small {
+					max-width: 100% !important;
+					width: 100%;
+				}
+			}
+
 			&__title {
 				display: flex;
 				flex-direction: column;
 				gap: 8px;
+
+				@include desktop {
+					margin-top: 55px;
+				}
+
+				@include tablet {
+					margin-top: 0;
+				}
 
 				&__title {
 					font-family: var(--font-inter);
@@ -43,6 +132,15 @@
 					font-weight: 500;
 					line-height: 120%;
 					color: #16181B;
+
+					@include tablet {
+						text-align: center;
+					}
+
+					@include tablet-small {
+						font-size: 32px;
+						text-align: left;
+					}
 				}
 
 				&__text {
@@ -51,6 +149,15 @@
 					font-weight: 400;
 					line-height: 130%;
 					color: #16181B80;
+
+					@include tablet {
+						text-align: center;
+					}
+
+					@include tablet-small {
+						font-size: 16px;
+						text-align: left;
+					}
 				}
 			}
 		}
@@ -62,6 +169,12 @@
 
 			max-width: 438px;
 
+			@include tablet {
+				align-self: flex-start;
+
+				margin-left: 28px;
+			}
+
 			&__icons {
 				display: flex;
 				gap: 12px;
@@ -69,6 +182,11 @@
 				svg {
 					width: 70px;
 					height: 70px;
+
+					@include tablet-small {
+						width: 50px;
+						height: 50px;
+					}
 				}
 			}
 
@@ -78,17 +196,12 @@
 				font-weight: 400;
 				line-height: 150%;
 				color: #16181B60;
+
+				@include tablet-small {
+					font-size: 16px;
+				}
 			}
 		}
 	}
 
-	&__background {
-		position: absolute;
-
-		width: 870px;
-		height: 856px;
-
-		right: -65px;
-		top: -70px;
-	}
 }

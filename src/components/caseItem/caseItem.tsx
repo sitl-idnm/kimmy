@@ -11,9 +11,12 @@ const CaseItem: FC<CaseItemProps> = ({
   title,
   text,
   imageSrc,
-  isCasePage
+  isCasePage,
+  link
 }) => {
   const rootClassName = classNames(styles.root, className)
+
+  {link}
 
   return (
     <div className={isCasePage ? styles.content : rootClassName}>

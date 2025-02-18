@@ -25,6 +25,7 @@ const TextCase: FC<TextCaseProps> = ({
           <Image
             src={image}
             alt={title}
+            quality={100}
             width={0}
             height={0}
             sizes="100vw"

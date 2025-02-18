@@ -3,5 +3,6 @@ export interface CaseItemProps {
   title?: string,
   text?: string,
   imageSrc: string,
-  isCasePage?: boolean
+  isCasePage?: boolean,
+  link?: string
 }

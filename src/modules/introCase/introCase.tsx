@@ -1,13 +1,14 @@
+'use client'
 import { FC } from 'react'
 import classNames from 'classnames'
 
 import styles from './introCase.module.scss'
 import { IntroCaseProps } from './introCase.types'
 import Image from 'next/image'
-import Link from 'next/link'
 import FigmaIcon from '@icons/figmaIcon.svg'
 import TildaIcon from '@icons/tilda.svg'
 import WebflowIcon from '@icons/webflowIconCase.svg'
+import { Button } from '@/ui'
 
 const IntroCase: FC<IntroCaseProps> = ({
   className,
@@ -29,7 +30,15 @@ const IntroCase: FC<IntroCaseProps> = ({
             <h1 className={styles.intro__content__text__title__title}>{title}</h1>
             <p className={styles.intro__content__text__title__text}>{text}</p>
           </div>
-          <Link href={buttonLink} className={styles.intro__content__text__link}>Посмотреть весь дизайн</Link>
+          <Button onClick={() => buttonLink} tag={'button'} maxWidth={'232px'} className={styles.intro__content__text__link}>Посмотреть весь дизайн</Button>
+        </div>
+        <div className={styles.intro__content__background}>
+          <Image
+            src={backgroundImage}
+            alt='background'
+            width={870}
+            height={856}
+          />
         </div>
         <div className={styles.intro__content__description}>
           <div className={styles.intro__content__description__icons}>
@@ -39,14 +48,6 @@ const IntroCase: FC<IntroCaseProps> = ({
           </div>
           <p className={styles.intro__content__description__text}>{description}</p>
         </div>
-      </div>
-      <div className={styles.intro__background}>
-        <Image
-          src={backgroundImage}
-          alt='background'
-          width={870}
-          height={856}
-        />
       </div>
     </div>
   )

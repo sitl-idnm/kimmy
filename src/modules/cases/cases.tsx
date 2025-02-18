@@ -18,34 +18,39 @@ const itemsData = [
     title: 'Интернет-магазин для пекарни полного цикла',
     text: 'Разработали сайт с возможностью оформления заказа, оплаты и доставки',
     imageSrc: '/images/magic_ipad.png',
-    keyFilter: ['all', 'Разработка сайта', 'Дизайн', 'nocode']
+    keyFilter: ['all', 'Разработка сайта', 'Дизайн', 'nocode'],
+    link: '/'
   },
   {
     title: 'Лендинг no-code для серф-клуба в Москве',
     text: 'Разработали одностраничный сайт на Тильде по нашему дизайн-макету',
     imageSrc: '/images/bw_ipad.png',
-    keyFilter: ['all', 'Разработка сайта', 'Дизайн', 'nocode']
+    keyFilter: ['all', 'Разработка сайта', 'Дизайн', 'nocode'],
+    link: '/'
   },
   {
     title:
       'Англоязычный лендинг приложения для простой двухфакторной аутентификации на любых сервисах',
     text: 'Разработали сайт и отрисовали приложение с нуля',
     imageSrc: '/images/gloid_ipad.png',
-    keyFilter: ['all', 'Разработка сайта', 'Дизайн', 'nocode']
+    keyFilter: ['all', 'Разработка сайта', 'Дизайн', 'nocode'],
+    link: '/'
   },
   {
     title:
       'Сайт с конверсией 4,3% для производителя сладких новогодних подарков',
     text: 'Разработали многостраничный сайт и запустили контекстную рекламу',
     imageSrc: '/images/sweetcorp.png',
-    keyFilter: ['all', 'Разработка сайта', 'Дизайн', 'nocode', 'Контекстная реклама']
+    keyFilter: ['all', 'Разработка сайта', 'Дизайн', 'nocode', 'Контекстная реклама'],
+    link: '/sweetcorp'
   },
   {
     title:
       'Многостраничный сайт с онлайн-записью и базовым SEO для оздоровительного центра «Ровная спина»',
     text: 'Разработали многостраничный сайт с онлайн-записью',
     imageSrc: '/images/rovnayaspina.png',
-    keyFilter: ['all', 'Разработка сайта', 'Дизайн', 'nocode', 'SEO']
+    keyFilter: ['all', 'Разработка сайта', 'Дизайн', 'nocode', 'SEO'],
+    link: '/'
   }
 ]
 
@@ -135,6 +140,7 @@ const Cases: FC<CasesProps> = ({ className }) => {
                 text={item.text}
                 imageSrc={item.imageSrc}
                 isCasePage
+                link={item.link}
               />
             )
           } else if (item.keyFilter.includes(filterVar)) {
@@ -145,6 +151,7 @@ const Cases: FC<CasesProps> = ({ className }) => {
                 text={item.text}
                 imageSrc={item.imageSrc}
                 isCasePage
+                link={item.link}
               />
             )
           }

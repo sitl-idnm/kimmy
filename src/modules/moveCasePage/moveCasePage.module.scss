@@ -1,0 +1,89 @@
+@use "@styles/func";
+@use "@styles/mixins" as *;
+@use "@styles/variables";
+
+.root {
+	display: flex;
+	gap: 32px;
+
+	position: sticky;
+	top: 50px;
+
+	max-width: 1312px;
+	width: 100%;
+
+	margin: 0 auto;
+
+	@include tablet {
+		max-width: 744px;
+		flex-direction: column;
+	}
+
+	@include tablet-small {
+		max-width: 336px;
+		position: static;
+
+		gap: 16px;
+
+		top: auto;
+	}
+
+	&__title {
+		font-family: var(--font-inter);
+		font-size: 42px;
+		font-weight: 500;
+		line-height: 150%;
+		letter-spacing: 0;
+		color: var(--color-black);
+
+		@include tablet-small {
+			font-size: 32px;
+		}
+	}
+
+	.content {
+		display: flex;
+
+		@include tablet-small {
+			flex-direction: column;
+		}
+
+		&__item {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 21px 28px;
+
+			border-radius: 48px;
+
+			border: 1px solid #FFF;
+
+			background-color: #FFF;
+
+			transition: all 1s ease;
+
+			color: #16181B80;
+
+			font-family: var(--font-inter);
+			font-size: 20px;
+			font-weight: 500;
+			line-height: 150%;
+			letter-spacing: 0;
+
+			@include tablet-small {
+				font-size: 16px;
+
+				padding: 20px auto;
+
+				width: 100%;
+			}
+
+			&:hover,
+			&:focus {
+				background-color: var(--color-red-accent);
+				color: white;
+				border: 1px solid #FFFFFF32;
+			}
+		}
+	}
+}
