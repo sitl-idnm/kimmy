@@ -6,7 +6,7 @@ import { SweetCorpPageProps } from './sweetCorpPage.types'
 import { IntroCase } from '@/modules/introCase'
 import { ContentCase } from '@/modules/contentCaseSweetCorp'
 import { MoveCasePage } from '@/modules/moveCasePage'
-import { DefaultTextCase } from '@/components'
+import { CaseForm, DefaultTextCase } from '@/components'
 
 const SweetCorpPage: FC<SweetCorpPageProps> = ({
   className
@@ -35,6 +35,7 @@ const SweetCorpPage: FC<SweetCorpPageProps> = ({
         thirdAnchor={'Создание сайта'}
       />
       <ContentCase />
+      <CaseForm image={'/images/cases/clientpulse/1.png'} />
     </main>
   )
 }
