@@ -3,7 +3,7 @@ import classNames from 'classnames'
 
 import styles from './contentCaseClientPulse.module.scss'
 import { ContentCaseClientPulseProps } from './contentCaseClientPulse.types'
-import { CaseForm, DefaultTextCase, TextCase } from '@/components'
+import { DefaultTextCase, TextCase } from '@/components'
 
 const ContentCaseClientPulse: FC<ContentCaseClientPulseProps> = ({
   className
@@ -48,7 +48,7 @@ const ContentCaseClientPulse: FC<ContentCaseClientPulseProps> = ({
       <TextCase
         title={'Разработка логотипа и сайта'}
         subTitle={'Разработка логотипа'}
-        text={<>Заказчик выбрал первый вариант, мы его анимировали, чтобы продемонстрировать основную выгоду — 10+ инструментов для маркетинга и рекламы в одном личном кабинете</>}
+        text={<>Заказчик выбрал первый вариант, мы его анимировали, чтобы продемонстрировать основную выгоду — 10+ инструментов для маркетинга и рекламы в одном личном кабинете</>}
         image={'/images/cases/clientpulse/third.png'}
         id={''}
       />
@@ -259,7 +259,7 @@ const ContentCaseClientPulse: FC<ContentCaseClientPulseProps> = ({
           text={'Добавили информацию о возможностях создания индивидуального тарифа.'}
           image={'/images/cases/clientpulse/thirtysecond.png'}
           id={''}
-      />
+        />
     </div>
   )
 }
