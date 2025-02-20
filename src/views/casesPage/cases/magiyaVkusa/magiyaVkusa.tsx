@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import styles from './magiyaVkusa.module.scss'
 import { MagiyaVkusaProps } from './magiyaVkusa.types'
 import { IntroCase } from '@/modules/introCase'
-import { DefaultTextCase } from '@/components'
+import { CaseForm, DefaultTextCase } from '@/components'
 import { ContentCaseMagiyaVkusa } from '@/modules/contentCaseMagiyaVkusa'
 
 const MagiyaVkusa: FC<MagiyaVkusaProps> = ({
@@ -30,6 +30,7 @@ const MagiyaVkusa: FC<MagiyaVkusaProps> = ({
       <DefaultTextCase
         mainText={<>У нас получился простой, но информативный и интуитивно-понятный интернет-магазин, в котором жители и гости Москвы могут заказать вкусные пироги.</>}
       />
+      <CaseForm image={'/images/cases/magiyavkusa/form.png'} />
     </main>
   )
 }

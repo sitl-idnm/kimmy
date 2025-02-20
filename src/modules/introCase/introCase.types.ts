@@ -9,4 +9,5 @@ export interface IntroCaseProps {
   description: string
   tilda: boolean
   webflow: boolean
+  wordpress?: boolean
 }

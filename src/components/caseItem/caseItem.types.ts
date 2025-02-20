@@ -4,5 +4,5 @@ export interface CaseItemProps {
   text?: string,
   imageSrc: string,
   isCasePage?: boolean,
-  link?: string
+  link: string
 }

@@ -5,7 +5,7 @@ import styles from './bestWavePage.module.scss'
 import { BestWavePageProps } from './bestWavePage.types'
 import { IntroCase } from '@/modules/introCase'
 import { MoveCasePage } from '@/modules/moveCasePage'
-import { DefaultTextCase } from '@/components'
+import { CaseForm, DefaultTextCase } from '@/components'
 import { ContentCaseBestWave } from '@/modules/contentCaseBestWave'
 
 const BestWavePage: FC<BestWavePageProps> = ({
@@ -16,7 +16,7 @@ const BestWavePage: FC<BestWavePageProps> = ({
   return (
     <main className={rootClassName}>
       <IntroCase
-        backgroundImage={'/images/cases/sweetcorp/SweetCorpCaseBackground.png'}
+        backgroundImage={'/images/cases/bestwave/introduce.png'}
         title={'Лендинг no-code'}
         text={<>для серф-клуба в Москве</>}
         buttonLink={''}
@@ -33,6 +33,7 @@ const BestWavePage: FC<BestWavePageProps> = ({
         thirdAnchor={'Результат'}
       />
       <ContentCaseBestWave />
+      <CaseForm image={'/images/cases/bestwave/form.png'} />
     </main>
   )
 }

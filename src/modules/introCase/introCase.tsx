@@ -8,6 +8,7 @@ import Image from 'next/image'
 import FigmaIcon from '@icons/figmaIcon.svg'
 import TildaIcon from '@icons/tilda.svg'
 import WebflowIcon from '@icons/webflowIconCase.svg'
+import WordpressIcon from '@icons/wordpressIcon.svg'
 import { Button } from '@/ui'
 
 const IntroCase: FC<IntroCaseProps> = ({
@@ -19,6 +20,7 @@ const IntroCase: FC<IntroCaseProps> = ({
   description,
   tilda,
   webflow,
+  wordpress
 }) => {
   const rootClassName = classNames(className, styles.intro)
 
@@ -45,6 +47,7 @@ const IntroCase: FC<IntroCaseProps> = ({
             <FigmaIcon />
             { tilda && <TildaIcon /> }
             { webflow && <WebflowIcon /> }
+            { wordpress && <WordpressIcon /> }
           </div>
           <p className={styles.intro__content__description__text}>{description}</p>
         </div>
