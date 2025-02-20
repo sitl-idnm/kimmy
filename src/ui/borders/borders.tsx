@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, useEffect, useRef, useCallback } from 'react';
+import { FC, useEffect, useRef, useCallback, useMemo } from 'react';
 import classNames from 'classnames';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -25,12 +25,12 @@ const Borders: FC<BordersProps> = ({ className, cornersWithCrosses = [] }) => {
   const bottomLeftRef = useRef<HTMLDivElement>(null);
   const bottomRightRef = useRef<HTMLDivElement>(null);
 
-  const crossRefs = {
+  const crossRefs = useMemo(() => ({
     topLeft: topLeftRef,
     topRight: topRightRef,
     bottomLeft: bottomLeftRef,
     bottomRight: bottomRightRef,
-  };
+  }), []);
 
   const animateBorders = useCallback(() => {
     const tl = gsap.timeline({
