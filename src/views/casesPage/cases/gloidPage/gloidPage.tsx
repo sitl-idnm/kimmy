@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import styles from './gloidPage.module.scss'
 import { GloidPageProps } from './gloidPage.types'
 import { IntroCase } from '@/modules/introCase'
-import { DefaultTextCase } from '@/components'
+import { CaseForm, DefaultTextCase } from '@/components'
 import { ContentCaseGloid } from '@/modules/contentCaseGloid'
 
 const GloidPage: FC<GloidPageProps> = ({
@@ -31,6 +31,7 @@ const GloidPage: FC<GloidPageProps> = ({
       <DefaultTextCase
         mainText={<>Так клиент получил готовый лендинг с демонстрацией работы приложения еще до его релиза</>}
       />
+      <CaseForm image={'/images/cases/gloid/form.png'} />
     </main>
   )
 }

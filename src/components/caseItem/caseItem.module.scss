@@ -32,6 +32,8 @@
 	&:hover {
 		background-color: #F7F7F7;
 
+		opacity: 1;
+
 		.bottom__button {
 			opacity: 1;
 			transform: translateY(0);
@@ -132,6 +134,8 @@
 	flex-direction: column;
 	justify-content: space-between;
 
+	position: relative;
+
 	border-radius: 32px;
 
 	background-color: var(--color-grey-light);
@@ -152,6 +156,11 @@
 		border-radius: 16px;
 
 		margin-top: 20px;
+	}
+
+
+	&:hover {
+		opacity: 1;
 	}
 
 	.top {
@@ -181,6 +190,8 @@
 		flex-direction: column;
 		gap: 12px;
 
+		// max-width: 364px;
+
 		@include tablet-small {
 			gap: 8px;
 		}
@@ -206,9 +217,24 @@
 			font-size: 14px;
 			line-height: 150%;
 
+			max-width: 364px;
+
 			color: var(--color-black);
 
 			transition: color 1s ease;
+		}
+
+		&__button {
+			position: absolute;
+			bottom: 24px;
+			right: 24px;
+			opacity: 1;
+			transform: translateY(10px);
+			transition: opacity 0.3s ease, transform 0.3s ease;
+
+			@include tablet-small {
+				display: none;
+			}
 		}
 	}
 

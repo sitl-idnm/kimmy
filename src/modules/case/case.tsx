@@ -12,9 +12,9 @@ import { useGSAP } from '@gsap/react'
 import Link from 'next/link'
 
 const itemsData = [
-  { title: 'Магия вкуса', text: 'Интернет-магазин для пекарни полного цикла', imageSrc: '/images/tablet__magic.png' },
-  { title: 'ClientPulse', text: 'Многостраничный сайт для сервиса по работе с клиентскими данными ', imageSrc: '/images/clientpulse.png' },
-  { title: 'BestWave', text: 'Лендинг no-code для серф-клуба в Москве', imageSrc: '/images/bestwave.png' },
+  { title: 'Магия вкуса', text: 'Интернет-магазин для пекарни полного цикла', imageSrc: '/images/tablet__magic.png', link: '/cases/magiya-vkusa' },
+  { title: 'ClientPulse', text: 'Многостраничный сайт для сервиса по работе с клиентскими данными ', imageSrc: '/images/clientpulse.png', link: '/cases/clientpulse' },
+  { title: 'BestWave', text: 'Лендинг no-code для серф-клуба в Москве', imageSrc: '/images/bestwave.png', link: '/cases/best-wave' },
 ]
 
 const Case: FC<CaseProps> = ({
@@ -50,6 +50,7 @@ const Case: FC<CaseProps> = ({
             title={item.title}
             text={item.text}
             imageSrc={item.imageSrc}
+            link={item.link}
           />
         ))}
         <Link href='/cases'>

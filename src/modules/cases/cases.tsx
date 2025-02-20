@@ -9,24 +9,25 @@ import { CasesProps } from './cases.types'
 
 const itemsData = [
   {
-    title: 'Многостраничный сайт для сервиса по работе с клиентскими данными',
+    title: 'Многостраничный сайт для сервиса по работе с клиентскими данными',
     text: 'Создали новый фирменный стиль и многостраничный сайт',
     imageSrc: '/images/oneCDP_ipad.png',
-    keyFilter: ['all', 'Разработка сайта', 'Дизайн', 'nocode']
+    keyFilter: ['all', 'Разработка сайта', 'Дизайн', 'nocode'],
+    link: '/cases/clientpulse'
   },
   {
     title: 'Интернет-магазин для пекарни полного цикла',
     text: 'Разработали сайт с возможностью оформления заказа, оплаты и доставки',
     imageSrc: '/images/magic_ipad.png',
     keyFilter: ['all', 'Разработка сайта', 'Дизайн', 'nocode'],
-    link: '/'
+    link: '/cases/magiya-vkusa'
   },
   {
     title: 'Лендинг no-code для серф-клуба в Москве',
     text: 'Разработали одностраничный сайт на Тильде по нашему дизайн-макету',
     imageSrc: '/images/bw_ipad.png',
     keyFilter: ['all', 'Разработка сайта', 'Дизайн', 'nocode'],
-    link: '/'
+    link: '/cases/best-wave'
   },
   {
     title:
@@ -34,7 +35,7 @@ const itemsData = [
     text: 'Разработали сайт и отрисовали приложение с нуля',
     imageSrc: '/images/gloid_ipad.png',
     keyFilter: ['all', 'Разработка сайта', 'Дизайн', 'nocode'],
-    link: '/'
+    link: '/cases/gloid'
   },
   {
     title:
@@ -42,7 +43,7 @@ const itemsData = [
     text: 'Разработали многостраничный сайт и запустили контекстную рекламу',
     imageSrc: '/images/sweetcorp.png',
     keyFilter: ['all', 'Разработка сайта', 'Дизайн', 'nocode', 'Контекстная реклама'],
-    link: '/sweetcorp'
+    link: '/cases/sweetcorp'
   },
   {
     title:
@@ -50,7 +51,7 @@ const itemsData = [
     text: 'Разработали многостраничный сайт с онлайн-записью',
     imageSrc: '/images/rovnayaspina.png',
     keyFilter: ['all', 'Разработка сайта', 'Дизайн', 'nocode', 'SEO'],
-    link: '/'
+    link: '/cases/rovnaya-spina'
   }
 ]
 

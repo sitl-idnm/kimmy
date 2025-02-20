@@ -13,6 +13,11 @@
 
 	padding-top: 70px;
 
+	& div:first-child > div > div > div:first-child {
+		max-width: 564px;
+	}
+
+
 	@include desktop {
 		overflow-x: hidden;
 		overflow-y: visible;
