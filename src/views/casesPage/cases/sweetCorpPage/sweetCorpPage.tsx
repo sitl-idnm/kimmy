@@ -16,13 +16,15 @@ const SweetCorpPage: FC<SweetCorpPageProps> = ({
   return (
     <main className={rootClassName}>
       <IntroCase
+        adaptiveBackgroundImage={'/images/cases/sweetcorp/SweetCorpCaseBackgroundAdaptive.png'}
         backgroundImage={'/images/cases/sweetcorp/SweetCorpCaseBackground.png'}
         title={'Сайт с конверсией 4,3%'}
-        text={<>для производителя сладких<br />новогодних подарков</>}
+        text={<>для производителя сладких новогодних подарков</>}
         buttonLink={''}
         description={'Разработали сайт с отдельными страницами для B2B и B2C сегментов'}
         tilda={false}
         webflow={true}
+        wordpress={false}
       />
       <DefaultTextCase
         mainText={<><span>Компания <span style={{fontWeight: 600}}>«Sweet Corp»</span> продает сладкие новогодние подарки оптом и в розницу. </span><span>Они работают с двумя сегментами аудитории:</span><ul><li>B2B: HR-специалисты и менеджеры по закупкам, которые заказывают сладкие новогодние подарки оптом для детей сотрудников;</li>

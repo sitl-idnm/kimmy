@@ -83,6 +83,14 @@
   max-width: 192px;
   width: 100%;
   gap: 16px;
+
+  @include tablet {
+    max-width: 248px;
+  }
+
+  @include tablet-small {
+    max-width: 40px;
+  }
 }
 
 .burgerbutton {

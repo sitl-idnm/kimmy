@@ -15,6 +15,7 @@ const MagiyaVkusa: FC<MagiyaVkusaProps> = ({
   return (
     <main className={rootClassName}>
       <IntroCase
+        adaptiveBackgroundImage={'/images/cases/magiyavkusa/MagiyaVkusaCaseBackgroundAdaptive.png'}
         backgroundImage={'/images/cases/magiyavkusa/introduce.png'}
         title={'Интернет-магазин'}
         text={<>для пекарни полного цикла</>}

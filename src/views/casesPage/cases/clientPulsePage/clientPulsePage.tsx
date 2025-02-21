@@ -17,6 +17,7 @@ const ClientPulsePage: FC<ClientPulsePageProps> = ({
   return (
     <main className={rootClassName}>
       <IntroCase
+        adaptiveBackgroundImage={'/images/cases/clientpulse/ClientPulseCaseBackgroundAdaptive.png'}
         backgroundImage={'/images/cases/clientpulse/ClientPulseCaseBackground.png'}
         title={'Многостраничный сайт'}
         text={<>для сервиса по работе<br />с клиентскими данными новодних подарков</>}

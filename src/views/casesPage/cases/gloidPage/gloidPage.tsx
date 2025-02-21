@@ -15,6 +15,7 @@ const GloidPage: FC<GloidPageProps> = ({
   return (
     <main className={rootClassName}>
       <IntroCase
+        adaptiveBackgroundImage={'/images/cases/gloid/GloidCaseBackgroundAdaptive.png'}
         backgroundImage={'/images/cases/gloid/introduce.png'}
         title={'Англоязычный лендинг приложения'}
         text={<>для простой двухфакторной аутентификации на любых сервисах</>}

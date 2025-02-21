@@ -1,4 +1,6 @@
-import { FC } from 'react'
+'use client'
+
+import { FC, useState } from 'react'
 import classNames from 'classnames'
 
 import styles from './textCase.module.scss'
@@ -13,7 +15,13 @@ const TextCase: FC<TextCaseProps> = ({
   image,
   id
 }) => {
+  const [isNarrow, setIsNarrow] = useState(false)
   const rootClassName = classNames(styles.root, className)
+
+  const handleImageLoad = ({ naturalWidth, naturalHeight }: { naturalWidth: number; naturalHeight: number }) => {
+    const ratio = naturalWidth / naturalHeight
+    setIsNarrow(ratio < 1.2)
+  }
 
   return (
     <div className={rootClassName} id={id}>
@@ -22,18 +30,25 @@ const TextCase: FC<TextCaseProps> = ({
         {subTitle && <h3>{subTitle}</h3>}
         <p>{text}</p>
       </div>
-      <div>
-        { image !== '' &&
+      <div className={classNames(styles.imageWrapper, { [styles.narrowImage]: isNarrow })}>
+        {image !== '' && (
           <Image
             src={image}
-            alt={title}
+            alt={title || 'Case study image'}
             quality={100}
             width={0}
             height={0}
             sizes="100vw"
-            style={{ width: '100%', height: 'auto' }} // optional
+            style={{
+              width: '100%',
+              height: 'auto',
+              objectFit: isNarrow ? 'contain' : 'cover',
+              maxWidth: isNarrow ? '600px' : '100%'
+            }}
+            priority
+            onLoadingComplete={handleImageLoad}
           />
-        }
+        )}
       </div>
     </div>
   )
