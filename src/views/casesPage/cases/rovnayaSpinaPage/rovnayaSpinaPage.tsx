@@ -17,6 +17,7 @@ const RovnayaSpinaPage: FC<RovnayaSpinaPageProps> = ({
   return (
     <main className={rootClassName}>
       <IntroCase
+        adaptiveBackgroundImage={'/images/cases/rovnayaspina/RovnayaSpinaCaseBackgroundAdaptive.png'}
         backgroundImage={'/images/cases/rovnayaspina/introduce.png'}
         title={'Многостраничный сайт с онлайн-записью и базовым SEO'}
         text={<>для оздоровительного центра<br />«Ровная спина»</>}

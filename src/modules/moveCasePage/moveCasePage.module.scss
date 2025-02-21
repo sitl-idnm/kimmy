@@ -12,10 +12,8 @@
 	max-width: 1312px;
 	width: 100%;
 
-	margin: 0 auto;
-
 	@include tablet {
-		max-width: 744px;
+		max-width: max-content;
 		flex-direction: column;
 	}
 
@@ -62,13 +60,19 @@
 
 			transition: all 1s ease;
 
-			color: #16181B80;
+			color: rgba(22, 24, 27, 0.8);
 
 			font-family: var(--font-inter);
 			font-size: 20px;
 			font-weight: 500;
 			line-height: 150%;
 			letter-spacing: 0;
+			cursor: pointer;
+
+			a {
+				text-decoration: none;
+				color: inherit;
+			}
 
 			@include tablet-small {
 				font-size: 16px;
@@ -79,10 +83,12 @@
 			}
 
 			&:hover,
-			&:focus {
+			&:focus,
+			&.active {
 				background-color: var(--color-red-accent);
 				color: white;
-				border: 1px solid #FFFFFF32;
+				border: 1px solid var(--color-red-accent);
+				opacity: 1;
 			}
 		}
 	}

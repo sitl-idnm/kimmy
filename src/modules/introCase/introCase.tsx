@@ -14,6 +14,7 @@ import { Button } from '@/ui'
 const IntroCase: FC<IntroCaseProps> = ({
   className,
   backgroundImage,
+  adaptiveBackgroundImage,
   title,
   text,
   buttonLink,
@@ -36,7 +37,7 @@ const IntroCase: FC<IntroCaseProps> = ({
         </div>
         <div className={styles.intro__content__background}>
           <Image
-            src={backgroundImage}
+            src={window.innerWidth < 1200 ?adaptiveBackgroundImage : backgroundImage}
             alt='background'
             width={870}
             height={856}

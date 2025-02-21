@@ -18,6 +18,8 @@
 
 	@include tablet-small {
 		max-width: 336px;
+
+		gap: 32px;
 	}
 
 	.page {
@@ -44,7 +46,7 @@
 
 		margin-bottom: -36px;
 
-		color: #16181B80;
+		color: rgba(22, 24, 27, 0.8);
 
 		max-width: 960px;
 

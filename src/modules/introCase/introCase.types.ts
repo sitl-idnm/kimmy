@@ -10,4 +10,5 @@ export interface IntroCaseProps {
   tilda: boolean
   webflow: boolean
   wordpress?: boolean
+  adaptiveBackgroundImage: string
 }

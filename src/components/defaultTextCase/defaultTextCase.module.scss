@@ -12,7 +12,6 @@
 
 	@include tablet {
 		max-width: 744px;
-		margin: 0 auto;
 	}
 
 	@include tablet-small {
@@ -26,7 +25,7 @@
 	font-weight: 400;
 	line-height: 150%;
 	letter-spacing: 0;
-	color: #16181B80;
+	color: rgba(22, 24, 27, 0.8);
 
 	display: flex;
 	flex-direction: column;
@@ -48,7 +47,7 @@
 	font-weight: 400;
 	line-height: 150%;
 	letter-spacing: 0;
-	color: #16181B60;
+	color: rgba(22, 24, 27, 0.6);
 
 	display: flex;
 	flex-direction: column;

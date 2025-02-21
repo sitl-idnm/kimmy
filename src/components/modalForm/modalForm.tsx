@@ -73,7 +73,7 @@ const ModalForm: FC<ModalFormProps> = ({ className, details, count }) => {
 	}
 
 	return (
-		<div className={rootClassName} style={details ? {height: '790px'} : {}}>
+		<div className={rootClassName} style={details ? {height: '85vh'} : {}}>
 			{
 				details ? <h2 className={styles.root__title}>Заказать сайт</h2>
 				: count ? <h2 className={styles.root__title}>Рассчитать срок и стоимость моего проекта</h2> : <h2 className={styles.root__title}>Получить консультацию</h2>

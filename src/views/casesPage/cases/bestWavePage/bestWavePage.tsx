@@ -16,6 +16,7 @@ const BestWavePage: FC<BestWavePageProps> = ({
   return (
     <main className={rootClassName}>
       <IntroCase
+        adaptiveBackgroundImage={'/images/cases/bestwave/BestWaveCaseBackgroundAdaptive.png'}
         backgroundImage={'/images/cases/bestwave/introduce.png'}
         title={'Лендинг no-code'}
         text={<>для серф-клуба в Москве</>}
