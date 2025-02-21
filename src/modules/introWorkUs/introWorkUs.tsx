@@ -30,7 +30,7 @@ const IntroWorkUs: FC<IntroWorkUsProps> = ({ className }) => {
             создаём сильные офферы.
           </p>
           <div className={styles.absoluteblock__content}>
-            <Image src={howImage} alt="how?" className={styles.how} />
+            <Image src={howImage} alt="how?" className={styles.how} quality={100} />
             <Line className={styles.linehow} />
           </div>
         </div>
@@ -39,7 +39,7 @@ const IntroWorkUs: FC<IntroWorkUsProps> = ({ className }) => {
           Создаём сайты, которые не просто существуют, а{' '}
           <span className={styles.box__text__white}>конвертируют</span>
         </p>
-        <Image src={abstrct} alt="abstrct" className={styles.box__image} />
+        <Image src={abstrct} alt="abstrct" className={styles.box__image} quality={100} />
       </div>
       <div className={styles.white}>
         <h2 className={styles.white__title}>
@@ -53,7 +53,7 @@ const IntroWorkUs: FC<IntroWorkUsProps> = ({ className }) => {
           У нас ты будешь работать над значимыми проектами, принимать решения и
           развиваться.
         </p>
-        <Image src={abstrct2} alt="abstrct2" className={styles.abst} />
+        <Image src={abstrct2} alt="abstrct2" className={styles.abst} quality={100} />
       </div>
     </div>
   )

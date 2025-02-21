@@ -6,6 +6,7 @@ import { MagiyaVkusaProps } from './magiyaVkusa.types'
 import { IntroCase } from '@/modules/introCase'
 import { CaseForm, DefaultTextCase } from '@/components'
 import { ContentCaseMagiyaVkusa } from '@/modules/contentCaseMagiyaVkusa'
+import NewModalContainer from '@/components/newModalContainer/newModalContainer'
 
 const MagiyaVkusa: FC<MagiyaVkusaProps> = ({
   className
@@ -14,6 +15,7 @@ const MagiyaVkusa: FC<MagiyaVkusaProps> = ({
 
   return (
     <main className={rootClassName}>
+      <NewModalContainer />
       <IntroCase
         adaptiveBackgroundImage={'/images/cases/magiyavkusa/MagiyaVkusaCaseBackgroundAdaptive.png'}
         backgroundImage={'/images/cases/magiyavkusa/introduce.png'}

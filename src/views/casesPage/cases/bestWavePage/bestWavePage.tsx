@@ -7,6 +7,7 @@ import { IntroCase } from '@/modules/introCase'
 import { MoveCasePage } from '@/modules/moveCasePage'
 import { CaseForm, DefaultTextCase } from '@/components'
 import { ContentCaseBestWave } from '@/modules/contentCaseBestWave'
+import NewModalContainer from '@/components/newModalContainer/newModalContainer'
 
 const BestWavePage: FC<BestWavePageProps> = ({
   className
@@ -15,6 +16,7 @@ const BestWavePage: FC<BestWavePageProps> = ({
 
   return (
     <main className={rootClassName}>
+      <NewModalContainer />
       <IntroCase
         adaptiveBackgroundImage={'/images/cases/bestwave/BestWaveCaseBackgroundAdaptive.png'}
         backgroundImage={'/images/cases/bestwave/introduce.png'}

@@ -7,6 +7,7 @@ import { PlusWork } from '@/modules/plusWork'
 import { RedBoxWork } from '@/modules/redBoxWork'
 import { FormWorkUs } from '@/modules/formWorkUs'
 import { IntroWorkUs } from '@/modules/introWorkUs'
+import NewModalContainer from '@/components/newModalContainer/newModalContainer'
 
 const WorkUsPage: FC<WorkUsPageProps> = ({
   className
@@ -15,6 +16,7 @@ const WorkUsPage: FC<WorkUsPageProps> = ({
 
   return (
     <main className={rootClassName}>
+      <NewModalContainer />
       <IntroWorkUs />
       <PlusWork />
       <RedBoxWork />

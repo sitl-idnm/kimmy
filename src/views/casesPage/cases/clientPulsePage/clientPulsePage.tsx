@@ -8,6 +8,7 @@ import { CaseForm, DefaultTextCase, TextCase } from '@/components'
 import Image from 'next/image'
 import { MoveCasePage } from '@/modules/moveCasePage'
 import { ContentCaseClientPulse } from '@/modules/contentCaseClientPulse'
+import NewModalContainer from '@/components/newModalContainer/newModalContainer'
 
 const ClientPulsePage: FC<ClientPulsePageProps> = ({
   className
@@ -16,6 +17,7 @@ const ClientPulsePage: FC<ClientPulsePageProps> = ({
 
   return (
     <main className={rootClassName}>
+      <NewModalContainer />
       <IntroCase
         adaptiveBackgroundImage={'/images/cases/clientpulse/ClientPulseCaseBackgroundAdaptive.png'}
         backgroundImage={'/images/cases/clientpulse/ClientPulseCaseBackground.png'}

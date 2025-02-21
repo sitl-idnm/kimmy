@@ -6,6 +6,7 @@ import { GloidPageProps } from './gloidPage.types'
 import { IntroCase } from '@/modules/introCase'
 import { CaseForm, DefaultTextCase } from '@/components'
 import { ContentCaseGloid } from '@/modules/contentCaseGloid'
+import NewModalContainer from '@/components/newModalContainer/newModalContainer'
 
 const GloidPage: FC<GloidPageProps> = ({
   className
@@ -14,6 +15,7 @@ const GloidPage: FC<GloidPageProps> = ({
 
   return (
     <main className={rootClassName}>
+      <NewModalContainer />
       <IntroCase
         adaptiveBackgroundImage={'/images/cases/gloid/GloidCaseBackgroundAdaptive.png'}
         backgroundImage={'/images/cases/gloid/introduce.png'}
