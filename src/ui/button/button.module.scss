@@ -54,6 +54,7 @@ $speed: 0.5s ease;
     align-items: center;
     justify-content: center;
     position: absolute;
+    border-radius: 10px;
 
     transition: $speed;
     transform: translateY(-50%) rotateX(90deg);
@@ -81,6 +82,7 @@ $speed: 0.5s ease;
     align-items: center;
     justify-content: center;
     position: relative;
+    border-radius: 10px;
 
     transition: $speed;
     transform: translateY(0) rotateX(0);
