@@ -9,6 +9,7 @@ import { CaseForm, DefaultTextCase } from '@/components'
 import { MoveCasePage } from '@/modules/moveCasePage'
 import { ContentCaseRovnayaSpina } from '@/modules/contentCaseRovnayaSpina'
 import NewModalContainer from '@/components/newModalContainer/newModalContainer'
+import { WidgetCase } from '@/modules/widgetCase'
 
 const RovnayaSpinaPage: FC<RovnayaSpinaPageProps> = ({
   className
@@ -18,6 +19,7 @@ const RovnayaSpinaPage: FC<RovnayaSpinaPageProps> = ({
   return (
     <main className={rootClassName}>
       <NewModalContainer />
+      <WidgetCase />
       <IntroCase
         adaptiveBackgroundImage={'/images/cases/rovnayaspina/RovnayaSpinaCaseBackgroundAdaptive.png'}
         backgroundImage={'/images/cases/rovnayaspina/introduce.png'}
