@@ -9,11 +9,6 @@ import axios from 'axios';
 
 import Close from '@icons/widgetClose.svg'
 
-const handleNameInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-	const value = event.target.value;
-	event.target.value = value.replace(/\d/g, '');
-};
-
 const WidgetCase: FC<WidgetCaseProps> = ({
   className
 }) => {
