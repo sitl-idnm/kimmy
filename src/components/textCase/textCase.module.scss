@@ -88,7 +88,6 @@
 		}
 
 		@include tablet-small {
-			margin: 0 -12px;
 			width: calc(100% + 24px);
 
 			&.narrowImage {
