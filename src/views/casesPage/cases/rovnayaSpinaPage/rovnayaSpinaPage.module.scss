@@ -13,8 +13,14 @@
 
 	padding-top: 70px;
 
-	& div:first-child > div > div > div:first-child {
+	& div:nth-child(2) > div > div > div:first-child {
 		max-width: 600px;
+		margin-top: -64px;
+
+		@include tablet {
+			margin-top: 0;
+			max-width: 100%;
+		}
 	}
 
 	@include desktop {

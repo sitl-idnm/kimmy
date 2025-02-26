@@ -106,6 +106,26 @@
 			position: static;
 		}
 
+		&__button {
+			width: 228px;
+
+			@include tablet {
+				width: 160px;
+
+				font-size: 12px;
+			}
+		}
+
+		&__button_2 {
+			width: 304px;
+
+			@include tablet {
+				width: 160px;
+
+				font-size: 12px;
+			}
+		}
+
 		button {
 			@include tablet {
 				width: 160px;

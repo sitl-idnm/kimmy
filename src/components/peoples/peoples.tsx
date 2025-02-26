@@ -23,6 +23,7 @@ const Peoples: FC<PeoplesProps> = ({
             tag="a"
             href="https://t.me/pavel_expert"
             maxWidth='228px'
+            className={styles.peoples__card__button}
           >
             Написать в Telegram
           </Button>
@@ -35,6 +36,7 @@ const Peoples: FC<PeoplesProps> = ({
               tag="a"
               href="https://t.me/konstantin_v_k"
               maxWidth='304px'
+              className={styles.peoples__card__button_2}
             >
               Написать в Telegram
             </Button>

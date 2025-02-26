@@ -19,6 +19,7 @@
 	margin: 0 auto;
 
 	border-radius: 60px;
+	clip-path: polygon(-100% -100%, 1312px -100%, 1312px 100%, -100% 100%);
 
 	@include tablet {
 		height: max-content;
@@ -32,11 +33,11 @@
 	}
 
 	@include tablet-small {
-		// max-width: 336px;
 		padding-top: 24px;
 		align-items: flex-start;
 
 		border-radius: 20px;
+		clip-path: polygon(-100% -100%, 336px -100%, 336px 100%, -100% 100%);
 	}
 
 	&__content {
@@ -61,11 +62,15 @@
 		&__background {
 			position: absolute;
 
-			width: 870px;
+			width: 806px;
 			height: 856px;
 
-			right: -65px;
+			right: 0;
 			top: -70px;
+			
+			border-radius: 60px;
+
+			overflow: hidden;
 
 			@include desktop {
 				right: -100px;

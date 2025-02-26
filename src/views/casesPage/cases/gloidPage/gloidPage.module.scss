@@ -13,7 +13,7 @@
 
 	padding-top: 70px;
 
-	& div:first-child > div > div > div:first-child {
+	& div:nth-child(2) > div > div > div:first-child {
 		max-width: 564px;
 	}
 
