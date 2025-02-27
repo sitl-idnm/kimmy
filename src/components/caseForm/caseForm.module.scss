@@ -28,6 +28,10 @@
 		margin: 0 12px;
 	}
 
+	@include tablet-small {
+		margin: 0;
+	}
+
 	& > div:nth-child(1) {
 		margin: -87px;
 
