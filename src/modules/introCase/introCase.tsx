@@ -1,5 +1,5 @@
 'use client'
-import { FC, useEffect, useState } from 'react'
+import { FC, useEffect, useState, useCallback } from 'react'
 import classNames from 'classnames'
 
 import styles from './introCase.module.scss'
@@ -26,18 +26,18 @@ const IntroCase: FC<IntroCaseProps> = ({
   const rootClassName = classNames(className, styles.intro)
   const [isAdaptive, setIsAdaptive] = useState(backgroundImage)
 
-  const handleResize = () => {
+  const handleResize = useCallback(() => {
     setIsAdaptive(window.innerWidth < 1200 ? adaptiveBackgroundImage : backgroundImage)
-  }
+  }, [backgroundImage, adaptiveBackgroundImage])
 
   useEffect(() => {
-    handleResize() // Инициализация при монтировании
+    handleResize()
     window.addEventListener('resize', handleResize)
 
     return () => {
       window.removeEventListener('resize', handleResize)
     }
-  }, [backgroundImage, adaptiveBackgroundImage]) // Добавляем зависимости
+  }, [handleResize])
 
   return (
     <div className={rootClassName}>

@@ -81,7 +81,7 @@ const WidgetCase: FC<WidgetCaseProps> = ({
                 )}
               </div>
             </form>
-            <p className={styles.form__description}>Нажимая на кнопку "Получить консультацию" Вы соглашаетесь с <a>обработкой персональных данных</a></p>
+            <p className={styles.form__description}>Нажимая на кнопку &quot;Получить консультацию&quot; Вы соглашаетесь с <a>обработкой персональных данных</a></p>
           </div>
         </div>
       </div>
