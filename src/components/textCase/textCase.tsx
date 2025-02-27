@@ -43,7 +43,7 @@ const TextCase: FC<TextCaseProps> = ({
               width: '100%',
               height: 'auto',
               objectFit: isNarrow ? 'contain' : 'cover',
-              maxWidth: isNarrow ? '600px' : '100%'
+              maxWidth: isNarrow ? '100%' : '100%'
             }}
             priority
             onLoadingComplete={handleImageLoad}
