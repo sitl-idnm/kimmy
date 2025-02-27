@@ -23,6 +23,8 @@
 
 	@include desktop {
 		padding-top: 55px;
+
+		clip-path: polygon(-100% -100%, 100% -100%, 100% 100%, -100% 100%);
 	}
 
 	@include tablet {
@@ -41,7 +43,7 @@
 		align-items: flex-start;
 
 		border-radius: 20px;
-		clip-path: polygon(-100% -100%, 336px -100%, 336px 100%, -100% 100%);
+		clip-path: polygon(-100% -100%, 100% -100%, 100% 100%, -100% 100%);
 	}
 
 	&__content {
@@ -77,7 +79,12 @@
 			overflow: hidden;
 
 			@include desktop {
-				right: 0;
+				right: -50px;
+				top: auto;
+				bottom: 0;
+
+				width: 760px;
+				height: 760px;
 			}
 
 			@include tablet {
@@ -91,24 +98,29 @@
 			}
 
 			@include tablet-small {
+				position: relative;
 
 				top: 0;
 				right: -50px;
 
-				width: 360px;
-				height: 400px;
+				width: 100%;
+				height: auto;
 			}
 
 			img {
+				@include desktop {
+					width: 760px;
+					height: 760px;
+				}
+
 				@include tablet {
 					width: 100%;
 					height: auto;
 				}
 
 				@include tablet-small {
-					// display: block;
-					width: 360px;
-					height: 400px;
+					width: 100%;
+					height: auto;
 				}
 			}
 		}
@@ -209,7 +221,7 @@
 
 				max-width: 296px;
 
-				margin-top: -50px;
+				margin-top: 0px;
 			}
 
 			&__icons {

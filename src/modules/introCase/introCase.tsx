@@ -24,15 +24,20 @@ const IntroCase: FC<IntroCaseProps> = ({
   wordpress
 }) => {
   const rootClassName = classNames(className, styles.intro)
-  const [isAdaptive, setIsAdaptive] = useState('')
+  const [isAdaptive, setIsAdaptive] = useState(backgroundImage)
+
+  const handleResize = () => {
+    setIsAdaptive(window.innerWidth < 1200 ? adaptiveBackgroundImage : backgroundImage)
+  }
 
   useEffect(() => {
-    if (window.innerWidth < 1200) {
-      setIsAdaptive(adaptiveBackgroundImage)
-    } else {
-      setIsAdaptive(backgroundImage)
+    handleResize() // Инициализация при монтировании
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
     }
-  });
+  }, [backgroundImage, adaptiveBackgroundImage]) // Добавляем зависимости
 
   return (
     <div className={rootClassName}>
@@ -50,6 +55,7 @@ const IntroCase: FC<IntroCaseProps> = ({
             alt='background'
             width={870}
             height={856}
+            priority
           />
         </div>
         <div className={styles.intro__content__description}>
