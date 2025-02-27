@@ -26,14 +26,14 @@ const ContentCaseRovnayaSpina: FC<ContentCaseRovnayaSpinaProps> = ({
         title={'Разработка сайта'}
         subTitle={'Меню'}
         text={<><span>Структура меню на старом сайте полностью отвечала потребностям аудитории, поэтому мы оставили ее как есть.</span><span>Каждый пункт и подпункт меню ведет на отдельную страницу. </span></>}
-        image={'/images/cases/rovnayaSpina/1.png'}
+        image={'/images/cases/rovnayaspina/1.png'}
         id={'second'}
       />
       <TextCase
         title={''}
         subTitle={''}
         text={null}
-        image={'/images/cases/rovnayaSpina/2.png'}
+        image={'/images/cases/rovnayaspina/2.png'}
         id={''}
       />
       <div className={styles.page}>
@@ -42,7 +42,7 @@ const ContentCaseRovnayaSpina: FC<ContentCaseRovnayaSpinaProps> = ({
           title={''}
           subTitle={''}
           text={null}
-          image={'/images/cases/rovnayaSpina/2.png'}
+          image={'/images/cases/rovnayaspina/2.png'}
           id={''}
         />
         <Button maxWidth='278px'>Смотреть страницу полностью</Button>
@@ -51,133 +51,133 @@ const ContentCaseRovnayaSpina: FC<ContentCaseRovnayaSpinaProps> = ({
         title={''}
         subTitle={''}
         text={<><span>На первом экране мы разместили основную выгоду и особенность компании – избавление от боли за 1 сеанс.</span><span>А также перечислили проблемы, с которыми работает центр. Так посетитель может свериться со своим запросом, понять, что тут есть для него информация и продолжить изучение. То есть, пользователь, который страдает от мигрени, увидев, что тут ему могут помочь с решением этой проблемы, охотнее продолжит изучение страницы.</span></>}
-        image={'/images/cases/rovnayaSpina/3.png'}
+        image={'/images/cases/rovnayaspina/3.png'}
         id={''}
       />
       <TextCase
         title={''}
         subTitle={''}
         text={<><span>Дальше разместили преимущества центра с призывами к действию. «Получить консультацию» – для тех, кто хочет подробнее узнать про метод, и «Записаться» – для тех, кто уже готов прийти на сеанс.</span><span>Наличие альтернативных призыва к действию и формы захвата увеличивает вероятность того, что пользователь оставит заявку.</span></>}
-        image={'/images/cases/rovnayaSpina/4.png'}
+        image={'/images/cases/rovnayaspina/4.png'}
         id={''}
       />
       <TextCase
         title={''}
         subTitle={''}
         text={<>Далее разместили блок с акциями, чтобы дополнительно мотивировать пользователей оставить заявку.</>}
-        image={'/images/cases/rovnayaSpina/5.png'}
+        image={'/images/cases/rovnayaspina/5.png'}
         id={''}
       />
       <TextCase
         title={''}
         subTitle={''}
         text={<>В следующем блоке для повышения доверия кратко в цифрах и фактах рассказали о компании.</>}
-        image={'/images/cases/rovnayaSpina/6.png'}
+        image={'/images/cases/rovnayaspina/6.png'}
         id={''}
       />
       <TextCase
         title={''}
         subTitle={''}
         text={<>Разместили блок с переходом на страницы конкретных услуг.</>}
-        image={'/images/cases/rovnayaSpina/7.png'}
+        image={'/images/cases/rovnayaspina/7.png'}
         id={''}
       />
       <TextCase
         title={''}
         subTitle={''}
         text={<><span>Добавили форму захвата в формате перечисления симптомов, которые указывают на необходимость диагностики. </span><span>Форма логически связана с призывом к действию – «Записаться на диагностику».</span></>}
-        image={'/images/cases/rovnayaSpina/8.png'}
+        image={'/images/cases/rovnayaspina/8.png'}
         id={''}
       />
       <TextCase
         title={''}
         subTitle={''}
         text={<><span>После этого рассказали про авторский метод оздоровления «Ровная спина».</span><span>Так как сейчас пользователи переходят на сайт по рекомендации или из социальных сетей центра, то большинство из них уже знакомы с методом. Поэтому мы решили не раскрывать его подробно, а кратко напомнить суть.</span></>}
-        image={'/images/cases/rovnayaSpina/9.png'}
+        image={'/images/cases/rovnayaspina/9.png'}
         id={''}
       />
       <TextCase
         title={''}
         subTitle={''}
         text={<>Ниже для повышения лояльности пользователей, мы добавили цитату и фото основателя центра.</>}
-        image={'/images/cases/rovnayaSpina/10.png'}
+        image={'/images/cases/rovnayaspina/10.png'}
         id={''}
       />
       <TextCase
         title={''}
         subTitle={''}
         text={<>Чтобы предоставить пользователю дополнительную информацию про центр и его методику, мы добавили серию видео. Для каждого ролика сделали обложки, которые сочетаются со стилистикой сайта.</>}
-        image={'/images/cases/rovnayaSpina/11.png'}
+        image={'/images/cases/rovnayaspina/11.png'}
         id={''}
       />
       <TextCase
         title={''}
         subTitle={''}
         text={<>Добавили еще одну форму захвата в формате квиза. Подобные интерактивные элементы на сайте положительно влияют на пользовательский опыт и увеличивают вероятность того, что человек оставит заявку.</>}
-        image={'/images/cases/rovnayaSpina/12.png'}
+        image={'/images/cases/rovnayaspina/12.png'}
         id={''}
       />
       <TextCase
         title={''}
         subTitle={''}
         text={<><span>Ниже разместили социальные доказательства – отзывы и кейсы.</span><span>Так как у центра среди клиентов есть известные люди, мы разместили фото с ними. Это также является социальным доказательством. </span><span>Сейчас пользователи не доверяют текстовым отзывам на сайтах компаний. Больше доверия вызывают отзывы с Яндекс.Карт, фото или рентген «до/после» и видео-отзывы. Поэтому мы сделали плагин с отзывами с Яндекс.Карт, фото и рентген в формате «до/после» и видео-отзывы.</span><span>Также в этот блок мы добавили кнопки записи на консультацию и перехода на Rutube-канал «Ровной спины» с видео-отзывами.</span></>}
-        image={'/images/cases/rovnayaSpina/13.png'}
+        image={'/images/cases/rovnayaspina/13.png'}
         id={''}
       />
       <TextCase
         title={''}
         subTitle={''}
         text={<>По просьбе клиента добавили форму для сбора отзывов на сайте.</>}
-        image={'/images/cases/rovnayaSpina/14.png'}
+        image={'/images/cases/rovnayaspina/14.png'}
         id={''}
       />
       <TextCase
         title={''}
         subTitle={''}
         text={<>Разместили информацию о партнерах.</>}
-        image={'/images/cases/rovnayaSpina/15.png'}
+        image={'/images/cases/rovnayaspina/15.png'}
         id={''}
       />
       <TextCase
         title={''}
         subTitle={''}
         text={<>Добавили ответы на частые вопросы.</>}
-        image={'/images/cases/rovnayaSpina/16.png'}
+        image={'/images/cases/rovnayaspina/16.png'}
         id={''}
       />
       <TextCase
         title={''}
         subTitle={''}
         text={<>Разместили сертификаты для повышения доверия к центру и демонстрации экспертности специалистов.</>}
-        image={'/images/cases/rovnayaSpina/17.png'}
+        image={'/images/cases/rovnayaspina/17.png'}
         id={''}
       />
       <TextCase
         title={''}
         subTitle={''}
         text={<>В конце страницы разместили открытую форму заявки.</>}
-        image={'/images/cases/rovnayaSpina/18.png'}
+        image={'/images/cases/rovnayaspina/18.png'}
         id={''}
       />
       <TextCase
         title={''}
         subTitle={''}
         text={<>Добавили лаконичный блок с контактной информацией и переходом на страницу «Контакты», на которой можно найти адреса представительств центра в разных городах.</>}
-        image={'/images/cases/rovnayaSpina/19.png'}
+        image={'/images/cases/rovnayaspina/19.png'}
         id={''}
       />
       <TextCase
         title={''}
         subTitle={''}
         text={null}
-        image={'/images/cases/rovnayaSpina/20.png'}
+        image={'/images/cases/rovnayaspina/20.png'}
         id={''}
       />
       <TextCase
         title={''}
         subTitle={''}
         text={<><span>Общую страницу со всеми услугами мы сделали по образу главной страницы, упростив и адаптировав для SEO-продвижения.</span><span>Разместили призыв записаться на главном экране, кратко рассказали про метод, разместили ссылки на страницы конкретных услуг, добавили форму захвата в виде квиза, отзывы, кейсы, открытую форму захвата и контакты.</span></>}
-        image={'/images/cases/rovnayaSpina/21.png'}
+        image={'/images/cases/rovnayaspina/21.png'}
         id={''}
       />
       <TextCase
@@ -189,35 +189,35 @@ const ContentCaseRovnayaSpina: FC<ContentCaseRovnayaSpinaProps> = ({
           <li>Антиспазм мышц тела</li>
           <li>Антиспазм отдельных мышц</li>
         </ul></span><span>Для каждой из этих услуг мы сделали отдельную страницу, адаптированную под SEO.</span><span>На странице мы разместили выгоды, формы захвата, проблемы со здоровьем, первопричину которых помогает устранить процедура. </span><span>Таже разместили блок «Акции», информацию о методе, показания и противопоказания, блок «Специалисты», отзывы и кейсы, цены на услуги с разделением по возрастам и регионам, ответы на частые вопросы, сертификаты, открытую форму захвата, контакты и блок «Смотрите также» с рекомендацией страниц по теме.</span></>}
-        image={'/images/cases/rovnayaSpina/22.png'}
+        image={'/images/cases/rovnayaspina/22.png'}
         id={''}
       />
       <TextCase
         title={''}
         subTitle={''}
         text={null}
-        image={'/images/cases/rovnayaSpina/23.png'}
+        image={'/images/cases/rovnayaspina/23.png'}
         id={''}
       />
       <TextCase
         title={''}
         subTitle={''}
         text={<>На странице «Специалисты» мы разместили фото и краткую информацию о каждом специалисте, а также возможность записаться к нему. Подобная открытость повышает доверие и лояльность к компании.</>}
-        image={'/images/cases/rovnayaSpina/24.png'}
+        image={'/images/cases/rovnayaspina/24.png'}
         id={''}
       />
       <TextCase
         title={''}
         subTitle={''}
         text={null}
-        image={'/images/cases/rovnayaSpina/25.png'}
+        image={'/images/cases/rovnayaspina/25.png'}
         id={''}
       />
       <TextCase
         title={''}
         subTitle={''}
         text={<><span>У клиента был запрос на создание страницы с онлайн-записью. </span><span>Особенность записи на процедуры компании «Ровная спина» заключается в том, что в представительствах центра в других городах нет постоянного штата специалистов.</span><span>Специалисты приезжают из главного центра по предварительной записи, поэтому расписание и список доступных городов администратор сайта меняет раз в месяц вручную. </span><span>На старом сайте пользователь мог просто посмотреть расписание и оставить общую заявку.</span><span>В конце страницы разместили открытую форму заявки.</span></>}
-        image={'/images/cases/rovnayaSpina/26.png'}
+        image={'/images/cases/rovnayaspina/26.png'}
         id={''}
       />
       <TextCase
@@ -231,35 +231,35 @@ const ContentCaseRovnayaSpina: FC<ContentCaseRovnayaSpinaProps> = ({
         title={'Реализация записи в 4 этапа'}
         subTitle={'1 этап: Выбор города'}
         text={<><span>Пользователь выбирает подходящий город из списка.</span><span>Города, доступные для записи, администратор выставляет вручную через панель управления сайтом каждый месяц.</span><span>Если пользователь не находит подходящий город в списке, то он может оставить общую заявку по кнопке ниже.</span></>}
-        image={'/images/cases/rovnayaSpina/27.png'}
+        image={'/images/cases/rovnayaspina/27.png'}
         id={''}
       />
       <TextCase
         title={''}
         subTitle={'2 этап: Выбор специалиста'}
         text={<>На этом этапе пользователь выбирает подходящего специалиста, который может провести сеанс в выбранном городе.</>}
-        image={'/images/cases/rovnayaSpina/28.png'}
+        image={'/images/cases/rovnayaspina/28.png'}
         id={''}
       />
       <TextCase
         title={''}
         subTitle={'3 этап: Выбор даты'}
         text={<>На 3 этапе пользователь видит выбранные им ранее город и специалиста и может выбрать подходящую из представленных дат.</>}
-        image={'/images/cases/rovnayaSpina/29.png'}
+        image={'/images/cases/rovnayaspina/29.png'}
         id={''}
       />
       <TextCase
         title={''}
         subTitle={''}
         text={<>При выборе даты дополняется информация о записи.</>}
-        image={'/images/cases/rovnayaSpina/30.png'}
+        image={'/images/cases/rovnayaspina/30.png'}
         id={''}
       />
       <TextCase
         title={''}
         subTitle={'4 этап: Заполнение формы заявки'}
         text={<>Здесь пользователь видит информацию о записи и заполняет форму заявки, чтобы с ним связались.</>}
-        image={'/images/cases/rovnayaSpina/31.png'}
+        image={'/images/cases/rovnayaspina/31.png'}
         id={''}
       />
       <TextCase
@@ -273,49 +273,49 @@ const ContentCaseRovnayaSpina: FC<ContentCaseRovnayaSpinaProps> = ({
         title={''}
         subTitle={''}
         text={null}
-        image={'/images/cases/rovnayaSpina/32.png'}
+        image={'/images/cases/rovnayaspina/32.png'}
         id={''}
       />
       <TextCase
         title={''}
         subTitle={''}
         text={<>Чтобы привлекать дополнительный тематический трафик из поисковым систем, мы сделали блог «База знаний» и написали 3 информационных SEO-статьи.</>}
-        image={'/images/cases/rovnayaSpina/33.png'}
+        image={'/images/cases/rovnayaspina/33.png'}
         id={''}
       />
       <TextCase
         title={''}
         subTitle={''}
         text={null}
-        image={'/images/cases/rovnayaSpina/34.png'}
+        image={'/images/cases/rovnayaspina/34.png'}
         id={''}
       />
       <TextCase
         title={''}
         subTitle={''}
         text={<><span>В рамках работ по базовой SEO-оптимизации мы написали 3 информационные статьи по запросам на темы точечного массажа, акупрессуры и дисфункции ВНЧС.</span><span>Это не просто информационные статьи, мы писали их по техническому заданию от нашего SEO-специалиста, соблюдая определенную структуру, частоту упоминаний ключевых слов и другие важные для SEO параметры.</span><span>Чтобы конвертировать трафик из поисковых систем в заявки, мы добавили в статьи переходы на страницы услуг и формы захвата. </span></>}
-        image={'/images/cases/rovnayaSpina/35.png'}
+        image={'/images/cases/rovnayaspina/35.png'}
         id={''}
       />
       <TextCase
         title={''}
         subTitle={''}
         text={null}
-        image={'/images/cases/rovnayaSpina/36.png'}
+        image={'/images/cases/rovnayaspina/36.png'}
         id={''}
       />
       <TextCase
         title={''}
         subTitle={''}
         text={<>На странице «Контакты» мы перечислили страны присутствия, разместили модуль Яндекс.Карт с адресами представительств в разных городах, добавили адрес главного центра, контактные номера, ссылки на соцсети, режим работы, форму обратной связи и SEO-текст.</>}
-        image={'/images/cases/rovnayaSpina/37.png'}
+        image={'/images/cases/rovnayaspina/37.png'}
         id={''}
       />
       <TextCase
         title={'SEO-оптимизация'}
         subTitle={''}
         text={<>За 2 месяца работы над SEO мы реализовали пул задач:</>}
-        image={'/images/cases/rovnayaSpina/38.png'}
+        image={'/images/cases/rovnayaspina/38.png'}
         id={'third'}
       />
       <p className={styles.text}>На конец января 2025 года сайт работает 1,5 месяца и нам уже удалось вывести сайт в <span className={styles.textBold}>ТОП-10</span> выдачи Яндекса по <span className={styles.textBold}>44 запросам.</span></p>
@@ -323,7 +323,7 @@ const ContentCaseRovnayaSpina: FC<ContentCaseRovnayaSpinaProps> = ({
         title={''}
         subTitle={''}
         text={null}
-        image={'/images/cases/rovnayaSpina/39.png'}
+        image={'/images/cases/rovnayaspina/39.png'}
         id={''}
       />
       <p className={styles.text}>Это только начало, мы продолжаем работу и ожидаем выход в <span className={styles.textBold}>ТОП-10</span> по <span className={styles.textBold}>400 запросам</span> к марту 2025 года.</p>
@@ -331,7 +331,7 @@ const ContentCaseRovnayaSpina: FC<ContentCaseRovnayaSpinaProps> = ({
         title={'Результат и отзыв'}
         subTitle={''}
         text={<><span>За 5 месяцев работы нам удалось создать многостраничный, оптимизированный под SEO сайт с продающей структурой и современным дизайном.</span><span>Мы также реализовали удобную для клиента и пользователей сайта онлайн-запись.</span></>}
-        image={'/images/cases/rovnayaSpina/40.png'}
+        image={'/images/cases/rovnayaspina/40.png'}
         id={'fourth'}
       />
     </div>

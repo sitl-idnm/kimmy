@@ -23,10 +23,10 @@ const RovnayaSpinaPage: FC<RovnayaSpinaPageProps> = ({
       <IntroCase
         adaptiveBackgroundImage={'/images/cases/rovnayaspina/RovnayaSpinaCaseBackgroundAdaptive.png'}
         backgroundImage={'/images/cases/rovnayaspina/introduce.png'}
-        title={'Многостраничный сайт с онлайн-записью и базовым SEO'}
+        title={'Многостраничный сайт с онлайн-записью и базовым SEO'}
         text={<>для оздоровительного центра<br />«Ровная спина»</>}
         buttonLink={''}
-        description={'Разработали сайт на WordPress с отдельными страницами под каждую услугу, онлайн-записью на процедуры в разных филиалах и информационными статьями. А также сделали базовую настройку SEO.'}
+        description={'Разработали сайт на WordPress с отдельными страницами под каждую услугу, онлайн-записью на процедуры в разных филиалах и информационными статьями. А также сделали базовую настройкуSEO.'}
         tilda={false}
         webflow={false}
         wordpress={true}
@@ -42,7 +42,7 @@ const RovnayaSpinaPage: FC<RovnayaSpinaPageProps> = ({
         fourthAnchor={'Результат и отзыв'}
       />
       <ContentCaseRovnayaSpina />
-      <CaseForm image={'/images/cases/rovnayaSpina/form.png'} />
+      <CaseForm image={'/images/cases/rovnayaspina/form.png'} />
     </main>
   )
 }

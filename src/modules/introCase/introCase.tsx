@@ -1,5 +1,5 @@
 'use client'
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import classNames from 'classnames'
 
 import styles from './introCase.module.scss'
@@ -24,6 +24,15 @@ const IntroCase: FC<IntroCaseProps> = ({
   wordpress
 }) => {
   const rootClassName = classNames(className, styles.intro)
+  const [isAdaptive, setIsAdaptive] = useState('')
+
+  useEffect(() => {
+    if (window.innerWidth < 1200) {
+      setIsAdaptive(adaptiveBackgroundImage)
+    } else {
+      setIsAdaptive(backgroundImage)
+    }
+  });
 
   return (
     <div className={rootClassName}>
@@ -37,7 +46,7 @@ const IntroCase: FC<IntroCaseProps> = ({
         </div>
         <div className={styles.intro__content__background}>
           <Image
-            src={window.innerWidth < 1200 ?adaptiveBackgroundImage : backgroundImage}
+            src={isAdaptive}
             alt='background'
             width={870}
             height={856}
