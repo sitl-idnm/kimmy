@@ -25,6 +25,8 @@
 		padding-top: 55px;
 
 		clip-path: polygon(-100% -100%, 100% -100%, 100% 100%, -100% 100%);
+
+		overflow: hidden;
 	}
 
 	@include tablet {

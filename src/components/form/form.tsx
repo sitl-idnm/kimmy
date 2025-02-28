@@ -5,6 +5,7 @@ import axios from 'axios'
 
 import styles from './form.module.scss'
 import { FormProps } from './form.types'
+import Link from 'next/link'
 
 const Form: FC<FormProps> = ({
   className,
@@ -108,7 +109,7 @@ const Form: FC<FormProps> = ({
         )}
         <div className={styles.form_wrapper}>
           <input type="checkbox" required/>
-          <label style={work ? { color: 'black' } : undefined}>Согласен на обработку <a style={work ? { color: '#CB172C'} : undefined}>персональных данных</a></label>
+          <label style={work ? { color: 'black' } : undefined}>Согласен на обработку <Link href='/privacy-policy' target='_blank' style={work ? { color: '#CB172C'} : undefined}>персональных данных</Link></label>
         </div>
         {mail !== undefined && (
           <div className={styles.form_wrapper}>

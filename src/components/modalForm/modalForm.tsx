@@ -13,6 +13,7 @@ import WaDef from '../../shared/assets/icons/wa - default.svg'
 import WaActive from '../../shared/assets/icons/wa - active.svg'
 import TgDef from '../../shared/assets/icons/tg - default.svg'
 import TgActive from '../../shared/assets/icons/tg - active.svg'
+import Link from 'next/link'
 
 const handleNameInput = (event: React.ChangeEvent<HTMLInputElement>) => {
 	const value = event.target.value;
@@ -183,7 +184,7 @@ const ModalForm: FC<ModalFormProps> = ({ className, details, count }) => {
 						<div className={styles.form_wrapper}>
 							<input type="checkbox" required />
 							<label>
-								Согласен на обработку <a>персональных данных</a>
+								Согласен на обработку <Link href='/privacy-policy' target='_blank' style={{ color: '#CB172C'}}>персональных данных</Link>
 							</label>
 						</div>
 						<div className={styles.form_wrapper}>

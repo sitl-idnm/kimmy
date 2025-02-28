@@ -7,6 +7,7 @@ import { CaseFormProps } from './caseForm.types'
 import axios from 'axios'
 import Image from 'next/image'
 import { Borders } from '@/ui'
+import Link from 'next/link'
 
 const CaseForm: FC<CaseFormProps> = ({
   className,
@@ -103,7 +104,7 @@ const CaseForm: FC<CaseFormProps> = ({
         </div>
         <div className={styles.form_wrapper}>
           <input type="checkbox" required/>
-          <label>Согласен на обработку <a style={{ color: '#CB172C'}}>персональных данных</a></label>
+          <label>Согласен на обработку <Link href='/privacy-policy' target='_blank' style={{ color: '#CB172C'}}>персональных данных</Link></label>
         </div>
         <div className={styles.form_wrapper}>
           <input type="checkbox" />

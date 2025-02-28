@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import PrivacyPage from '@/views/privacyPage/privacyPage'
 
 export const metadata: Metadata = {
-  title: 'Home',
+  title: 'Privacy',
   description: 'Legion Next.js template'
 }
 

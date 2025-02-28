@@ -3,5 +3,8 @@
 @use "@styles/variables";
 
 .root {
-	margin-left: 12px;
+	margin: 0 12px;
+	
+	display: flex;
+	justify-content: center;
 }

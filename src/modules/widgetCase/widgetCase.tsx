@@ -8,6 +8,7 @@ import { WidgetCaseProps } from './widgetCase.types'
 import axios from 'axios';
 
 import Close from '@icons/widgetClose.svg'
+import Link from 'next/link'
 
 const WidgetCase: FC<WidgetCaseProps> = ({
   className
@@ -81,7 +82,7 @@ const WidgetCase: FC<WidgetCaseProps> = ({
                 )}
               </div>
             </form>
-            <p className={styles.form__description}>Нажимая на кнопку &quot;Получить консультацию&quot; Вы соглашаетесь с <a>обработкой персональных данных</a></p>
+            <p className={styles.form__description}>Нажимая на кнопку &quot;Получить консультацию&quot; Вы соглашаетесь с <Link href='/privacy-policy' target='_blank' style={{ color: '#CB172C'}}>обработкой персональных данных</Link></p>
           </div>
         </div>
       </div>
