@@ -29,13 +29,6 @@ const ContentCaseRovnayaSpina: FC<ContentCaseRovnayaSpinaProps> = ({
         image={'/images/cases/rovnayaspina/1.png'}
         id={'second'}
       />
-      <TextCase
-        title={''}
-        subTitle={''}
-        text={null}
-        image={'/images/cases/rovnayaspina/2.png'}
-        id={''}
-      />
       <div className={styles.page}>
         <h2 className={styles.pageTitle}>Главная страница</h2>
         <TextCase
