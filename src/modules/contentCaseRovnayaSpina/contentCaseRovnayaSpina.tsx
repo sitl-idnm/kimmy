@@ -38,7 +38,7 @@ const ContentCaseRovnayaSpina: FC<ContentCaseRovnayaSpinaProps> = ({
           image={'/images/cases/rovnayaspina/2.png'}
           id={''}
         />
-        <Button maxWidth='278px'>Смотреть страницу полностью</Button>
+        <Button tag={'a'} href={'#design'} maxWidth='278px'>Смотреть страницу полностью</Button>
       </div>
       <TextCase
         title={''}
@@ -164,7 +164,7 @@ const ContentCaseRovnayaSpina: FC<ContentCaseRovnayaSpinaProps> = ({
         subTitle={''}
         text={null}
         image={'/images/cases/rovnayaspina/20.png'}
-        id={''}
+        id={'design'}
       />
       <TextCase
         title={''}

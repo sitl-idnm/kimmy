@@ -10,6 +10,8 @@ import TildaIcon from '@icons/tilda.svg'
 import WebflowIcon from '@icons/webflowIconCase.svg'
 import WordpressIcon from '@icons/wordpressIcon.svg'
 import { Button } from '@/ui'
+import { useSetAtom } from 'jotai'
+import { openModalContent } from '@/shared/atoms/openModal'
 
 const IntroCase: FC<IntroCaseProps> = ({
   className,
@@ -19,12 +21,14 @@ const IntroCase: FC<IntroCaseProps> = ({
   text,
   buttonLink,
   description,
+  modalLink,
   tilda,
   webflow,
   wordpress
 }) => {
   const rootClassName = classNames(className, styles.intro)
   const [isAdaptive, setIsAdaptive] = useState(backgroundImage)
+  const setModalContent = useSetAtom(openModalContent)
 
   const handleResize = useCallback(() => {
     setIsAdaptive(window.innerWidth < 1200 ? adaptiveBackgroundImage : backgroundImage)
@@ -39,6 +43,12 @@ const IntroCase: FC<IntroCaseProps> = ({
     }
   }, [handleResize])
 
+  const handleModalOpen = () => {
+    if (modalLink) {
+      setModalContent(modalLink)
+    }
+  }
+
   return (
     <div className={rootClassName}>
       <div className={styles.intro__content}>
@@ -47,7 +57,25 @@ const IntroCase: FC<IntroCaseProps> = ({
             <h1 className={styles.intro__content__text__title__title}>{title}</h1>
             <p className={styles.intro__content__text__title__text}>{text}</p>
           </div>
-          <Button onClick={() => buttonLink} tag={'button'} maxWidth={'232px'} className={styles.intro__content__text__link}>Посмотреть весь дизайн</Button>
+          { buttonLink === '' ?
+            <Button
+            onClick={handleModalOpen}
+            tag={'button'}
+            maxWidth={'232px'}
+            className={styles.intro__content__text__link}
+            >
+              Посмотреть весь дизайн
+            </Button>
+            :
+            <Button
+            href={buttonLink}
+            tag={'a'}
+            maxWidth={'232px'}
+            className={styles.intro__content__text__link}
+          >
+            Посмотреть весь дизайн
+          </Button>
+          }
         </div>
         <div className={styles.intro__content__background}>
           <Image

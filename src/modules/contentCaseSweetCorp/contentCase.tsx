@@ -129,7 +129,7 @@ const ContentCase: FC<ContentCaseProps> = ({
         title={'Главная страница'}
         text={null}
         image={'/images/cases/sweetcorp/sixteenth.png'}
-        id={''}
+        id={'design'}
       />
     </div>
   )

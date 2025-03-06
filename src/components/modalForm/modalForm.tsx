@@ -51,12 +51,16 @@ const ModalForm: FC<ModalFormProps> = ({ className, details, count }) => {
 			setSuccessMessage('Ошибка отправки заявки. Неправильный email адрес.');
 			return;
 		}
-		try {
-			data.commentModal = sanitizeInput(data.commentModal as string);
-		} catch (error) {
-			setSuccessMessage('Ошибка отправки заявки. HTML теги не разрешены.');
-			return;
+		
+		if (details===false && count===false) {
+			try {
+				data.commentModal = sanitizeInput(data.commentModal as string);
+			} catch (error) {
+				setSuccessMessage('Ошибка отправки заявки. HTML теги не разрешены.');
+				return;
+			}
 		}
+
 		const token = '7862004029:AAFZ807gLMhUIzqjfh4DB62muUmzWv9JfrY'
 		const chatId = '-4654232429'
 		const message = `Новая заявка:\nИмя: ${data.nameModal}\nТелефон: ${data.phoneModal}${data.mailModal ? `\nПочта: ${data.mailModal}` : ''}${data.commentModal ? `\nРасскажите про свой проект: ${data.commentModal}` : ''}\nПредпочтительный способ связи: ${selectedContactMethod}`

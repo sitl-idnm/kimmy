@@ -9,6 +9,9 @@ import { DevelopModal } from '../developModal'
 import { SupportModal } from '../supportModal'
 import { DetailsModal } from '../detailsModal'
 import { CountModal } from '../countModal'
+import { MagiyaModal } from '../magiyaModal'
+import { BwModal } from '../bwModal'
+import { ClientModal } from '../clientModal'
 
 const NewModalContainer: FC = () => {
   const modalContent = useAtomValue(openModalContent)
@@ -39,6 +42,9 @@ const NewModalContainer: FC = () => {
       {modalContent === 'поддержка' && <SupportModal />}
       {modalContent === 'детали' && <DetailsModal />}
       {modalContent === 'стоимость' && <CountModal />}
+      {modalContent === 'магиявкуса' && <MagiyaModal />}
+      {modalContent === 'bw' && <BwModal />}
+      {modalContent === 'clientpulse' && <ClientModal />}
     </>
   )
 }

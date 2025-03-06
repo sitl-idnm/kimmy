@@ -26,10 +26,11 @@ const ClientPulsePage: FC<ClientPulsePageProps> = ({
           backgroundImage={'/images/cases/clientpulse/ClientPulseCaseBackground.png'}
           title={'Многостраничный сайт'}
           text={<>для сервиса по работе<br />с клиентскими данными новодних подарков</>}
-          buttonLink={''}
           description={'Разработали сайт, направленный на B2B сегмент, с отдельными страницами под каждый продукт заказчика.'}
           tilda={true}
           webflow={false}
+          buttonLink={''}
+          modalLink={'clientpulse'}
         />
         <div>
           <DefaultTextCase

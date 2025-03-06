@@ -11,4 +11,5 @@ export interface IntroCaseProps {
   webflow: boolean
   wordpress?: boolean
   adaptiveBackgroundImage: string
+  modalLink: string
 }

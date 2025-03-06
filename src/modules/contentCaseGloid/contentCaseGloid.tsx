@@ -16,7 +16,7 @@ const ContentCaseGloid: FC<ContentCaseGloidProps> = ({
         title={'Дизайн сайта'}
         text={<>Разработали сайт для компании, которая занимается производством и продажей оборудования для промышленной маркировки.</>}
         image={'/images/cases/gloid/1.png'}
-        id={''}
+        id={'design'}
       />
       <TextCase
         title={''}

@@ -25,11 +25,12 @@ const RovnayaSpinaPage: FC<RovnayaSpinaPageProps> = ({
         backgroundImage={'/images/cases/rovnayaspina/introduce.png'}
         title={'Многостраничный сайт с онлайн-записью и базовым SEO'}
         text={<>для оздоровительного центра<br />«Ровная спина»</>}
-        buttonLink={''}
         description={'Разработали сайт на WordPress с отдельными страницами под каждую услугу, онлайн-записью на процедуры в разных филиалах и информационными статьями. А также сделали базовую настройкуSEO.'}
         tilda={false}
         webflow={false}
         wordpress={true}
+        buttonLink={'#design'}
+        modalLink={''}
       />
       <DefaultTextCase
         mainText={<><span><span style={{fontWeight: 600}}>Ровная спина –</span><span> это оздоровительный центр. Специалисты компании работают по авторской методике аппаратной акупрессуры и, с помощью точечного воздействия на мышцы, помогают своим клиентам справиться с первопричиной проблем с опорно-двигательным аппаратом, внутренними органами и кровообращением.</span></span></>}

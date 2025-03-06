@@ -47,11 +47,14 @@ const Form: FC<FormProps> = ({
       setSuccessMessage('Ошибка отправки заявки. Неправильный email адрес.')
       return
     }
-    try {
-      data.project = sanitizeInput(data.project as string)
-    } catch (error) {
-      setSuccessMessage('Ошибка отправки заявки. HTML теги не разрешены.')
-      return
+
+    if (project) {
+      try {
+        data.project = sanitizeInput(data.project as string)
+      } catch (error) {
+        setSuccessMessage('Ошибка отправки заявки. HTML теги не разрешены.')
+        return
+      }
     }
     const token = '7862004029:AAFZ807gLMhUIzqjfh4DB62muUmzWv9JfrY'
     const chatId = '-4654232429'
