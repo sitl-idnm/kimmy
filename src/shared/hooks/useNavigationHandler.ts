@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 
 export const useNavigationHandler = (callback: () => void) => {
 	useEffect(() => {

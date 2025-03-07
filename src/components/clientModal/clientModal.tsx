@@ -1,50 +1,15 @@
 import { FC } from 'react'
-import classNames from 'classnames'
-
-import styles from './clientModal.module.scss'
-import { ClientModalProps } from './clientModal.types'
-import Image from 'next/image'
+import { Modal } from '@/ui'
 import { useSetAtom } from 'jotai'
 import { openModalContent } from '@/shared/atoms/openModal'
 
-const ClientModal: FC<ClientModalProps> = ({
-  className
-}) => {
+const ClientModal: FC = () => {
   const setModalContent = useSetAtom(openModalContent)
 
-  const closeModal = () => {
-    setModalContent('')
-  }
-
   return (
-    <div className={styles.modal} onClick={(e) => {
-      if (e.target === e.currentTarget) {
-        closeModal()
-      }
-    }}>
-      <div className={styles.modal__content} onClick={(e) => e.stopPropagation()}>
-        <div className={styles.close} onClick={closeModal}></div>
-        <div className={styles.content}>
-          <div>
-            <Image
-              src={'/images/cases/clientpulse/clientModal.png'}
-              alt='clientModal'
-              quality={100}
-              width={0}
-              height={0}
-              sizes="100vw"
-              style={{
-                width: '100%',
-                height: 'auto',
-                objectFit: 'contain',
-                maxWidth: '100%'
-              }}
-              priority
-            />
-          </div>
-        </div>
-      </div>
-    </div>
+    <Modal onClose={() => setModalContent(null)}>
+      {/* Modal content */}
+    </Modal>
   )
 }
 
