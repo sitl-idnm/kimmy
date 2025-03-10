@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     description: 'K.KIM Agency',
     images: [
       {
-        url: '/og-image.jpg', // Путь к вашему изображению
+        url: '/og-image.png', // Путь к вашему изображению
         width: 1200,
         height: 630,
         alt: 'Site preview'
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'K.KIM',
     description: 'K.KIM Agency',
-    images: ['/og-image.jpg']
+    images: ['/og-image.png']
   }
 }
 
