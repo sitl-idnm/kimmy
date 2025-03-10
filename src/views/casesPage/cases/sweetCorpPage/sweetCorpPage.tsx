@@ -18,7 +18,7 @@ const SweetCorpPage: FC<SweetCorpPageProps> = ({
   return (
     <main className={rootClassName}>
       <NewModalContainer />
-      <WidgetCase />
+      <WidgetCase titleForm='виджет-формы "Заказать сайт в кейсе Sweet Corp"' />
       <IntroCase
         adaptiveBackgroundImage={'/images/cases/sweetcorp/SweetCorpCaseBackgroundAdaptive.png'}
         backgroundImage={'/images/cases/sweetcorp/SweetCorpCaseBackground.png'}

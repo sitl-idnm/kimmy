@@ -17,7 +17,7 @@ const MagiyaVkusa: FC<MagiyaVkusaProps> = ({
   return (
     <main className={rootClassName}>
       <NewModalContainer />
-      <WidgetCase />
+      <WidgetCase titleForm='виджет-формы "Заказать сайт в кейсе Магия Вкуса"' />
       <IntroCase
         adaptiveBackgroundImage={'/images/cases/magiyavkusa/MagiyaVkusaCaseBackgroundAdaptive.png'}
         backgroundImage={'/images/cases/magiyavkusa/introduce.png'}

@@ -17,7 +17,7 @@ const GloidPage: FC<GloidPageProps> = ({
   return (
     <main className={rootClassName}>
       <NewModalContainer />
-      <WidgetCase />
+      <WidgetCase titleForm='виджет-формы "Заказать сайт в кейсе Gloid"' />
       <IntroCase
         adaptiveBackgroundImage={'/images/cases/gloid/GloidCaseBackgroundAdaptive.png'}
         backgroundImage={'/images/cases/gloid/introduce.png'}

@@ -18,7 +18,7 @@ const BestWavePage: FC<BestWavePageProps> = ({
   return (
     <main className={rootClassName}>
       <NewModalContainer />
-      <WidgetCase />
+      <WidgetCase titleForm='виджет-формы "Заказать сайт в кейсе Best Wave"' />
       <IntroCase
         adaptiveBackgroundImage={'/images/cases/bestwave/BestWaveCaseBackgroundAdaptive.png'}
         backgroundImage={'/images/cases/bestwave/introduce.png'}

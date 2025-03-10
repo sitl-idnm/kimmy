@@ -18,7 +18,7 @@ const ClientPulsePage: FC<ClientPulsePageProps> = ({
 
   return (
     <>
-      <WidgetCase />
+      <WidgetCase titleForm='виджет-формы "Заказать сайт в кейсе Client Pulse"' />
       <main className={rootClassName}>
         <NewModalContainer />
         <IntroCase

@@ -19,7 +19,7 @@ const RovnayaSpinaPage: FC<RovnayaSpinaPageProps> = ({
   return (
     <main className={rootClassName}>
       <NewModalContainer />
-      <WidgetCase />
+      <WidgetCase titleForm='виджет-формы "Заказать сайт в кейсе Ровная спина"' />
       <IntroCase
         adaptiveBackgroundImage={'/images/cases/rovnayaspina/RovnayaSpinaCaseBackgroundAdaptive.png'}
         backgroundImage={'/images/cases/rovnayaspina/introduce.png'}

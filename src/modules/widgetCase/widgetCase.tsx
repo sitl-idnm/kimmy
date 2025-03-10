@@ -11,39 +11,43 @@ import Close from '@icons/widgetClose.svg'
 import Link from 'next/link'
 
 const WidgetCase: FC<WidgetCaseProps> = ({
-  className
+  className,
+  titleForm
 }) => {
   const rootClassName = classNames(styles.root, className)
-
   const [isOpen, setIsOpen] = useState(true)
+  const [successMessage, setSuccessMessage] = useState<{ text: string; isSuccess: boolean } | null>(null)
 
-	const [successMessage, setSuccessMessage] = useState<string | null>(null)
+  const handleNumberInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value
+    event.target.value = value.replace(/\D/g, '')
+  }
 
-	const handleNumberInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const value = event.target.value
-		event.target.value = value.replace(/\D/g, '')
-	}
+  const closeMessage = () => {
+    setSuccessMessage(null);
+  };
 
-	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-		event.preventDefault()
-		const formData = new FormData(event.currentTarget)
-		const data = Object.fromEntries(formData.entries())
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const formData = new FormData(event.currentTarget)
+    const data = Object.fromEntries(formData.entries())
 
-		const token = '7862004029:AAFZ807gLMhUIzqjfh4DB62muUmzWv9JfrY'
-		const chatId = '-4654232429'
-		const message = `Новая заявка:\nТелефон: ${data.phoneModal}`
+    const token = '7862004029:AAFZ807gLMhUIzqjfh4DB62muUmzWv9JfrY'
+    const chatId = '-4654232429'
+    const message = `Новая заявка с ${titleForm} на сайте-визитке:\nТелефон: ${data.phoneModal}`
 
-		try {
-			await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
-				chat_id: chatId,
-				text: message,
-			})
-			setSuccessMessage('Форма успешно отправлена!');
-		} catch (error) {
-			console.error('Error sending message to Telegram:', error)
-			setSuccessMessage('Ошибка при отправке заявки.')
-		}
-	}
+    try {
+      await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
+        chat_id: chatId,
+        text: message,
+      })
+      setSuccessMessage({ text: 'Форма успешно отправлена!', isSuccess: true });
+      // Очищаем форму после успешной отправки
+    } catch (error) {
+      console.error('Error sending message to Telegram:', error)
+      setSuccessMessage({ text: 'Ошибка при отправке заявки.', isSuccess: false })
+    }
+  }
 
   return (
     <div className={rootClassName} style={{ display: isOpen ? 'flex' : 'none' }}>
@@ -72,12 +76,17 @@ const WidgetCase: FC<WidgetCaseProps> = ({
                   <input type="submit" value={'Получить консультацию'} />
                 </div>
                 {successMessage && (
-                  <div className={styles.successMessage}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <rect width="24" height="24" rx="12" fill="white" />
-                      <path d="M8 12L11.5 16L16 7" stroke="#CB172C" stroke-width="1.5" stroke-linecap="round" />
-                    </svg>
-                    {successMessage}
+                  <div className={`${styles.successMessage} ${successMessage.isSuccess ? styles.success : styles.error}`}>
+                    {successMessage.isSuccess && (
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="24" height="24" rx="12" fill="white" />
+                        <path d="M8 12L11.5 16L16 7" stroke="#CB172C" stroke-width="1.5" stroke-linecap="round" />
+                      </svg>
+                    )}
+                    {successMessage.text}
+                    <button onClick={closeMessage} className={styles.closeButton}>
+                      ✕
+                    </button>
                   </div>
                 )}
               </div>
