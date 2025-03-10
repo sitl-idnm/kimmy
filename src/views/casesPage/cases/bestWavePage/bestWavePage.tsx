@@ -39,7 +39,7 @@ const BestWavePage: FC<BestWavePageProps> = ({
         thirdAnchor={'Результат'}
       />
       <ContentCaseBestWave />
-      <CaseForm image={'/images/cases/bestwave/form.png'} />
+      <CaseForm image={'/images/cases/bestwave/form.png'} titleForm='формы "Заказать сайт в кейсе Best Wave"' />
     </main>
   )
 }

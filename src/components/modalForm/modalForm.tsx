@@ -25,10 +25,10 @@ const isValidEmail = (email: string) => {
 	return emailRegex.test(email);
 };
 
-const ModalForm: FC<ModalFormProps> = ({ className, details, count }) => {
+const ModalForm: FC<ModalFormProps> = ({ className, details, count, titleForm }) => {
 	const rootClassName = classNames(styles.root, className)
 	const [selectedContactMethod, setSelectedContactMethod] = useState('number')
-	const [successMessage, setSuccessMessage] = useState<string | null>(null)
+	const [successMessage, setSuccessMessage] = useState<{ text: string; isSuccess: boolean } | null>(null)
 
 	const handleNumberInput = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const value = event.target.value
@@ -43,37 +43,42 @@ const ModalForm: FC<ModalFormProps> = ({ className, details, count }) => {
 		return sanitized;
 	};
 
+	const closeMessage = () => {
+		setSuccessMessage(null);
+	};
+
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
 		const formData = new FormData(event.currentTarget)
 		const data = Object.fromEntries(formData.entries())
 		if (data.mailModal && !isValidEmail(data.mailModal as string)) {
-			setSuccessMessage('Ошибка отправки заявки. Неправильный email адрес.');
+			setSuccessMessage({ text: 'Ошибка отправки заявки. Неправильный email адрес.', isSuccess: false });
 			return;
 		}
-		
+
 		if (details===false && count===false) {
 			try {
 				data.commentModal = sanitizeInput(data.commentModal as string);
 			} catch (error) {
-				setSuccessMessage('Ошибка отправки заявки. HTML теги не разрешены.');
+				setSuccessMessage({ text: 'Ошибка отправки заявки. HTML теги не разрешены.', isSuccess: false });
 				return;
 			}
 		}
 
 		const token = '7862004029:AAFZ807gLMhUIzqjfh4DB62muUmzWv9JfrY'
 		const chatId = '-4654232429'
-		const message = `Новая заявка:\nИмя: ${data.nameModal}\nТелефон: ${data.phoneModal}${data.mailModal ? `\nПочта: ${data.mailModal}` : ''}${data.commentModal ? `\nРасскажите про свой проект: ${data.commentModal}` : ''}\nПредпочтительный способ связи: ${selectedContactMethod}`
+		const message = `Новая заявка c ${titleForm} на сайте-визитке:\nИмя: ${data.nameModal}\nТелефон: ${data.phoneModal}${data.mailModal ? `\nПочта: ${data.mailModal}` : ''}${data.commentModal ? `\nРасскажите про свой проект: ${data.commentModal}` : ''}\nПредпочтительный способ связи: ${selectedContactMethod}`
 
 		try {
 			await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
 				chat_id: chatId,
 				text: message,
 			})
-			setSuccessMessage('Форма успешно отправлена!');
+			setSuccessMessage({ text: 'Форма успешно отправлена!', isSuccess: true });
+			// Очищаем форму после успешной отправки
 		} catch (error) {
 			console.error('Error sending message to Telegram:', error)
-			setSuccessMessage('Ошибка при отправке заявки.')
+			setSuccessMessage({ text: 'Ошибка при отправке заявки.', isSuccess: false })
 		}
 	}
 
@@ -199,12 +204,17 @@ const ModalForm: FC<ModalFormProps> = ({ className, details, count }) => {
 							{details ? <input type="submit" value={'Заказать сайт'} /> : count ? <input type="submit" value={'Рассчитать '} /> : <input type="submit" value={'Получить консультацию'} />}
 						</div>
 						{successMessage && (
-							<div className={styles.successMessage}>
-								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<rect width="24" height="24" rx="12" fill="white" />
-									<path d="M8 12L11.5 16L16 7" stroke="#CB172C" stroke-width="1.5" stroke-linecap="round" />
-								</svg>
-								{successMessage}
+							<div className={`${styles.successMessage} ${successMessage.isSuccess ? styles.success : styles.error}`}>
+								{successMessage.isSuccess && (
+									<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<rect width="24" height="24" rx="12" fill="white" />
+										<path d="M8 12L11.5 16L16 7" stroke="#CB172C" stroke-width="1.5" stroke-linecap="round" />
+									</svg>
+								)}
+								{successMessage.text}
+								<button onClick={closeMessage} className={styles.closeButton}>
+									✕
+								</button>
 							</div>
 						)}
 					</div>

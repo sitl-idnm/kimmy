@@ -34,6 +34,7 @@ const FormSecond: FC<FormSecondProps> = ({
             mail={true}
             project={true}
             className={styles.input}
+            titleForm={'формы "Начнем сотрудничество?"'}
           />
         </div>
       </section>

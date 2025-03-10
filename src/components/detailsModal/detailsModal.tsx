@@ -24,7 +24,7 @@ const DetailsModal: FC<DetailsModalProps> = ({}) => {
         <div className={styles.close} onClick={closeModal}></div>
         <div className={styles.content}>
           <div>
-            <ModalForm details />
+            <ModalForm details titleForm='формы "Заказать сайт"' />
           </div>
         </div>
       </div>

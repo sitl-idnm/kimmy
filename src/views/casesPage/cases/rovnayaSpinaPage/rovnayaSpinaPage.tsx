@@ -43,7 +43,7 @@ const RovnayaSpinaPage: FC<RovnayaSpinaPageProps> = ({
         fourthAnchor={'Результат и отзыв'}
       />
       <ContentCaseRovnayaSpina />
-      <CaseForm image={'/images/cases/rovnayaspina/form.png'} />
+      <CaseForm image={'/images/cases/rovnayaspina/form.png'} titleForm='формы "Заказать сайт в кейсе Ровная спина"' />
     </main>
   )
 }

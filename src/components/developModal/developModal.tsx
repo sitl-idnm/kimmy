@@ -90,7 +90,7 @@ const DevelopModal: FC<DevelopModalProps> = ({
             </div>
           </div>
           <div>
-            <ModalForm />
+            <ModalForm titleForm='формы "Разработка сайта"' />
           </div>
         </div>
       </div>

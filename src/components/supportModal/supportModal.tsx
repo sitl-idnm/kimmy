@@ -79,7 +79,7 @@ const SupportModal: FC<SupportModalProps> = ({
             </div>
           </div>
           <div>
-            <ModalForm />
+            <ModalForm titleForm='формы "Поддержка сайта"' />
           </div>
         </div>
       </div>

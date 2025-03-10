@@ -388,3 +388,43 @@
 		}
 	}
 }
+
+.successMessage {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 15px;
+	border-radius: 8px;
+	position: absolute;
+
+	&.success {
+		background-color: rgba(203, 23, 44);
+		color: white;
+	}
+
+	&.error {
+		background-color: rgba(203, 23, 44);
+		color: white;
+	}
+}
+
+.closeButton {
+	position: absolute;
+	right: 10px;
+	top: 20px;
+	transform: translateY(-50%);
+	background: none;
+	border: none;
+	cursor: pointer;
+	font-size: 16px;
+	color: inherit;
+	padding: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	&:hover {
+		opacity: 0.7;
+	}
+}
+

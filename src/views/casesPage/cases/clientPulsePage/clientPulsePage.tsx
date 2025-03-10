@@ -60,7 +60,7 @@ const ClientPulsePage: FC<ClientPulsePageProps> = ({
           fourthAnchor={'Создание сайта'}
         />
         <ContentCaseClientPulse />
-        <CaseForm image={'/images/cases/clientpulse/1.png'} />
+        <CaseForm image={'/images/cases/clientpulse/1.png'} titleForm='формы "Заказать сайт в кейсе Client Pulse"' />
       </main>
     </>
   )

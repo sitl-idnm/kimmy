@@ -36,7 +36,7 @@ const MagiyaVkusa: FC<MagiyaVkusaProps> = ({
       <DefaultTextCase
         mainText={<>У нас получился простой, но информативный и интуитивно-понятный интернет-магазин, в котором жители и гости Москвы могут заказать вкусные пироги.</>}
       />
-      <CaseForm image={'/images/cases/magiyavkusa/form.png'} />
+      <CaseForm image={'/images/cases/magiyavkusa/form.png'} titleForm='формы "Заказать сайт в кейсе Магия Вкуса"' />
     </main>
   )
 }

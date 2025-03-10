@@ -22,7 +22,7 @@ const CountModal: FC<CountModalProps> = () => {
         <div className={styles.close} onClick={closeModal}></div>
         <div className={styles.content}>
           <div>
-            <ModalForm count />
+            <ModalForm count titleForm='формы "Рассчитать срок и стоимость моего проекта"' />
           </div>
         </div>
       </div>

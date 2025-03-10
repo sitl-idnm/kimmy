@@ -37,7 +37,7 @@ const GloidPage: FC<GloidPageProps> = ({
       <DefaultTextCase
         mainText={<>Так клиент получил готовый лендинг с демонстрацией работы приложения еще до его релиза</>}
       />
-      <CaseForm image={'/images/cases/gloid/form.png'} />
+      <CaseForm image={'/images/cases/gloid/form.png'} titleForm='формы "Заказать сайт в кейсе Gloid"' />
     </main>
   )
 }

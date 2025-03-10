@@ -78,7 +78,7 @@ const DesignModal: FC<DesignModalProps> = ({}) => {
             </div>
           </div>
           <div>
-            <ModalForm />
+            <ModalForm titleForm='формы "Дизайн сайта"' />
           </div>
         </div>
       </div>

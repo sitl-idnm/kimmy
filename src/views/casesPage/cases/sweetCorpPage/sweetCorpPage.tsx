@@ -42,7 +42,7 @@ const SweetCorpPage: FC<SweetCorpPageProps> = ({
         thirdAnchor={'Создание сайта'}
       />
       <ContentCase />
-      <CaseForm image={'/images/cases/sweetcorp/1.png'} />
+      <CaseForm image={'/images/cases/sweetcorp/1.png'} titleForm='формы "Заказать сайт в кейсе Sweet Corp"' />
     </main>
   )
 }

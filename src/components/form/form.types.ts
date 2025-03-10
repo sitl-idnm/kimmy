@@ -3,4 +3,5 @@ export interface FormProps {
   mail?: boolean
   project?: boolean
   work?: boolean
+  titleForm?: string
 }
