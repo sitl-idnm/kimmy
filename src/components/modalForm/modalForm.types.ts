@@ -3,4 +3,5 @@ export interface ModalFormProps {
   details?: boolean
   count?: boolean
   titleForm?: string
+  development?: boolean
 }

@@ -22,6 +22,12 @@ const itemsData = [
   { title: 'Автоматизируйте рутину', backgroundColor: 'var(--color-red-accent)', textColor: 'var(--color-white-default)', imageSrc: '/images/image4_fix.png', text: 'Интеграция сайта с CRM, платёжными системами и аналитикой снижает нагрузку на вашу команду' },
 ]
 
+const itemsSupportData = [
+  { title: 'Обновляйте сайт без лишних усилий', backgroundColor: 'var(--color-grey)', textColor: 'var(--color-black)', imageSrc: '/images/glass.png', text: 'Мы вносим изменения за вас: от новых страниц до доработки функционала' },
+  { title: 'Улучшайте скорость и SEO-показатели сайта', backgroundColor: 'var(--color-black)', textColor: 'var(--color-white-default)', imageSrc: '/images/star.png', text: 'Регулярная оптимизация делает сайт удобным для пользователей и видимым для поисковиков' },
+  { title: 'Снижайте количество технических ошибок', backgroundColor: 'var(--color-red-accent)', textColor: 'var(--color-white-default)', imageSrc: '/images/circle_modal.png', text: 'Постоянный контроль за сайтом предотвращает сбои и неудачные обновления' },
+]
+
 const DevelopModal: FC<DevelopModalProps> = ({
   className
 }) => {
@@ -45,6 +51,7 @@ const DevelopModal: FC<DevelopModalProps> = ({
             <div className={styles.first}>
               <h2 className={styles.title}>
                 Разработка<span><Code /></span>
+                <br />и поддержка сайтов
               </h2>
               <p className={styles.text}>
                 Закажите сайт на коде или собранный в Tilda, WordPress и на других CMS
@@ -79,18 +86,35 @@ const DevelopModal: FC<DevelopModalProps> = ({
               ))}
             </ul>
           </div>
+          <div className={styles.content__favour}>
+            <ul className={styles.favour}>
+              {itemsSupportData.map((item, index) => (
+                <FavourItem
+                  key={index}
+                  title={item.title}
+                  backgroundColor={item.backgroundColor}
+                  textColor={item.textColor}
+                  imageSrc={item.imageSrc}
+                  linkText={''}
+                  linkColor={''}
+                  text={item.text}
+                />
+              ))}
+            </ul>
+          </div>
           <div className={styles.content__result}>
-            <h2 className={styles.result__title}>По итогам разработки вы&nbsp;получите:</h2>
+            <h2 className={styles.result__title}>Что вы получите:</h2>
             <div className={styles.result__points}>
               <ul className={styles.result__list}>
-                <li className={styles.list__point}>Конверсионный сайт, готовый к запуску рекламы и адаптированный под все устройства</li>
-                <li className={styles.list__point}>Интеграцию с нужными вам сервисами: CRM, онлайн-оплаты, рассылки</li>
-                <li className={styles.list__point}>Базовую или расширенную SEO-оптимизацию сайта</li>
+                <li className={styles.list__point}>Сайт, готовый к запуску рекламы и адаптированный под все устройства</li>
+                <li className={styles.list__point}>Постоянный мониторинг, улучшение производительности и безопасности</li>
+                <li className={styles.list__point}>Интеграцию с нужными сервисами: CRM, онлайн-оплаты, рассылки</li>
+                <li className={styles.list__point}>Регулярные обновления контента и функционала</li>
               </ul>
             </div>
           </div>
           <div>
-            <ModalForm titleForm='формы "Разработка сайта"' />
+            <ModalForm development titleForm='формы "Разработка сайта"' />
           </div>
         </div>
       </div>

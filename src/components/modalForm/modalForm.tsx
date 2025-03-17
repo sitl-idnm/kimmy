@@ -25,7 +25,7 @@ const isValidEmail = (email: string) => {
 	return emailRegex.test(email);
 };
 
-const ModalForm: FC<ModalFormProps> = ({ className, details, count, titleForm }) => {
+const ModalForm: FC<ModalFormProps> = ({ className, development, details, count, titleForm }) => {
 	const rootClassName = classNames(styles.root, className)
 	const [selectedContactMethod, setSelectedContactMethod] = useState('number')
 	const [successMessage, setSuccessMessage] = useState<{ text: string; isSuccess: boolean } | null>(null)
@@ -56,7 +56,7 @@ const ModalForm: FC<ModalFormProps> = ({ className, details, count, titleForm })
 			return;
 		}
 
-		if (details===false && count===false) {
+		if (details === false && count === false && development === false) {
 			try {
 				data.commentModal = sanitizeInput(data.commentModal as string);
 			} catch (error) {
@@ -83,10 +83,10 @@ const ModalForm: FC<ModalFormProps> = ({ className, details, count, titleForm })
 	}
 
 	return (
-		<div className={rootClassName} style={details ? {height: '90vh'} : {}}>
+		<div className={rootClassName} style={details ? { height: '90vh' } : {}}>
 			{
 				details ? <h2 className={styles.root__title}>Заказать сайт</h2>
-				: count ? <h2 className={styles.root__title}>Рассчитать срок и стоимость моего проекта</h2> : <h2 className={styles.root__title}>Получить консультацию</h2>
+					: count ? <h2 className={styles.root__title}>Рассчитать срок и стоимость моего проекта</h2> : development ? <h2 className={styles.root__title}>Начнем сотрудничество?</h2> : <h2 className={styles.root__title}>Получить консультацию</h2>
 			}
 			<div className={styles.root__content}>
 				<div className={styles.root__content__text}>
@@ -193,7 +193,7 @@ const ModalForm: FC<ModalFormProps> = ({ className, details, count, titleForm })
 						<div className={styles.form_wrapper}>
 							<input type="checkbox" required />
 							<label>
-								Согласен на обработку <Link href='/privacy-policy' target='_blank' style={{ color: '#CB172C'}}>персональных данных</Link>
+								Согласен на обработку <Link href='/privacy-policy' target='_blank' style={{ color: '#CB172C' }}>персональных данных</Link>
 							</label>
 						</div>
 						<div className={styles.form_wrapper}>
