@@ -86,6 +86,8 @@ const DevelopModal: FC<DevelopModalProps> = ({
               ))}
             </ul>
           </div>
+          <h3 className={styles.modal__title__h2}>Обеспечим поддержку сайта</h3>
+          <p className={styles.modal__title__p}>Закажите поддержку, чтобы сайт всегда был в идеальном состоянии</p>
           <div className={styles.content__favour}>
             <ul className={styles.favour}>
               {itemsSupportData.map((item, index) => (

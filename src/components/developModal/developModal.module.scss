@@ -85,12 +85,12 @@
 				@include tablet-small {
 					justify-content: flex-start;
 
-					max-height: 600px;
+					max-height: 700px;
 				}
 
 				.first {
 					padding-left: 39px;
-					padding-top: 128px;
+					padding-top: 26px;
 
 					display: flex;
 					flex-direction: column;
@@ -167,6 +167,12 @@
 						.icon {
 							width: 70px;
 							height: 70px;
+							transition: transform 0.3s ease-in-out;
+
+							&:hover {
+								transform: translateY(-10px);
+								transition: transform 0.3s ease-in-out;
+							}
 
 							@include tablet-small {
 								width: 52px;
@@ -190,10 +196,10 @@
 				.lines {
 					position: absolute;
 					right: -250px;
-					top: 135px;
+					top: 210px;
 
 					@include tablet-small {
-						top: 224px;
+						top: 319px;
 						right: -117px;
 					}
 
@@ -394,4 +400,24 @@
 			}
 		}
 	}
+}
+
+.modal__title__h2 {
+	font-family: var(--font-inter);
+	font-weight: 500;
+	font-size: 48px;
+	margin: 80px 0 21px;
+	letter-spacing: -0.02em;
+	line-height: 100%;
+	color: var(--color-black);
+}
+
+.modal__title__p {
+	font-family: var(--font-inter);
+	font-weight: 400;
+	font-size: 26px;
+	line-height: 150%;
+	color: #16181B;
+	opacity: 0.8;
+	max-width: 467px;
 }
