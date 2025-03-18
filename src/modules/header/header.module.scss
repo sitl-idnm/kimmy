@@ -180,3 +180,38 @@
     display: block;
   }
 }
+
+.wrapper__buttons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 294px;
+
+  @include tablet {
+    width: 350px;
+  }
+
+  @include tablet-small {
+    width: 50px;
+  }
+}
+
+.vk, .telegram {
+  width: 39px;
+  height: 39px;
+
+  @include tablet-small {
+    display: none;
+  }
+}
+
+.information {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  &__list {
+    display: flex;
+    gap: 8px;
+  }
+}

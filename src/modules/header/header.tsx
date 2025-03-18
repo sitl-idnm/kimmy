@@ -12,6 +12,8 @@ import { Button } from '@/ui/index';
 import { Navigation } from '@/components';
 import { openModalContent } from '@/shared/atoms/openModal';
 import { useSetAtom } from 'jotai';
+import Vk from '@icons/vk.svg'
+import Telegram from '@icons/telegram.svg'
 
 const Header: FC<HeaderProps> = ({ className }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -125,25 +127,33 @@ const Header: FC<HeaderProps> = ({ className }) => {
             <Logo />
           </div>
 
-          <div className={styles.buttons__wrapper}>
-            {!isMobile && (
-              <Button
-                tag='button'
-                onClick={() => openWindows('детали')}
-                maxWidth='192px'
+
+          <div className={styles.wrapper__buttons}>
+            <div className={styles.information}>
+              <ul className={styles.information__list}>
+                <li className={styles.information__item}><a href="https://vk.com/kkimagency" target='_blank' className={styles.infromation__item__link}><Vk className={styles.vk} /></a></li>
+                <li className={styles.inforamtion__item}><a href="https://t.me/kimagency" target='_blank' className={styles.infromation__item__link}><Telegram className={styles.telegram} /></a></li></ul>
+            </div>
+            <div className={styles.buttons__wrapper}>
+              {!isMobile && (
+                <Button
+                  tag='button'
+                  onClick={() => openWindows('детали')}
+                  maxWidth='192px'
+                >
+                  Обсудить проект
+                </Button>
+              )}
+              <div
+                className={styles.burgerbutton}
+                onClick={handleBurgerClick}
+                ref={burgerButtonRef}
+                data-open={isMenuOpen}
               >
-                Обсудить проект
-              </Button>
-            )}
-            <div
-              className={styles.burgerbutton}
-              onClick={handleBurgerClick}
-              ref={burgerButtonRef}
-              data-open={isMenuOpen}
-            >
-              <div className={styles.burgericon} ref={burgerIconRef}>
-                <div className={styles.burgericon__before} ref={burgerBeforeRef}></div>
-                <div className={styles.burgericon__after} ref={burgerAfterRef}></div>
+                <div className={styles.burgericon} ref={burgerIconRef}>
+                  <div className={styles.burgericon__before} ref={burgerBeforeRef}></div>
+                  <div className={styles.burgericon__after} ref={burgerAfterRef}></div>
+                </div>
               </div>
             </div>
           </div>
