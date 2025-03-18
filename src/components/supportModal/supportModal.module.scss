@@ -153,8 +153,7 @@
 						max-width: 100%;
 
 						font-size: 16px;
-
-						margin-right: 0;
+						margin: 0;
 					}
 
 					&__accent {
@@ -169,14 +168,14 @@
 					left: 222px;
 
 					@include tablet-small {
-						top: 194px;
-						left: -251px;
+						top: 128px;
+						left: -24px;
 					}
 
 					img {
 						@include tablet-small {
-							width: 569px;
-							height: 323px;
+							width: 348px;
+							height: 365px;
 						}
 					}
 				}
@@ -267,11 +266,12 @@
 					font-weight: 500;
 					font-size: 64px;
 					line-height: 100%;
+					letter-spacing: -0.02em;
 					color: var(--color-black);
 					max-width: 692px;
 
 					@include tablet-small {
-						font-size: 38px;
+						font-size: 32px;
 					}
 				}
 
@@ -312,7 +312,10 @@
 							padding: 25px 40px;
 
 							@include tablet-small {
-								padding: 20px 12px;
+								padding: 10px 12px;
+
+								width: 313px;
+								height: 108px;
 
 								font-size: 14px;
 
@@ -359,7 +362,15 @@
 	max-width: 410px;
 	font-size: 20px;
 	position: absolute;
+	color: #16181B;
+	opacity: 0.8;
 	letter-spacing: -0.01em;
 	font-family: var(--font-inter);
 	left: 80px;
+
+	@include tablet-small {
+		left: 41px;
+		font-size: 14px;
+		max-width: 259px;
+	}
 }
