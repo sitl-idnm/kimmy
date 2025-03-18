@@ -276,8 +276,18 @@
 				}
 
 				.result__points {
+					transform: translateY(-18%) translateX(-2%);
+
+					margin-bottom: -230px;
+
+					@include tablet-small {
+						transform: translateY(0) translateX(0);
+						margin-bottom: 0;
+					}
+
 					.result__list {
 						display: flex;
+						position: relative;
 						flex-direction: column;
 						gap: 20px;
 
@@ -322,10 +332,28 @@
 								width: 100%;
 							}
 
+							&:nth-child(1) {
+								align-self: flex-end;
+
+								@include tablet-small {
+									align-self: flex-start;
+								}
+							}
+
 							&:nth-child(2n) {
 								align-self: flex-end;
 
 								@include tablet-small {
+									align-self: flex-start;
+								}
+							}
+
+							&:nth-child(3) {
+								position: relative;
+								transform: translateY(-170%);
+
+								@include tablet-small {
+									transform: translateY(0) translateX(0);
 									align-self: flex-start;
 								}
 							}
