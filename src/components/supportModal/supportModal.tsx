@@ -42,7 +42,7 @@ const SupportModal: FC<SupportModalProps> = ({
               Трафик <span className={styles.title__icon}><Gear /></span>
             </h2>
             <p className={styles.text}>
-              Закажите поддержку, чтобы ваш сайт всегда был в <span className={styles.text__accent}>идеальном состоянии</span>
+              <span className={styles.text__accent}>Привлекайте больше клиентов</span> с&nbsp;помощью наших услуг
             </p>
             <div className={styles.lines}>
               <Image
