@@ -5,6 +5,7 @@ import styles from './footer.module.scss'
 import Vk from '@icons/vk.svg'
 import Telegram from '@icons/telegram.svg'
 import Link from 'next/link'
+import Palace from '@icons/palace.svg'
 
 const Footer: FC = () => {
   return (
@@ -25,6 +26,10 @@ const Footer: FC = () => {
             </div>
             <a href="mailto:info@kim.agency" className={styles.contacts__mail}>info@kim.agency</a>
           </div></div>
+        <div className={styles.palace}>
+          <p className={styles.palace__text}>Мы являемся членами Московской торгово-промышленной палаты</p>
+          <Palace />
+        </div>
       </Wrapper>
     </footer>
   )
