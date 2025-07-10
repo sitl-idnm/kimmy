@@ -10,7 +10,7 @@ import { MoveCasePage } from '@/modules/moveCasePage'
 import { ContentCaseClientPulse } from '@/modules/contentCaseClientPulse'
 import NewModalContainer from '@/components/newModalContainer/newModalContainer'
 import { WidgetCase } from '@/modules/widgetCase'
-
+import { CookieBanner } from '@/modules/cookieBanner'
 const ClientPulsePage: FC<ClientPulsePageProps> = ({
   className
 }) => {
@@ -61,6 +61,7 @@ const ClientPulsePage: FC<ClientPulsePageProps> = ({
         />
         <ContentCaseClientPulse />
         <CaseForm image={'/images/cases/clientpulse/1.png'} titleForm='формы "Заказать сайт в кейсе Client Pulse"' />
+        <CookieBanner />
       </main>
     </>
   )

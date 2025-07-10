@@ -9,6 +9,7 @@ import { CaseForm, DefaultTextCase } from '@/components'
 import { ContentCaseBestWave } from '@/modules/contentCaseBestWave'
 import NewModalContainer from '@/components/newModalContainer/newModalContainer'
 import { WidgetCase } from '@/modules/widgetCase'
+import { CookieBanner } from '@/modules/cookieBanner'
 
 const BestWavePage: FC<BestWavePageProps> = ({
   className
@@ -40,6 +41,7 @@ const BestWavePage: FC<BestWavePageProps> = ({
       />
       <ContentCaseBestWave />
       <CaseForm image={'/images/cases/bestwave/form.png'} titleForm='формы "Заказать сайт в кейсе Best Wave"' />
+      <CookieBanner />
     </main>
   )
 }

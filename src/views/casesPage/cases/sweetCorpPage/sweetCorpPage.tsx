@@ -9,7 +9,7 @@ import { MoveCasePage } from '@/modules/moveCasePage'
 import { CaseForm, DefaultTextCase } from '@/components'
 import NewModalContainer from '@/components/newModalContainer/newModalContainer'
 import { WidgetCase } from '@/modules/widgetCase'
-
+import { CookieBanner } from '@/modules/cookieBanner'
 const SweetCorpPage: FC<SweetCorpPageProps> = ({
   className
 }) => {
@@ -43,6 +43,7 @@ const SweetCorpPage: FC<SweetCorpPageProps> = ({
       />
       <ContentCase />
       <CaseForm image={'/images/cases/sweetcorp/1.png'} titleForm='формы "Заказать сайт в кейсе Sweet Corp"' />
+      <CookieBanner />
     </main>
   )
 }

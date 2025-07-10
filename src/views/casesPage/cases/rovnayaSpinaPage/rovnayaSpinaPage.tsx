@@ -10,6 +10,7 @@ import { MoveCasePage } from '@/modules/moveCasePage'
 import { ContentCaseRovnayaSpina } from '@/modules/contentCaseRovnayaSpina'
 import NewModalContainer from '@/components/newModalContainer/newModalContainer'
 import { WidgetCase } from '@/modules/widgetCase'
+import { CookieBanner } from '@/modules/cookieBanner'
 
 const RovnayaSpinaPage: FC<RovnayaSpinaPageProps> = ({
   className
@@ -44,6 +45,7 @@ const RovnayaSpinaPage: FC<RovnayaSpinaPageProps> = ({
       />
       <ContentCaseRovnayaSpina />
       <CaseForm image={'/images/cases/rovnayaspina/form.png'} titleForm='формы "Заказать сайт в кейсе Ровная спина"' />
+      <CookieBanner />
     </main>
   )
 }

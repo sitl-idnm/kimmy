@@ -6,7 +6,7 @@ import classNames from 'classnames'
 import styles from './privacyPage.module.scss'
 import { PrivacyPageProps } from './privacyPage.types'
 import NewModalContainer from '@/components/newModalContainer/newModalContainer'
-
+import { CookieBanner } from '@/modules/cookieBanner'
 const PrivacyPage: FC<PrivacyPageProps> = ({
   className
 }) => {
@@ -102,6 +102,7 @@ const PrivacyPage: FC<PrivacyPageProps> = ({
         <p>9.3. Все предложения или вопросы по настоящей Политике конфиденциальности следует сообщать по адресу: info@kim.agency</p>
         <p>9.4. Действующая Политика конфиденциальности размещена на странице по адресу kim.agency/politika-konfidencialnosti.</p>
       </div>
+      <CookieBanner />
     </main>
   )
 }

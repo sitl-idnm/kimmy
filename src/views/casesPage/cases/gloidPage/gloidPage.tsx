@@ -8,7 +8,7 @@ import { CaseForm, DefaultTextCase } from '@/components'
 import { ContentCaseGloid } from '@/modules/contentCaseGloid'
 import NewModalContainer from '@/components/newModalContainer/newModalContainer'
 import { WidgetCase } from '@/modules/widgetCase'
-
+import { CookieBanner } from '@/modules/cookieBanner'
 const GloidPage: FC<GloidPageProps> = ({
   className
 }) => {
@@ -38,6 +38,7 @@ const GloidPage: FC<GloidPageProps> = ({
         mainText={<>Так клиент получил готовый лендинг с демонстрацией работы приложения еще до его релиза</>}
       />
       <CaseForm image={'/images/cases/gloid/form.png'} titleForm='формы "Заказать сайт в кейсе Gloid"' />
+      <CookieBanner />
     </main>
   )
 }
