@@ -14,6 +14,7 @@ import { Case } from '@/modules/case'
 // import { DrawerMenu } from '@/modules/drawerMenu'
 import NewModalContainer from '../../components/newModalContainer/newModalContainer'
 import { useNavigationHandler } from '@/shared/hooks/useNavigationHandler'
+import { CookieBanner } from '@/modules/cookieBanner'
 
 const Home: FC<HomeProps> = ({ className }) => {
   const rootClassName = classNames(styles.root, className)
@@ -43,6 +44,7 @@ const Home: FC<HomeProps> = ({ className }) => {
         <Tenet />
         <Peoples />
         <FormSecond />
+        <CookieBanner />
       </Wrapper>
       {/* <DrawerMenu /> */}
     </main>

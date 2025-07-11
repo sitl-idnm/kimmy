@@ -8,6 +8,7 @@ import { CaseForm, DefaultTextCase } from '@/components'
 import { ContentCaseMagiyaVkusa } from '@/modules/contentCaseMagiyaVkusa'
 import NewModalContainer from '@/components/newModalContainer/newModalContainer'
 import { WidgetCase } from '@/modules/widgetCase'
+import { CookieBanner } from '@/modules/cookieBanner'
 
 const MagiyaVkusa: FC<MagiyaVkusaProps> = ({
   className
@@ -37,6 +38,7 @@ const MagiyaVkusa: FC<MagiyaVkusaProps> = ({
         mainText={<>У нас получился простой, но информативный и интуитивно-понятный интернет-магазин, в котором жители и гости Москвы могут заказать вкусные пироги.</>}
       />
       <CaseForm image={'/images/cases/magiyavkusa/form.png'} titleForm='формы "Заказать сайт в кейсе Магия Вкуса"' />
+      <CookieBanner />
     </main>
   )
 }

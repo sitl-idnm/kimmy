@@ -5,6 +5,7 @@ import styles from './casesPage.module.scss'
 import { CasesPageProps } from './casesPage.types'
 import { Cases } from '@/modules/cases'
 import NewModalContainer from '@/components/newModalContainer/newModalContainer'
+import { CookieBanner } from '@/modules/cookieBanner'
 
 const CasesPage: FC<CasesPageProps> = ({
   className
@@ -15,6 +16,7 @@ const CasesPage: FC<CasesPageProps> = ({
     <main className={rootClassName}>
       <NewModalContainer />
       <Cases />
+      <CookieBanner />
     </main>
   )
 }
