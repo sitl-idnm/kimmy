@@ -29,6 +29,8 @@ const ModalForm: FC<ModalFormProps> = ({ className, development, details, count,
 	const rootClassName = classNames(styles.root, className)
 	const [selectedContactMethod, setSelectedContactMethod] = useState('number')
 	const [successMessage, setSuccessMessage] = useState<{ text: string; isSuccess: boolean } | null>(null)
+	// Время, когда пользователь дал согласие на обработку персональных данных
+	const [policyConsentTimestamp, setPolicyConsentTimestamp] = useState<Date | null>(null)
 
 	const handleNumberInput = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const value = event.target.value
@@ -45,6 +47,16 @@ const ModalForm: FC<ModalFormProps> = ({ className, development, details, count,
 
 	const closeMessage = () => {
 		setSuccessMessage(null);
+	};
+
+	const handlePolicyCheckboxChange = () => {
+		const now = new Date();
+		setPolicyConsentTimestamp(now);
+		try {
+			localStorage.setItem('policyConsentTimestamp', now.toISOString());
+		} catch (e) {
+			console.error('Не удалось сохранить время согласия в localStorage', e);
+		}
 	};
 
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -67,7 +79,7 @@ const ModalForm: FC<ModalFormProps> = ({ className, development, details, count,
 
 		const token = '7862004029:AAFZ807gLMhUIzqjfh4DB62muUmzWv9JfrY'
 		const chatId = '-4654232429'
-		const message = `Новая заявка c ${titleForm} на сайте-визитке:\nИмя: ${data.nameModal}\nТелефон: ${data.phoneModal}${data.mailModal ? `\nПочта: ${data.mailModal}` : ''}${data.commentModal ? `\nРасскажите про свой проект: ${data.commentModal}` : ''}\nПредпочтительный способ связи: ${selectedContactMethod}`
+		const message = `Новая заявка c ${titleForm} на сайте-визитке:\nИмя: ${data.nameModal}\nТелефон: ${data.phoneModal}${data.mailModal ? `\nПочта: ${data.mailModal}` : ''}${data.commentModal ? `\nРасскажите про свой проект: ${data.commentModal}` : ''}${policyConsentTimestamp ? `\nВремя согласия: ${policyConsentTimestamp.toLocaleString()}` : ''}\nПредпочтительный способ связи: ${selectedContactMethod}`
 
 		try {
 			await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
@@ -191,7 +203,7 @@ const ModalForm: FC<ModalFormProps> = ({ className, development, details, count,
 					</div>
 					<div className={styles.wrapper}>
 						<div className={styles.form_wrapper}>
-							<input type="checkbox" required />
+							<input type="checkbox" required onChange={handlePolicyCheckboxChange} />
 							<label>
 								Согласен на обработку <Link href='/privacy-policy' target='_blank' style={{ color: '#CB172C' }}>персональных данных</Link>
 							</label>

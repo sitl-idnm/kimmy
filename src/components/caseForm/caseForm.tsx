@@ -16,6 +16,8 @@ const CaseForm: FC<CaseFormProps> = ({
 }) => {
   const rootClassName = classNames(styles.root, className)
   const [successMessage, setSuccessMessage] = useState<{ text: string; isSuccess: boolean } | null>(null)
+  // Время, когда пользователь согласился на политику обработки данных
+  const [policyConsentTimestamp, setPolicyConsentTimestamp] = useState<Date | null>(null)
 
   const handleNameInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -44,6 +46,17 @@ const CaseForm: FC<CaseFormProps> = ({
     setSuccessMessage(null);
   };
 
+  const handlePolicyCheckboxChange = () => {
+    const now = new Date();
+    setPolicyConsentTimestamp(now);
+    // Сохраняем в localStorage при необходимости
+    try {
+      localStorage.setItem('policyConsentTimestamp', now.toISOString());
+    } catch (e) {
+      console.error('Не удалось сохранить время согласия в localStorage', e);
+    }
+  };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
@@ -60,7 +73,7 @@ const CaseForm: FC<CaseFormProps> = ({
     }
     const token = '7862004029:AAFZ807gLMhUIzqjfh4DB62muUmzWv9JfrY'
     const chatId = '-4654232429'
-    const message = `Новая заявка с ${titleForm} на сайте-визитке:\nИмя: ${data.name}\nТелефон: ${data.phone}${data.mail ? `\nПочта: ${data.mail}` : ''}${data.project ? `\nРасскажите про свой проект: ${data.project}` : ''}`
+    const message = `Новая заявка с ${titleForm} на сайте-визитке:\nИмя: ${data.name}\nТелефон: ${data.phone}${data.mail ? `\nПочта: ${data.mail}` : ''}${data.project ? `\nСообщение: ${data.project}` : ''}${policyConsentTimestamp ? `\nВремя согласия: ${policyConsentTimestamp.toLocaleString()}` : ''}`
 
     try {
       await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
@@ -109,8 +122,8 @@ const CaseForm: FC<CaseFormProps> = ({
           <label className={styles.placeholder}>Сообщение</label>
         </div>
         <div className={styles.form_wrapper}>
-          <input type="checkbox" required/>
-          <label>Согласен на обработку <Link href='/privacy-policy' target='_blank' style={{ color: '#CB172C'}}>персональных данных</Link></label>
+          <input type="checkbox" required onChange={handlePolicyCheckboxChange} />
+          <label>Согласен на обработку <Link href='/privacy-policy' target='_blank' style={{ color: '#CB172C' }}>персональных данных</Link></label>
         </div>
         <div className={styles.form_wrapper}>
           <input type="checkbox" />
@@ -123,8 +136,8 @@ const CaseForm: FC<CaseFormProps> = ({
           <div className={`${styles.successMessage} ${successMessage.isSuccess ? styles.success : styles.error}`}>
             {successMessage.isSuccess && (
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="24" height="24" rx="12" fill="white"/>
-                <path d="M8 12L11.5 16L16 7" stroke="#CB172C" stroke-width="1.5" stroke-linecap="round"/>
+                <rect width="24" height="24" rx="12" fill="white" />
+                <path d="M8 12L11.5 16L16 7" stroke="#CB172C" stroke-width="1.5" stroke-linecap="round" />
               </svg>
             )}
             {successMessage.text}

@@ -16,6 +16,7 @@ const Form: FC<FormProps> = ({
 }) => {
   const rootClassName = classNames(styles.root, className)
   const [successMessage, setSuccessMessage] = useState<{ text: string; isSuccess: boolean } | null>(null)
+  const [policyConsentTimestamp, setPolicyConsentTimestamp] = useState<Date | null>(null)
 
   const handleNameInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -60,7 +61,7 @@ const Form: FC<FormProps> = ({
     }
     const token = '7862004029:AAFZ807gLMhUIzqjfh4DB62muUmzWv9JfrY'
     const chatId = '-4654232429'
-    const message = `Новая заявка с ${titleForm} на сайте-визитке:\nИмя: ${data.name}\nТелефон: ${data.phone}${data.mail ? `\nПочта: ${data.mail}` : ''}${data.project ? `\nРасскажите про свой проект: ${data.project}` : ''}`
+    const message = `Новая заявка с ${titleForm} на сайте-визитке:\nИмя: ${data.name}\nТелефон: ${data.phone}${data.mail ? `\nПочта: ${data.mail}` : ''}${data.project ? `\nРасскажите про свой проект: ${data.project}` : ''}${policyConsentTimestamp ? `\nВремя согласия: ${policyConsentTimestamp.toLocaleString()}` : ''}`
 
     try {
       await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
@@ -79,6 +80,17 @@ const Form: FC<FormProps> = ({
     setSuccessMessage(null);
   };
 
+  const handlePolicyCheckboxChange = () => {
+    const now = new Date()
+    setPolicyConsentTimestamp(now)
+    // При необходимости сохраняем во внешнее хранилище
+    try {
+      localStorage.setItem('policyConsentTimestamp', now.toISOString())
+    } catch (e) {
+      console.error('Не удалось сохранить время согласия в localStorage', e)
+    }
+  }
+
   return (
     <div className={rootClassName}>
       <form onSubmit={handleSubmit} className={styles.form}>
@@ -93,13 +105,13 @@ const Form: FC<FormProps> = ({
         {/* Часть формы для страницы работа у нас */}
         {work !== undefined && (
           <div className={styles.form_wrapper}>
-            <input type="text" name="url" placeholder='Ссылка на резюме' onFocus={(e) => e.target.placeholder = ''} onBlur={(e) => e.target.placeholder = 'Ссылка на резюме'} style={work ? { color: 'black', backgroundColor: '#FAFAFA'} : undefined} />
-          <label className={styles.placeholder}>Ссылка на резюме</label>
-        </div>
+            <input type="text" name="url" placeholder='Ссылка на резюме' onFocus={(e) => e.target.placeholder = ''} onBlur={(e) => e.target.placeholder = 'Ссылка на резюме'} style={work ? { color: 'black', backgroundColor: '#FAFAFA' } : undefined} />
+            <label className={styles.placeholder}>Ссылка на резюме</label>
+          </div>
         )}
         {work !== undefined && (
           <div className={styles.form_wrapper}>
-            <textarea name="project" placeholder='Расскажите про свой проект' onFocus={(e) => e.target.placeholder = ''} style={work ? { color: 'black', backgroundColor: '#FAFAFA'} : undefined} onBlur={(e) => e.target.placeholder = 'Расскажите про свой проект'} ></textarea>
+            <textarea name="project" placeholder='Расскажите про свой проект' onFocus={(e) => e.target.placeholder = ''} style={work ? { color: 'black', backgroundColor: '#FAFAFA' } : undefined} onBlur={(e) => e.target.placeholder = 'Расскажите про свой проект'} ></textarea>
             <label className={styles.placeholder}>Расскажите про свой проект</label>
           </div>
         )}
@@ -118,8 +130,8 @@ const Form: FC<FormProps> = ({
           </div>
         )}
         <div className={styles.form_wrapper}>
-          <input type="checkbox" required/>
-          <label style={work ? { color: 'black' } : undefined}>Согласен на обработку <Link href='/privacy-policy' target='_blank' style={work ? { color: '#CB172C'} : undefined}>персональных данных</Link></label>
+          <input type="checkbox" required onChange={handlePolicyCheckboxChange} />
+          <label style={work ? { color: 'black' } : undefined}>Согласен на обработку <Link href='/privacy-policy' target='_blank' style={work ? { color: '#CB172C' } : undefined}>персональных данных</Link></label>
         </div>
         {mail !== undefined && (
           <div className={styles.form_wrapper}>
@@ -130,7 +142,7 @@ const Form: FC<FormProps> = ({
         {work !== undefined && (
           <div className={styles.form_wrapper}>
             <input type="checkbox" />
-            <label style={work ? { color: 'black'} : undefined}>Согласен на получение email - рассылок</label>
+            <label style={work ? { color: 'black' } : undefined}>Согласен на получение email - рассылок</label>
           </div>
         )}
         <div className={styles.form_wrapper}>
@@ -140,8 +152,8 @@ const Form: FC<FormProps> = ({
           <div className={`${styles.successMessage} ${successMessage.isSuccess ? styles.success : styles.error}`}>
             {successMessage.isSuccess && (
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="24" height="24" rx="12" fill="white"/>
-                <path d="M8 12L11.5 16L16 7" stroke="#CB172C" stroke-width="1.5" stroke-linecap="round"/>
+                <rect width="24" height="24" rx="12" fill="white" />
+                <path d="M8 12L11.5 16L16 7" stroke="#CB172C" stroke-width="1.5" stroke-linecap="round" />
               </svg>
             )}
             {successMessage.text}
