@@ -1,0 +1,50 @@
+@use "@styles/func";
+@use "@styles/mixins";
+@use "@styles/variables";
+
+.root {
+	max-width: func.rem(1300);
+	margin: 0 auto;
+	margin-bottom: func.rem(80);
+
+	@include mixins.tablet {
+		margin-bottom: func.rem(60);
+	}
+
+	@include mixins.tablet-small {
+		margin-bottom: func.rem(40);
+	}
+
+	padding: 0 func.rem(8);
+}
+
+.title {
+	@include mixins.h2;
+	margin-bottom: func.rem(16);
+}
+
+.tag {
+	@include mixins.h4;
+	margin-bottom: func.rem(12);
+}
+
+.description {
+	@include mixins.text;
+	font-size: func.rem(18);
+	margin-bottom: func.rem(10);
+
+	@include mixins.tablet-small {
+		font-size: func.rem(16);
+	}
+}
+
+.subDescription {
+	@include mixins.text;
+	opacity: 0.8;
+	margin-bottom: func.rem(20);
+}
+
+.button {
+	display: inline-flex;
+	max-width: 300px;
+}

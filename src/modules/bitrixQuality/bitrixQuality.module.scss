@@ -1,0 +1,50 @@
+@use "@styles/func";
+@use "@styles/mixins";
+@use "@styles/variables";
+
+.root {
+	max-width: func.rem(1300);
+	margin: 0 auto;
+	padding: 0 func.rem(8);
+	margin-bottom: func.rem(80);
+}
+
+.heading {
+	@include mixins.h2;
+	margin-bottom: func.rem(24);
+}
+
+.section {
+	& + & {
+		margin-top: func.rem(40);
+	}
+}
+
+.title {
+	@include mixins.h3;
+	margin-bottom: func.rem(12);
+}
+
+.list {
+	margin: 0;
+	padding-left: func.rem(22);
+	list-style: disc;
+}
+
+.listItem {
+	@include mixins.text;
+	& + & {
+		margin-top: func.rem(8);
+	}
+}
+
+.imageWrapper {
+	margin-top: func.rem(12);
+}
+
+.image {
+	width: 100%;
+	height: auto;
+	border-radius: func.rem(12);
+	border: 1px solid rgba(0, 0, 0, 0.08);
+}
