@@ -3,7 +3,6 @@ import classNames from 'classnames'
 
 import styles from './bitrixPage.module.scss'
 import { BitrixPageProps } from './bitrixPage.types'
-import Introduce from '@/components/introduce/introduce'
 import Wrapper from '@/ui/wrapper/wrapper'
 import { PlusWork } from '@/modules/plusWork'
 import { FormFirst } from '@/modules/formFirst'
