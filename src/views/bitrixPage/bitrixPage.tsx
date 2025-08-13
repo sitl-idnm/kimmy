@@ -10,6 +10,7 @@ import { CookieBanner } from '@/modules/cookieBanner'
 import { Tdbut } from '@/modules/tdbut'
 import { BitrixPrice } from '@/modules/bitrixPrice'
 import { BitrixQuality } from '@/modules/bitrixQuality'
+import Image from 'next/image'
 
 const BitrixPage: FC<BitrixPageProps> = ({
   className
@@ -83,6 +84,13 @@ const BitrixPage: FC<BitrixPageProps> = ({
 
   return (
     <main className={rootClassName}>
+      <Image
+        src="/images/bitrix/bitrix24_partner.png"
+        width={300}
+        height={140}
+        alt="Логотип Битрикс Партнёра"
+        className={styles.b24logo}
+      />
       <Wrapper>
         <Tdbut
           title='Партнеры'

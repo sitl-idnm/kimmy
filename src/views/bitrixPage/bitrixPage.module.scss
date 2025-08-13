@@ -1,5 +1,14 @@
 @use "@styles/func";
 @use "@styles/mixins";
 @use "@styles/variables";
-  
-.root {}
+
+.root {
+	position: relative;
+
+	.b24logo {
+		max-width: 300px;
+		margin: 0 auto;
+		display: block;
+		margin-bottom: func.rem(20);
+	}
+}
