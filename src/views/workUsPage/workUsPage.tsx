@@ -22,7 +22,6 @@ const WorkUsPage: FC<WorkUsPageProps> = ({
       <PlusWork />
       <RedBoxWork />
       <FormWorkUs />
-      <CookieBanner />
     </main>
   )
 }

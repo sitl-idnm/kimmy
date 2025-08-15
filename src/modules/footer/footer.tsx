@@ -27,8 +27,11 @@ const Footer: FC = () => {
             <a href="mailto:info@kim.agency" className={styles.contacts__mail}>info@kim.agency</a>
           </div></div>
         <div className={styles.palace}>
-          <p className={styles.palace__text}>Мы являемся членами Московской торгово-промышленной палаты</p>
-          <Palace />
+          <p className={styles.address__text}>Дмитровское шоссе дом 100 стр. 2</p>
+          <div className={styles.palace__container}>
+            <p className={styles.palace__text}>Мы являемся членами Московской торгово-промышленной палаты</p>
+            <Palace />
+          </div>
         </div>
       </Wrapper>
     </footer>

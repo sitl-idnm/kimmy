@@ -102,7 +102,6 @@ const PrivacyPage: FC<PrivacyPageProps> = ({
         <p>9.3. Все предложения или вопросы по настоящей Политике конфиденциальности следует сообщать по адресу: info@kim.agency</p>
         <p>9.4. Действующая Политика конфиденциальности размещена на странице по адресу kim.agency/politika-konfidencialnosti.</p>
       </div>
-      <CookieBanner />
     </main>
   )
 }

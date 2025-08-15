@@ -51,31 +51,31 @@ const BitrixPage: FC<BitrixPageProps> = ({
 
   const images = {
     onlineOffice: {
-      src: '/images/bitrix/online-office.png',
+      src: '/images/bitrix/online-office.webp',
       alt: 'Онлайн-офис',
       width: 1200,
       height: 675
     },
     crm: {
-      src: '/images/bitrix/crm.png',
+      src: '/images/bitrix/crm.webp',
       alt: 'CRM',
       width: 1200,
       height: 675
     },
     automation: {
-      src: '/images/bitrix/automation.png',
+      src: '/images/bitrix/automation.webp',
       alt: 'Автоматизация',
       width: 1200,
       height: 675
     },
     tasks: {
-      src: '/images/bitrix/tasks.png',
+      src: '/images/bitrix/tasks.webp',
       alt: 'Задачи',
       width: 1200,
       height: 675
     },
     sites: {
-      src: '/images/bitrix/sites.png',
+      src: '/images/bitrix/sites.webp',
       alt: 'Сайты',
       width: 1200,
       height: 675
@@ -115,7 +115,6 @@ const BitrixPage: FC<BitrixPageProps> = ({
             formTitleForm='формы "Партнер Bitrix24"'
           />
         </div>
-        <CookieBanner />
       </Wrapper>
     </main>
   )

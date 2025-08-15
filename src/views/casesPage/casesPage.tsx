@@ -16,7 +16,6 @@ const CasesPage: FC<CasesPageProps> = ({
     <main className={rootClassName}>
       <NewModalContainer />
       <Cases />
-      <CookieBanner />
     </main>
   )
 }

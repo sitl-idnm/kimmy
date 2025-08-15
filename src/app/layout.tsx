@@ -7,6 +7,7 @@ import '@styles/global.scss'
 
 import localFont from 'next/font/local'
 import { Provider } from '@service/provider'
+import { CookieBanner } from '@/modules/cookieBanner'
 
 const inter = localFont({
   src: [
@@ -61,6 +62,7 @@ export default function RootLayout({
           <div id="root">
             <Header />
             {children}
+            <CookieBanner />
             <Footer />
           </div>
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import classNames from 'classnames'
 
 import styles from './cookieBanner.module.scss'
@@ -12,7 +12,25 @@ const CookieBanner: FC<CookieBannerProps> = ({
 }) => {
   const rootClassName = classNames(styles.root, className)
 
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(false)
+
+  const getCookie = (name: string): string | null => {
+    if (typeof document === 'undefined') return null
+    const matches = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/([.$?*|{}()\[\]\\/+^])/g, '\\$1') + '=([^;]*)'))
+    return matches ? decodeURIComponent(matches[1]) : null
+  }
+
+  const setCookieForOneMonth = (name: string, value: string) => {
+    if (typeof document === 'undefined') return
+    const expiresDate = new Date()
+    expiresDate.setMonth(expiresDate.getMonth() + 1)
+    document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expiresDate.toUTCString()}; path=/; SameSite=Lax`
+  }
+
+  useEffect(() => {
+    const accepted = getCookie('cookie_consent_accepted')
+    setIsOpen(!accepted)
+  }, [])
 
   if (isOpen) {
     return (
@@ -27,7 +45,10 @@ const CookieBanner: FC<CookieBannerProps> = ({
         </div>
         <Button
           className={styles.root__button}
-          onClick={() => setIsOpen(false)}
+          onClick={() => {
+            setCookieForOneMonth('cookie_consent_accepted', 'true')
+            setIsOpen(false)
+          }}
         >
           Принять
         </Button>

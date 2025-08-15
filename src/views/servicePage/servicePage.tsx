@@ -12,7 +12,6 @@ const ServicePage: FC<ServicePageProps> = ({
   return (
     <main className={rootClassName}>
       <h1>ServicePage</h1>
-      <CookieBanner />
     </main>
   )
 }

@@ -21,6 +21,8 @@
 
 	background-color: var(--color-white-default);
 
+	z-index: 1000;
+
 	@include tablet-small {
 		bottom: 0;
 		left: 0;

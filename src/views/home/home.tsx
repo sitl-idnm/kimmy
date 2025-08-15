@@ -44,7 +44,6 @@ const Home: FC<HomeProps> = ({ className }) => {
         <Tenet />
         <Peoples />
         <FormSecond />
-        <CookieBanner />
       </Wrapper>
       {/* <DrawerMenu /> */}
     </main>
