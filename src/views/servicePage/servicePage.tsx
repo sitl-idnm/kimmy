@@ -3,7 +3,6 @@ import classNames from 'classnames'
 
 import styles from './servicePage.module.scss'
 import { ServicePageProps } from './servicePage.types'
-import { CookieBanner } from '@/modules/cookieBanner'
 const ServicePage: FC<ServicePageProps> = ({
   className
 }) => {

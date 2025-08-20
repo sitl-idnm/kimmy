@@ -8,7 +8,6 @@ import { RedBoxWork } from '@/modules/redBoxWork'
 import { FormWorkUs } from '@/modules/formWorkUs'
 import { IntroWorkUs } from '@/modules/introWorkUs'
 import NewModalContainer from '@/components/newModalContainer/newModalContainer'
-import { CookieBanner } from '@/modules/cookieBanner'
 
 const WorkUsPage: FC<WorkUsPageProps> = ({
   className

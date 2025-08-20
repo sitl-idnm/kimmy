@@ -6,7 +6,6 @@ import classNames from 'classnames'
 import styles from './privacyPage.module.scss'
 import { PrivacyPageProps } from './privacyPage.types'
 import NewModalContainer from '@/components/newModalContainer/newModalContainer'
-import { CookieBanner } from '@/modules/cookieBanner'
 const PrivacyPage: FC<PrivacyPageProps> = ({
   className
 }) => {
