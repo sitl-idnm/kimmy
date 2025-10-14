@@ -18,6 +18,7 @@ const Footer: FC = () => {
               <li className={styles.inforamtion__item}><a href="https://t.me/kimagency" target='_blank' className={styles.infromation__item__link}><Telegram className={styles.telegram} /></a></li></ul>
             <p className={styles.information__text}>Сайт агентства интернет -<br></br> маркетинга K.KIM, Москва</p>
             <Link href="/privacy-policy" target='_blank' className={styles.information__policy}>Политика конфиденциальности</Link>
+            <Link href="/approve" target='_blank' className={styles.information__policy}>Согласие на обработку персональных данных</Link>
           </div>
           <div className={styles.contacts}>
             <div className={styles.contacts__phone}>

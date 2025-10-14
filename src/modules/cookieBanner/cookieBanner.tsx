@@ -6,6 +6,7 @@ import classNames from 'classnames'
 import styles from './cookieBanner.module.scss'
 import { CookieBannerProps } from './cookieBanner.types'
 import Button from '@/ui/button/button'
+import Link from 'next/link'
 
 const CookieBanner: FC<CookieBannerProps> = ({
   className
@@ -40,7 +41,7 @@ const CookieBanner: FC<CookieBannerProps> = ({
             Мы используем файлы cookie.
           </h2>
           <p className={styles.root__content__text}>
-            Этот сайт использует файлы cookie для хранения данных. Продолжая использовать сайт, Вы даете согласие на работу с этими файлами
+          Наш сайт использует файлы cookie и сервисы аналитики, такие как «Яндекс.Метрика», для сбора статистики и улучшения качества предоставляемых услуг. Это помогает нам понять, как вы используете сайт, и сделать его более функциональным и удобным. Нажимая кнопку «Принять» или продолжая просмотр, вы соглашаетесь с использованием этих технологий. <Link href="/privacy-policy" target='_blank' style={{ color: '#CB172C' }}>Ознакомьтесь с нашей Политикой конфиденциальности.</Link>
           </p>
         </div>
         <Button
