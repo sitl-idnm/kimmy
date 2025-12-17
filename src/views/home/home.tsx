@@ -1,6 +1,6 @@
 'use client'
 import { FC, useCallback, useRef } from 'react'
-import { Wrapper } from '@/ui'
+import { Heading, Wrapper } from '@/ui'
 import classNames from 'classnames'
 
 import styles from './home.module.scss'
@@ -31,6 +31,7 @@ const Home: FC<HomeProps> = ({ className }) => {
 
   return (
     <main ref={mainRef} className={rootClassName}>
+      <Heading tagName="h1" className={styles.hidden}>Агентство комплексного интернет-маркетинга</Heading>
       <NewModalContainer />
       <Wrapper>
         <Introduce />
