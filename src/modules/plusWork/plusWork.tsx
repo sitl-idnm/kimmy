@@ -66,9 +66,7 @@ const PlusWork: FC<PlusWorkProps> = ({ className, items }) => {
   }))
 
   useGSAP(() => {
-    // Используем requestAnimationFrame для гарантии, что DOM полностью отрендерен
     requestAnimationFrame(() => {
-      // Дополнительная проверка через еще один RAF для надежности
       requestAnimationFrame(() => {
         if (triggerRef.current && secondRef.current && thirdRef.current &&
           fourthRef.current && fiveRef.current && sixRef.current &&

@@ -14,6 +14,7 @@ import { openModalContent } from '@/shared/atoms/openModal';
 import { useSetAtom } from 'jotai';
 import Vk from '@icons/vk.svg'
 import Telegram from '@icons/telegram.svg'
+import { useGSAP } from '@gsap/react';
 
 const Header: FC<HeaderProps> = ({ className }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -47,7 +48,7 @@ const Header: FC<HeaderProps> = ({ className }) => {
     };
   }, []);
 
-  useEffect(() => {
+  useGSAP(() => {
     if (isMenuOpen) {
       gsap.to(menuRef.current, {
         opacity: 1,
@@ -96,7 +97,7 @@ const Header: FC<HeaderProps> = ({ className }) => {
   };
 
   // Обработчик клика вне меню
-  useEffect(() => {
+  useGSAP(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
         isMenuOpen &&
