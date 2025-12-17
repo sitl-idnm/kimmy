@@ -7,11 +7,13 @@ import styles from './plusWork.module.scss'
 import { PlusWorkProps } from './plusWork.types'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 const PlusWork: FC<PlusWorkProps> = ({ className, items }) => {
   const rootClassName = classNames(styles.root, className)
   const pathname = usePathname()
 
+  const containerRef = useRef<HTMLDivElement>(null)
   const secondRef = useRef<HTMLDivElement>(null)
   const thirdRef = useRef<HTMLDivElement>(null)
   const fourthRef = useRef<HTMLDivElement>(null)
@@ -64,31 +66,59 @@ const PlusWork: FC<PlusWorkProps> = ({ className, items }) => {
   }))
 
   useGSAP(() => {
-    if (triggerRef.current && secondRef.current && thirdRef.current &&
-        fourthRef.current && fiveRef.current && sixRef.current &&
-        window.innerWidth > 1200) {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: triggerRef.current,
-          start: 'top 10%',
-          scrub: true,
+    // Используем requestAnimationFrame для гарантии, что DOM полностью отрендерен
+    requestAnimationFrame(() => {
+      // Дополнительная проверка через еще один RAF для надежности
+      requestAnimationFrame(() => {
+        if (triggerRef.current && secondRef.current && thirdRef.current &&
+          fourthRef.current && fiveRef.current && sixRef.current &&
+          window.innerWidth > 1200) {
+
+          // Проверяем, что элементы действительно в DOM и имеют размеры
+          const allElementsReady = [
+            triggerRef.current,
+            secondRef.current,
+            thirdRef.current,
+            fourthRef.current,
+            fiveRef.current,
+            sixRef.current
+          ].every(el => el && el.offsetParent !== null && el.offsetWidth > 0)
+
+          if (!allElementsReady) {
+            // Если элементы еще не готовы, пробуем еще раз через небольшую задержку
+            setTimeout(() => {
+              ScrollTrigger.refresh()
+            }, 200)
+            return
+          }
+
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: triggerRef.current,
+              start: 'top 10%',
+              scrub: true,
+            }
+          })
+
+          tl.to(secondRef.current, {
+            y: 389,
+            ease: 'power1.out'
+          })
+
+          tl.to([thirdRef.current, fourthRef.current, fiveRef.current, sixRef.current], {
+            y: 389,
+            ease: 'power1.out'
+          })
+
+          // Обновляем ScrollTrigger после создания анимации
+          ScrollTrigger.refresh()
         }
       })
-
-      tl.to(secondRef.current, {
-        y: 389,
-        ease: 'power1.out'
-      })
-
-      tl.to([thirdRef.current, fourthRef.current, fiveRef.current, sixRef.current], {
-        y: 389,
-        ease: 'power1.out'
-      })
-    }
-  }, { scope: triggerRef, dependencies: [pathname] })
+    })
+  }, { scope: containerRef, dependencies: [pathname], revertOnUpdate: true })
 
   return (
-    <div className={rootClassName}>
+    <div className={rootClassName} ref={containerRef}>
       <div className={styles.firstline} ref={triggerRef}>
         <div className={styles.box} ref={fiveRef}>
           <h3 className={styles.title}>{mergedItems[0].title}</h3>
