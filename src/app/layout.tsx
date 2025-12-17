@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ReactNode } from 'react'
+import type { Metadata } from 'next'
 import { Footer } from '@modules/footer'
 import { Header } from '@modules/header'
 
@@ -11,6 +12,10 @@ import { Provider } from '@service/provider'
 import { CookieBanner } from '@/modules/cookieBanner'
 
 const YM_ID = '103883810'
+
+export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000')
+}
 
 const inter = localFont({
   src: [
@@ -88,6 +93,7 @@ export default function RootLayout({
         </Script>
         <noscript>
           <div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={`https://mc.yandex.ru/watch/${YM_ID}`} style={{ position: 'absolute', left: '-9999px' }} alt="" />
           </div>
         </noscript>
