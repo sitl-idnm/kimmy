@@ -1,6 +1,7 @@
 'use client'
 import { FC, useRef } from 'react'
 import classNames from 'classnames'
+import { usePathname } from 'next/navigation'
 
 import styles from './tenet.module.scss'
 import { TenetProps } from './tenet.types'
@@ -25,6 +26,7 @@ const Tenet: FC<TenetProps> = ({
   className
 }) => {
   const rootClassName = classNames(styles.root, className)
+  const pathname = usePathname()
 
   const nameTitle = useRef(null)
   const containerTitle = useRef(null)
@@ -33,7 +35,7 @@ const Tenet: FC<TenetProps> = ({
     const title = nameTitle.current
     const container = containerTitle.current
 
-    if (window.innerWidth > 768) {
+    if (title && container && window.innerWidth > 768) {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: title,
@@ -50,7 +52,7 @@ const Tenet: FC<TenetProps> = ({
         opacity: 1
       })
     }
-  })
+  }, { scope: containerTitle, dependencies: [pathname] })
 
   return (
     <div className={rootClassName} ref={containerTitle}>

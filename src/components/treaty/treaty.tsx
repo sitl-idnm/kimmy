@@ -4,6 +4,7 @@ import { FC, useRef, useCallback } from 'react';
 import classNames from 'classnames';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
+import { usePathname } from 'next/navigation';
 
 import styles from './treaty.module.scss';
 import { TreatyProps } from './treaty.types';
@@ -16,6 +17,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Treaty: FC<TreatyProps> = ({ className = [] }) => {
   const rootClassName = classNames(styles.root, className);
+  const pathname = usePathname();
 
   const topCardRef = useRef<HTMLDivElement>(null);
   const bottomCardRef = useRef<HTMLDivElement>(null);
@@ -28,6 +30,8 @@ const Treaty: FC<TreatyProps> = ({ className = [] }) => {
   }, [setModalContent]);
 
   useGSAP(() => {
+    if (!containerRef.current || !topCardRef.current || !bottomCardRef.current) return
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current, // Устанавливаем триггер на контейнер
@@ -83,18 +87,18 @@ const Treaty: FC<TreatyProps> = ({ className = [] }) => {
     animateCards();
 
     // Добавляем событие для пересчета анимации при изменении размера окна
-    window.addEventListener('resize', () => {
+    const handleResize = () => {
       if (window.innerWidth > 1200 !== isLargeScreen) {
         animateCards();
       }
-    });
-
+    };
+    window.addEventListener('resize', handleResize);
 
     // Очистка при размонтировании компонента
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, { scope: containerRef, dependencies: [pathname] });
 
   return (
     <div ref={containerRef} className={rootClassName}>

@@ -5,6 +5,7 @@ import classNames from 'classnames'
 import gsap from 'gsap'
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { usePathname } from 'next/navigation'
 
 import styles from './conversionTitle.module.scss'
 import { ConversionTitleProps } from './conversionTitle.types'
@@ -14,12 +15,13 @@ gsap.registerPlugin(MotionPathPlugin, ScrollTrigger)
 
 const ConversionTitle: FC<ConversionTitleProps> = ({ className }) => {
   const rootClassName = classNames(styles.root, className)
+  const pathname = usePathname()
   const iconRef = useRef<SVGSVGElement>(null)
   const secondTitleRef = useRef<HTMLSpanElement>(null)
   const thirdTitleRef = useRef<HTMLSpanElement>(null)
 
   useGSAP(() => {
-    if (iconRef.current) {
+    if (iconRef.current && secondTitleRef.current && thirdTitleRef.current) {
       const ball = iconRef.current.querySelector('#ball')
       const path = iconRef.current.querySelector('#path')
       if (ball && path) {
@@ -68,7 +70,7 @@ const ConversionTitle: FC<ConversionTitleProps> = ({ className }) => {
         })
       }
     }
-  }, [])
+  }, { scope: iconRef, dependencies: [pathname] })
 
   return (
     <div className={rootClassName}>

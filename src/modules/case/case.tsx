@@ -3,6 +3,7 @@
 import { FC, useRef } from 'react'
 import classNames from 'classnames'
 import gsap from 'gsap'
+import { usePathname } from 'next/navigation'
 import Arrow from '@icons/cases__arrow.svg'
 
 import styles from './case.module.scss'
@@ -21,11 +22,12 @@ const Case: FC<CaseProps> = ({
   className
 }) => {
   const rootClassName = classNames(styles.root, className)
+  const pathname = usePathname()
   const casesRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
   useGSAP(() => {
-    if (window.innerWidth > 1200) {
+    if (casesRef.current && containerRef.current && window.innerWidth > 1200) {
       gsap.to(casesRef.current, {
         x: () => -(casesRef.current!.scrollWidth - casesRef.current!.clientWidth),
         ease: 'none',
@@ -38,7 +40,7 @@ const Case: FC<CaseProps> = ({
         },
       })
     }
-  }, [])
+  }, { scope: containerRef, dependencies: [pathname] })
 
   return (
     <div className={rootClassName} ref={containerRef}>

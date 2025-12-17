@@ -35,9 +35,13 @@ const ConversionType: FC<ConversionTypeProps> = ({
   }, [setModalContent])
 
   useLayoutEffect(() => {
+    if (!extraL.current || !mainContainer.current) return
+
     const ctx = gsap.context(() => {
       const extraLong = extraL.current
       const mainCont = mainContainer.current
+      if (!extraLong || !mainCont) return
+
       const boxes = gsap.utils.toArray(`.${styles.box}`) as HTMLElement[];
 
       const scrollTween = gsap.to(extraLong, {
@@ -48,7 +52,7 @@ const ConversionType: FC<ConversionTypeProps> = ({
           pin: mainCont,
           trigger: mainCont,
           start: 'top 5%',
-          end: () => `+=${extraLong!.offsetWidth} bottom`,
+          end: () => `+=${extraLong.offsetWidth} bottom`,
           scrub: 1,
           invalidateOnRefresh: true,
         }

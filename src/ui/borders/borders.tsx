@@ -33,6 +33,8 @@ const Borders: FC<BordersProps> = ({ className, cornersWithCrosses = [] }) => {
   }), []);
 
   const animateBorders = useCallback(() => {
+    if (!topRef.current || !rightRef.current || !bottomRef.current || !leftRef.current) return
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: topRef.current,
@@ -56,7 +58,7 @@ const Borders: FC<BordersProps> = ({ className, cornersWithCrosses = [] }) => {
 
     // Анимация для крестиков в углах
     cornersWithCrosses.forEach((corner) => {
-      if (crossRefs[corner].current) {
+      if (crossRefs[corner]?.current) {
         gsap.fromTo(
           crossRefs[corner].current,
           { opacity: 0, scale: 0 },

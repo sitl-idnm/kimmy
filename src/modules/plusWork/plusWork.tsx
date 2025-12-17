@@ -1,6 +1,7 @@
 'use client'
 import { FC, useRef } from 'react'
 import classNames from 'classnames'
+import { usePathname } from 'next/navigation'
 
 import styles from './plusWork.module.scss'
 import { PlusWorkProps } from './plusWork.types'
@@ -9,6 +10,7 @@ import gsap from 'gsap'
 
 const PlusWork: FC<PlusWorkProps> = ({ className, items }) => {
   const rootClassName = classNames(styles.root, className)
+  const pathname = usePathname()
 
   const secondRef = useRef<HTMLDivElement>(null)
   const thirdRef = useRef<HTMLDivElement>(null)
@@ -62,7 +64,9 @@ const PlusWork: FC<PlusWorkProps> = ({ className, items }) => {
   }))
 
   useGSAP(() => {
-    if (window.innerWidth > 1200) {
+    if (triggerRef.current && secondRef.current && thirdRef.current &&
+        fourthRef.current && fiveRef.current && sixRef.current &&
+        window.innerWidth > 1200) {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: triggerRef.current,
@@ -81,7 +85,7 @@ const PlusWork: FC<PlusWorkProps> = ({ className, items }) => {
         ease: 'power1.out'
       })
     }
-  })
+  }, { scope: triggerRef, dependencies: [pathname] })
 
   return (
     <div className={rootClassName}>

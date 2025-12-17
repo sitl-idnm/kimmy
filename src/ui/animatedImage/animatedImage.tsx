@@ -15,10 +15,13 @@ const AnimatedImage: FC<AnimatedImageProps> = ({ className }) => {
   const svgRef = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
-    const elements = svgRef.current?.querySelectorAll('circle, path');
+    const svgElement = svgRef.current;
+    if (!svgElement) return
 
-    if (elements) {
-      gsap.fromTo(
+    const elements = svgElement.querySelectorAll('circle, path');
+
+    if (elements && elements.length > 0) {
+      const animation = gsap.fromTo(
         elements,
         { strokeDasharray: '0 1000', strokeDashoffset: 1000 },
         {
@@ -28,12 +31,21 @@ const AnimatedImage: FC<AnimatedImageProps> = ({ className }) => {
           stagger: 0.5, // Задержка для отрисовки элементов один за другим
           ease: 'power2.out',
           scrollTrigger: {
-            trigger: svgRef.current,
+            trigger: svgElement,
             start: 'top 75%', // Начнем анимацию, когда SVG будет на 75% экрана
             toggleActions: 'play none none none',
           },
         }
       );
+
+      return () => {
+        animation.kill();
+        ScrollTrigger.getAll().forEach((trigger) => {
+          if (trigger.vars?.trigger === svgElement) {
+            trigger.kill();
+          }
+        });
+      };
     }
   }, []);
 
