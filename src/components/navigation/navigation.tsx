@@ -1,5 +1,7 @@
+'use client'
 import { FC } from 'react'
 import classNames from 'classnames'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import styles from './navigation.module.scss'
 import { NavigationProps } from './navigation.types'
@@ -10,13 +12,18 @@ const Navigation: FC<NavigationProps> = ({
 }) => {
   const rootClassName = classNames(styles.root, className)
 
+  const handleLinkClick = () => {
+    // Очищаем все ScrollTrigger перед навигацией
+    ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+  }
+
   return (
     <div className={rootClassName}>
       <nav className={styles.navigation}>
         <ul className={styles.navigation__list}>
-          <li><Link href="/cases" className={styles.navigation__item}>Кейсы</Link></li>
-          <li><Link href="/work" className={styles.navigation__item}>Работа у нас</Link></li>
-          <li><Link href="/bitrix" className={styles.navigation__item}>Bitrix Партнер</Link></li>
+          <li><Link href="/cases" className={styles.navigation__item} onClick={handleLinkClick}>Кейсы</Link></li>
+          <li><Link href="/work" className={styles.navigation__item} onClick={handleLinkClick}>Работа у нас</Link></li>
+          <li><Link href="/bitrix" className={styles.navigation__item} onClick={handleLinkClick}>Bitrix Партнер</Link></li>
         </ul>
       </nav>
     </div>
