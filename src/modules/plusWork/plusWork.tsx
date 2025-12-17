@@ -9,6 +9,8 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
+gsap.registerPlugin(useGSAP, ScrollTrigger)
+
 const PlusWork: FC<PlusWorkProps> = ({ className, items }) => {
   const rootClassName = classNames(styles.root, className)
   const pathname = usePathname()
