@@ -8,14 +8,13 @@ import { ConversionTypeProps } from './conversionType.types'
 import Icon from '@icons/snowflacke.svg'
 import Timeline from '@icons/timeline.svg'
 import Accept from '@icons/accept.svg'
-import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Button } from '@/ui'
 import { openModalContent } from '@/shared/atoms/openModal'
 import { useSetAtom } from 'jotai/react'
 
-gsap.registerPlugin(ScrollTrigger, useGSAP)
+gsap.registerPlugin(ScrollTrigger)
 
 const ConversionType: FC<ConversionTypeProps> = ({
   className
@@ -88,9 +87,10 @@ const ConversionType: FC<ConversionTypeProps> = ({
         )
       })
 
+      // ctx.revert() сам корректно убьет ScrollTrigger/анимации, созданные внутри этого context.
+      // Не убиваем глобально все ScrollTrigger, иначе ломаем другие страницы/компоненты.
       return () => {
         scrollTween.kill()
-        ScrollTrigger.getAll().forEach(st => st.kill())
       }
     }, section)
 

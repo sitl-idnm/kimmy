@@ -9,7 +9,7 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-gsap.registerPlugin(useGSAP, ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger)
 
 const PlusWork: FC<PlusWorkProps> = ({ className, items }) => {
   const rootClassName = classNames(styles.root, className)
@@ -67,54 +67,76 @@ const PlusWork: FC<PlusWorkProps> = ({ className, items }) => {
     ...(items?.[index] || {})
   }))
 
-  useGSAP(() => {
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        if (triggerRef.current && secondRef.current && thirdRef.current &&
-          fourthRef.current && fiveRef.current && sixRef.current &&
-          window.innerWidth > 1200) {
+  useGSAP((_, contextSafe) => {
+    let raf1 = 0
+    let raf2 = 0
+    let refreshTimer: ReturnType<typeof setTimeout> | null = null
 
-          // Проверяем, что элементы действительно в DOM и имеют размеры
-          const allElementsReady = [
-            triggerRef.current,
-            secondRef.current,
-            thirdRef.current,
-            fourthRef.current,
-            fiveRef.current,
-            sixRef.current
-          ].every(el => el && el.offsetParent !== null && el.offsetWidth > 0)
+    const init = (contextSafe ?? ((fn: () => void) => fn))(() => {
+      if (
+        !triggerRef.current ||
+        !secondRef.current ||
+        !thirdRef.current ||
+        !fourthRef.current ||
+        !fiveRef.current ||
+        !sixRef.current
+      ) return
 
-          if (!allElementsReady) {
-            // Если элементы еще не готовы, пробуем еще раз через небольшую задержку
-            setTimeout(() => {
-              ScrollTrigger.refresh()
-            }, 200)
-            return
-          }
+      if (window.innerWidth <= 1200) return
 
-          const tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: triggerRef.current,
-              start: 'top 10%',
-              scrub: true,
-            }
-          })
+      // Проверяем, что элементы действительно в DOM и имеют размеры
+      const allElementsReady = [
+        triggerRef.current,
+        secondRef.current,
+        thirdRef.current,
+        fourthRef.current,
+        fiveRef.current,
+        sixRef.current
+      ].every(el => el && el.offsetParent !== null && el.offsetWidth > 0)
 
-          tl.to(secondRef.current, {
-            y: 389,
-            ease: 'power1.out'
-          })
-
-          tl.to([thirdRef.current, fourthRef.current, fiveRef.current, sixRef.current], {
-            y: 389,
-            ease: 'power1.out'
-          })
-
-          // Обновляем ScrollTrigger после создания анимации
+      if (!allElementsReady) {
+        // Если элементы еще не готовы, пробуем еще раз через небольшую задержку
+        refreshTimer = setTimeout(() => {
           ScrollTrigger.refresh()
+        }, 200)
+        return
+      }
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          id: `plusWork-${pathname}`,
+          trigger: triggerRef.current,
+          start: 'top 10%',
+          scrub: true
         }
       })
+
+      tl.to(secondRef.current, {
+        y: 389,
+        ease: 'power1.out'
+      })
+
+      tl.to([thirdRef.current, fourthRef.current, fiveRef.current, sixRef.current], {
+        y: 389,
+        ease: 'power1.out'
+      })
+
+      // Обновляем ScrollTrigger после создания анимации
+      ScrollTrigger.refresh()
     })
+
+    // Важно: если создавать анимации асинхронно (rAF/setTimeout) без contextSafe,
+    // они не попадут в gsap context и не будут корректно очищаться на смене страницы.
+    raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(init)
+    })
+
+    return () => {
+      if (raf1) cancelAnimationFrame(raf1)
+      if (raf2) cancelAnimationFrame(raf2)
+      if (refreshTimer) clearTimeout(refreshTimer)
+      ScrollTrigger.getById(`plusWork-${pathname}`)?.kill()
+    }
   }, { scope: containerRef, dependencies: [pathname], revertOnUpdate: true })
 
   return (

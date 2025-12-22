@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, useEffect, useRef, useCallback, useMemo } from 'react';
+import { FC, useEffect, useRef, useMemo } from 'react';
 import classNames from 'classnames';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -32,50 +32,50 @@ const Borders: FC<BordersProps> = ({ className, cornersWithCrosses = [] }) => {
     bottomRight: bottomRightRef,
   }), []);
 
-  const animateBorders = useCallback(() => {
+  useEffect(() => {
     if (!topRef.current || !rightRef.current || !bottomRef.current || !leftRef.current) return
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: topRef.current,
-        start: 'top center',
-        toggleActions: 'play none none none',
-      },
+    // Важно: нельзя убивать все ScrollTrigger глобально — только свои.
+    // gsap.context() гарантирует, что все анимации/ScrollTrigger внутри будут корректно очищены.
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: topRef.current,
+          start: 'top center',
+          toggleActions: 'play none none none',
+        },
+      });
+
+      // Анимация для линий
+      tl.fromTo(
+        [topRef.current, rightRef.current, bottomRef.current, leftRef.current],
+        { scaleX: 0, scaleY: 0 },
+        {
+          scaleX: 1,
+          scaleY: 1,
+          duration: 1,
+          transformOrigin: 'center',
+          ease: 'power2.out',
+        }
+      );
+
+      // Анимация для крестиков в углах
+      cornersWithCrosses.forEach((corner) => {
+        if (crossRefs[corner]?.current) {
+          gsap.fromTo(
+            crossRefs[corner].current,
+            { opacity: 0, scale: 0 },
+            { opacity: 1, scale: 1, duration: 1, ease: 'power2.out', delay: 0.5 }
+          );
+        }
+      });
     });
-
-    // Анимация для линий
-    tl.fromTo(
-      [topRef.current, rightRef.current, bottomRef.current, leftRef.current],
-      { scaleX: 0, scaleY: 0 },
-      {
-        scaleX: 1,
-        scaleY: 1,
-        duration: 1,
-        transformOrigin: 'center',
-        ease: 'power2.out',
-      }
-    );
-
-    // Анимация для крестиков в углах
-    cornersWithCrosses.forEach((corner) => {
-      if (crossRefs[corner]?.current) {
-        gsap.fromTo(
-          crossRefs[corner].current,
-          { opacity: 0, scale: 0 },
-          { opacity: 1, scale: 1, duration: 1, ease: 'power2.out', delay: 0.5 }
-        );
-      }
-    });
-  }, [cornersWithCrosses, crossRefs]);
-
-  useEffect(() => {
-    animateBorders();
 
     // Очистка ScrollTrigger при размонтировании компонента
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      ctx.revert();
     };
-  }, [animateBorders]);
+  }, [cornersWithCrosses, crossRefs]);
 
   return (
     <div className={rootClassName}>
