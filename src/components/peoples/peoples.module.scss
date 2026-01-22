@@ -67,15 +67,15 @@
 			position: relative;
 			cursor: pointer;
 
-			&:hover {
-				.peoples__image:not(.peoples__image_absolute) {
-					opacity: 0;
-				}
+			// &:hover {
+			// 	.peoples__image:not(.peoples__image_absolute) {
+			// 		opacity: 0;
+			// 	}
 
-				.peoples__image_absolute {
-					opacity: 1;
-				}
-			}
+			// 	.peoples__image_absolute {
+			// 		opacity: 1;
+			// 	}
+			// }
 		}
 
 		&_absolute {

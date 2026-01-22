@@ -50,14 +50,14 @@ const Peoples: FC<PeoplesProps> = ({
             alt='peoples'
             className={styles.peoples__image}
           />
-          <Image
+          {/* <Image
             src='/images/peoples_deanon.png'
             width={910}
             height={563}
             quality={100}
             alt='peoples deanon'
             className={styles.peoples__image_absolute}
-          />
+          /> */}
         </div>
         <AnimatedImage />
       </div>
