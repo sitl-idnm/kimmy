@@ -4,7 +4,15 @@
 
 .root {
 	display: flex;
-	margin: 0 0 139px;
+	margin: 0 0 80px;
+
+	@include tablet {
+		margin: 0 0 40px;
+	}
+
+	@include tablet-small {
+		margin: 0 0 24px;
+	}
 }
 
 /* stylelint-disable */

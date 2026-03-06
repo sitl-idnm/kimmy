@@ -2,18 +2,19 @@ import { FC } from 'react'
 import classNames from 'classnames'
 
 import styles from './favour.module.scss'
-import { FavourProps } from './favour.types'
+import { FavourProps, FavourItemData } from './favour.types'
 import { FavourItem } from '../favourItem'
 
-const itemsData = [
-  { title: 'исследования', linkText: 'Подробнее', linkColor: 'var(--color-black)', backgroundColor: 'var(--color-grey)', textColor: 'var(--color-black)', imageSrc: '/images/image1.png', imageTitle: 'исследования' },
-  { title: 'дизайн', linkText: 'Подробнее', linkColor: 'var(--color-white-default)', backgroundColor: 'var(--color-black)', textColor: 'var(--color-white-default)', imageSrc: '/images/image2.png', imageTitle: 'дизайн' },
-  { title: <>разработка<br />и поддержка</>, linkText: 'Подробнее', linkColor: 'var(--color-black)', backgroundColor: 'var(--color-grey-light)', textColor: 'var(--color-black)', imageSrc: '/images/image3.png', imageTitle: 'разработка' },
-  { title: 'трафик', linkText: 'Подробнее', linkColor: 'var(--color-black)', backgroundColor: 'var(--color-red-accent)', textColor: 'var(--color-white-default)', imageSrc: '/images/image4.png', imageTitle: 'поддержка' }
+const defaultItemsData: FavourItemData[] = [
+  { title: 'исследования', linkText: 'Подробнее', linkColor: 'var(--color-black)', backgroundColor: 'var(--color-grey)', textColor: 'var(--color-black)', imageSrc: '/images/image1.png', modalName: 'исследования' },
+  { title: 'дизайн', linkText: 'Подробнее', linkColor: 'var(--color-white-default)', backgroundColor: 'var(--color-black)', textColor: 'var(--color-white-default)', imageSrc: '/images/image2.png', modalName: 'дизайн' },
+  { title: <>разработка<br />и поддержка</>, linkText: 'Подробнее', linkColor: 'var(--color-black)', backgroundColor: 'var(--color-grey-light)', textColor: 'var(--color-black)', imageSrc: '/images/image3.png', modalName: 'разработка' },
+  { title: 'трафик', linkText: 'Подробнее', linkColor: 'var(--color-black)', backgroundColor: 'var(--color-red-accent)', textColor: 'var(--color-white-default)', imageSrc: '/images/image4.png', modalName: 'поддержка' }
 ]
 
 const Favour: FC<FavourProps> = ({
-  className
+  className,
+  itemsData = defaultItemsData
 }) => {
   const rootClassName = classNames(styles.root, className)
 
@@ -25,12 +26,16 @@ const Favour: FC<FavourProps> = ({
             <FavourItem
               key={index}
               title={item.title}
-              linkText={item.linkText}
-              linkColor={item.linkColor}
+              modalName={item.modalName}
+              text={item.text}
               backgroundColor={item.backgroundColor}
               textColor={item.textColor}
+              linkText={item.linkText}
+              linkColor={item.linkColor}
               imageSrc={item.imageSrc}
-              imageTitle={item.imageTitle}
+              justifyContent='center'
+              alignItems='center'
+              flexDirection='column'
             />
           ))}
         </ul>

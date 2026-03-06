@@ -6,6 +6,14 @@ import classNames from 'classnames'
 import styles from './modalForm.module.scss'
 import { ModalFormProps } from './modalForm.types'
 import axios from 'axios'
+import {
+  formatPhoneDisplay,
+  isPhoneValid,
+  getPhoneDigitsOnly,
+  PHONE_PLACEHOLDER,
+  positionAfterDigit,
+  digitsBeforePosition
+} from '@/shared/utils/phoneMask'
 
 import PhoneDef from '../../shared/assets/icons/phone - default.svg'
 import PhoneActive from '../../shared/assets/icons/phone - active.svg'
@@ -25,16 +33,53 @@ const isValidEmail = (email: string) => {
 	return emailRegex.test(email);
 };
 
-const ModalForm: FC<ModalFormProps> = ({ className, development, details, count, titleForm }) => {
+const DETAILS_LIDOGENERACIYA = {
+  title: 'Обсудить лидогенерацию',
+  description: 'Оставьте контакты — мы подберём формат под вашу нишу, рассчитаем бюджет и расскажем, как получить первых лидов без переплаты за контекст.',
+  submitValue: 'Обсудить результат'
+} as const
+
+const ModalForm: FC<ModalFormProps> = ({ className, details, count, start, detailsVariant }) => {
 	const rootClassName = classNames(styles.root, className)
 	const [selectedContactMethod, setSelectedContactMethod] = useState('number')
-	const [successMessage, setSuccessMessage] = useState<{ text: string; isSuccess: boolean } | null>(null)
-	// Время, когда пользователь дал согласие на обработку персональных данных
-	const [policyConsentTimestamp, setPolicyConsentTimestamp] = useState<Date | null>(null)
+	const [successMessage, setSuccessMessage] = useState<string | null>(null)
 
-	const handleNumberInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const value = event.target.value
-		event.target.value = value.replace(/\D/g, '')
+	const handlePhoneInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const input = event.target
+		const formatted = formatPhoneDisplay(input.value)
+		const prevDigits = (input.value.slice(0, input.selectionStart ?? 0).match(/\d/g) || []).length
+		input.value = formatted
+		const newPos = positionAfterDigit(formatted, prevDigits)
+		input.setSelectionRange(newPos, newPos)
+	}
+
+	const handlePhoneKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+		const input = event.target as HTMLInputElement
+		const value = input.value
+		const cursor = input.selectionStart ?? 0
+		const digits = getPhoneDigitsOnly(value)
+		const digitsBefore = digitsBeforePosition(value, cursor)
+		if (event.key === 'Backspace' && digitsBefore > 0) {
+			const charBefore = value[cursor - 1]
+			if (charBefore != null && !/\d/.test(charBefore)) {
+				event.preventDefault()
+				const newDigits = digits.slice(0, digitsBefore - 1) + digits.slice(digitsBefore)
+				const raw = newDigits.length > 0 ? '7' + newDigits : ''
+				const formatted = formatPhoneDisplay(raw)
+				input.value = formatted
+				input.setSelectionRange(positionAfterDigit(formatted, digitsBefore - 1), positionAfterDigit(formatted, digitsBefore - 1))
+			}
+		} else if (event.key === 'Delete' && digitsBefore < digits.length) {
+			const charAt = value[cursor]
+			if (charAt != null && !/\d/.test(charAt)) {
+				event.preventDefault()
+				const newDigits = digits.slice(0, digitsBefore) + digits.slice(digitsBefore + 1)
+				const raw = newDigits.length > 0 ? '7' + newDigits : ''
+				const formatted = formatPhoneDisplay(raw)
+				input.value = formatted
+				input.setSelectionRange(positionAfterDigit(formatted, digitsBefore), positionAfterDigit(formatted, digitsBefore))
+			}
+		}
 	}
 
 	const sanitizeInput = (input: string) => {
@@ -45,66 +90,57 @@ const ModalForm: FC<ModalFormProps> = ({ className, development, details, count,
 		return sanitized;
 	};
 
-	const closeMessage = () => {
-		setSuccessMessage(null);
-	};
-
-	const handlePolicyCheckboxChange = () => {
-		const now = new Date();
-		setPolicyConsentTimestamp(now);
-		try {
-			localStorage.setItem('policyConsentTimestamp', now.toISOString());
-		} catch (e) {
-			console.error('Не удалось сохранить время согласия в localStorage', e);
-		}
-	};
-
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
 		const formData = new FormData(event.currentTarget)
 		const data = Object.fromEntries(formData.entries())
 		if (data.mailModal && !isValidEmail(data.mailModal as string)) {
-			setSuccessMessage({ text: 'Ошибка отправки заявки. Неправильный email адрес.', isSuccess: false });
+			setSuccessMessage('Ошибка отправки заявки. Неправильный email адрес.');
 			return;
 		}
-
-		if (details === false && count === false && development === false) {
+		const phone = (data.phoneModal as string)?.trim() ?? ''
+		if (!isPhoneValid(phone)) {
+			setSuccessMessage('Введите корректный номер телефона: +7 (XXX) XXX-XX-XX')
+			return
+		}
+		if (data.commentModal != null && typeof data.commentModal === 'string') {
 			try {
-				data.commentModal = sanitizeInput(data.commentModal as string);
+				data.commentModal = sanitizeInput(data.commentModal)
 			} catch (error) {
-				setSuccessMessage({ text: 'Ошибка отправки заявки. HTML теги не разрешены.', isSuccess: false });
-				return;
+				setSuccessMessage('Ошибка отправки заявки. HTML теги не разрешены.')
+				return
 			}
 		}
-
 		const token = '7862004029:AAFZ807gLMhUIzqjfh4DB62muUmzWv9JfrY'
 		const chatId = '-4654232429'
-		const message = `Новая заявка c ${titleForm} на сайте-визитке:\nИмя: ${data.nameModal}\nТелефон: ${data.phoneModal}${data.mailModal ? `\nПочта: ${data.mailModal}` : ''}${data.commentModal ? `\nРасскажите про свой проект: ${data.commentModal}` : ''}${policyConsentTimestamp ? `\nВремя согласия: ${policyConsentTimestamp.toLocaleString()}` : ''}\nПредпочтительный способ связи: ${selectedContactMethod}`
+		const message = `Новая заявка:\nИмя: ${data.nameModal}\nТелефон: ${data.phoneModal}${data.mailModal ? `\nПочта: ${data.mailModal}` : ''}${data.commentModal ? `\nРасскажите про свой проект: ${data.commentModal}` : ''}\nПредпочтительный способ связи: ${selectedContactMethod}`
 
 		try {
 			await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
 				chat_id: chatId,
 				text: message,
 			})
-			setSuccessMessage({ text: 'Форма успешно отправлена!', isSuccess: true });
-			// Очищаем форму после успешной отправки
+			setSuccessMessage('Форма успешно отправлена!');
 		} catch (error) {
 			console.error('Error sending message to Telegram:', error)
-			setSuccessMessage({ text: 'Ошибка при отправке заявки.', isSuccess: false })
+			setSuccessMessage('Ошибка при отправке заявки.')
 		}
 	}
 
 	return (
-		<div className={rootClassName} style={details ? { height: '90vh' } : {}}>
+		<div className={rootClassName} style={details ? {height: '90vh'} : {}}>
 			{
-				details ? <h2 className={styles.root__title}>Заказать сайт</h2>
-					: count ? <h2 className={styles.root__title}>Рассчитать срок и стоимость моего проекта</h2> : development ? <h2 className={styles.root__title}>Начнем сотрудничество?</h2> : <h2 className={styles.root__title}>Получить консультацию</h2>
+				details
+					? <h2 className={styles.root__title}>{detailsVariant === 'lidogeneraciya' ? DETAILS_LIDOGENERACIYA.title : 'Заказать сайт'}</h2>
+					: count ? <h2 className={styles.root__title}>Рассчитать срок и стоимость моего проекта</h2> : start ? <h2 className={styles.root__title}>Начать работу</h2> : <h2 className={styles.root__title}>Получить консультацию</h2>
 			}
 			<div className={styles.root__content}>
 				<div className={styles.root__content__text}>
-					{details ? null : <p className={styles.white}>Готовы начать погружение в ваш проект!</p>}
+					{details ? null : start ? null : <p className={styles.white}>Готовы начать погружение в ваш проект!</p>}
 					<p className={styles.gray}>
-						{details ? 'Заполните краткую форму, чтобы мы связались с вами и обсудили все детали.' : count ? 'Заполните краткую форму, чтобы мы связались с вами и рассчитали сроки и стоимость разработки сайта.' : 'Просто оставьте контактные данные, мы свяжемся с вами, чтобы собрать информацию и предложить решение.'}
+						{details
+							? (detailsVariant === 'lidogeneraciya' ? DETAILS_LIDOGENERACIYA.description : 'Заполните краткую форму, чтобы мы связались с вами и обсудили все детали.')
+							: count ? 'Заполните краткую форму, чтобы мы связались с вами и рассчитали сроки и стоимость разработки сайта.' : start ? 'Заполните форму и мы свяжемся с вами в ближайшее время для записи на консультацию' : 'Просто оставьте контактные данные, мы свяжемся с вами, чтобы собрать информацию и предложить решение.'}
 					</p>
 				</div>
 				<form onSubmit={handleSubmit} action="POST" className={styles.root__content__form}>
@@ -122,12 +158,15 @@ const ModalForm: FC<ModalFormProps> = ({ className, development, details, count,
 						</div>
 						<div>
 							<input
-								type="text"
+								type="tel"
 								name="phoneModal"
-								placeholder="Телефон"
+								placeholder={PHONE_PLACEHOLDER}
 								className={`${styles.root__content__form__first__line__number} ${styles.input}`}
 								required
-								onChange={handleNumberInput}
+								onChange={handlePhoneInput}
+								onKeyDown={handlePhoneKeyDown}
+								onFocus={(e) => { if (e.target.value === '') e.target.placeholder = '' }}
+								onBlur={(e) => { if (e.target.value === '') e.target.placeholder = PHONE_PLACEHOLDER }}
 							/>
 							<label className={styles.placeholder}>Телефон*</label>
 						</div>
@@ -203,9 +242,9 @@ const ModalForm: FC<ModalFormProps> = ({ className, development, details, count,
 					</div>
 					<div className={styles.wrapper}>
 						<div className={styles.form_wrapper}>
-							<input type="checkbox" required onChange={handlePolicyCheckboxChange} />
+							<input type="checkbox" required />
 							<label>
-								Согласен на обработку <Link href='/privacy-policy' target='_blank' style={{ color: '#CB172C' }}>персональных данных</Link>
+								Согласен на обработку <Link href='/privacy-policy' target='_blank' style={{ color: '#CB172C'}}>персональных данных</Link>
 							</label>
 						</div>
 						<div className={styles.form_wrapper}>
@@ -213,20 +252,15 @@ const ModalForm: FC<ModalFormProps> = ({ className, development, details, count,
 							<label>Согласен на получение email - рассылок</label>
 						</div>
 						<div className={styles.form_wrapper}>
-							{details ? <input type="submit" value={'Заказать сайт'} /> : count ? <input type="submit" value={'Рассчитать '} /> : <input type="submit" value={'Получить консультацию'} />}
+							{details ? <input type="submit" value={detailsVariant === 'lidogeneraciya' ? DETAILS_LIDOGENERACIYA.submitValue : 'Заказать сайт'} /> : count ? <input type="submit" value={'Рассчитать '} /> : <input type="submit" value={'Получить консультацию'} />}
 						</div>
 						{successMessage && (
-							<div className={`${styles.successMessage} ${successMessage.isSuccess ? styles.success : styles.error}`}>
-								{successMessage.isSuccess && (
-									<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<rect width="24" height="24" rx="12" fill="white" />
-										<path d="M8 12L11.5 16L16 7" stroke="#CB172C" stroke-width="1.5" stroke-linecap="round" />
-									</svg>
-								)}
-								{successMessage.text}
-								<button onClick={closeMessage} className={styles.closeButton}>
-									✕
-								</button>
+							<div className={styles.successMessage}>
+								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<rect width="24" height="24" rx="12" fill="white" />
+									<path d="M8 12L11.5 16L16 7" stroke="#CB172C" stroke-width="1.5" stroke-linecap="round" />
+								</svg>
+								{successMessage}
 							</div>
 						)}
 					</div>

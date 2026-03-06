@@ -7,18 +7,25 @@ import { Form, TextForm } from '@/components'
 import Image from 'next/image'
 import { Borders } from '@/ui'
 
+const defaultTitle = 'Тоже нужен сайт?'
+const defaultParagraph = 'Оставьте заявку, и мы подготовим для вас коммерческое предложение с вариантами разработки, сроками и бюджетом.'
+
 const FormFirst: FC<FormFirstProps> = ({
   className,
-  textTitle,
-  textParagraph,
-  formTitleForm
+  title = defaultTitle,
+  paragraph = defaultParagraph,
+  listItems,
+  listClosing,
+  submitValue,
+  project,
+  projectPlaceholder
 }) => {
   const rootClassName = classNames(styles.root, className)
 
   return (
     <div className={rootClassName}>
       <section className={styles.form}>
-        <Borders cornersWithCrosses={['topLeft', 'bottomRight', 'topRight', 'bottomLeft']} />
+      <Borders cornersWithCrosses={['topLeft', 'bottomRight', 'topRight', 'bottomLeft']} />
         <div className={styles.form__circle}>
           <Image
             src='/images/circle.png'
@@ -31,10 +38,16 @@ const FormFirst: FC<FormFirstProps> = ({
         </div>
         <div className={styles.form__text}>
           <TextForm
-            title={textTitle ?? 'Тоже нужен сайт?'}
-            paragraph={textParagraph ?? 'Оставьте заявку, и мы подготовим для вас коммерческое предложение с вариантами разработки, сроками и бюджетом.'}
+            title={title}
+            paragraph={paragraph}
+            listItems={listItems}
+            listClosing={listClosing}
           />
-          <Form titleForm={formTitleForm ?? 'формы "Тоже нужен сайт?"'} />
+          <Form
+            submitValue={submitValue}
+            project={project}
+            projectPlaceholder={projectPlaceholder}
+          />
         </div>
       </section>
     </div>

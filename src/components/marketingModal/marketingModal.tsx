@@ -87,7 +87,7 @@ const MarketingModal: FC<MarketingModalProps> = ({}) => {
             </div>
           </div>
           <div>
-            <ModalForm titleForm='формы "Маркетинговые исследования"' />
+            <ModalForm />
           </div>
         </div>
       </div>

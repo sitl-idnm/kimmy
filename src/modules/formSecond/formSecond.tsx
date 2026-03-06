@@ -6,35 +6,50 @@ import { FormSecondProps } from './formSecond.types'
 import Image from 'next/image'
 import { Form, TextForm } from '@/components'
 
-const FormSecond: FC<FormSecondProps> = ({
-  className
+const FormSecondComponent: FC<FormSecondProps> = ({
+  className,
+  widthImg = 600,
+  heightImg = 600,
+  positionRight,
+  positionTop,
+  title = 'Готовы к росту? Свяжитесь с нами',
+  paragraph = 'Мы помогаем бизнесу расти и зарабатывать больше. Разрабатываем маркетинговые стратегии, которые приносят результат.',
+  submitValue,
+  secondSubmitValue,
+  secondSubmitClassName,
+  mail = true,
+  project = true,
+  anchorId = 'form'
 }) => {
   const rootClassName = classNames(styles.root, className)
 
   return (
     <div className={rootClassName}>
-      <section className={styles.form} id="form">
+      <section className={styles.form} id={anchorId}>
         <div className={styles.form__circle}>
           <TextForm
-            title={'Начнем сотрудничество?'}
-            paragraph={'Готовы начать погружение в ваш проект! Просто оставьте ваши контактные данные, мы свяжемся с вами, чтобы собрать информацию и предложить решение.'}
+            title={title}
+            paragraph={paragraph}
             className={styles.form__second}
           />
           <Image
-            src='/images/triangle.png'
-            width={600}
-            height={600}
+            src='/images/sheeps__form.png'
+            width={widthImg}
+            height={heightImg}
             quality={80}
             alt='abstract__cirle'
             className={styles.image}
+            style={{ right: positionRight, top: positionTop }}
           />
         </div>
         <div className={styles.form__text}>
           <Form
-            mail={true}
-            project={true}
+            mail={mail}
+            project={project}
             className={styles.input}
-            titleForm={'формы "Начнем сотрудничество?"'}
+            submitValue={submitValue}
+            secondSubmitValue={secondSubmitValue}
+            secondSubmitClassName={secondSubmitClassName}
           />
         </div>
       </section>
@@ -42,4 +57,4 @@ const FormSecond: FC<FormSecondProps> = ({
   )
 }
 
-export default FormSecond
+export default FormSecondComponent

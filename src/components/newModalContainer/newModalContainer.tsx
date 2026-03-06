@@ -9,9 +9,7 @@ import { DevelopModal } from '../developModal'
 import { SupportModal } from '../supportModal'
 import { DetailsModal } from '../detailsModal'
 import { CountModal } from '../countModal'
-import { MagiyaModal } from '../magiyaModal'
-import { BwModal } from '../bwModal'
-import { ClientModal } from '../clientModal'
+import { StartModal } from '../startModal'
 
 const NewModalContainer: FC = () => {
   const modalContent = useAtomValue(openModalContent)
@@ -40,11 +38,12 @@ const NewModalContainer: FC = () => {
       {modalContent === 'дизайн' && <DesignModal />}
       {modalContent === 'разработка' && <DevelopModal />}
       {modalContent === 'поддержка' && <SupportModal />}
-      {modalContent === 'детали' && <DetailsModal />}
+      {(modalContent === 'детали' || modalContent === 'детали-лидогенерация') && (
+        <DetailsModal variant={modalContent === 'детали-лидогенерация' ? 'lidogeneraciya' : undefined} />
+      )}
       {modalContent === 'стоимость' && <CountModal />}
-      {modalContent === 'магиявкуса' && <MagiyaModal />}
-      {modalContent === 'bw' && <BwModal />}
-      {modalContent === 'clientpulse' && <ClientModal />}
+      {/* Сверху старые модалки */}
+      {modalContent === 'Начать' && <StartModal />}
     </>
   )
 }

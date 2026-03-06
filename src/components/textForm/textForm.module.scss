@@ -14,17 +14,16 @@
 
 	&__title {
 		@include h2;
+		margin-bottom: 8px;
 
 		@include tablet-small {
-			font-size: 38px;
+			font-size: 22px;
+			line-height: 1.25;
+			margin-bottom: 6px;
 		}
 
 		@include mobile-large {
-			font-size: 28px;
-		}
-
-		@include tablet-small {
-			margin-bottom: 8px;
+			font-size: 20px;
 		}
 	}
 
@@ -32,9 +31,41 @@
 		@include text;
 
 		@include tablet-small {
-			&__paragraph {
-				font-size: 14px;
-			}
+			font-size: 11px;
+		}
+	}
+
+	&__list {
+		list-style: none;
+		margin: 12px 0 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	&__listItem {
+		background: rgba(255, 255, 255, 0.12);
+		color: var(--color-white-default);
+		padding: 10px 14px;
+		border-radius: 8px;
+		font-size: 15px;
+		line-height: 1.4;
+
+		@include tablet-small {
+			font-size: 11px;
+			padding: 8px 12px;
+		}
+	}
+
+	&__listClosing {
+		margin: 10px 0 0;
+		@include text;
+		font-size: 15px;
+		opacity: 0.95;
+
+		@include tablet-small {
+			font-size: 11px;
 		}
 	}
 }

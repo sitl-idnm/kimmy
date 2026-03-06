@@ -9,13 +9,13 @@ import { openModalContent } from '@/shared/atoms/openModal'
 import Image from 'next/image'
 import { FavourItem } from '../favourItem'
 import { ModalForm } from '../modalForm'
-import iphone from '../../../public/images/modal_trafic.png'
-import Gear from '../../shared/assets/icons/mafon.svg'
+import iphone from '../../../public/images/ipad-iphone.png'
+import Gear from '../../shared/assets/icons/gear.svg'
 
 const itemsData = [
-  { title: 'Выберите то, что подходит именно вам', backgroundColor: 'var(--color-grey)', textColor: 'var(--color-black)', imageSrc: '/images/image1_fix.png', text: 'Настраиваем таргетированную и контекстную рекламу, а также SEO-продвижение, чтобы сайт привлекал только заинтересованных клиентов' },
-  { title: 'Увеличивайте охват и конверсию', backgroundColor: 'var(--color-black)', textColor: 'var(--color-white-default)', imageSrc: '/images/image2.png', text: 'Наши стратегии охватывают все этапы воронки продаж: от привлечения внимания до превращения посетителей в клиентов' },
-  { title: 'Экономьте бюджет и время', backgroundColor: 'var(--color-red-accent)', textColor: 'var(--color-white-default)', imageSrc: '/images/image4_fix.png', text: 'Анализируем эффективность каждого канала и оптимизируем кампании, чтобы вы получали максимум результата при минимальных затратах' },
+  { title: 'Обновляйте сайт без лишних усилий', backgroundColor: 'var(--color-grey)', textColor: 'var(--color-black)', imageSrc: '/images/image1_fix.png', text: 'Мы вносим изменения за вас: от новых страниц до доработки функционала' },
+  { title: 'Улучшайте скорость и SEO-показатели сайта', backgroundColor: 'var(--color-black)', textColor: 'var(--color-white-default)', imageSrc: '/images/image2.png', text: 'Регулярная оптимизация делает сайт удобным для пользователей и видимым для поисковиков' },
+  { title: 'Снижайте количество технических ошибок', backgroundColor: 'var(--color-red-accent)', textColor: 'var(--color-white-default)', imageSrc: '/images/image4_fix.png', text: 'Постоянный контроль за сайтом предотвращает сбои и неудачные обновления' },
 ]
 
 const SupportModal: FC<SupportModalProps> = ({
@@ -39,10 +39,10 @@ const SupportModal: FC<SupportModalProps> = ({
         <div className={styles.content}>
           <div className={styles.content__first}>
             <h2 className={styles.title}>
-              Трафик <span className={styles.title__icon}><Gear /></span>
+              Поддержка <span className={styles.title__icon}><Gear /></span>
             </h2>
             <p className={styles.text}>
-              <span className={styles.text__accent}>Привлекайте больше клиентов</span> с&nbsp;помощью наших услуг
+            Закажите поддержку, чтобы ваш сайт всегда был в <span className={styles.text__accent}>идеальном состоянии</span>
             </p>
             <div className={styles.lines}>
               <Image
@@ -68,17 +68,18 @@ const SupportModal: FC<SupportModalProps> = ({
             </ul>
           </div>
           <div className={styles.content__result}>
-            <h2 className={styles.result__title}>Какие услуги для привлечения трафика мы предлагаем:</h2>
+            <h2 className={styles.result__title}>Поддержка сайта обеспечит вам:</h2>
             <div className={styles.result__points}>
               <ul className={styles.result__list}>
-                <li className={styles.list__point}>SEO-продвижение:<p className={styles.list__point__accent}><br></br>Улучшаем видимость сайта в поисковиках и&nbsp;привлекаем трафик на&nbsp;постоянной основе</p></li>
-                <li className={styles.list__point}>Контекстная реклама:<p className={styles.list__point__accent}><br></br>Показываем сайт тем, кто уже ищет ваши услуги</p></li>
-                <li className={styles.list__point}>Таргетированная реклама:<p className={styles.list__point__accent}><br></br>Привлекаем аудиторию из соцсетей, которая точно заинтересуется вашим предложением</p></li>
+                <li className={styles.list__point}>Постоянный мониторинг и контроль за работой сайта</li>
+                <li className={styles.list__point}>Быстрое исправление любых ошибок и проблем</li>
+                <li className={styles.list__point}>Регулярное обновление контента и функционала</li>
+                <li className={styles.list__point}>Улучшение производительности и безопасности</li>
               </ul>
             </div>
           </div>
           <div>
-            <ModalForm titleForm='формы "Трафик сайта"' />
+            <ModalForm />
           </div>
         </div>
       </div>

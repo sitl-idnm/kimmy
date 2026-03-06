@@ -46,6 +46,9 @@ $speed: 0.5s ease;
 
     width: 100%;
     height: 56px;
+    padding: 0 24px;
+    box-sizing: border-box;
+    white-space: nowrap;
 
     line-height: 150%;
     color: var(--color-red-accent); // Цвет шрифта в конечном состоянии
@@ -72,6 +75,9 @@ $speed: 0.5s ease;
 
     width: 100%;
     height: 56px;
+    padding: 0 24px;
+    box-sizing: border-box;
+    white-space: nowrap;
 
     color: var(--color-white-default); // Цвет шрифта в начальном состоянии
     line-height: 150%;

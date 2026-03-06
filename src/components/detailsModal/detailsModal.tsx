@@ -3,11 +3,11 @@
 import { FC } from 'react'
 import styles from './detailsModal.module.scss'
 import { DetailsModalProps } from './detailsModal.types'
-import { ModalForm } from '../modalForm'
+import { ModalForm } from '@/components/modalForm'
 import { useSetAtom } from 'jotai/react'
 import { openModalContent } from '@/shared/atoms/openModal'
 
-const DetailsModal: FC<DetailsModalProps> = ({}) => {
+const DetailsModal: FC<DetailsModalProps> = ({ variant }) => {
   const setModalContent = useSetAtom(openModalContent)
 
   const closeModal = () => {
@@ -21,11 +21,9 @@ const DetailsModal: FC<DetailsModalProps> = ({}) => {
       }
     }}>
       <div className={styles.modal__content} onClick={(e) => e.stopPropagation()}>
-        <div className={styles.close} onClick={closeModal}></div>
+        <div className={styles.close} onClick={closeModal} aria-label="Закрыть" />
         <div className={styles.content}>
-          <div>
-            <ModalForm details titleForm='формы "Заказать сайт"' />
-          </div>
+          <ModalForm details detailsVariant={variant} />
         </div>
       </div>
     </div>

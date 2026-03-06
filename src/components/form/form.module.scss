@@ -44,6 +44,10 @@
 			@include mobile-large {
 				font-size: 12px;
 			}
+
+			@include tablet-small {
+				font-size: 10px;
+			}
 		}
 	}
 
@@ -78,13 +82,15 @@
 		transition: 3s;
 
 		@include mobile-large {
-			input {
-				height: 55px;
+			height: 55px;
+			padding: 15.5px 20px;
+			font-size: 14px;
+		}
 
-				padding: 15.5px 20px;
-
-				font-size: 14px;
-			}
+		@include tablet-small {
+			height: 48px;
+			padding: 10px 16px;
+			font-size: 12px;
 		}
 
 		&[type='checkbox'] {
@@ -102,12 +108,26 @@
 			font-family: var(--font-inter);
 			font-weight: 500;
 			line-height: 150%;
+			padding: 12px 28px;
 			border: 1px solid var(--color-red-gradient-start);
 			transition: all 0.5s ease-in;
 
 			background: linear-gradient(315deg, var(--color-red-gradient-start), var(--color-red-gradient-end));
 
 			color: var(--color-white-default);
+		}
+
+		&_buttonsRow {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			gap: 16px;
+			width: 100%;
+
+			input[type='submit'] {
+				flex: 1 1 auto;
+				min-width: 160px;
+			}
 		}
 
 		&[type='submit']:hover {
@@ -147,6 +167,10 @@
 			@include mobile-large {
 				font-size: 10px;
 			}
+
+			@include tablet-small {
+				font-size: 9px;
+			}
 		}
 	}
 
@@ -180,6 +204,16 @@
 			@include mobile-large {
 				font-size: 10px;
 			}
+
+			@include tablet-small {
+				font-size: 9px;
+			}
+		}
+
+		@include tablet-small {
+			font-size: 12px;
+			padding: 12px 16px;
+			height: 100px;
 		}
 	}
 
@@ -205,45 +239,6 @@
 		& svg {
 			width: 70px;
 			height: 70px;
-		}
-	}
-
-	.successMessage {
-		display: flex;
-		align-items: center;
-		gap: 10px;
-		padding: 15px;
-		border-radius: 8px;
-		position: absolute;
-
-		&.success {
-			background-color: rgba(203, 23, 44);
-			color: white;
-		}
-
-		&.error {
-			background-color: rgba(203, 23, 44);
-			color: white;
-		}
-	}
-
-	.closeButton {
-		position: absolute;
-		right: 10px;
-		top: 20px;
-		transform: translateY(-50%);
-		background: none;
-		border: none;
-		cursor: pointer;
-		font-size: 16px;
-		color: inherit;
-		padding: 5px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-
-		&:hover {
-			opacity: 0.7;
 		}
 	}
 }
