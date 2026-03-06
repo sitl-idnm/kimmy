@@ -109,9 +109,9 @@ const BitrixPage: FC<BitrixPageProps> = ({
         />
         <div id='form-first'>
           <FormFirst
-            textTitle='Готовы внедрить Bitrix24?'
-            textParagraph=''
-            formTitleForm='формы "Партнер Bitrix24"'
+            title='Готовы внедрить Bitrix24?'
+            paragraph=''
+            submitValue='Оставить заявку'
           />
         </div>
       </Wrapper>
