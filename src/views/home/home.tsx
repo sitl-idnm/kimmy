@@ -38,12 +38,12 @@ const Home: FC<HomeProps> = ({ className }) => {
         <Favour />
         <SocialSharing />
         <Case />
-        <FormFirst />
+        <FormFirst goalId="form_first" />
         <Conversion />
         <Treaty />
         <Tenet />
         <Peoples />
-        <FormSecond />
+        <FormSecond goalId="form_second" />
       </Wrapper>
       {/* <DrawerMenu /> */}
     </main>

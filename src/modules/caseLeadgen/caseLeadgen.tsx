@@ -5,6 +5,11 @@ import classNames from 'classnames'
 import Image from 'next/image'
 import { useSetAtom } from 'jotai/react'
 import { openModalContent } from '@/shared/atoms/openModal'
+import ArrowLeft from '@icons/arrow-left.svg'
+import ArrowRight from '@icons/arrow-right.svg'
+import IconTask from '@icons/ExclamationCircleIcon.svg'
+import IconApproach from '@icons/why/heart.svg'
+import IconResult from '@icons/dot__star.svg'
 
 import styles from './caseLeadgen.module.scss'
 import { CaseLeadgenProps, CaseLeadgenItem } from './caseLeadgen.types'
@@ -30,6 +35,8 @@ const CaseLeadgen: FC<CaseLeadgenProps> = ({
   const rootClassName = classNames(styles.root, className)
   const activeItem = items[activeIndex]
   const openDetailsModal = actionButtonHref === '#form'
+  const goPrev = () => setActiveIndex((i) => (i <= 0 ? items.length - 1 : i - 1))
+  const goNext = () => setActiveIndex((i) => (i >= items.length - 1 ? 0 : i + 1))
 
   return (
     <section id={id} className={rootClassName}>
@@ -56,6 +63,15 @@ const CaseLeadgen: FC<CaseLeadgenProps> = ({
             ))}
           </ul>
         </nav>
+
+        <div className={styles.navArrows} aria-label="Переключение кейсов">
+          <button type="button" className={styles.navArrowBtn} onClick={goPrev} aria-label="Предыдущий кейс">
+            <ArrowLeft className={styles.navArrowIcon} />
+          </button>
+          <button type="button" className={styles.navArrowBtn} onClick={goNext} aria-label="Следующий кейс">
+            <ArrowRight className={styles.navArrowIcon} />
+          </button>
+        </div>
 
         <div className={styles.slider}>
           <div className={styles.slide}>
@@ -96,20 +112,29 @@ const CaseLeadgenCard: FC<CaseLeadgenCardProps> = ({ item }) => (
         {item.title}
         <span className={styles.badge}>{item.badge}</span>
       </h3>
-      <dl className={styles.cardMeta}>
-        <div>
-          <dt className={styles.cardTerm}>Задача:</dt>
-          <dd className={styles.cardDesc}>{item.task}</dd>
+      <div className={styles.cardMeta}>
+        <div className={styles.cardMetaItem}>
+          <div className={styles.cardMetaBlock}>
+            <IconTask className={styles.cardMetaBlockIcon} aria-hidden />
+            <span className={styles.cardMetaBlockTitle}>Задача</span>
+          </div>
+          <p className={styles.cardDesc}>{item.task}</p>
         </div>
-        <div>
-          <dt className={styles.cardTerm}>Подход:</dt>
-          <dd className={styles.cardDesc}>{item.approach}</dd>
+        <div className={styles.cardMetaItem}>
+          <div className={styles.cardMetaBlock}>
+            <IconApproach className={styles.cardMetaBlockIcon} aria-hidden />
+            <span className={styles.cardMetaBlockTitle}>Подход</span>
+          </div>
+          <p className={styles.cardDesc}>{item.approach}</p>
         </div>
-        <div>
-          <dt className={styles.cardTerm}>Результат:</dt>
-          <dd className={styles.cardDesc}>{item.result}</dd>
+        <div className={styles.cardMetaItem}>
+          <div className={classNames(styles.cardMetaBlock, styles.cardMetaBlockActive)}>
+            <IconResult className={styles.cardMetaBlockIcon} aria-hidden />
+            <span className={styles.cardMetaBlockTitle}>Результат</span>
+          </div>
+          <p className={styles.cardDesc}>{item.result}</p>
         </div>
-      </dl>
+      </div>
     </div>
   </article>
 )

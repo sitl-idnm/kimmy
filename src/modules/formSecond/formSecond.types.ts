@@ -20,4 +20,8 @@ export interface FormSecondProps {
   project?: boolean;
   /** id секции формы для якорных ссылок (например "form"). */
   anchorId?: string;
+  /** Вариант формы (например для страницы лидогенерации — своя позиция картинки на мобиле). */
+  variant?: 'default' | 'leadgen';
+  /** Идентификатор цели для аналитики при успешной отправке (Яндекс.Метрика, VK Pixel). */
+  goalId?: string;
 }

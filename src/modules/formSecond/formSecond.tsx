@@ -19,9 +19,11 @@ const FormSecondComponent: FC<FormSecondProps> = ({
   secondSubmitClassName,
   mail = true,
   project = true,
-  anchorId = 'form'
+  anchorId = 'form',
+  variant = 'default',
+  goalId
 }) => {
-  const rootClassName = classNames(styles.root, className)
+  const rootClassName = classNames(styles.root, className, { [styles.rootLeadgen]: variant === 'leadgen' })
 
   return (
     <div className={rootClassName}>
@@ -50,6 +52,7 @@ const FormSecondComponent: FC<FormSecondProps> = ({
             submitValue={submitValue}
             secondSubmitValue={secondSubmitValue}
             secondSubmitClassName={secondSubmitClassName}
+            goalId={goalId}
           />
         </div>
       </section>

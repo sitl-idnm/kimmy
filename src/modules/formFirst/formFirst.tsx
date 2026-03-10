@@ -18,7 +18,8 @@ const FormFirst: FC<FormFirstProps> = ({
   listClosing,
   submitValue,
   project,
-  projectPlaceholder
+  projectPlaceholder,
+  goalId
 }) => {
   const rootClassName = classNames(styles.root, className)
 
@@ -47,6 +48,7 @@ const FormFirst: FC<FormFirstProps> = ({
             submitValue={submitValue}
             project={project}
             projectPlaceholder={projectPlaceholder}
+            goalId={goalId}
           />
         </div>
       </section>

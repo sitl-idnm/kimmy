@@ -14,6 +14,7 @@ import {
   positionAfterDigit,
   digitsBeforePosition
 } from '@/shared/utils/phoneMask'
+import { reachFormGoal } from '@/shared/utils/formGoals'
 
 const defaultProjectPlaceholder = 'Расскажите про свой проект'
 
@@ -26,7 +27,8 @@ const Form: FC<FormProps> = ({
   quizData,
   submitValue = 'Отправить',
   secondSubmitValue,
-  secondSubmitClassName
+  secondSubmitClassName,
+  goalId
 }) => {
   const rootClassName = classNames(styles.root, className)
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
@@ -139,6 +141,9 @@ ${data.project ? `💡 *О проекте:*\n${data.project}\n` : ''}${quizResul
         chat_id: chatId,
         text: message,
       })
+      if (goalId) {
+        reachFormGoal(goalId)
+      }
       setSuccessMessage('Форма успешно отправлена!')
     } catch (error) {
       console.error('Ошибка при отправке:', error)

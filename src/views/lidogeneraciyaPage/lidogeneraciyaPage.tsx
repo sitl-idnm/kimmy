@@ -2,8 +2,8 @@
 
 import { FC } from 'react'
 import classNames from 'classnames'
+import { StandartText, Wrapper } from '@/ui'
 import { IntroWorkUs } from '@/modules/introWorkUs'
-import { StandartText } from '@/ui'
 import { Why } from '@/modules/why'
 import AcceptIcon from '@icons/accept.svg'
 import AcceptIconBlack from '@icons/accept-black.svg'
@@ -25,6 +25,7 @@ export const LidogeneraciyaPageView: FC = () => {
   return (
     <>
       <main className={rootClassName}>
+        <Wrapper>
         <IntroWorkUs
           className={styles.introBlock}
           title="Найдем клиентов там, где конкуренты сливают бюджеты на контекст"
@@ -213,6 +214,7 @@ export const LidogeneraciyaPageView: FC = () => {
           title="Нужно закрытие сделки под ключ?"
           paragraph={'Возьмем на\u00A0себя весь цикл — от\u00A0поиска клиента до\u00A0выставления счета. Обучим операторов вашему продукту, зафиксируем заказ и передадим в\u00A0работу.'}
           submitValue="Обсудить индивидуально"
+          goalId="leadgen_form_first_1"
         />
 
         <Branch
@@ -339,6 +341,7 @@ export const LidogeneraciyaPageView: FC = () => {
           project
           projectPlaceholder="Опишите Вашу задачу"
           submitValue="Обсудить решение"
+          goalId="leadgen_form_first_2"
         />
 
         <Faq faqData={faqData} title="Нас часто спрашивают:" />
@@ -349,7 +352,10 @@ export const LidogeneraciyaPageView: FC = () => {
           submitValue="Обсудить решение"
           mail={false}
           project={false}
+          variant="leadgen"
+          goalId="leadgen_form_second"
         />
+        </Wrapper>
       </main>
       <NewModalContainer />
     </>

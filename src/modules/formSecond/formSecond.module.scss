@@ -92,6 +92,21 @@
 			width: 565px;
 			height: 565px;
 		}
+
+		/* На странице лидогенерации — картинка меньше и ниже на десктопе */
+		.rootLeadgen & .form__circle .image {
+			width: 380px;
+			height: 380px;
+			top: 170px;
+		}
+	}
+
+	@include desktop-only {
+		.rootLeadgen & .form__circle .image {
+			width: 380px;
+			height: 380px;
+			top: 190px;
+		}
 	}
 
 	@include tablet {
@@ -133,6 +148,11 @@
 			left: 50%;
 			right: auto;
 			transform: translateX(-50%);
+		}
+
+		/* На странице лидогенерации — картинка ниже на мобиле */
+		.rootLeadgen & .image {
+			top: 420px;
 		}
 
 		& {
@@ -187,6 +207,8 @@
 			}
 
 			form {
+				/* Чекбоксы: на главной — 5-й и 6-й div, на лидогенерации (без почты/проекта) — 3-й div */
+				div:nth-child(3),
 				div:nth-child(5),
 				div:nth-child(6) {
 					label {
@@ -201,5 +223,4 @@
 			}
 		}
 	}
-
 }

@@ -12,4 +12,6 @@ export interface FormProps {
   secondSubmitValue?: string
   /** Класс для второй кнопки (например белый вариант). */
   secondSubmitClassName?: string
+  /** Идентификатор цели для Яндекс.Метрики и VK Pixel при успешной отправке (например: leadgen_form_second). */
+  goalId?: string
 }

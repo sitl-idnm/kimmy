@@ -12,4 +12,6 @@ export interface FormFirstProps {
   project?: boolean
   /** Плейсхолдер для поля проекта (при project=true). */
   projectPlaceholder?: string
+  /** Идентификатор цели для аналитики при успешной отправке (Яндекс.Метрика, VK Pixel). */
+  goalId?: string
 }
