@@ -18,10 +18,9 @@
 	background-position: -20% 110%;
 
 	@include tablet-small {
-		padding: 40px 12px 333px;
-		background: var(--color-black) center bottom no-repeat url('../../../public/images/formFigure.png');
-		background-size: 510px 510px;
-		background-position: 20% 120%;
+		padding: 40px 12px 40px;
+		background: var(--color-black);
+		background-image: none;
 
 		gap: 12px;
 

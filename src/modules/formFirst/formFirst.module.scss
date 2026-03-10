@@ -107,6 +107,16 @@
 			margin-top: -60px;
 			gap: 16px;
 		}
+
+		/* Подпись чекбокса — меньше шрифт, чтобы не было переноса */
+		form div:nth-child(4) label,
+		form div:nth-child(5) label {
+			font-size: 11px;
+
+			@include tablet-small {
+				font-size: 10px;
+			}
+		}
 	}
 
 	&__circle {

@@ -76,20 +76,19 @@ const CaseLeadgen: FC<CaseLeadgenProps> = ({
         <div className={styles.slider}>
           <div className={styles.slide}>
             {activeItem && <CaseLeadgenCard item={activeItem} />}
+            <div className={styles.actions}>
+              {openDetailsModal ? (
+                <button type="button" className={styles.ctaButton} onClick={() => setModalContent('детали-лидогенерация')}>
+                  {actionButtonText}
+                </button>
+              ) : (
+                <a href={actionButtonHref} className={styles.ctaButton}>
+                  {actionButtonText}
+                </a>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-
-      <div className={styles.actions}>
-        {openDetailsModal ? (
-          <button type="button" className={styles.ctaButton} onClick={() => setModalContent('детали-лидогенерация')}>
-            {actionButtonText}
-          </button>
-        ) : (
-          <a href={actionButtonHref} className={styles.ctaButton}>
-            {actionButtonText}
-          </a>
-        )}
       </div>
     </section>
   )
