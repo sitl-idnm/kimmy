@@ -207,16 +207,13 @@
 			}
 
 			form {
-				/* Чекбоксы: на главной — 5-й и 6-й div, на лидогенерации (без почты/проекта) — 3-й div */
-				div:nth-child(7),
-				div:nth-child(6) {
-					label {
-						color: black;
-						font-size: 10px;
+				/* Любой label, который идёт сразу после чекбокса */
+				input[type='checkbox'] + label {
+					color: black;
+					font-size: 10px;
 
-						@include tablet-small {
-							font-size: 10px;
-						}
+					@include tablet-small {
+						font-size: 10px;
 					}
 				}
 			}

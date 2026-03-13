@@ -83,10 +83,7 @@ const WidgetCase: FC<WidgetCaseProps> = ({
         : ''
 
     const message = `Новая заявка с ${titleForm} на сайте-визитке:
-Телефон: ${data.phoneModal}
-Капча: ${captchaToken ?? 'нет токена'}${utmText}${
-      clientIp ? `\nIP: ${clientIp}` : ''
-    }`
+Телефон: ${data.phoneModal}${utmText}${clientIp ? `\nIP: ${clientIp}` : ''}`
 
     try {
       await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
@@ -169,7 +166,7 @@ const WidgetCase: FC<WidgetCaseProps> = ({
                 </div>
                 <div className={styles.form__wrapper__captcha}>
                   <InvisibleSmartCaptcha
-                    sitekey="ysc1_I1dv5tZJbPvnUrCUEbieI1itdi5wmcEqBsuMgIn4f83e87e8"
+                    sitekey={process.env.NEXT_PUBLIC_YA_SMARTCAPTCHA_SITEKEY ?? ''}
                     visible={captchaVisible}
                     onSuccess={handleCaptchaSuccess}
                     shieldPosition="bottom-right"

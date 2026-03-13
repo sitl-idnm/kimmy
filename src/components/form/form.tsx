@@ -183,9 +183,7 @@ const Form: FC<FormProps> = ({
 
 ${data.project ? `💡 *О проекте:*\n${data.project}\n` : ''}${
       quizResults ? `\n📋 *Результаты опроса:*${quizResults}` : ''
-    }\n\n🔐 Капча: ${captchaToken ?? 'нет токена'}${utmText}${
-      clientIp ? `\n🌍 IP: ${clientIp}` : ''
-    }`
+    }${utmText}${clientIp ? `\n🌍 IP: ${clientIp}` : ''}`
 
     try {
       await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
@@ -333,7 +331,7 @@ ${data.project ? `💡 *О проекте:*\n${data.project}\n` : ''}${
         )}
         <div className={styles.form_wrapper}>
           <InvisibleSmartCaptcha
-            sitekey="ysc1_I1dv5tZJbPvnUrCUEbieI1itdi5wmcEqBsuMgIn4f83e87e8"
+            sitekey={process.env.NEXT_PUBLIC_YA_SMARTCAPTCHA_SITEKEY ?? ''}
             visible={captchaVisible}
             onSuccess={handleCaptchaSuccess}
             shieldPosition="bottom-right"
