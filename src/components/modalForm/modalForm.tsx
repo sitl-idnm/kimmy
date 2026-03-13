@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, useState } from 'react'
+import { FC, useEffect, useRef, useState } from 'react'
 import classNames from 'classnames'
 
 import styles from './modalForm.module.scss'
@@ -14,6 +14,7 @@ import {
   positionAfterDigit,
   digitsBeforePosition
 } from '@/shared/utils/phoneMask'
+import { InvisibleSmartCaptcha } from '@yandex/smart-captcha'
 
 import PhoneDef from '../../shared/assets/icons/phone - default.svg'
 import PhoneActive from '../../shared/assets/icons/phone - active.svg'
@@ -43,6 +44,37 @@ const ModalForm: FC<ModalFormProps> = ({ className, details, count, start, detai
 	const rootClassName = classNames(styles.root, className)
 	const [selectedContactMethod, setSelectedContactMethod] = useState('number')
 	const [successMessage, setSuccessMessage] = useState<string | null>(null)
+	const [captchaToken, setCaptchaToken] = useState<string | null>(null)
+	const [captchaVisible, setCaptchaVisible] = useState(false)
+	const [waitingForCaptcha, setWaitingForCaptcha] = useState(false)
+	const [utmParams, setUtmParams] = useState<Record<string, string>>({})
+	const [clientIp, setClientIp] = useState<string | null>(null)
+	const visitStartRef = useRef<number>(Date.now())
+	const formRef = useRef<HTMLFormElement | null>(null)
+
+	useEffect(() => {
+		if (typeof window === 'undefined') return
+		try {
+			const searchParams = new URLSearchParams(window.location.search)
+			const keys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term']
+			const collected: Record<string, string> = {}
+			keys.forEach((key) => {
+				const value = searchParams.get(key)
+				if (value) collected[key] = value
+			})
+			setUtmParams(collected)
+		} catch {
+			// ignore
+		}
+	}, [])
+
+	useEffect(() => {
+		if (typeof window === 'undefined') return
+		fetch('https://api.ipify.org?format=json')
+			.then((res) => res.json())
+			.then((data: { ip?: string }) => { if (data?.ip) setClientIp(data.ip) })
+			.catch(() => {})
+	}, [])
 
 	const handlePhoneInput = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const input = event.target
@@ -90,13 +122,16 @@ const ModalForm: FC<ModalFormProps> = ({ className, details, count, start, detai
 		return sanitized;
 	};
 
-	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-		event.preventDefault()
-		const formData = new FormData(event.currentTarget)
+	const submitWithFormData = async (formData: FormData) => {
 		const data = Object.fromEntries(formData.entries())
+		const honeypot = (data.website as string | undefined)?.trim?.()
+		if (honeypot) {
+			setSuccessMessage('Форма успешно отправлена!')
+			return
+		}
 		if (data.mailModal && !isValidEmail(data.mailModal as string)) {
-			setSuccessMessage('Ошибка отправки заявки. Неправильный email адрес.');
-			return;
+			setSuccessMessage('Ошибка отправки заявки. Неправильный email адрес.')
+			return
 		}
 		const phone = (data.phoneModal as string)?.trim() ?? ''
 		if (!isPhoneValid(phone)) {
@@ -106,24 +141,62 @@ const ModalForm: FC<ModalFormProps> = ({ className, details, count, start, detai
 		if (data.commentModal != null && typeof data.commentModal === 'string') {
 			try {
 				data.commentModal = sanitizeInput(data.commentModal)
-			} catch (error) {
+			} catch {
 				setSuccessMessage('Ошибка отправки заявки. HTML теги не разрешены.')
 				return
 			}
 		}
 		const token = '7862004029:AAFZ807gLMhUIzqjfh4DB62muUmzWv9JfrY'
 		const chatId = '-4654232429'
-		const message = `Новая заявка:\nИмя: ${data.nameModal}\nТелефон: ${data.phoneModal}${data.mailModal ? `\nПочта: ${data.mailModal}` : ''}${data.commentModal ? `\nРасскажите про свой проект: ${data.commentModal}` : ''}\nПредпочтительный способ связи: ${selectedContactMethod}`
+		const utmText =
+			Object.keys(utmParams).length > 0
+				? `\n\nUTM-метки:\n${Object.entries(utmParams)
+						.map(([key, value]) => `${key}: ${value}`)
+						.join('\n')}`
+				: ''
+		const message = `Новая заявка:\nИмя: ${data.nameModal}\nТелефон: ${data.phoneModal}${data.mailModal ? `\nПочта: ${data.mailModal}` : ''}${data.commentModal ? `\nРасскажите про свой проект: ${data.commentModal}` : ''}\nПредпочтительный способ связи: ${selectedContactMethod}${utmText}${clientIp ? `\nIP: ${clientIp}` : ''}`
 
 		try {
 			await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
 				chat_id: chatId,
 				text: message,
 			})
-			setSuccessMessage('Форма успешно отправлена!');
+			setSuccessMessage('Форма успешно отправлена!')
 		} catch (error) {
 			console.error('Error sending message to Telegram:', error)
 			setSuccessMessage('Ошибка при отправке заявки.')
+		}
+	}
+
+	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault()
+		const formElement = event.currentTarget
+		const formData = new FormData(formElement)
+		const honeypot = (formData.get('website') as string | null)?.trim()
+		if (honeypot) {
+			setSuccessMessage('Форма успешно отправлена!')
+			return
+		}
+		const now = Date.now()
+		if (now - visitStartRef.current < 10000) {
+			setSuccessMessage('Форма доступна к отправке через 10 секунд после входа на сайт.')
+			return
+		}
+		if (!captchaToken) {
+			setWaitingForCaptcha(true)
+			setCaptchaVisible(true)
+			return
+		}
+		await submitWithFormData(formData)
+	}
+
+	const handleCaptchaSuccess = async (token: string) => {
+		setCaptchaToken(token)
+		setCaptchaVisible(false)
+		setSuccessMessage(null)
+		if (waitingForCaptcha && formRef.current) {
+			await submitWithFormData(new FormData(formRef.current))
+			setWaitingForCaptcha(false)
 		}
 	}
 
@@ -143,7 +216,14 @@ const ModalForm: FC<ModalFormProps> = ({ className, details, count, start, detai
 							: count ? 'Заполните краткую форму, чтобы мы связались с вами и рассчитали сроки и стоимость разработки сайта.' : start ? 'Заполните форму и мы свяжемся с вами в ближайшее время для записи на консультацию' : 'Просто оставьте контактные данные, мы свяжемся с вами, чтобы собрать информацию и предложить решение.'}
 					</p>
 				</div>
-				<form onSubmit={handleSubmit} action="POST" className={styles.root__content__form}>
+				<form ref={formRef} onSubmit={handleSubmit} action="POST" className={styles.root__content__form}>
+					<input
+						type="text"
+						name="website"
+						autoComplete="off"
+						tabIndex={-1}
+						className={styles.honeypot}
+					/>
 					<div className={styles.root__content__form__first__line}>
 						<div>
 							<input
@@ -239,6 +319,14 @@ const ModalForm: FC<ModalFormProps> = ({ className, details, count, start, detai
 								</label>
 							</div>
 						</div>
+					</div>
+					<div className={styles.form_wrapper}>
+						<InvisibleSmartCaptcha
+							sitekey={process.env.NEXT_PUBLIC_YA_SMARTCAPTCHA_SITEKEY ?? ''}
+							visible={captchaVisible}
+							onSuccess={handleCaptchaSuccess}
+							shieldPosition="bottom-right"
+						/>
 					</div>
 					<div className={styles.wrapper}>
 						<div className={styles.form_wrapper}>
