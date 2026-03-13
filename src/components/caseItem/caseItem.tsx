@@ -42,9 +42,8 @@ const CaseItem: FC<CaseItemProps> = ({
           <p className={styles.bottom__description}>{text}</p>
           <Button
             className={styles.bottom__button}
-            tag='a'
-            href={link}
-            maxWidth='192px'
+            tag="span"
+            maxWidth="192px"
           >
             Читать кейс
           </Button>

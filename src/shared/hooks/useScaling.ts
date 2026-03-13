@@ -59,19 +59,25 @@ export const useScaling = ({
   const setDevice = useSetAtom(deviceWriteAtom)
 
   useEffect(() => {
+    const styleId = 'scaling-styles'
+    let styleEl = document.getElementById(styleId) as HTMLStyleElement | null
+    if (!styleEl) {
+      styleEl = document.createElement('style')
+      styleEl.id = styleId
+      document.head.appendChild(styleEl)
+    }
+
     const handleWindowResize = () => {
       if (!document || !window) {
         return
       }
 
-      const htmlElement = document.documentElement
-
       const viewportWidth = window.innerWidth
       const viewportHeight = window.innerHeight
+      const fontSize = getScaleFontSize(viewportWidth, scalingBreakpoints)
+      const vh = viewportHeight * 0.01
 
-      htmlElement.style.fontSize = `${getScaleFontSize(viewportWidth, scalingBreakpoints)}px`
-      htmlElement.style.setProperty('--vh', `${viewportHeight * 0.01}px`)
-
+      styleEl!.textContent = `html{font-size:${fontSize}px}html{--vh:${vh}px}`
       setDevice(getDeviceType(viewportWidth, deviceBreakpoints))
     }
 

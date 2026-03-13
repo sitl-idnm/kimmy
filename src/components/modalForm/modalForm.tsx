@@ -40,6 +40,8 @@ const DETAILS_LIDOGENERACIYA = {
   submitValue: 'Обсудить результат'
 } as const
 
+const captchaSitekey = process.env.NEXT_PUBLIC_YA_SMARTCAPTCHA_SITEKEY ?? ''
+
 const ModalForm: FC<ModalFormProps> = ({ className, details, count, start, detailsVariant, formSource }) => {
 	const rootClassName = classNames(styles.root, className)
 	const [selectedContactMethod, setSelectedContactMethod] = useState('number')
@@ -70,7 +72,7 @@ const ModalForm: FC<ModalFormProps> = ({ className, details, count, start, detai
 
 	useEffect(() => {
 		if (typeof window === 'undefined') return
-		fetch('https://api.ipify.org?format=json')
+		fetch('/api/ip')
 			.then((res) => res.json())
 			.then((data: { ip?: string }) => { if (data?.ip) setClientIp(data.ip) })
 			.catch(() => {})
@@ -182,7 +184,7 @@ const ModalForm: FC<ModalFormProps> = ({ className, details, count, start, detai
 			setSuccessMessage('Форма доступна к отправке через 10 секунд после входа на сайт.')
 			return
 		}
-		if (!captchaToken) {
+		if (captchaSitekey && !captchaToken) {
 			setWaitingForCaptcha(true)
 			setCaptchaVisible(true)
 			return
@@ -320,14 +322,16 @@ const ModalForm: FC<ModalFormProps> = ({ className, details, count, start, detai
 							</div>
 						</div>
 					</div>
-					<div className={styles.form_wrapper}>
-						<InvisibleSmartCaptcha
-							sitekey={process.env.NEXT_PUBLIC_YA_SMARTCAPTCHA_SITEKEY ?? ''}
-							visible={captchaVisible}
-							onSuccess={handleCaptchaSuccess}
-							shieldPosition="bottom-right"
-						/>
-					</div>
+					{captchaSitekey ? (
+						<div className={styles.form_wrapper}>
+							<InvisibleSmartCaptcha
+								sitekey={captchaSitekey}
+								visible={captchaVisible}
+								onSuccess={handleCaptchaSuccess}
+								shieldPosition="bottom-right"
+							/>
+						</div>
+					) : null}
 					<div className={styles.wrapper}>
 						<div className={styles.form_wrapper}>
 							<input type="checkbox" required />
@@ -346,7 +350,7 @@ const ModalForm: FC<ModalFormProps> = ({ className, details, count, start, detai
 							<div className={styles.successMessage}>
 								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<rect width="24" height="24" rx="12" fill="white" />
-									<path d="M8 12L11.5 16L16 7" stroke="#CB172C" stroke-width="1.5" stroke-linecap="round" />
+									<path d="M8 12L11.5 16L16 7" stroke="#CB172C" strokeWidth="1.5" strokeLinecap="round" />
 								</svg>
 								{successMessage}
 							</div>

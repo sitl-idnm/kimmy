@@ -18,6 +18,7 @@ import {
 import { reachFormGoal } from '@/shared/utils/formGoals'
 
 const defaultProjectPlaceholder = 'Расскажите про свой проект'
+const captchaSitekey = process.env.NEXT_PUBLIC_YA_SMARTCAPTCHA_SITEKEY ?? ''
 
 const Form: FC<FormProps> = ({
   className,
@@ -61,7 +62,7 @@ const Form: FC<FormProps> = ({
 
   useEffect(() => {
     if (typeof window === 'undefined') return
-    fetch('https://api.ipify.org?format=json')
+    fetch('/api/ip')
       .then((res) => res.json())
       .then((data: { ip?: string }) => {
         if (data?.ip) setClientIp(data.ip)
@@ -216,7 +217,7 @@ ${data.project ? `💡 *О проекте:*\n${data.project}\n` : ''}${
       return
     }
 
-    if (!captchaToken) {
+    if (captchaSitekey && !captchaToken) {
       setWaitingForCaptcha(true)
       setCaptchaVisible(true)
       return
@@ -329,14 +330,16 @@ ${data.project ? `💡 *О проекте:*\n${data.project}\n` : ''}${
             <label style={work ? { color: 'black' } : undefined}>Согласен на получение email - рассылок</label>
           </div>
         )}
-        <div className={styles.form_wrapper}>
-          <InvisibleSmartCaptcha
-            sitekey={process.env.NEXT_PUBLIC_YA_SMARTCAPTCHA_SITEKEY ?? ''}
-            visible={captchaVisible}
-            onSuccess={handleCaptchaSuccess}
-            shieldPosition="bottom-right"
-          />
-        </div>
+        {captchaSitekey ? (
+          <div className={styles.form_wrapper}>
+            <InvisibleSmartCaptcha
+              sitekey={captchaSitekey}
+              visible={captchaVisible}
+              onSuccess={handleCaptchaSuccess}
+              shieldPosition="bottom-right"
+            />
+          </div>
+        ) : null}
         <div className={styles.form_wrapper}>
           {secondSubmitValue ? (
             <div className={styles.form_buttonsRow}>

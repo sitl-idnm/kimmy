@@ -55,6 +55,16 @@ body {
   overflow-x: hidden;
 }
 
+/* Блокировка скролла при открытой модалке — через класс, без inline style (избегаем hydration warning) */
+html.modal-open,
+body.modal-open {
+  overflow: hidden;
+}
+
+body.modal-open {
+  padding-right: 15px; /* компенсация скроллбара */
+}
+
 a {
   color: currentcolor;
   text-decoration: none;

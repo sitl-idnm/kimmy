@@ -64,7 +64,7 @@ export default function RootLayout({
   children: ReactNode
 }>) {
   return (
-    <html lang="ru">
+    <html lang="ru" suppressHydrationWarning>
       <head>
         <Script id="top-mail-ru" strategy="afterInteractive">
           {`var _tmr = window._tmr || (window._tmr = []);
@@ -78,7 +78,7 @@ _tmr.push({id: "3747425", type: "pageView", start: (new Date()).getTime()});
 })(document, window, "tmr-code");`}
         </Script>
       </head>
-      <body className={`${inter.variable} ${manrope.variable}`}>
+      <body className={`${inter.variable} ${manrope.variable}`} suppressHydrationWarning>
         <Provider>
           <div id="root">
             <Header />

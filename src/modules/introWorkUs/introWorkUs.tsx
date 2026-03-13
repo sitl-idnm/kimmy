@@ -84,6 +84,7 @@ const IntroWorkUs: FC<IntroWorkUsProps> = ({
           quality={100}
           width={image?.width || 100}
           height={image?.height || 100}
+          style={{ width: 'auto', height: 'auto' }}
         />
       </div>
     </div>

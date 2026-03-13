@@ -16,20 +16,18 @@ const NewModalContainer: FC = () => {
   const formSource = useAtomValue(modalFormSource)
 
   useEffect(() => {
+    const classModalOpen = 'modal-open'
     if (modalContent) {
-      document.documentElement.style.overflow = 'hidden'
-      document.body.style.overflow = 'hidden'
-      document.body.style.paddingRight = '15px' // Компенсация скроллбара
+      document.documentElement.classList.add(classModalOpen)
+      document.body.classList.add(classModalOpen)
     } else {
-      document.documentElement.style.overflow = ''
-      document.body.style.overflow = ''
-      document.body.style.paddingRight = ''
+      document.documentElement.classList.remove(classModalOpen)
+      document.body.classList.remove(classModalOpen)
     }
 
     return () => {
-      document.documentElement.style.overflow = ''
-      document.body.style.overflow = ''
-      document.body.style.paddingRight = ''
+      document.documentElement.classList.remove(classModalOpen)
+      document.body.classList.remove(classModalOpen)
     }
   }, [modalContent])
 

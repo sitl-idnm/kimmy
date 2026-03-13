@@ -11,6 +11,8 @@ import Close from '@icons/widgetClose.svg'
 import Link from 'next/link'
 import { InvisibleSmartCaptcha } from '@yandex/smart-captcha'
 
+const captchaSitekey = process.env.NEXT_PUBLIC_YA_SMARTCAPTCHA_SITEKEY ?? ''
+
 const WidgetCase: FC<WidgetCaseProps> = ({
   className,
   titleForm
@@ -46,7 +48,7 @@ const WidgetCase: FC<WidgetCaseProps> = ({
 
   useEffect(() => {
     if (typeof window === 'undefined') return
-    fetch('https://api.ipify.org?format=json')
+    fetch('/api/ip')
       .then((res) => res.json())
       .then((data: { ip?: string }) => {
         if (data?.ip) setClientIp(data.ip)
@@ -114,7 +116,7 @@ const WidgetCase: FC<WidgetCaseProps> = ({
       return
     }
 
-    if (!captchaToken) {
+    if (captchaSitekey && !captchaToken) {
       setWaitingForCaptcha(true)
       setCaptchaVisible(true)
       return
@@ -164,14 +166,16 @@ const WidgetCase: FC<WidgetCaseProps> = ({
                   />
                   <label className={styles.placeholder}>+7 (999) 999 99-99</label>
                 </div>
-                <div className={styles.form__wrapper__captcha}>
-                  <InvisibleSmartCaptcha
-                    sitekey={process.env.NEXT_PUBLIC_YA_SMARTCAPTCHA_SITEKEY ?? ''}
-                    visible={captchaVisible}
-                    onSuccess={handleCaptchaSuccess}
-                    shieldPosition="bottom-right"
-                  />
-                </div>
+                {captchaSitekey ? (
+                  <div className={styles.form__wrapper__captcha}>
+                    <InvisibleSmartCaptcha
+                      sitekey={captchaSitekey}
+                      visible={captchaVisible}
+                      onSuccess={handleCaptchaSuccess}
+                      shieldPosition="bottom-right"
+                    />
+                  </div>
+                ) : null}
                 <div className={styles.form__wrapper__button}>
                   <input type="submit" value={'Получить консультацию'} />
                 </div>
@@ -180,7 +184,7 @@ const WidgetCase: FC<WidgetCaseProps> = ({
                     {successMessage.isSuccess && (
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect width="24" height="24" rx="12" fill="white" />
-                        <path d="M8 12L11.5 16L16 7" stroke="#CB172C" stroke-width="1.5" stroke-linecap="round" />
+                        <path d="M8 12L11.5 16L16 7" stroke="#CB172C" strokeWidth="1.5" strokeLinecap="round" />
                       </svg>
                     )}
                     {successMessage.text}

@@ -87,7 +87,7 @@ const ConversionTitle: FC<ConversionTitleProps> = ({ className }) => {
             id="path"
             d="M7.79199 9.07031V65.7254C7.79199 74.3998 14.824 81.4318 23.4984 81.4318H71.7394C80.4138 81.4318 87.4457 88.4638 87.4457 97.1382V137.526C87.4457 146.2 94.4777 153.232 103.152 153.232H169.343"
             stroke="url(#paint0_linear_927_132)"
-            stroke-width="2.24377"
+            strokeWidth="2.24377"
           />
           <circle cx="8.35319" cy="8.50944" r="6.7313" fill="white" />
           <circle
@@ -95,14 +95,14 @@ const ConversionTitle: FC<ConversionTitleProps> = ({ className }) => {
             cy="8.50944"
             r="6.7313"
             stroke="#CB172C"
-            stroke-width="2.24377"
+            strokeWidth="2.24377"
           />
           <circle
             cx="8.35319"
             cy="8.50944"
             r="6.7313"
             stroke="url(#paint1_linear_927_132)"
-            stroke-width="2.24377"
+            strokeWidth="2.24377"
           />
           <circle
             cx="83.5192"
@@ -110,7 +110,7 @@ const ConversionTitle: FC<ConversionTitleProps> = ({ className }) => {
             r="6.7313"
             fill="white"
             stroke="#CB172C"
-            stroke-width="2.24377"
+            strokeWidth="2.24377"
           />
           <circle
             cx="168.782"
@@ -118,7 +118,7 @@ const ConversionTitle: FC<ConversionTitleProps> = ({ className }) => {
             r="6.7313"
             fill="white"
             stroke="#CB172C"
-            stroke-width="2.24377"
+            strokeWidth="2.24377"
           />
           <circle
             id="ball"
@@ -136,8 +136,8 @@ const ConversionTitle: FC<ConversionTitleProps> = ({ className }) => {
               y2="-48.281"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#CB172C" />
-              <stop offset="1" stop-color="#CB172C" stop-opacity="0" />
+              <stop stopColor="#CB172C" />
+              <stop offset="1" stopColor="#CB172C" stopOpacity="0" />
             </linearGradient>
             <linearGradient
               id="paint1_linear_927_132"
@@ -147,8 +147,8 @@ const ConversionTitle: FC<ConversionTitleProps> = ({ className }) => {
               y2="-3.82448"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#CB172C" />
-              <stop offset="1" stop-color="#CB172C" stop-opacity="0" />
+              <stop stopColor="#CB172C" />
+              <stop offset="1" stopColor="#CB172C" stopOpacity="0" />
             </linearGradient>
           </defs>
         </svg>

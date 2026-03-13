@@ -137,7 +137,7 @@ const CaseForm: FC<CaseFormProps> = ({
             {successMessage.isSuccess && (
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="24" height="24" rx="12" fill="white" />
-                <path d="M8 12L11.5 16L16 7" stroke="#CB172C" stroke-width="1.5" stroke-linecap="round" />
+                <path d="M8 12L11.5 16L16 7" stroke="#CB172C" strokeWidth="1.5" strokeLinecap="round" />
               </svg>
             )}
             {successMessage.text}
