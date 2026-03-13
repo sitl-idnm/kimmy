@@ -2,7 +2,7 @@
 
 import { FC, useEffect } from 'react'
 import { useAtomValue } from 'jotai/react'
-import { openModalContent } from '@/shared/atoms/openModal'
+import { openModalContent, modalFormSource } from '@/shared/atoms/openModal'
 import { MarketingModal } from '../marketingModal'
 import { DesignModal } from '../designModal'
 import { DevelopModal } from '../developModal'
@@ -13,6 +13,7 @@ import { StartModal } from '../startModal'
 
 const NewModalContainer: FC = () => {
   const modalContent = useAtomValue(openModalContent)
+  const formSource = useAtomValue(modalFormSource)
 
   useEffect(() => {
     if (modalContent) {
@@ -39,7 +40,10 @@ const NewModalContainer: FC = () => {
       {modalContent === 'разработка' && <DevelopModal />}
       {modalContent === 'поддержка' && <SupportModal />}
       {(modalContent === 'детали' || modalContent === 'детали-лидогенерация') && (
-        <DetailsModal variant={modalContent === 'детали-лидогенерация' ? 'lidogeneraciya' : undefined} />
+        <DetailsModal
+          variant={modalContent === 'детали-лидогенерация' ? 'lidogeneraciya' : undefined}
+          formSource={modalContent === 'детали-лидогенерация' ? formSource : undefined}
+        />
       )}
       {modalContent === 'стоимость' && <CountModal />}
       {/* Сверху старые модалки */}

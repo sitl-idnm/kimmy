@@ -5,13 +5,15 @@ import styles from './detailsModal.module.scss'
 import { DetailsModalProps } from './detailsModal.types'
 import { ModalForm } from '@/components/modalForm'
 import { useSetAtom } from 'jotai/react'
-import { openModalContent } from '@/shared/atoms/openModal'
+import { openModalContent, modalFormSource } from '@/shared/atoms/openModal'
 
-const DetailsModal: FC<DetailsModalProps> = ({ variant }) => {
+const DetailsModal: FC<DetailsModalProps> = ({ variant, formSource }) => {
   const setModalContent = useSetAtom(openModalContent)
+  const setFormSource = useSetAtom(modalFormSource)
 
   const closeModal = () => {
     setModalContent('')
+    setFormSource('')
   }
 
   return (
@@ -23,7 +25,7 @@ const DetailsModal: FC<DetailsModalProps> = ({ variant }) => {
       <div className={styles.modal__content} onClick={(e) => e.stopPropagation()}>
         <div className={styles.close} onClick={closeModal} aria-label="Закрыть" />
         <div className={styles.content}>
-          <ModalForm details detailsVariant={variant} />
+          <ModalForm details detailsVariant={variant} formSource={formSource} />
         </div>
       </div>
     </div>

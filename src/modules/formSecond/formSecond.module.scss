@@ -144,7 +144,7 @@
 		.image {
 			width: 240px;
 			height: 240px;
-			top: 300px;
+			top: 580px;
 			left: 50%;
 			right: auto;
 			transform: translateX(-50%);
@@ -152,7 +152,9 @@
 
 		/* На странице лидогенерации — картинка ниже на мобиле */
 		.rootLeadgen & .image {
-			top: 420px;
+			width: 280px !important;
+			height: 280px !important;
+			top: 360px !important;
 		}
 
 		& {

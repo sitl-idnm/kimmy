@@ -40,7 +40,7 @@ const DETAILS_LIDOGENERACIYA = {
   submitValue: 'Обсудить результат'
 } as const
 
-const ModalForm: FC<ModalFormProps> = ({ className, details, count, start, detailsVariant }) => {
+const ModalForm: FC<ModalFormProps> = ({ className, details, count, start, detailsVariant, formSource }) => {
 	const rootClassName = classNames(styles.root, className)
 	const [selectedContactMethod, setSelectedContactMethod] = useState('number')
 	const [successMessage, setSuccessMessage] = useState<string | null>(null)
@@ -154,7 +154,7 @@ const ModalForm: FC<ModalFormProps> = ({ className, details, count, start, detai
 						.map(([key, value]) => `${key}: ${value}`)
 						.join('\n')}`
 				: ''
-		const message = `Новая заявка:\nИмя: ${data.nameModal}\nТелефон: ${data.phoneModal}${data.mailModal ? `\nПочта: ${data.mailModal}` : ''}${data.commentModal ? `\nРасскажите про свой проект: ${data.commentModal}` : ''}\nПредпочтительный способ связи: ${selectedContactMethod}${utmText}${clientIp ? `\nIP: ${clientIp}` : ''}`
+		const message = `Новая заявка:\nИмя: ${data.nameModal}\nТелефон: ${data.phoneModal}${data.mailModal ? `\nПочта: ${data.mailModal}` : ''}${data.commentModal ? `\nРасскажите про свой проект: ${data.commentModal}` : ''}\nПредпочтительный способ связи: ${selectedContactMethod}${formSource ? `\nИсточник заявки (кнопка): ${formSource}` : ''}${utmText}${clientIp ? `\nIP: ${clientIp}` : ''}`
 
 		try {
 			await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {

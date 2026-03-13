@@ -1,7 +1,7 @@
 'use client'
 
 import { useSetAtom } from 'jotai/react'
-import { openModalContent } from '@/shared/atoms/openModal'
+import { openModalContent, modalFormSource } from '@/shared/atoms/openModal'
 import { Button } from '@/ui'
 import type { ReactNode } from 'react'
 import styles from './lidogeneraciyaPage.module.scss'
@@ -11,12 +11,18 @@ type Props = {
   /** Вариант отображения: как кнопка UI (для Why) или как ссылка под Branch */
   variant?: 'button' | 'branchLink'
   maxWidth?: string
+  /** Подпись для заявки: с какой кнопки открыта модалка (страница лидогенерации) */
+  source?: string
 }
 
-export function OpenDetailsModalButton({ children, variant = 'button', maxWidth }: Props) {
+export function OpenDetailsModalButton({ children, variant = 'button', maxWidth, source }: Props) {
   const setModalContent = useSetAtom(openModalContent)
+  const setFormSource = useSetAtom(modalFormSource)
 
-  const openModal = () => setModalContent('детали-лидогенерация')
+  const openModal = () => {
+    if (source) setFormSource(source)
+    setModalContent('детали-лидогенерация')
+  }
 
   if (variant === 'branchLink') {
     return (

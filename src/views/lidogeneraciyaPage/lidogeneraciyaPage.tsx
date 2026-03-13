@@ -104,7 +104,7 @@ export const LidogeneraciyaPageView: FC = () => {
           cardsPerRow={2}
           title={'Что меняется для\u00A0вашего бизнеса'}
           action={
-            <OpenDetailsModalButton maxWidth="240px">
+            <OpenDetailsModalButton maxWidth="240px" source="Хочу так же">
               Хочу так же
             </OpenDetailsModalButton>
           }
@@ -227,7 +227,7 @@ export const LidogeneraciyaPageView: FC = () => {
           }
           itemsPerRow={3}
           actionButton={
-            <OpenDetailsModalButton variant="branchLink">
+            <OpenDetailsModalButton variant="branchLink" source="Рассчитать мой вариант">
               Рассчитать мой вариант
             </OpenDetailsModalButton>
           }

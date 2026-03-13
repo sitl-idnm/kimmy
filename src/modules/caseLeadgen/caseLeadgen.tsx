@@ -4,7 +4,7 @@ import { FC, useState } from 'react'
 import classNames from 'classnames'
 import Image from 'next/image'
 import { useSetAtom } from 'jotai/react'
-import { openModalContent } from '@/shared/atoms/openModal'
+import { openModalContent, modalFormSource } from '@/shared/atoms/openModal'
 import ArrowLeft from '@icons/arrow-left.svg'
 import ArrowRight from '@icons/arrow-right.svg'
 import IconTask from '@icons/ExclamationCircleIcon.svg'
@@ -32,9 +32,15 @@ const CaseLeadgen: FC<CaseLeadgenProps> = ({
 }) => {
   const [activeIndex, setActiveIndex] = useState(0)
   const setModalContent = useSetAtom(openModalContent)
+  const setFormSource = useSetAtom(modalFormSource)
   const rootClassName = classNames(styles.root, className)
   const activeItem = items[activeIndex]
   const openDetailsModal = actionButtonHref === '#form'
+
+  const openModal = () => {
+    setFormSource('Получить план запуска (блок кейсов)')
+    setModalContent('детали-лидогенерация')
+  }
   const goPrev = () => setActiveIndex((i) => (i <= 0 ? items.length - 1 : i - 1))
   const goNext = () => setActiveIndex((i) => (i >= items.length - 1 ? 0 : i + 1))
 
@@ -78,7 +84,7 @@ const CaseLeadgen: FC<CaseLeadgenProps> = ({
             {activeItem && <CaseLeadgenCard item={activeItem} />}
             <div className={styles.actions}>
               {openDetailsModal ? (
-                <button type="button" className={styles.ctaButton} onClick={() => setModalContent('детали-лидогенерация')}>
+                <button type="button" className={styles.ctaButton} onClick={openModal}>
                   {actionButtonText}
                 </button>
               ) : (
