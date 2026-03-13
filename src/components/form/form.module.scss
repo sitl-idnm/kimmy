@@ -14,25 +14,50 @@
 	width: 100%;
 	position: relative;
 
+	.honeypot {
+		position: absolute;
+		left: -9999px;
+		opacity: 0;
+		pointer-events: none;
+	}
+
 	&_wrapper {
 		display: flex;
 		position: relative;
 		gap: 12px;
-		flex-direction: column;
+		flex-direction: row;
 
 		&:nth-child(3) {
 			display: flex;
 			flex-direction: row;
+			align-items: center;
+			flex-wrap: nowrap;
+
+			label {
+				white-space: nowrap;
+			}
 		}
 
 		&:nth-child(5) {
 			display: flex;
 			flex-direction: row;
+			align-items: center;
+			flex-wrap: nowrap;
+
+			label {
+				white-space: nowrap;
+			}
 		}
 
 		&:nth-child(6) {
 			display: flex;
 			flex-direction: row;
+			align-items: center;
+			flex-wrap: nowrap;
+
+			label {
+				white-space: nowrap;
+			}
 		}
 
 		label {

@@ -1,8 +1,9 @@
 'use client'
-import { FC, useState } from 'react'
+import { FC, useEffect, useRef, useState } from 'react'
 import classNames from 'classnames'
 import axios from 'axios'
 import Link from 'next/link'
+import { InvisibleSmartCaptcha } from '@yandex/smart-captcha'
 
 import styles from './form.module.scss'
 import { FormProps } from './form.types'
@@ -32,6 +33,43 @@ const Form: FC<FormProps> = ({
 }) => {
   const rootClassName = classNames(styles.root, className)
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null)
+  const [captchaVisible, setCaptchaVisible] = useState(false)
+  const [waitingForCaptcha, setWaitingForCaptcha] = useState(false)
+  const [utmParams, setUtmParams] = useState<Record<string, string>>({})
+  const [clientIp, setClientIp] = useState<string | null>(null)
+  const visitStartRef = useRef<number>(Date.now())
+  const formRef = useRef<HTMLFormElement | null>(null)
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    try {
+      const searchParams = new URLSearchParams(window.location.search)
+      const keys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term']
+      const collected: Record<string, string> = {}
+      keys.forEach((key) => {
+        const value = searchParams.get(key)
+        if (value) {
+          collected[key] = value
+        }
+      })
+      setUtmParams(collected)
+    } catch {
+      // ignore URL parsing errors
+    }
+  }, [])
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    fetch('https://api.ipify.org?format=json')
+      .then((res) => res.json())
+      .then((data: { ip?: string }) => {
+        if (data?.ip) setClientIp(data.ip)
+      })
+      .catch(() => {
+        // ignore IP fetch errors
+      })
+  }, [])
 
   const handleNameInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value
@@ -97,11 +135,14 @@ const Form: FC<FormProps> = ({
       .map(([step, answer]) => `Шаг ${step}: ${answer}`)
       .join('\n')
   }
-
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    const formData = new FormData(event.currentTarget)
+  const submitWithFormData = async (formData: FormData) => {
     const data = Object.fromEntries(formData.entries())
+
+    const honeypot = (data.website as string | undefined)?.trim?.()
+    if (honeypot) {
+      setSuccessMessage('Форма успешно отправлена!')
+      return
+    }
 
     if (data.mail && !isValidEmail(data.mail as string)) {
       setSuccessMessage('Ошибка отправки заявки. Неправильный email адрес.')
@@ -127,14 +168,24 @@ const Form: FC<FormProps> = ({
     const chatId = '-4654232429'
 
     const quizResults = quizData ? `\n\nРезультаты квиза:\n${formatQuizData(quizData)}` : ''
+    const utmText =
+      Object.keys(utmParams).length > 0
+        ? `\n\nUTM-метки:\n${Object.entries(utmParams)
+            .map(([key, value]) => `${key}: ${value}`)
+            .join('\n')}`
+        : ''
 
-    const message = `🎯 *Пришла новая заявка с SEO-сайта KIM!*
+    const message = `🎯 *Пришла новая заявка с Визитки KIM!*
 
 👤 *Контактные данные:*
 • Имя: ${data.name}
 • Телефон: ${phone}${data.mail ? `\n• Почта: ${data.mail}` : ''}
 
-${data.project ? `💡 *О проекте:*\n${data.project}\n` : ''}${quizResults ? `\n📋 *Результаты опроса:*${quizResults}` : ''}`
+${data.project ? `💡 *О проекте:*\n${data.project}\n` : ''}${
+      quizResults ? `\n📋 *Результаты опроса:*${quizResults}` : ''
+    }\n\n🔐 Капча: ${captchaToken ?? 'нет токена'}${utmText}${
+      clientIp ? `\n🌍 IP: ${clientIp}` : ''
+    }`
 
     try {
       await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
@@ -151,9 +202,52 @@ ${data.project ? `💡 *О проекте:*\n${data.project}\n` : ''}${quizResul
     }
   }
 
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const formElement = event.currentTarget
+    const formData = new FormData(formElement)
+    const honeypot = (formData.get('website') as string | null)?.trim()
+    if (honeypot) {
+      setSuccessMessage('Форма успешно отправлена!')
+      return
+    }
+
+    const now = Date.now()
+    if (now - visitStartRef.current < 10000) {
+      setSuccessMessage('Форма доступна к отправке через 10 секунд после входа на сайт.')
+      return
+    }
+
+    if (!captchaToken) {
+      setWaitingForCaptcha(true)
+      setCaptchaVisible(true)
+      return
+    }
+
+    await submitWithFormData(formData)
+  }
+
+  const handleCaptchaSuccess = async (token: string) => {
+    setCaptchaToken(token)
+    setCaptchaVisible(false)
+    setSuccessMessage(null)
+
+    if (waitingForCaptcha && formRef.current) {
+      await submitWithFormData(new FormData(formRef.current))
+      setWaitingForCaptcha(false)
+    }
+  }
+
   return (
     <div className={rootClassName}>
-      <form onSubmit={handleSubmit} className={styles.form}>
+      <form ref={formRef} onSubmit={handleSubmit} className={styles.form}>
+        <input
+          type="text"
+          name="website"
+          autoComplete="off"
+          tabIndex={-1}
+          className={styles.honeypot}
+        />
         <div className={styles.form_wrapper}>
           <input
             type="text"
@@ -226,7 +320,9 @@ ${data.project ? `💡 *О проекте:*\n${data.project}\n` : ''}${quizResul
         {mail === true && (
           <div className={styles.form_wrapper}>
             <input type="checkbox" />
-            <label>Согласен на получение email - рассылок</label>
+            <label style={work ? { color: 'black' } : undefined}>
+              Согласен на получение email - рассылок
+            </label>
           </div>
         )}
         {work !== undefined && (
@@ -235,6 +331,14 @@ ${data.project ? `💡 *О проекте:*\n${data.project}\n` : ''}${quizResul
             <label style={work ? { color: 'black' } : undefined}>Согласен на получение email - рассылок</label>
           </div>
         )}
+        <div className={styles.form_wrapper}>
+          <InvisibleSmartCaptcha
+            sitekey="ysc1_I1dv5tZJbPvnUrCUEbieI1itdi5wmcEqBsuMgIn4f83e87e8"
+            visible={captchaVisible}
+            onSuccess={handleCaptchaSuccess}
+            shieldPosition="bottom-right"
+          />
+        </div>
         <div className={styles.form_wrapper}>
           {secondSubmitValue ? (
             <div className={styles.form_buttonsRow}>
