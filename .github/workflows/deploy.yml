@@ -1,19 +1,24 @@
-name: Deploy to Server
+name: Deploy
 
 on:
   push:
-    branches: [ master, main ]
+    branches: [master]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-kimmy
+  cancel-in-progress: true
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
     steps:
-    - name: Deploy to server
-      uses: appleboy/ssh-action@v0.1.5
-      with:
-        host: 95.164.89.84
-        username: root
-        key: ${{ secrets.SERVER_SSH_KEY }}
-        script: |
-          /var/www/deploy.sh
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script_stop: true
+          script: |
+            /opt/deploy/deploy.sh kimmy
