@@ -12,6 +12,7 @@ const nextConfig = {
   },
   webpack(config) {
     config.resolve.alias['@styles'] = stylesPath
+    config.resolve.alias['@views'] = path.join(__dirname, 'src/views')
 
     const fileLoaderRule = config.module.rules.find((rule) =>
       rule.test?.test?.('.svg'),
