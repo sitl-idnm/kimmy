@@ -35,7 +35,6 @@ if [[ ! -d "$APP_DIR/.git" ]]; then
 fi
 
 export PATH="/usr/local/bin:/usr/bin:/bin:$PATH"
-export NODE_ENV=production
 export PORT="$PORT"
 
 cd "$APP_DIR"
@@ -45,10 +44,10 @@ git fetch origin "$BRANCH"
 git reset --hard "origin/$BRANCH"
 
 echo "==> [$PM2_NAME] install dependencies"
-yarn install --frozen-lockfile
+NODE_ENV=development yarn install --frozen-lockfile
 
 echo "==> [$PM2_NAME] build"
-yarn build
+NODE_ENV=production yarn build
 
 echo "==> [$PM2_NAME] restart pm2"
 if pm2 describe "$PM2_NAME" >/dev/null 2>&1; then
