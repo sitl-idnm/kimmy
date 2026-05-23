@@ -1,8 +1,8 @@
 'use client'
 import { FC, useEffect, useRef, useState } from 'react'
 import classNames from 'classnames'
-import axios from 'axios'
 import Link from 'next/link'
+import { sendLeadMessage } from '@/shared/api/sendLead'
 import { InvisibleSmartCaptcha } from '@yandex/smart-captcha'
 
 import styles from './form.module.scss'
@@ -165,9 +165,6 @@ const Form: FC<FormProps> = ({
       }
     }
 
-    const token = '7862004029:AAFZ807gLMhUIzqjfh4DB62muUmzWv9JfrY'
-    const chatId = '-4654232429'
-
     const quizResults = quizData ? `\n\nРезультаты квиза:\n${formatQuizData(quizData)}` : ''
     const utmText =
       Object.keys(utmParams).length > 0
@@ -187,10 +184,7 @@ ${data.project ? `💡 *О проекте:*\n${data.project}\n` : ''}${
     }${utmText}${clientIp ? `\n🌍 IP: ${clientIp}` : ''}`
 
     try {
-      await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
-        chat_id: chatId,
-        text: message,
-      })
+      await sendLeadMessage(message, { parse_mode: 'Markdown' })
       if (goalId) {
         reachFormGoal(goalId)
       }

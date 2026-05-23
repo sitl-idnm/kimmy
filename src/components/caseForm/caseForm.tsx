@@ -4,8 +4,8 @@ import classNames from 'classnames'
 
 import styles from './caseForm.module.scss'
 import { CaseFormProps } from './caseForm.types'
-import axios from 'axios'
 import Image from 'next/image'
+import { sendLeadMessage } from '@/shared/api/sendLead'
 import { Borders } from '@/ui'
 import Link from 'next/link'
 
@@ -71,15 +71,10 @@ const CaseForm: FC<CaseFormProps> = ({
       setSuccessMessage({ text: 'Ошибка отправки заявки. HTML теги не разрешены.', isSuccess: false })
       return
     }
-    const token = '7862004029:AAFZ807gLMhUIzqjfh4DB62muUmzWv9JfrY'
-    const chatId = '-4654232429'
     const message = `Новая заявка с ${titleForm} на сайте-визитке:\nИмя: ${data.name}\nТелефон: ${data.phone}${data.mail ? `\nПочта: ${data.mail}` : ''}${data.project ? `\nСообщение: ${data.project}` : ''}${policyConsentTimestamp ? `\nВремя согласия: ${policyConsentTimestamp.toLocaleString()}` : ''}`
 
     try {
-      await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
-        chat_id: chatId,
-        text: message,
-      })
+      await sendLeadMessage(message)
       setSuccessMessage({ text: 'Форма успешно отправлена!', isSuccess: true });
       // Очищаем форму после успешной отправки
     } catch (error) {

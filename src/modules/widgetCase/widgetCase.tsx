@@ -5,7 +5,7 @@ import classNames from 'classnames'
 
 import styles from './widgetCase.module.scss'
 import { WidgetCaseProps } from './widgetCase.types'
-import axios from 'axios';
+import { sendLeadMessage } from '@/shared/api/sendLead'
 
 import Close from '@icons/widgetClose.svg'
 import Link from 'next/link'
@@ -75,8 +75,6 @@ const WidgetCase: FC<WidgetCaseProps> = ({
       setSuccessMessage({ text: 'Форма успешно отправлена!', isSuccess: true })
       return
     }
-    const token = '7862004029:AAFZ807gLMhUIzqjfh4DB62muUmzWv9JfrY'
-    const chatId = '-4654232429'
     const utmText =
       Object.keys(utmParams).length > 0
         ? `\n\nUTM-метки:\n${Object.entries(utmParams)
@@ -88,10 +86,7 @@ const WidgetCase: FC<WidgetCaseProps> = ({
 Телефон: ${data.phoneModal}${utmText}${clientIp ? `\nIP: ${clientIp}` : ''}`
 
     try {
-      await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
-        chat_id: chatId,
-        text: message,
-      })
+      await sendLeadMessage(message)
       setSuccessMessage({ text: 'Форма успешно отправлена!', isSuccess: true });
       // Очищаем форму после успешной отправки
     } catch (error) {
