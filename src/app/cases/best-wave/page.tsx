@@ -1,4 +1,4 @@
-import BestWavePage from '@/views/casesPage/cases/bestWavePage/bestWavePage'
+import BestWavePage from '@views/casesPage/cases/bestWavePage'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {

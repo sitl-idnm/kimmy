@@ -1,4 +1,4 @@
-import ClientPulsePage from '@/views/casesPage/cases/clientPulsePage/clientPulsePage'
+import ClientPulsePage from '@views/casesPage/cases/clientPulsePage'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {

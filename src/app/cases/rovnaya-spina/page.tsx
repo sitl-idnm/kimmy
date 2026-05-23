@@ -1,4 +1,4 @@
-import RovnayaSpinaPage from '@/views/casesPage/cases/rovnayaSpinaPage/rovnayaSpinaPage'
+import RovnayaSpinaPage from '@views/casesPage/cases/rovnayaSpinaPage'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {

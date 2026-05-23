@@ -1,4 +1,4 @@
-import CasesPage from '@/views/casesPage/casesPage'
+import CasesPage from '@views/casesPage'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {

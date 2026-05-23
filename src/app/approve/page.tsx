@@ -1,4 +1,4 @@
-import ApprovePage from '@/views/approvePage/approvePage'
+import ApprovePage from '@views/approvePage'
 import type { Metadata } from 'next'
 
 

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import PrivacyPage from '@/views/privacyPage/privacyPage'
+import PrivacyPage from '@views/privacyPage'
 
 export const metadata: Metadata = {
   title: 'Privacy',

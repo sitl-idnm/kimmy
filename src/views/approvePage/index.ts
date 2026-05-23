@@ -1,1 +1,2 @@
-export { default as PrivacyPageView } from './approvePage'
+export { default as ApprovePageView } from './approvePage'
+export { default } from './approvePage'

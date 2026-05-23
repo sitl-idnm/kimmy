@@ -1,4 +1,4 @@
-import WorkUsPage from '@/views/workUsPage/workUsPage'
+import WorkUsPage from '@views/workUsPage'
 import type { Metadata } from 'next'
 
 

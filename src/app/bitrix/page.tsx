@@ -1,4 +1,4 @@
-import BitrixPage from '@/views/bitrixPage/bitrixPage'
+import BitrixPage from '@views/bitrixPage'
 import type { Metadata } from 'next'
 
 

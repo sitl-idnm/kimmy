@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import ServicePage from '@/views/servicePage/servicePage'
+import ServicePage from '@views/servicePage'
 
 export const metadata: Metadata = {
   title: 'Services',

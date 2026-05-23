@@ -1,4 +1,4 @@
-import GloidPage from '@/views/casesPage/cases/gloidPage/gloidPage'
+import GloidPage from '@views/casesPage/cases/gloidPage'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
