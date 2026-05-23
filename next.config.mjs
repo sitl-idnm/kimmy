@@ -11,8 +11,13 @@ const nextConfig = {
     includePaths: [stylesPath],
   },
   webpack(config) {
+    config.resolve.alias['@'] = path.join(__dirname, 'src')
     config.resolve.alias['@styles'] = stylesPath
     config.resolve.alias['@views'] = path.join(__dirname, 'src/views')
+    config.resolve.alias['@components'] = path.join(__dirname, 'src/components')
+    config.resolve.alias['@modules'] = path.join(__dirname, 'src/modules')
+    config.resolve.alias['@atoms'] = path.join(__dirname, 'src/shared/atoms')
+    config.resolve.alias['@icons'] = path.join(__dirname, 'src/shared/assets/icons')
 
     const fileLoaderRule = config.module.rules.find((rule) =>
       rule.test?.test?.('.svg'),
